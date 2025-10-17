@@ -16,12 +16,28 @@ export default function ContactUs() {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
+    const project = formData.get("project") as string;
+    const message = formData.get("message") as string;
+
     const data = Object.fromEntries(formData.entries());
     data.source = "contact-us";
     console.log(data);
 
+    const payload = {
+      type: "contact", // 👈 required for your merged route
+      name,
+      email,
+      phone,
+      message,
+      project,
+      source: "contact-us",
+    };
+
     try {
-      await axios.post("/api/enquiry", data);
+      await axios.post("/api/enquiry", payload);
       alert("Thanks for applying! We received your application.");
       router.push("/");
     } catch (err: unknown) {
@@ -44,6 +60,12 @@ export default function ContactUs() {
       <div className="max-w-7xl mx-auto">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 bg-transparent border-1 border-gray-300 p-8 rounded-2xl shadow-lg">
           <div>
+            {loading && (
+              <div className="text-orange-600 font-semibold mb-4">
+                Sending your message...
+              </div>
+            )}
+
             <form onSubmit={onSubmit} className="space-y-6">
               <div className="relative w-full">
                 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">

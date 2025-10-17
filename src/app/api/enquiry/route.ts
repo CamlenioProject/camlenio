@@ -18,11 +18,11 @@ export async function POST(req: Request) {
     switch (type) {
       case "contact":
         mailOptions = {
-          from: `"ChatBot Enquiry" <${process.env.SMTP_USER}>`,
+          from: `"contact-us Enquiry" <${process.env.SMTP_USER}>`,
           to: Gmail,
-          subject: "New ChatBot Enquiry",
+          subject: "New contact-us Enquiry",
           html: `
-        <h2>New Chat Enquiry</h2>
+        <h2>New contact-us Enquiry</h2>
         <p><b>Name:</b> ${name}</p>
         <p><b>Email:</b> ${email}</p>
         <p><b>phone:</b> ${phone}</p>
@@ -57,6 +57,7 @@ export async function POST(req: Request) {
             <p><b>Name:</b> ${name}</p>
             <p><b>Email:</b> ${email}</p>
             <p><b>phone:</b> ${phone}</p>
+             <p><b>Project:</b> ${project || "N/A"}</p>
             <p><b>Message:</b> ${message || "N/A"}</p>
           `,
         };
