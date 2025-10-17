@@ -131,10 +131,18 @@ const Hero = () => {
                 zIndex: index === 1 ? 3 : index === 0 ? 2 : 1,
               };
               const hovered = {
-                x: isHovered ? "0%" : index < hoveredIndex ? "-65%" : "65%",
+                x: isHovered
+                  ? "0%"
+                  : index < (hoveredIndex ?? -1)
+                  ? "-65%"
+                  : "65%",
                 y: isHovered ? -20 : 30,
-                z: isHovered ? 50 : index < hoveredIndex ? 40 : -60,
-                rotateY: isHovered ? 0 : index < hoveredIndex ? 40 : -40,
+                z: isHovered ? 50 : index < (hoveredIndex ?? -1) ? 40 : -60,
+                rotateY: isHovered
+                  ? 0
+                  : index < (hoveredIndex ?? -1)
+                  ? 40
+                  : -40,
                 scale: isHovered ? 1.15 : 0.9,
               };
               return (

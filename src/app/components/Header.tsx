@@ -714,7 +714,8 @@ const Header: React.FC = () => {
     }, 160);
   }, []);
 
-  const handleMouseEnter = useCallback((title: string) => {
+  const handleMouseEnter = useCallback((title?: string | null) => {
+    if (!title) return; // if title is null or undefined, stop
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setOpenDropdown(title);
   }, []);
@@ -856,15 +857,15 @@ const Header: React.FC = () => {
                   <ChevronDownIcon className="ml-1 w-4 h-4" />
                 </motion.button>
                 {openDropdown === item.title && (
-                <DesktopDropdown
-                  item={item}
-                  openDropdown={openDropdown}
-                  closeDropdownWithDelay={handleMouseLeave}
-                  openDropdownImmediate={handleMouseEnter}
-                  pathname={pathname}
-                  closeDropdown={() => setOpenDropdown(null)}
-                  toggleDropdown={toggleDropdown}
-                />
+                  <DesktopDropdown
+                    item={item}
+                    openDropdown={openDropdown}
+                    closeDropdownWithDelay={handleMouseLeave}
+                    openDropdownImmediate={handleMouseEnter}
+                    pathname={pathname}
+                    closeDropdown={() => setOpenDropdown(null)}
+                    toggleDropdown={toggleDropdown}
+                  />
                 )}
               </div>
             ) : (

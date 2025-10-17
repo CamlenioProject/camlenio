@@ -66,20 +66,18 @@ export default async function JobApplyPage({
             </div>
           </div>
 
-          {job.responsibilities?.length > 0 && (
-            <div className="mb-8 text-gray-900">
-              <h2 className="text-xl font-semibold mb-3">Responsibilities</h2>
-              <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                {job.responsibilities.map((item, i) => (
-                  <li key={i} className="text-pretty">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {job.requirements?.length > 0 && (
+          {Array.isArray(job.responsibilities) &&
+            job.responsibilities.length > 0 && (
+              <div className="mb-8 text-gray-900">
+                <h2 className="text-xl font-semibold mb-3">Responsibilities</h2>
+                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                  {job.responsibilities.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          {Array.isArray(job.requirements) && job.requirements.length > 0 && (
             <div className="mb-10 text-gray-900">
               <h2 className="text-xl font-semibold mb-3">Requirements</h2>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">

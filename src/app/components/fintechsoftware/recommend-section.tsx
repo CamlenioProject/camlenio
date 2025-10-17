@@ -7,10 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const RecommendSection = () => {
-  const textContainerRef = useRef(null);
-  const mainImageRef = useRef(null);
-  const mediumImageRef = useRef(null);
-  const smallImageRef = useRef(null);
+  const textContainerRef = useRef<HTMLDivElement>(null);
+  const mainImageRef = useRef<HTMLImageElement>(null);
+  const mediumImageRef = useRef<HTMLImageElement>(null);
+  const smallImageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const textEl = textContainerRef.current;

@@ -8,11 +8,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const leftContentRef = useRef(null);
-  const topLeftRef = useRef(null);
-  const topRightRef = useRef(null);
-  const bottomLeftRef = useRef(null);
-  const bottomRightRef = useRef(null);
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const topLeftRef = useRef<HTMLDivElement>(null);
+  const topRightRef = useRef<HTMLDivElement>(null);
+  const bottomLeftRef = useRef<HTMLDivElement>(null);
+  const bottomRightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const triggerElement = leftContentRef.current?.parentElement;
