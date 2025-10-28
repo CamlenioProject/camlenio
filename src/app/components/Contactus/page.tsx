@@ -10,29 +10,57 @@ import { TbMessageDots } from "react-icons/tb";
 
 export default function ContactUs() {
   const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    project: "Web Development",
+    message: "",
+  });
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const validate = () => {
+    const newErrors: { [key: string]: string } = {};
+    if (!formData.name) newErrors.name = "Full Name is required";
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+    if (!formData.phone) {
+      newErrors.phone = "Phone number is required";
+    } else if (!/^[0-9]{10}$/.test(formData.phone)) {
+      newErrors.phone = "Phone number must be 10 digits";
+    }
+    if (!formData.message) newErrors.message = "Message is required";
+    return newErrors;
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const phone = formData.get("phone") as string;
-    const project = formData.get("project") as string;
-    const message = formData.get("message") as string;
-
-    const data = Object.fromEntries(formData.entries());
-    data.source = "contact-us";
-    console.log(data);
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    setErrors({});
+    setLoading(true);
+    setSubmitError(null);
 
     const payload = {
-      type: "contact", 
-      name,
-      email,
-      phone,
-      message,
-      project,
+      type: "contact",
+      ...formData,
       source: "contact-us",
     };
 
@@ -42,11 +70,11 @@ export default function ContactUs() {
       router.push("/");
     } catch (err: unknown) {
       if (err instanceof Error) {
-        setError(
+        setSubmitError(
           err.message || "An error occurred while submitting the application."
         );
       } else {
-        setError(
+        setSubmitError(
           String(err) || "An error occurred while submitting the application."
         );
       }
@@ -61,8 +89,20 @@ export default function ContactUs() {
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 bg-transparent border-1 border-gray-300 p-8 rounded-2xl shadow-lg">
           <div>
             {loading && (
-              <div className="text-orange-600 font-semibold mb-4">
-                Sending your message...
+              <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-lg bg-orange-500 text-white shadow-lg animate-slide-in font-semibold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-white"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-9-4a1 1 0 012 0v4a1 1 0 01-2 0V6zm1 8a1 1 0 100-2 1 1 0 000 2z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>Sending your message...</span>
               </div>
             )}
 
@@ -76,9 +116,16 @@ export default function ContactUs() {
                   type="text"
                   id="name"
                   name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Full Name"
-                  className="w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none placeholder:text-gray-600"
+                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none placeholder:text-gray-600 ${
+                    errors.name ? "border-red-500" : ""
+                  }`}
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                )}
               </div>
 
               <div className="relative w-full">
@@ -90,9 +137,16 @@ export default function ContactUs() {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Email Address"
-                  className="w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none  placeholder:text-gray-600"
+                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none  placeholder:text-gray-600 ${
+                    errors.email ? "border-red-500" : ""
+                  }`}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
               </div>
               <div className="relative w-full">
                 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
@@ -103,9 +157,16 @@ export default function ContactUs() {
                   type="phone"
                   id="phone"
                   name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder="Phone Number"
-                  className="w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none placeholder:text-gray-600"
+                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none placeholder:text-gray-600 ${
+                    errors.phone ? "border-red-500" : ""
+                  }`}
                 />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                )}
               </div>
               <div className="relative w-full">
                 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
@@ -114,6 +175,8 @@ export default function ContactUs() {
                 </div>
                 <select
                   name="project"
+                  value={formData.project}
+                  onChange={handleChange}
                   className="w-full pl-16 pr-3 py-2 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none text-gray-600"
                 >
                   <option>Web Development</option>
@@ -134,16 +197,28 @@ export default function ContactUs() {
                 <textarea
                   name="message"
                   rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="About Your Project"
-                  className="w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none placeholder:text-gray-600"
+                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none placeholder:text-gray-600 ${
+                    errors.message ? "border-red-500" : ""
+                  }`}
                 />
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                )}
               </div>
+
+              {submitError && (
+                <p className="text-red-500 text-sm">{submitError}</p>
+              )}
 
               <button
                 type="submit"
-                className="px-6 py-3 bg-orange-500 text-white rounded-2xl font-semibold hover:bg-orange-600 transition-all"
+                disabled={loading}
+                className="px-6 py-3 bg-orange-500 text-white rounded-2xl font-semibold hover:bg-orange-600 transition-all disabled:bg-gray-400"
               >
-                Submit Now
+                {loading ? "Submitting..." : "Submit"}
               </button>
             </form>
           </div>

@@ -30,7 +30,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
     console.log(data);
 
     const payload = {
-      type: "popup", // 👈 required for your merged route
+      type: "popup", 
       name,
       email,
       phone,
