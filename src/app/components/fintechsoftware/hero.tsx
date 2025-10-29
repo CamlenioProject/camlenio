@@ -104,19 +104,19 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-gray-100 via-orange-100 to-gray-50 bg-[length:200%_200%] animate-gradientMove">
+    <section className="relative overflow-hidden bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
       <div className="py-16 md:pt-14 grid grid-cols-1 items-center gap-6 px-4 sm:px-6 md:min-h-screen md:grid-cols-2 lg:gap-12 lg:px-8 xl:px-16">
         <div
           ref={leftContentRef}
-          className="space-y-4 lg:space-y-6 order-2 md:order-1 animation-optimized"
+          className="order-2 md:order-1 animation-optimized"
         >
-          <p className="text-gray-900 text-sm font-semibold tracking-wide">
+          <p className="text-gray-900 text-sm font-semibold ml-1 tracking-wide">
             {"Fintech Solution —"}
           </p>
 
           <h1
             id="travel-hero-heading"
-            className="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
+            className="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4"
           >
             {"Discover the"}
             <br />
@@ -133,7 +133,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="max-w-5xl text-gray-600 text-sm leading-relaxed sm:text-base md:text-lg">
+          <p className="max-w-5xl text-gray-600 text-sm leading-relaxed sm:text-base md:text-lg mb-4">
             Empowering businesses with secure, scalable, and intelligent fintech
             solutions.
           </p>

@@ -33,16 +33,15 @@ const RecommendSection = () => {
       anticipatePin: 1,
     };
 
-    // Main image - smooth upward reveal
     gsap.fromTo(
       mainImg,
       {
-        y: "30%", // start lower
+        y: "30%", 
         opacity: 0,
         filter: "blur(6px)",
       },
       {
-        y: "0%", // move into place
+        y: "0%", 
         opacity: 1,
         filter: "blur(0px)",
         duration: 1.4,
@@ -52,7 +51,6 @@ const RecommendSection = () => {
       }
     );
 
-    // Medium image - delayed upward motion
     gsap.fromTo(
       mediumImg,
       {
@@ -74,7 +72,6 @@ const RecommendSection = () => {
       }
     );
 
-    // Small image - delayed further
     gsap.fromTo(
       smallImg,
       {
@@ -96,7 +93,6 @@ const RecommendSection = () => {
       }
     );
 
-    // ✅ Text slides in from right (original behavior)
     gsap.fromTo(
       textEl,
       { x: "100%", opacity: 0 },
@@ -118,10 +114,9 @@ const RecommendSection = () => {
   return (
     <div className="relative overflow-hidden bg-gradient-to-r from-gray-50 via-orange-200 to-gray-50 bg-[length:200%_200%] animate-gradientMove">
       <div className="w-full max-w-7xl mx-auto lg:min-h-[80vh] px-6 py-12 flex flex-col lg:flex-row items-center justify-between gap-6">
-        {/* Left Images */}
+
         <div className="relative flex-shrink-0 w-full lg:w-1/2 flex justify-center lg:justify-start items-center lg:items-start">
           <div className="relative w-[500px] h-[420px]">
-            {/* Main (largest) image - bottom left */}
             <div
               ref={mainImageRef}
               className="absolute bottom-0 left-0 w-[420px] h-[400px] rounded-[3rem] border border-gray-100 overflow-hidden shadow-lg"
@@ -135,7 +130,6 @@ const RecommendSection = () => {
               />
             </div>
 
-            {/* Medium image - bottom right */}
             <div
               ref={mediumImageRef}
               className="absolute -bottom-10 right-0 w-[260px] h-[280px] rounded-[3rem] border border-gray-100 overflow-hidden shadow-md"
@@ -149,7 +143,6 @@ const RecommendSection = () => {
               />
             </div>
 
-            {/* Smallest image - top of medium image */}
             <div
               ref={smallImageRef}
               className="absolute top-14 -right-10 w-[160px] h-[180px] rounded-[3rem] border border-gray-100 overflow-hidden shadow-md"
@@ -165,7 +158,6 @@ const RecommendSection = () => {
           </div>
         </div>
 
-        {/* Right Text Section */}
         <div
           ref={textContainerRef}
           className="lg:w-1/2 space-y-6 text-center lg:text-left"
@@ -179,7 +171,6 @@ const RecommendSection = () => {
             destinations and offer the best experiences every week.
           </p>
 
-          {/* Stats */}
           <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
             <div className="bg-orange-100 rounded-2xl px-6 py-4 text-center shadow-sm">
               <h3 className="text-xl font-bold">2000+</h3>
