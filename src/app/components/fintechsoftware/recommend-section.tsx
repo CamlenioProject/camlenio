@@ -112,7 +112,7 @@ const RecommendSection = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-r from-gray-50 via-orange-200 to-gray-50 bg-[length:200%_200%] animate-gradientMove">
+    <div className="relative overflow-hidden bg-gradient-to-r from-gray-100 via-orange-100 to-gray-50 bg-[length:200%_200%] animate-gradientMove">
       <div className="w-full max-w-7xl mx-auto lg:min-h-[80vh] px-6 py-12 flex flex-col lg:flex-row items-center justify-between gap-6">
 
         <div className="relative flex-shrink-0 w-full lg:w-1/2 flex justify-center lg:justify-start items-center lg:items-start">

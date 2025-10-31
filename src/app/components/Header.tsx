@@ -37,7 +37,13 @@ const navItems = [
     title: "Company",
     href: "company",
     dropdown: true,
-    items: ["Blog", "About", "Career", "Contact"],
+    // items: ["Blog", "About", "Career", "Contact"],
+    items: [
+      { title: "Blog", href: "https://blogs.camlenio.com" },
+      { title: "About", href: "/component/company/about" },
+      { title: "Career", href: "/component/company/career" },
+      { title: "Contact", href: "/component/company/contact" },
+    ],
     dropdownClassName: "left-1/2 md: -translate-x-[35%]  lg:-translate-x-[45%]",
   },
   {
@@ -333,34 +339,46 @@ const CompanyDropdown = ({
       <div className="pl-6 pt-4">
         <div className="flex">
           <div className="w-1/3  flex flex-col justify-center items-start  border-r-2 border-l-2 border-r-gray-300 border-l-orange-500 rounded-3xl shadow-[-8px_0_15px_-3px_rgba(0,0,0,0.2)] mr-2 my-2">
-            {(item.items as string[]).map((tab) => {
-              const href = `/component/${item.href}/${tab
-                .replace(/\s+/g, "")
-                .toLowerCase()}`;
-              const isActive = pathname === href || activeTab === tab;
-              return (
-                <Link
-                  key={tab}
-                  href={safeLink(href, availablePages)}
-                  onMouseEnter={() => {
-                    openDropdownImmediate(item.title);
-                    setActiveTab(tab);
-                  }}
-                  onClick={closeDropdown}
-                  className={clsx(
-                    "max-w-sm p-2 rounded text-base transition-transform duration-100 hover:translate-x-1 flex items-center justify-center ",
-                    isActive
-                      ? "text-orange-600 font-semibold"
-                      : "text-gray-700 hover:text-orange-500"
-                  )}
-                >
-                  {getCompanyIcon(tab)}
-                  <span className="flex justify-center items-center text-center">
-                    {tab}
-                  </span>
-                </Link>
-              );
-            })}
+            {(item.items as { title: string; href: string }[]).map(
+              (linkItem) => {
+                const isActive =
+                  pathname === linkItem.href || activeTab === linkItem.title;
+                return (
+                  <Link
+                    key={linkItem.title}
+                    // href={safeLink(linkItem.href, availablePages)}
+                    href={
+                      linkItem.href.startsWith("http")
+                        ? linkItem.href
+                        : safeLink(linkItem.href, availablePages)
+                    }
+                    onMouseEnter={() => {
+                      openDropdownImmediate(item.title);
+                      setActiveTab(linkItem.title);
+                    }}
+                    onClick={closeDropdown}
+                    className={clsx(
+                      "max-w-sm p-2 rounded text-base transition-transform duration-100 hover:translate-x-1 flex items-center justify-center ",
+                      isActive
+                        ? "text-orange-600 font-semibold"
+                        : "text-gray-700 hover:text-orange-500"
+                    )}
+                    // Open external links in a new tab
+
+                    rel={
+                      linkItem.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                  >
+                    {getCompanyIcon(linkItem.title)}
+                    <span className="flex justify-center items-center text-center">
+                      {linkItem.title}
+                    </span>
+                  </Link>
+                );
+              }
+            )}
           </div>
           <div className="w-2/3 flex items-center justify-center">
             <div className="w-full max-w-xs">
@@ -632,16 +650,22 @@ const DesktopDropdown = React.memo(
               )
             ) : Array.isArray(item.items) ? (
               <div className="grid grid-cols-2 gap-3">
-                {item.items.map((link) => (
+                {(
+                  item.items as Array<string | { title: string; href: string }>
+                ).map((link) => (
                   <Link
-                    key={link}
-                    href={`/component/${item.href}/${link
-                      .replace(/\s+/g, "")
-                      .toLowerCase()}`}
+                    key={typeof link === "string" ? link : link.href}
+                    href={
+                      typeof link === "string"
+                        ? `/component/${item.href}/${link
+                            .replace(/\s+/g, "")
+                            .toLowerCase()}`
+                        : link.href
+                    }
                     className="block text-gray-700 text-sm p-2 hover:text-orange-500"
                     onClick={closeDropdown}
                   >
-                    {link}
+                    {typeof link === "string" ? link : link.title}
                   </Link>
                 ))}
               </div>
@@ -992,21 +1016,31 @@ const Header: React.FC = () => {
                         className="overflow-hidden mt-2 pl-4 "
                       >
                         {Array.isArray(item.items) ? (
-                          item.items.map((link) => (
-                            <Link
-                              key={link}
-                              href={safeLink(
-                                `/component/${item.href}/${link
-                                  .replace(/\s+/g, "")
-                                  .toLowerCase()}`,
-                                availablePages
-                              )}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="block text-base p-2 text-gray-700 hover:text-orange-900 space-y-2"
-                            >
-                              {link}
-                            </Link>
-                          ))
+                          item.items.map(
+                            (
+                              link: string | { title: string; href: string }
+                            ) => (
+                              <Link
+                                key={
+                                  typeof link === "string" ? link : link.title
+                                }
+                                href={
+                                  typeof link === "string"
+                                    ? safeLink(
+                                        `/component/${item.href}/${link
+                                          .replace(/\s+/g, "")
+                                          .toLowerCase()}`,
+                                        availablePages
+                                      )
+                                    : link.href
+                                }
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block text-base p-2 text-gray-700 hover:text-orange-900 space-y-2"
+                              >
+                                {typeof link === "string" ? link : link.title}
+                              </Link>
+                            )
+                          )
                         ) : (
                           <MobileDropdown
                             item={

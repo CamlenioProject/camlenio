@@ -62,7 +62,7 @@ const rightFeatures: FeatureItem[] = [
     icon: User,
     title: "Peer Code Reviews",
     description:
-      "Improve faster with feedback from mentors and batchmates on your actual code.",
+      "Improve faster with feedback from mentors and batchmate on your actual code.",
     position: "right",
     cornerStyle: "sm:translate-x-8 sm:rounded-bl-[2px]",
   },
@@ -85,7 +85,7 @@ const FeatureCard = forwardRef<HTMLDivElement, { feature: FeatureItem }>(
         ref={ref}
         className={cn(
           "relative rounded-2xl px-4 pt-4 pb-4 text-sm",
-          "bg-orange-200 border border-gray-200",
+          "bg-[#ffedd5]   border border-gray-200 ",
           feature.cornerStyle
         )}
       >
@@ -134,16 +134,14 @@ export default function Feature() {
       },
     });
 
-  
     tl.from(leftCards, {
       x: "-100%",
       opacity: 0,
       duration: 0.8,
       ease: "power2.out",
-      stagger: 0.2, 
+      stagger: 0.2,
     });
 
- 
     tl.from(
       rightCards,
       {
@@ -153,7 +151,7 @@ export default function Feature() {
         ease: "power2.out",
         stagger: 0.2,
       },
-      "<" 
+      "<"
     );
 
     return () => {
@@ -167,7 +165,7 @@ export default function Feature() {
   return (
     <section
       ref={sectionRef}
-      className="pt-20 pb-8 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove"
+      className="pt-20 pb-8 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove scroll-smooth overflow-hidden"
     >
       <div className="mx-6 max-w-[1120px] pt-2 pb-16 max-[300px]:mx-4 min-[1150px]:mx-auto">
         <div className="grid gap-6 md:grid-cols-3">
@@ -183,17 +181,9 @@ export default function Feature() {
             ))}
           </div>
 
-          <div className="order-[1] mb-6 self-center sm:order-[0] md:mb-0">
-            <div className="relative mx-auto mb-4 w-fit rounded-full rounded-bl-[2px] border border-orange-300 bg-white/80 px-4 py-2 text-sm shadow">
-              <span className="relative z-10 flex items-center gap-2 text-gray-800">
-                Features
-              </span>
-              <span
-                aria-hidden="true"
-                className="absolute -bottom-px left-1/2 h-px w-2/5 -translate-x-1/2 bg-gradient-to-r from-transparent via-orange-400 to-transparent"
-              />
-            </div>
-            <h2 className="text-gray-900 mb-2 text-center text-2xl sm:mb-2.5 md:text-[1.8rem]">
+          <div className="relative order-[1] mb-6 self-center sm:order-[0] md:mb-0">
+            <span className="absolute inset-0 mx-auto h-32 w-48 rounded-full bg-gradient-to-r from-orange-300 via-orange-500 to-orange-500 blur-3xl opacity-40"></span>
+            <h2 className="text-gray-900 mb-2  text-center text-2xl sm:mb-2.5 md:text-[1.8rem]">
               Core Features of <br />
               FinTech Software
             </h2>

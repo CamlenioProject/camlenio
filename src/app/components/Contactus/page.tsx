@@ -1,15 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import { FiPhone } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import { FiUser } from "react-icons/fi";
 import { MdOutlineWork } from "react-icons/md";
 import { TbMessageDots } from "react-icons/tb";
+import { Button } from "./submit-button-ui";
 
 export default function ContactUs() {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -47,8 +46,7 @@ export default function ContactUs() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -66,8 +64,6 @@ export default function ContactUs() {
 
     try {
       await axios.post("/api/enquiry", payload);
-      alert("Thanks for applying! We received your application.");
-      router.push("/");
     } catch (err: unknown) {
       if (err instanceof Error) {
         setSubmitError(
@@ -106,7 +102,7 @@ export default function ContactUs() {
               </div>
             )}
 
-            <form onSubmit={onSubmit} className="space-y-6">
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
               <div className="relative w-full">
                 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
                   <FiUser className="text-gray-900 text-xl" />
@@ -119,7 +115,7 @@ export default function ContactUs() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Full Name"
-                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none placeholder:text-gray-600 ${
+                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
                     errors.name ? "border-red-500" : ""
                   }`}
                 />
@@ -140,7 +136,7 @@ export default function ContactUs() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email Address"
-                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none  placeholder:text-gray-600 ${
+                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none  placeholder:text-gray-600 ${
                     errors.email ? "border-red-500" : ""
                   }`}
                 />
@@ -160,7 +156,7 @@ export default function ContactUs() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="Phone Number"
-                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none placeholder:text-gray-600 ${
+                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
                     errors.phone ? "border-red-500" : ""
                   }`}
                 />
@@ -177,7 +173,7 @@ export default function ContactUs() {
                   name="project"
                   value={formData.project}
                   onChange={handleChange}
-                  className="w-full pl-16 pr-3 py-2 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none text-gray-600"
+                  className="w-full pl-16 pr-3 py-2 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none text-gray-600"
                 >
                   <option>Web Development</option>
                   <option>Mobile App Development</option>
@@ -199,8 +195,14 @@ export default function ContactUs() {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      document.getElementById("animated-submit-btn")?.click();
+                    }
+                  }}
                   placeholder="About Your Project"
-                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:outline-none placeholder:text-gray-600 ${
+                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
                     errors.message ? "border-red-500" : ""
                   }`}
                 />
@@ -213,13 +215,14 @@ export default function ContactUs() {
                 <p className="text-red-500 text-sm">{submitError}</p>
               )}
 
-              <button
-                type="submit"
+              <Button
                 disabled={loading}
-                className="px-6 py-3 bg-orange-500 text-white rounded-2xl font-semibold hover:bg-orange-600 transition-all disabled:bg-gray-400"
+                id="animated-submit-btn"
+                onClick={handleSubmit}
+                className="bg-orange-500 hover:bg-orange-600 hover:ring-orange-500"
               >
-                {loading ? "Submitting..." : "Submit"}
-              </button>
+                Submit
+              </Button>
             </form>
           </div>
           <div className="relative flex flex-col justify-center bg-gray-900 text-white rounded-2xl p-8">
