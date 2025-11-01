@@ -13,7 +13,8 @@ export async function POST(req: Request) {
         pass: process.env.SMTP_PASS,
       },
     });
-
+    console.log(process.env.SMTP_USER);
+    console.log(process.env.SMTP_PASS);
     let mailOptions;
     switch (type) {
       case "contact":
