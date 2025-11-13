@@ -88,7 +88,7 @@ export default function Footer() {
               </span>
               <div className="text-gray-950  md:border-l pl-2 md:pl-2 border-gray-800">
                 <h3 className="font-medium">Call for more info :-</h3>
-                <p>+91-9773323813</p>
+                <p>+91-9773323814</p>
               </div>
             </div>
 
@@ -97,8 +97,7 @@ export default function Footer() {
                 <MdEmail />
               </span>
               <div className="text-gray-950  md:border-l pl-2 md:pl-2 border-gray-800">
-                <h3 className="font-medium">Mail to our sales Department</h3>
-                <p>camleniosoftware@gmail.com</p>
+                <p>business@camlenio.com</p>
               </div>
             </div>
 
@@ -124,9 +123,6 @@ export default function Footer() {
             <br />
             Scale faster with Camlenio.
           </h2>
-          <button className="mt-6 bg-white text-black font-semibold py-2 px-6 rounded-full hover:bg-gray-200 transition">
-            Book a free strategy session →
-          </button>
         </div>
 
         <div className="border-t border-gray-500 my-6" />

@@ -6,7 +6,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { FiUser } from "react-icons/fi";
 import { MdOutlineWork } from "react-icons/md";
 import { TbMessageDots } from "react-icons/tb";
-import { Button } from "./submit-button-ui";
+import { Button } from "../submit-button-ui";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({

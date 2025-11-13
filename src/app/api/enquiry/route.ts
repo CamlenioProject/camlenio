@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-const Gmail = "camleniosoftware@gmail.com";
+// const Gmail = "camleniosoftware@gmail.com";
+const Gmail = "dev.rahul.kumar.sharma@gmail.com";
+// const Gmail = "as@yopmail.com";
 
 export async function POST(req: Request) {
   try {
@@ -59,6 +61,20 @@ export async function POST(req: Request) {
             <p><b>Email:</b> ${email}</p>
             <p><b>phone:</b> ${phone}</p>
              <p><b>Project:</b> ${project || "N/A"}</p>
+            <p><b>Message:</b> ${message || "N/A"}</p>
+          `,
+        };
+        break;
+      case "demo":
+        mailOptions = {
+          from: `"Get Free Demo Enquiry" <${process.env.SMTP_USER}>`,
+          to: Gmail,
+          subject: "Get a Demo Enquiry",
+          html: `
+            <h2>Get a Demo Enquiry</h2>
+            <p><b>Name:</b> ${name}</p>
+            <p><b>Email:</b> ${email}</p>
+            <p><b>phone:</b> ${phone}</p>
             <p><b>Message:</b> ${message || "N/A"}</p>
           `,
         };
