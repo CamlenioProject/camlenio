@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-// const Gmail = "camleniosoftware@gmail.com";
-const Gmail = "dev.rahul.kumar.sharma@gmail.com";
-// const Gmail = "as@yopmail.com";
+const Gmail = "camleniosoftware@gmail.com";
 
 export async function POST(req: Request) {
   try {
