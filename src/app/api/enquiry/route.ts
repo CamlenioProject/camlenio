@@ -1,75 +1,13 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import mongoose, { Schema, Document, Model } from "mongoose";
+
 const Gmail = "camleniosoftware@gmail.com";
-
-// const Gmail = "dev.rahul.kumar.sharma@gmail.com";
-
-// -------------------------
-//  MongoDB Connection
-// -------------------------
-// const MONGODB_URI = process.env.MONGODB_URI as string;
-
-// if (!MONGODB_URI) throw new Error("MONGODB_URI missing in .env");
-
-// let cached = (
-//   global as unknown as { mongoose: { conn: typeof mongoose | null } }
-// ).mongoose;
-
-// if (!cached) {
-//   cached = (
-//     global as unknown as { mongoose: { conn: typeof mongoose | null } }
-//   ).mongoose = {
-//     conn: null,
-//   };
-// }
-
-// async function connectDB() {
-//   if (cached.conn) return cached.conn;
-//   cached.conn = await mongoose.connect(MONGODB_URI);
-//   return cached.conn;
-// }
-
-// // -------------------------
-// // TYPE + MODEL
-// // -------------------------
-// interface EnquiryDocument extends Document {
-//   name: string;
-//   email: string;
-//   phone: string;
-//   project: string;
-//   message: string;
-//   source: string;
-//   createdAt: Date;
-// }
-
-// let EnquiryModel: Model<EnquiryDocument>;
-
-// try {
-//   EnquiryModel = mongoose.model<EnquiryDocument>("Enquiry");
-// } catch {
-//   const schema = new Schema<EnquiryDocument>(
-//     {
-//       name: { type: String, required: true },
-//       email: { type: String, required: true },
-//       phone: { type: String, required: true },
-//       project: { type: String, required: true },
-//       message: { type: String, required: true },
-//       source: { type: String, required: true },
-//     },
-//     { timestamps: true }
-//   );
-
-//   EnquiryModel = mongoose.model("Enquiry", schema);
-// }
 
 // -------------------------
 //  API ROUTE
 // -------------------------
 export async function POST(req: Request) {
   try {
-    // await connectDB();
-
     const { type, name, email, phone, project, message, source } =
       await req.json();
 
@@ -79,16 +17,6 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
-
-    // SAVE TO DB (correct)
-    // await EnquiryModel.create({
-    //   name,
-    //   email,
-    //   phone,
-    //   project,
-    //   message,
-    //   source,
-    // });
 
     // -------------------------
     //  EMAIL SETUP
