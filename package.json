@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@ai-sdk/groq": "^2.0.24",
-    "@google/genai": "^1.25.0",
+    "@google/genai": "^1.31.0",
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
     "@lottiefiles/dotlottie-react": "^0.15.2",

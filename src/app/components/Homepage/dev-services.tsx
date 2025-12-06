@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { AnimatePresence, motion } from "framer-motion";
 
 const features = [
   {
@@ -185,6 +186,7 @@ const features = [
 ];
 
 const DevServices = () => {
+  const router = useRouter();
   const [active, setActive] = useState(1);
   const activeFeature = features.find((f) => f.id === active);
   return (
@@ -224,7 +226,7 @@ const DevServices = () => {
                   key={feature.id}
                   onClick={() => setActive(feature.id)}
                   whileHover={{ scale: 1.02 }}
-                  className={`flex items-center group gap-3 text-left p-2 rounded-xl transition-colors duration-300 ${
+                  className={`flex items-center group gap-3 text-left p-2 rounded-xl cursor-pointer transition-colors duration-300 ${
                     active === feature.id
                       ? "bg-orange-500 text-white"
                       : "bg-gray-200 text-gray-900 hover:bg-orange-500 hover:text-white"
@@ -269,7 +271,12 @@ const DevServices = () => {
                     {activeFeature?.desc}
                   </p>
 
-                  <button className="relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 overflow-hidden font-semibold text-gray-900 bg-gray-100 rounded-full group text-sm sm:text-base lg:text-lg">
+                  <button
+                    onClick={() => {
+                      router.push("./component/company/contact");
+                    }}
+                    className="relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 overflow-hidden font-semibold text-gray-900 bg-gray-100 rounded-full group text-sm sm:text-base lg:text-lg cursor-pointer"
+                  >
                     <span className="absolute inset-0 w-full h-full bg-orange-500 rounded-full transform translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
                     <span className="relative z-10 group-hover:text-white transition-colors duration-500 flex items-center gap-2">
                       Talk to Experts <FaLongArrowAltRight />

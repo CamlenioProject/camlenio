@@ -6,15 +6,17 @@ import { useState, useEffect } from "react";
 import { HeroTextAnimate } from "../HeroTextAnimate";
 import FormPopup from "../FormPopup";
 import BackToTopButton from "../BackToTopButton";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
+  const router = useRouter();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsPopupOpen(true);
-    }, 2500);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -63,7 +65,7 @@ const Hero = () => {
               Development in{" "}
               <HeroTextAnimate
                 words={[
-                  "Custom Solutions",
+                  "Custom Solution",
                   "Fintech Software",
                   "Digital Solutions",
                 ]}
@@ -100,8 +102,8 @@ const Hero = () => {
               </li>
             </ul>
             <button
-              // onClick={() => setIsPopupOpen(true)}
-              className="my-6 px-6 py-3 self-center md:self-start bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl shadow-md"
+              onClick={() => router.push("/component/company/contact")}
+              className="my-6 px-6 py-3 self-center md:self-start bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl shadow-md cursor-pointer"
             >
               Schedule a call
             </button>

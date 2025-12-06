@@ -44,6 +44,14 @@ export default function ContactUs() {
   ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
   };
 
   const handleSubmit = async () => {
@@ -64,6 +72,14 @@ export default function ContactUs() {
 
     try {
       await axios.post("/api/enquiry", payload);
+      // Clear form on successful submission
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        project: "Web Development",
+        message: "",
+      });
     } catch (err: unknown) {
       if (err instanceof Error) {
         setSubmitError(
@@ -82,20 +98,20 @@ export default function ContactUs() {
   return (
     <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove py-20 px-8 md:px-16 scroll-smooth">
       <div className="max-w-7xl mx-auto">
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 bg-transparent border-1 border-gray-300 p-8 rounded-2xl shadow-lg">
-          <div>
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 bg-transparent border-1 border-gray-300 p-8 rounded-2xl shadow-lg ">
+          <div className="order-2 md:order-1">
             {loading && (
               <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-lg bg-orange-500 text-white shadow-lg animate-slide-in font-semibold">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-white"
+                  className="h-5 w-5 text-white animate-spin"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
                   <path
-                    fill-rule="evenodd"
-                    d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-9-4a1 1 0 012 0v4a1 1 0 01-2 0V6zm1 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                    clipRule="evenodd"
                   />
                 </svg>
                 <span>Sending your message...</span>
@@ -103,67 +119,85 @@ export default function ContactUs() {
             )}
 
             <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+              {/* Name Field */}
               <div className="relative w-full">
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
-                  <FiUser className="text-gray-900 text-xl" />
-                  <span className="ml-2 h-6 border-r border-gray-300"></span>{" "}
+                <div className="relative">
+                  <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
+                    <FiUser className="text-gray-900 text-xl" />
+                    <span className="ml-2 h-6 border-r border-gray-300"></span>
+                  </div>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Full Name"
+                    className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
+                      errors.name ? "border-red-500" : ""
+                    }`}
+                  />
                 </div>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Full Name"
-                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
-                    errors.name ? "border-red-500" : ""
-                  }`}
-                />
                 {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                  <p className="text-red-500 text-sm mt-1 ml-2">
+                    {errors.name}
+                  </p>
                 )}
               </div>
 
+              {/* Email Field */}
               <div className="relative w-full">
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
-                  <HiOutlineMail className="text-gray-900 text-xl" />
-                  <span className="ml-2 h-6 border-r border-gray-300"></span>
+                <div className="relative">
+                  <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
+                    <HiOutlineMail className="text-gray-900 text-xl" />
+                    <span className="ml-2 h-6 border-r border-gray-300"></span>
+                  </div>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email Address"
+                    className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
+                      errors.email ? "border-red-500" : ""
+                    }`}
+                  />
                 </div>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Email Address"
-                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none  placeholder:text-gray-600 ${
-                    errors.email ? "border-red-500" : ""
-                  }`}
-                />
                 {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                  <p className="text-red-500 text-sm mt-1 ml-2">
+                    {errors.email}
+                  </p>
                 )}
               </div>
+
+              {/* Phone Field */}
               <div className="relative w-full">
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
-                  <FiPhone className="text-gray-900 text-xl" />
-                  <span className="ml-2 h-6 border-r border-gray-300"></span>
+                <div className="relative">
+                  <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
+                    <FiPhone className="text-gray-900 text-xl" />
+                    <span className="ml-2 h-6 border-r border-gray-300"></span>
+                  </div>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Phone Number"
+                    className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
+                      errors.phone ? "border-red-500" : ""
+                    }`}
+                  />
                 </div>
-                <input
-                  type="phone"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Phone Number"
-                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
-                    errors.phone ? "border-red-500" : ""
-                  }`}
-                />
                 {errors.phone && (
-                  <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                  <p className="text-red-500 text-sm mt-1 ml-2">
+                    {errors.phone}
+                  </p>
                 )}
               </div>
+
+              {/* Project Field - No error handling needed */}
               <div className="relative w-full">
                 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
                   <MdOutlineWork className="text-gray-900 text-xl" />
@@ -173,7 +207,7 @@ export default function ContactUs() {
                   name="project"
                   value={formData.project}
                   onChange={handleChange}
-                  className="w-full pl-16 pr-3 py-2 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none text-gray-600"
+                  className="w-full pl-16 pr-3 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none text-gray-600"
                 >
                   <option>Web Development</option>
                   <option>Mobile App Development</option>
@@ -185,51 +219,61 @@ export default function ContactUs() {
                 </select>
               </div>
 
+              {/* Message Field */}
               <div className="relative w-full">
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-start h-full px-3 pt-2">
-                  <TbMessageDots className="text-gray-900 text-xl mt-1" />
-                  <span className="ml-2 h-6 border-r border-gray-300"></span>
+                <div className="relative">
+                  <div className="absolute left-0 top-4 flex items-start h-full px-3">
+                    <TbMessageDots className="text-gray-900 text-xl" />
+                    <span className="ml-2 h-6 border-r border-gray-300"></span>
+                  </div>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    value={formData.message}
+                    onChange={handleChange}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        document.getElementById("animated-submit-btn")?.click();
+                      }
+                    }}
+                    placeholder="About Your Project"
+                    className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 resize-none ${
+                      errors.message ? "border-red-500" : ""
+                    }`}
+                  />
                 </div>
-                <textarea
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      document.getElementById("animated-submit-btn")?.click();
-                    }
-                  }}
-                  placeholder="About Your Project"
-                  className={`w-full pl-16 pr-3 py-2 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
-                    errors.message ? "border-red-500" : ""
-                  }`}
-                />
                 {errors.message && (
-                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                  <p className="text-red-500 text-sm mt-1 ml-2">
+                    {errors.message}
+                  </p>
                 )}
               </div>
 
               {submitError && (
-                <p className="text-red-500 text-sm">{submitError}</p>
+                <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-red-600 text-sm text-center">
+                    {submitError}
+                  </p>
+                </div>
               )}
 
               <Button
                 disabled={loading}
                 id="animated-submit-btn"
                 onClick={handleSubmit}
-                className="bg-orange-500 hover:bg-orange-600 hover:ring-orange-500"
+                className="w-full bg-orange-500 hover:bg-orange-600 hover:ring-orange-500 cursor-pointer text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Submit
+                {loading ? "Sending..." : "Submit"}
               </Button>
             </form>
           </div>
-          <div className="relative flex flex-col justify-center bg-gray-900 text-white rounded-2xl p-8">
+
+          <div className="order-1 md:order-2 relative flex flex-col justify-center bg-gray-900 text-white rounded-2xl p-8 min-h-[500px]">
             <div className="absolute inset-0 bg-[url('/navcompany/support.png')] bg-cover bg-center opacity-20 rounded-2xl"></div>
-            <div className=" max-w-full relative z-10 space-y-4 text-center">
+            <div className="max-w-full relative z-10 space-y-4 text-center">
               <h2
-                className=" text-3xl md:text-6xl font-bold  text-orange-500 "
+                className="text-3xl md:text-6xl font-bold text-orange-500"
                 style={{
                   textShadow:
                     "-1px -1px 0px #da5f00, 3px 3px 0px #3f4653, 4px 6px 0px #ff582336",
@@ -241,7 +285,7 @@ export default function ContactUs() {
                 Mail to our sales teams
               </p>
               <p className="text-xl md:text-2xl font-semibold text-orange-50">
-                sales@company.com
+                business@camlenio.com
               </p>
               <div className="mt-6">
                 <h3 className="text-2xl text-orange-500 font-semibold">

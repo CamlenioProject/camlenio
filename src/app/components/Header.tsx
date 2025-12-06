@@ -37,7 +37,6 @@ const navItems = [
     title: "Company",
     href: "company",
     dropdown: true,
-    // items: ["Blog", "About", "Career", "Contact"],
     items: [
       { title: "Blog", href: "https://blogs.camlenio.com" },
       { title: "About", href: "/component/company/about" },
@@ -728,6 +727,8 @@ const Header: React.FC = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const [hideMarquee, setHideMarquee] = useState(false);
+
   const pathname = usePathname();
   const navItemRef = useRef<HTMLDivElement | null>(null);
   const timeoutRef = useRef<number | null>(null);
@@ -747,6 +748,21 @@ const Header: React.FC = () => {
   const toggleDropdown = (title: string) => {
     setOpenDropdown(openDropdown === title ? null : title);
   };
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY && window.scrollY > 80) {
+        setHideMarquee(true); // scrolling down → hide marquee
+      } else {
+        setHideMarquee(false); // scrolling up → show marquee
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     document.body.classList.toggle("overflow-hidden", mobileMenuOpen);
@@ -823,6 +839,40 @@ const Header: React.FC = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[1000]  bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove shadow-md">
+      <AnimatePresence>
+        {!hideMarquee && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -20 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -20 }}
+            transition={{ duration: 0.45, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="relative bg-orange-500 border-b border-yellow-400/40 shadow-[0_3px_10px_rgba(0,0,0,0.25)]">
+              <div className="flex items-center justify-center py-2">
+                {/* Marquee */}
+                <div className="relative overflow-hidden flex-1">
+                  <div className="animate-marquee whitespace-nowrap flex items-center">
+                    {[...Array(3)].map((_, i) => (
+                      <span
+                        key={i}
+                        className="mx-10 text-white text-sm md:text-[15px] font-medium tracking-wide "
+                      >
+                        🎄 Celebrate Christmas with
+                        <span className="font-semibold text-yellow-300 mx-1 drop-shadow-[0_0_12px_rgba(255,215,0,0.8)]">
+                          UP TO 50% OFF
+                        </span>
+                        on All Fintech Solutions! 🎅
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="max-w-7xl mx-auto flex items-center justify-between p-4 ">
         <Link href="/" className="flex items-center justify-center space-x-1  ">
           <Image
@@ -859,7 +909,7 @@ const Header: React.FC = () => {
             </span>
           </span>
         </Link>
-        <nav className="hidden md:flex  md:space-x-2 lg:space-x-4 items-center relative font-normal">
+        <nav className="hidden md:flex  md:space-x-2 lg:space-x-4 items-center relative font-normal ">
           {navItems.map((item, idx) =>
             item.dropdown ? (
               <div
@@ -873,7 +923,7 @@ const Header: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   onClick={() => toggleDropdown(item.title)}
                   className={clsx(
-                    "inline-flex items-center text-gray-900 text-xs lg:text-sm font-medium hover:text-orange-500",
+                    "inline-flex items-center text-gray-900 text-xs lg:text-sm font-medium hover:text-orange-500 cursor-pointer",
                     openDropdown === item.title && "text-orange-500"
                   )}
                 >

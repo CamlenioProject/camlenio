@@ -2,8 +2,8 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className=" bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove pt-20 px-8 md:px-16">
-      <div className="max-w-7xl mx-auto min-h-[300px] flex flex-col items-center justify-center">
+    <div className=" bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove pt-30 px-8 md:px-16">
+      <div className="max-w-7xl mx-auto flex flex-col items-center justify-center">
         <div className="relative text-2xl md:text-5xl font-bold text-center text-gray-900 inline-block group">
           <h1 className="relative inline-block">
             Let&apos;s Build Something Great Together!
