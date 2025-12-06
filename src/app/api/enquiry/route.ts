@@ -36,7 +36,7 @@ interface EnquiryDocument extends Document {
   name: string;
   email: string;
   phone: string;
-  enquiryFor: string;
+  project: string;
   message: string;
   source: string;
   createdAt: Date;
@@ -52,7 +52,7 @@ try {
       name: { type: String, required: true },
       email: { type: String, required: true },
       phone: { type: String, required: true },
-      enquiryFor: { type: String, required: true },
+      project: { type: String, required: true },
       message: { type: String, required: true },
       source: { type: String, required: true },
     },
@@ -69,10 +69,10 @@ export async function POST(req: Request) {
   try {
     await connectDB();
 
-    const { type, name, email, phone, enquiryFor, message, source } =
+    const { type, name, email, phone, project, message, source } =
       await req.json();
 
-    if (!name || !email || !phone || !enquiryFor || !message || !source) {
+    if (!name || !email || !phone || !project || !message || !source) {
       return NextResponse.json(
         { success: false, message: "All fields are required" },
         { status: 400 }
@@ -84,7 +84,7 @@ export async function POST(req: Request) {
       name,
       email,
       phone,
-      enquiryFor,
+      project,
       message,
       source,
     });

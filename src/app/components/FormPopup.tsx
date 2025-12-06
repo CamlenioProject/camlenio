@@ -229,7 +229,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
 
                   <div className="w-full md:w-1/2">
                     <Image
-                      src="/Fintech-software-offer-post.png"
+                      src="/MERRY-CHRISTMAS.png"
                       alt="Contact us"
                       width={600}
                       height={600}
