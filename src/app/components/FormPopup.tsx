@@ -66,7 +66,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
       email,
       phone,
       message,
-      source: "popup-form",
+      source: "popup",
     };
 
     try {
@@ -74,7 +74,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
 
       setSuccess("Message successfully sent!");
 
-      form.reset(); // <-- CLEAR ALL INPUTS
+      form.reset();
 
       setTimeout(() => {
         router.push("/");

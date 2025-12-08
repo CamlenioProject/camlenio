@@ -5,6 +5,16 @@ import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+
+declare global {
+  interface Window {
+    __lenis?: {
+      stop: () => void;
+      start: () => void;
+    };
+  }
+}
+
 interface Props {
   children: React.ReactNode;
 }
@@ -18,6 +28,8 @@ export default function LenisWrapper({ children }: Props) {
       easing: (t) => 1 - Math.pow(2, -10 * t),
       smoothWheel: true,
     });
+
+    window.__lenis = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
 

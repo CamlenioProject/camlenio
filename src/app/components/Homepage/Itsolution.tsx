@@ -103,7 +103,7 @@ const ItSolution: FC = () => {
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
           {/* Year */}
           <div className="relative bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center md:col-span-2 lg:col-span-1">
-            <h3 className="text-5xl font-extrabold text-orange-600">2022</h3>
+            <h3 className="text-4xl font-extrabold text-orange-600">2022</h3>
             <p className="text-gray-800 text-xl font-bold font-sans">
               We&apos;re epic since
             </p>
@@ -124,7 +124,7 @@ const ItSolution: FC = () => {
 
           {/* Clients */}
           <div className="relative bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center">
-            <h3 className="text-5xl font-extrabold text-orange-600">
+            <h3 className="text-4xl font-extrabold text-orange-600">
               <Counter target={115} trigger={inView} />+
             </h3>
             <p className="text-gray-800 text-xl font-bold font-sans">
@@ -134,7 +134,7 @@ const ItSolution: FC = () => {
 
           {/* Completed Projects */}
           <div className="relative bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center">
-            <h3 className="text-3xl font-extrabold text-orange-600">
+            <h3 className="text-4xl font-extrabold text-orange-600">
               <Counter target={150} trigger={inView} />+
             </h3>
             <p className="mt-2 text-gray-800 font-medium font-sans">
@@ -184,7 +184,7 @@ const ItSolution: FC = () => {
 
           {/* Business Partners */}
           <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center md:col-span-2 lg:col-span-1">
-            <h3 className="text-3xl font-extrabold text-orange-600">
+            <h3 className="text-4xl font-extrabold text-orange-600">
               <Counter target={20} trigger={inView} />+
             </h3>
             <p className="mt-2 text-gray-800 font-medium font-sans">

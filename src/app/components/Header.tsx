@@ -7,12 +7,14 @@ import clsx from "clsx";
 import { safeLink } from "../../../lib/utils";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
+import { useRouter } from "next/navigation";
 import {
   ChevronDownIcon,
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 import { MobileDropdown } from "./MobileDropdown";
+import { FiPhoneCall } from "react-icons/fi";
 
 const availablePages = [
   // "/portfolio",
@@ -724,6 +726,7 @@ const DesktopDropdown = React.memo(
 DesktopDropdown.displayName = "DesktopDropdown";
 
 const Header: React.FC = () => {
+  const router = useRouter();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
@@ -849,30 +852,49 @@ const Header: React.FC = () => {
             className="overflow-hidden"
           >
             <div className="relative bg-orange-500 border-b border-yellow-400/40 shadow-[0_3px_10px_rgba(0,0,0,0.25)]">
-              <div className="flex items-center justify-center py-2">
-                {/* Marquee */}
-                <div className="relative overflow-hidden flex-1">
+              <div className="max-w-7xl mx-auto flex items-center justify-between py-2 px-4">
+                {/* LEFT: MARQUEE */}
+                <div className="relative overflow-hidden flex-1 mr-4">
                   <div className="animate-marquee whitespace-nowrap flex items-center">
                     {[...Array(3)].map((_, i) => (
                       <span
                         key={i}
-                        className="mx-10 text-white text-sm md:text-[15px] font-medium tracking-wide "
+                        className="mx-10 text-white text-sm md:text-[13px] font-medium tracking-wide"
                       >
-                        🎄 Celebrate Christmas with
+                        ✦ Celebrate Christmas with
                         <span className="font-semibold text-yellow-300 mx-1 drop-shadow-[0_0_12px_rgba(255,215,0,0.8)]">
                           UP TO 50% OFF
                         </span>
-                        on All Fintech Solutions! 🎅
+                        on All Fintech Solutions! ✦
                       </span>
-                    ))}
+                    ))} 
                   </div>
                 </div>
+
+                {/* RIGHT: CONTACT BUTTON WITH SHAKE PHONE ICON */}
+                <motion.button
+                  onClick={() => router.push("/component/company/contact")}
+                  whileHover="hover"
+                  className="bg-white text-black font-medium text-sm px-4 py-2 rounded-lg flex items-center gap-2 shadow-sm hover:bg-gray-100 transition cursor-pointer"
+                >
+                  <motion.span
+                    variants={{
+                      hover: {
+                        rotate: [0, -15, 15, -10, 10, 0],
+                        transition: { duration: 0.55 },
+                      },
+                    }}
+                    className="flex items-center"
+                  >
+                    <FiPhoneCall className="w-5 h-5" />
+                  </motion.span>
+                  Contact Us
+                </motion.button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
       <div className="max-w-7xl mx-auto flex items-center justify-between p-4 ">
         <Link href="/" className="flex items-center justify-center space-x-1  ">
           <Image
@@ -964,7 +986,6 @@ const Header: React.FC = () => {
           </button>
         </div>
       </div>
-
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div

@@ -67,7 +67,7 @@ export default function ContactUs() {
     const payload = {
       type: "contact",
       ...formData,
-      source: "contact-us",
+      source: "contact",
     };
 
     try {
@@ -209,13 +209,21 @@ export default function ContactUs() {
                   onChange={handleChange}
                   className="w-full pl-16 pr-3 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none text-gray-600"
                 >
-                  <option>Web Development</option>
-                  <option>Mobile App Development</option>
-                  <option>Game App Development</option>
-                  <option>UI/UX Design</option>
-                  <option>Idea Based Website Development</option>
-                  <option>E-commerce Development</option>
-                  <option>Others</option>
+                  <option value={"web-development"}>Web Development</option>
+                  <option value={"mobile-app-development"}>
+                    Mobile App Development
+                  </option>
+                  <option value={"game-app-development"}>
+                    Game App Development
+                  </option>
+                  <option value={"ui-ux-design"}>UI/UX Design</option>
+                  <option value={"idea-based-website-development"}>
+                    Idea Based Website Development
+                  </option>
+                  <option value={"ecommerce-development"}>
+                    E-commerce Development
+                  </option>
+                  <option value={"others"}>Others</option>
                 </select>
               </div>
 

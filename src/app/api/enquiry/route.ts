@@ -1,35 +1,35 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-const Gmail = "camleniosoftware@gmail.com";
+const Gmail = "dev.rahul.kumar.sharma@gmail.com";
 
-// -------------------------
-//  API ROUTE
-// -------------------------
+interface EnquiryBody {
+  type: "contact" | "popup" | "chatbot" | "demo";
+  name: string;
+  email: string;
+  phone: string;
+  project?: string;
+  message?: string;
+  source?: string;
+}
+
 export async function POST(req: Request) {
   try {
-    const { type, name, email, phone, project, message, source } =
-      await req.json();
+    const body: EnquiryBody = await req.json();
+    body.source = body.source || body.type;
 
-    if (!name || !email || !phone || !project || !message || !source) {
-      return NextResponse.json(
-        { success: false, message: "All fields are required" },
-        { status: 400 }
-      );
-    }
+    const { type, name, email, phone, project, message } = body;
 
-    // -------------------------
-    //  EMAIL SETUP
-    // -------------------------
     const transporter = nodemailer.createTransport({
       service: "gmail",
+      secure: true,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
     });
 
-    let mailOptions;
+    let mailOptions: Record<string, unknown> = {};
 
     switch (type) {
       case "contact":
@@ -81,11 +81,11 @@ export async function POST(req: Request) {
 
       case "demo":
         mailOptions = {
-          from: `"Get Free Demo Enquiry" <${process.env.SMTP_USER}>`,
+          from: `"Demo Enquiry" <${process.env.SMTP_USER}>`,
           to: Gmail,
-          subject: "Get a Demo Enquiry",
+          subject: "New Demo Enquiry",
           html: `
-            <h2>Get a Demo Enquiry</h2>
+            <h2>New Demo Chat Enquiry</h2>
             <p><b>Name:</b> ${name}</p>
             <p><b>Email:</b> ${email}</p>
             <p><b>phone:</b> ${phone}</p>
@@ -102,15 +102,33 @@ export async function POST(req: Request) {
     }
 
     await transporter.sendMail(mailOptions);
+    const BACKEND_URL = process.env.BACKEND_URL;
+    console.log(BACKEND_URL, "alhdkjadlkj");
+    const saveResponse = await fetch(
+      `${BACKEND_URL}/api/user/enquiry/add-enquiry`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }
+    );
+
+    if (!saveResponse.ok) {
+      console.log(saveResponse);
+      // throw new Error("Failed to save enquiry to backend");
+    }
+
+    const saveResult = await saveResponse.json();
 
     return NextResponse.json({
       success: true,
-      message: "Email sent successfully",
+      message: "Email sent + Data saved",
+      db: saveResult,
     });
   } catch (error) {
-    console.error("Error sending mail:", error);
+    console.log(error);
     return NextResponse.json(
-      { success: false, message: "Failed to send email" },
+      { success: false, message: "Failed to send email or save data" },
       { status: 500 }
     );
   }

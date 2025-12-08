@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
@@ -11,6 +11,8 @@ const FreeQuotation = () => {
     type: "error" | "success";
     message: string;
   } | null>(null);
+
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   const showToast = (type: "error" | "success", message: string) => {
     setToast({ type, message });
@@ -57,7 +59,7 @@ const FreeQuotation = () => {
         email,
         phone,
         message,
-        source: "homepage-demo-form",
+        source: "demo",
       });
 
       showToast("success", "Demo request sent successfully!");
@@ -69,6 +71,20 @@ const FreeQuotation = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+        showToast("success", "Form cleared");
+      }
+    };
+
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
   return (
     <div className="relative py-16 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_200%] animate-gradientMove overflow-hidden">
@@ -147,6 +163,15 @@ const FreeQuotation = () => {
               name="home_message"
               placeholder="Message"
               rows={4}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  const form = e.currentTarget.closest("form");
+                  form?.dispatchEvent(
+                    new Event("submit", { cancelable: true, bubbles: true })
+                  );
+                }
+              }}
             ></textarea>
 
             <div className="md:col-span-3">
