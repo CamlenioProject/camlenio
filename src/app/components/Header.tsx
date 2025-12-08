@@ -731,10 +731,29 @@ const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [hideMarquee, setHideMarquee] = useState(false);
+  const [isSlowMode, setIsSlowMode] = useState(false);
 
   const pathname = usePathname();
   const navItemRef = useRef<HTMLDivElement | null>(null);
   const timeoutRef = useRef<number | null>(null);
+  const [shakeMode, setShakeMode] = useState<"fast" | "slow">("fast");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShakeMode("slow");
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const fastShake = {
+    rotate: [0, -8, 8, -6, 6, 0],
+    scale: [1, 1.05, 0.95, 1.05, 1],
+  };
+
+  const slowShake = {
+    rotate: [0, -2, 2, -2, 0],
+  };
 
   const handleMouseLeave = useCallback(() => {
     timeoutRef.current = window.setTimeout(() => {
@@ -751,6 +770,7 @@ const Header: React.FC = () => {
   const toggleDropdown = (title: string) => {
     setOpenDropdown(openDropdown === title ? null : title);
   };
+
   useEffect(() => {
     let lastScrollY = window.scrollY;
 
@@ -867,7 +887,7 @@ const Header: React.FC = () => {
                         </span>
                         on All Fintech Solutions! ✦
                       </span>
-                    ))} 
+                    ))}
                   </div>
                 </div>
 
@@ -895,15 +915,27 @@ const Header: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="max-w-7xl mx-auto flex items-center justify-between p-4 ">
-        <Link href="/" className="flex items-center justify-center space-x-1  ">
-          <Image
-            src="/logo-icon.png"
-            alt="Camlenio"
-            width={200}
-            height={80}
-            className="w-8 sm:w-8 md:w-9 lg:w-11 xl:w-11 h-auto object-contain"
-          />
+      <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
+        <Link href="/" className="flex items-center justify-center space-x-1">
+          <motion.div
+            initial={{ opacity: 1, scale: 0.9 }}
+            animate={shakeMode === "fast" ? fastShake : slowShake}
+            transition={{
+              duration: shakeMode === "fast" ? 0.4 : 1.2,
+              repeat: shakeMode === "slow" ? Infinity : 0,
+              repeatDelay: shakeMode === "slow" ? 2 : 0,
+              ease: "easeInOut",
+            }}
+          >
+            <Image
+              src="/chrishmas-logo.png"
+              alt="Camlenio"
+              width={180}
+              height={60}
+              className="w-8 sm:w-8 md:w-9 lg:w-11 xl:w-9 h-auto object-contain"
+            />
+          </motion.div>
+
           <span className="text-2xl md:text-[1.8rem] lg:text-3xl xl:text-[1.8rem] 2xl:text-4xl font-bold text-black mt-1 -ml-1">
             <span id="c" className="inline-block">
               C
@@ -1012,11 +1044,11 @@ const Header: React.FC = () => {
                 className="flex items-center space-x-1 tracking-tight "
               >
                 <Image
-                  src="/logo-icon.png"
+                  src="/chrishmas-logo.png"
                   alt="Camlenio"
-                  width={200}
-                  height={80}
-                  className="w-8 md:w-13 h-auto object-contain"
+                  width={180}
+                  height={60}
+                  className="w-8 md:w-11 h-auto object-contain"
                 />
                 <span className="text-2xl md:text-4xl font-bold text-black">
                   <span id="c" className="inline-block">
