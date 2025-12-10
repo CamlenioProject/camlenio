@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-const Gmail = "dev.rahul.kumar.sharma@gmail.com";
-// const Gmail = "camleniosoftware@gmail.com";
+const Gmail = process.env.Gmail;
 
 interface EnquiryBody {
   type: "contact" | "popup" | "chatbot" | "demo";
