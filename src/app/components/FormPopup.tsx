@@ -1,12 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { Button } from "@/app/components/submit-button-ui";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  validateName,
+  validateEmail,
+  validatePhone,
+  validateMessage,
+} from "@/utils/validators";
 
 interface FormPopupProps {
   isOpen: boolean;
@@ -15,29 +20,62 @@ interface FormPopupProps {
 
 const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
   const router = useRouter();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [gmailError, setGmailError] = useState<string | null>(null);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
+  const [messageError, setMessageError] = useState<string | null>(null);
 
-  const validate = (
+  const [countryCode, setCountryCode] = useState("+1");
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const shown = sessionStorage.getItem("popupShown");
+
+    if (shown === "true") {
+      onClose();
+    } else {
+      sessionStorage.setItem("popupShown", "true");
+    }
+  }, [isOpen, onClose]);
+
+  const countryCodes = [
+    { code: "+91", country: "India" },
+    { code: "+44", country: "UK" },
+    { code: "+61", country: "Australia" },
+    { code: "+81", country: "Japan" },
+    { code: "+49", country: "Germany" },
+    { code: "+41", country: "Switzerland" },
+    { code: "+93", country: "Afghanistan" },
+  ];
+
+  const validatePopupForm = (
     name: string,
     email: string,
-    phone: string,
+    fullPhone: string,
     message: string
   ): string | null => {
-    if (!name || name.trim().length < 2) return "Enter a valid name.";
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) return "Enter a valid email.";
-    const phoneRegex = /^[0-9]{10}$/;
-    if (!phone || !phoneRegex.test(phone))
-      return "Enter a valid 10-digit phone number.";
-    if (!message || message.trim().length < 5) return "Enter a valid message.";
-    return null;
-  };
+    const nameErr = validateName(name);
+    if (nameErr) return nameErr;
 
-  const clearMessages = () => {
-    setError(null);
-    setSuccess(null);
+    const emailErr = validateEmail(email);
+    if (emailErr) return emailErr;
+
+    const phoneErr = validatePhone(fullPhone);
+    if (phoneErr) return phoneErr;
+
+    const messageErr = validateMessage(message);
+    if (messageErr) return messageErr;
+
+    return null;
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -50,10 +88,10 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
     const formData = new FormData(form);
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
-    const phone = formData.get("phone") as string;
     const message = formData.get("message") as string;
+    const fullPhone = countryCode + phoneNumber;
 
-    const validationError = validate(name, email, phone, message);
+    const validationError = validatePopupForm(name, email, fullPhone, message);
     if (validationError) {
       setError(validationError);
       setLoading(false);
@@ -64,7 +102,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
       type: "popup",
       name,
       email,
-      phone,
+      phone: fullPhone,
       message,
       source: "popup",
     };
@@ -72,13 +110,18 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
     try {
       await axios.post("/api/enquiry", payload);
 
-      setSuccess("Message successfully sent!");
+      setSuccess("ok");
 
-      form.reset();
+      setName("");
+      setEmail("");
+      setPhoneNumber("");
+      setMessage("");
+      setGmailError(null);
+      setPhoneError(null);
 
       setTimeout(() => {
         router.push("/");
-      }, 2000);
+      }, 4000);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message || "An error occurred.");
@@ -90,6 +133,17 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  useEffect(() => {
+    if (!error && !success) return;
+
+    const timer = setTimeout(() => {
+      setError(null);
+      setSuccess(null);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [error, success]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -100,19 +154,19 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed inset-0 bg-black/50 z-[2000] flex items-center justify-center"
-            onClick={onClose}
+            onClick={() => onClose()}
           >
             <div className="relative">
-              {/* CLOSE BUTTON RIGHT NEXT TO POPUP */}
               <button
-                onClick={onClose}
+                onClick={() => {
+                  onClose();
+                }}
                 className="absolute -top-5 -right-5 w-8 h-8 bg-white rounded-full cursor-pointer shadow-md flex items-center justify-center z-[2100]"
                 aria-label="Close popup"
               >
                 <XMarkIcon className="w-5 h-5 text-black" />
               </button>
 
-              {/* POPUP BOX */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -121,25 +175,136 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                 className="relative bg-white rounded-2xl shadow-xl w-80 h-auto md:w-full max-w-4xl overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
+                <AnimatePresence>
+                  {(error || success) && (
+                    <motion.div
+                      initial={{ y: -15, opacity: 0, scale: 0.95 }}
+                      animate={{ y: 0, opacity: 1, scale: 1 }}
+                      exit={{ y: -15, opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className={`
+        fixed top-6 left-1/2 -translate-x-1/2 z-[9999]
+        ${
+          error
+            ? "bg-gradient-to-r from-red-50 to-rose-50/80 border-red-200/60 shadow-2xl shadow-red-200/50"
+            : "bg-gradient-to-r from-green-50 to-emerald-50/80 border-green-200/60 shadow-2xl shadow-green-200/50"
+        }
+        backdrop-blur-xl text-gray-900 
+        px-6 py-3 rounded-xl
+        border border-t-white/20 border-l-white/20
+        font-semibold text-sm md:text-base flex items-center gap-3
+        max-w-[90vw] md:max-w-md
+      `}
+                    >
+                      {/* Animated Icon */}
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                          delay: 0.1,
+                          type: "spring",
+                          stiffness: 200,
+                        }}
+                        className={`relative flex items-center justify-center w-7 h-7 rounded-full ${
+                          error
+                            ? "bg-gradient-to-br from-red-500 to-rose-600"
+                            : "bg-gradient-to-br from-green-500 to-emerald-600"
+                        }`}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                        >
+                          {error ? (
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          ) : (
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M5 13l4 4L19 7"
+                            />
+                          )}
+                        </svg>
+                      </motion.div>
+
+                      {/* Your Specific Message */}
+                      <div className="flex flex-col">
+                        {success ? (
+                          <>
+                            <span className="font-bold text-gray-900 text-sm md:text-base">
+                              Thank you!
+                            </span>
+                            <span className="text-gray-700 text-xs md:text-sm font-normal">
+                              Your form was submitted successfully.
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <span className="font-bold text-gray-900 text-sm md:text-base">
+                              Error
+                            </span>
+                            <span className="text-gray-700 text-xs md:text-sm font-normal">
+                              {error}
+                            </span>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Close button */}
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                          if (error) setError(null);
+                          if (success) setSuccess(null);
+                        }}
+                        className="ml-4 text-gray-400 hover:text-gray-600 transition-colors"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </motion.button>
+
+                      {/* Animated progress bar */}
+                      <motion.div
+                        initial={{ scaleX: 1 }}
+                        animate={{ scaleX: 0 }}
+                        transition={{ duration: 5, ease: "linear" }}
+                        className={`absolute bottom-0 left-0 right-0 h-1 origin-left rounded-b-xl ${
+                          error
+                            ? "bg-gradient-to-r from-red-400 to-rose-500"
+                            : "bg-gradient-to-r from-green-400 to-emerald-500"
+                        }`}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 <div className="flex flex-col-reverse md:flex-row bg-white">
                   <div className="w-full md:w-1/2 p-4 md:p-6">
                     <div className="flex justify-between">
                       <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
                         Get in Touch
                       </h2>
-                      <div className="flex justify-between">
-                        {error && (
-                          <div className="mb-2 text-red-600 text-xs md:text-sm font-medium bg-red-100 border border-red-300 px-3 py-1 rounded-md">
-                            {error}
-                          </div>
-                        )}
-
-                        {success && (
-                          <div className="mb-2 text-green-700 text-xs md:text-sm font-medium bg-green-100 border border-green-300 px-3 py-1 rounded-md">
-                            {success}
-                          </div>
-                        )}
-                      </div>
                     </div>
                     <p className="text-gray-600 text-xs md:text-sm mb-1">
                       Fill out the form and we&apos;ll get back to you.
@@ -157,7 +322,10 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                           type="text"
                           id="name"
                           name="name"
-                          onChange={clearMessages}
+                          value={name}
+                          onChange={(e) => {
+                            setName(e.target.value);
+                          }}
                           className="mt-1 block w-full px-3 py-1 text-[.7rem] placeholder-opacity-40 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                           placeholder="Your Name"
                         />
@@ -174,10 +342,27 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                           type="email"
                           id="email"
                           name="email"
-                          onChange={clearMessages}
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                          }}
+                          onBlur={() => {
+                            const err = validateEmail(email);
+                            if (err) {
+                              setGmailError(err);
+                            } else {
+                              setGmailError(null);
+                            }
+                          }}
                           className="mt-1 block w-full px-3 py-1 text-[.7rem] bg-white border placeholder-opacity-40 border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                           placeholder="you@example.com"
                         />
+
+                        {gmailError && (
+                          <p className="text-red-500 text-[0.7rem] mt-1">
+                            {gmailError}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -187,14 +372,40 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                         >
                           Phone
                         </label>
-                        <input
-                          type="text"
-                          id="phone"
-                          name="phone"
-                          onChange={clearMessages}
-                          className="mt-1 block w-full px-3 py-1 text-[.7rem] bg-white border placeholder-opacity-40 border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
-                          placeholder="Phone Number"
-                        />
+
+                        <div className="flex gap-2 mt-1">
+                          {/* COUNTRY CODE DROPDOWN */}
+                          <select
+                            value={countryCode}
+                            onChange={(e) => setCountryCode(e.target.value)}
+                            className="px-2 py-1 text-[.7rem] w-26 border border-gray-300 rounded-md bg-white shadow-sm focus:ring-orange-500 focus:border-orange-500"
+                          >
+                            {countryCodes.map((item) => (
+                              <option key={item.code} value={item.code}>
+                                {item.code} ({item.country})
+                              </option>
+                            ))}
+                          </select>
+                          <input
+                            type="text"
+                            id="phone"
+                            name="phone"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            onBlur={() => {
+                              const full = `${countryCode}${phoneNumber}`;
+                              const err = validatePhone(full);
+                              setPhoneError(err);
+                            }}
+                            className="mt-1 block w-full px-3 py-1 text-[.7rem] bg-white border placeholder-opacity-40 border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
+                            placeholder="Phone Number"
+                          />
+                        </div>
+                        {phoneError && (
+                          <p className="text-red-500 text-[0.7rem] mt-1">
+                            {phoneError}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -204,25 +415,80 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                         >
                           Message
                         </label>
+
                         <textarea
-                          id="message"
                           name="message"
-                          rows={3}
-                          onChange={clearMessages}
-                          className="mt-1 block w-full px-3 py-1 text-[.7rem] bg-white placeholder-opacity-40 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
+                          id="message"
+                          value={message}
+                          onChange={(e) => {
+                            setMessage(e.target.value);
+
+                            const msg = validateMessage(e.target.value);
+                            if (msg !== null) {
+                              setMessageError(msg);
+                            } else {
+                              setMessageError(null);
+                            }
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" && !e.shiftKey) {
+                              e.preventDefault();
+                              e.currentTarget.form?.requestSubmit();
+                            }
+                          }}
+                          className={`mt-1 block w-full px-3 py-1 text-[.7rem] bg-white placeholder-opacity-40 border rounded-md shadow-sm placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 sm:text-sm ${
+                            messageError ? "border-red-500" : "border-gray-300"
+                          }`}
                           placeholder="Your message..."
-                        ></textarea>
+                        />
+
+                        {messageError && (
+                          <p className="text-red-500 text-[0.7rem] mt-1">
+                            {messageError}
+                          </p>
+                        )}
                       </div>
 
                       <div>
-                        <Button
+                        <button
                           type="submit"
-                          id="animated-submit-btn"
                           disabled={loading}
-                          className="w-full rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm  cursor-pointer"
+                          className={`
+      w-full rounded-md shadow-sm sm:text-sm 
+      flex items-center justify-center gap-2 
+      text-white bg-orange-600 hover:bg-orange-700 
+      transition-all py-2 cursor-pointer
+      ${loading ? "opacity-70 cursor-not-allowed" : ""}
+    `}
                         >
-                          Send Message
-                        </Button>
+                          {loading ? (
+                            <span className="flex items-center gap-2">
+                              <svg
+                                className="animate-spin h-4 w-4 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <circle
+                                  className="opacity-25"
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeWidth="4"
+                                ></circle>
+                                <path
+                                  className="opacity-75"
+                                  fill="currentColor"
+                                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                                ></path>
+                              </svg>
+                              Sending...
+                            </span>
+                          ) : (
+                            "Send Message"
+                          )}
+                        </button>
                       </div>
                     </form>
                   </div>

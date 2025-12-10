@@ -40,10 +40,10 @@ const navItems = [
     href: "company",
     dropdown: true,
     items: [
-      { title: "Blog", href: "https://blogs.camlenio.com" },
       { title: "About", href: "/component/company/about" },
-      { title: "Career", href: "/component/company/career" },
       { title: "Contact", href: "/component/company/contact" },
+      { title: "Blog", href: "https://blogs.camlenio.com" },
+      { title: "Career", href: "/component/company/career" },
     ],
     dropdownClassName: "left-1/2 md: -translate-x-[35%]  lg:-translate-x-[45%]",
   },
@@ -731,7 +731,6 @@ const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [hideMarquee, setHideMarquee] = useState(false);
-  const [isSlowMode, setIsSlowMode] = useState(false);
 
   const pathname = usePathname();
   const navItemRef = useRef<HTMLDivElement | null>(null);
@@ -928,7 +927,7 @@ const Header: React.FC = () => {
             }}
           >
             <Image
-              src="/chrishmas-logo.png"
+              src="/logo-chrishmas.png"
               alt="Camlenio"
               width={180}
               height={60}
@@ -1044,7 +1043,7 @@ const Header: React.FC = () => {
                 className="flex items-center space-x-1 tracking-tight "
               >
                 <Image
-                  src="/chrishmas-logo.png"
+                  src="/logo-chrishmas.png"
                   alt="Camlenio"
                   width={180}
                   height={60}

@@ -70,8 +70,8 @@ export default function SimpleFormChatBot() {
     if (!validateEmail(formData.email)) newErrors.email = "Enter valid email";
     if (!validatePhone(formData.phone))
       newErrors.phone = "Phone must be 10 digits";
-    if (!formData.message || formData.message.length < 10)
-      newErrors.message = "Message must be at least 10 characters";
+    if (!formData.message || formData.message.length < 2)
+      newErrors.message = "Message must be at least 2 characters";
 
     setErrors(newErrors);
     return !Object.values(newErrors).some((e) => e !== "");

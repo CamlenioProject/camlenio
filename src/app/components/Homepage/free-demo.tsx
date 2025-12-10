@@ -1,104 +1,206 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  validateName,
+  validateEmail,
+  validatePhone,
+  validateMessage,
+} from "@/utils/validators";
 
 const FreeQuotation = () => {
   const [loading, setLoading] = useState(false);
-  const [toast, setToast] = useState<{
+
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [popup, setPopup] = useState<{
     type: "error" | "success";
     message: string;
   } | null>(null);
 
-  const formRef = useRef<HTMLFormElement | null>(null);
-
-  const showToast = (type: "error" | "success", message: string) => {
-    setToast({ type, message });
-    setTimeout(() => setToast(null), 2500);
+  const showPopup = (type: "error" | "success", message: string) => {
+    setPopup({ type, message });
+    setTimeout(() => setPopup(null), 3000);
   };
 
-  const validate = (
-    name: string,
-    email: string,
-    phone: string,
-    message: string
-  ): string | null => {
-    if (!name || name.trim().length < 2) return "Enter a valid name.";
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) return "Enter a valid email.";
-    const phoneRegex = /^[0-9]{10}$/;
-    if (!phone || !phoneRegex.test(phone))
-      return "Enter a valid 10-digit phone number.";
-    if (!message || message.trim().length < 5) return "Enter a valid message.";
-    return null;
+  const validateDemoForm = (data: {
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+  }) => {
+    const newErrors: { [key: string]: string } = {};
+
+    const nameErr = validateName(data.name);
+    if (nameErr) newErrors.name = nameErr;
+
+    const emailErr = validateEmail(data.email);
+    if (emailErr) newErrors.email = emailErr;
+
+    const phoneErr = validatePhone(data.phone);
+    if (phoneErr) newErrors.phone = phoneErr;
+
+    const msgErr = validateMessage(data.message);
+    if (msgErr) newErrors.message = msgErr;
+
+    return newErrors;
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
-    const form = new FormData(e.currentTarget);
-    const name = form.get("home_name") as string;
-    const email = form.get("home_email") as string;
-    const phone = form.get("home_phone") as string;
-    const message = form.get("home_message") as string;
+    const formElement = e.currentTarget;
 
-    const error = validate(name, email, phone, message);
-    if (error) {
-      showToast("error", error);
+    const form = new FormData(e.currentTarget);
+
+    const data = {
+      name: form.get("home_name") as string,
+      email: form.get("home_email") as string,
+      phone: form.get("home_phone") as string,
+      message: form.get("home_message") as string,
+    };
+
+    const validationErrors = validateDemoForm(data);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       setLoading(false);
       return;
     }
 
+    setErrors({});
+
     try {
       await axios.post("/api/enquiry", {
         type: "demo",
-        name,
-        email,
-        phone,
-        message,
+        ...data,
         source: "demo",
       });
 
-      showToast("success", "Demo request sent successfully!");
-      (e.target as HTMLFormElement).reset();
+      showPopup("success", "Demo request sent successfully!");
+      formElement.reset();
     } catch (err) {
-      console.error(err);
-      showToast("error", "Something went wrong. Try again.");
+      console.log(err);
+      showPopup("error", "Something went wrong.");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        if (formRef.current) {
-          formRef.current.reset();
-        }
-        showToast("success", "Form cleared");
-      }
-    };
-
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
-
   return (
     <div className="relative py-16 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_200%] animate-gradientMove overflow-hidden">
-      {/* Toast */}
-      {toast && (
-        <div
-          className={`fixed bottom-6 right-6 z-[3000] px-4 py-3 rounded-lg shadow-md text-white text-sm transition-all ${
-            toast.type === "success" ? "bg-green-600" : "bg-red-600"
-          }`}
-        >
-          {toast.message}
-        </div>
-      )}
+      <AnimatePresence>
+        {popup && (
+          <motion.div
+            initial={{ y: -15, opacity: 0, scale: 0.95 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: -15, opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className={`
+        fixed top-6 left-1/2 -translate-x-1/2 z-[2000] !important
+        ${
+          popup.type === "success"
+            ? "bg-gradient-to-r from-green-50 to-emerald-50/80 border-green-200/60 shadow-2xl shadow-green-200/50"
+            : "bg-gradient-to-r from-red-50 to-rose-50/80 border-red-200/60 shadow-2xl shadow-red-200/50"
+        }
+        backdrop-blur-xl text-gray-900 
+        px-6 py-3 rounded-xl
+        border border-t-white/20 border-l-white/20
+        font-semibold text-sm md:text-base flex items-center gap-3
+        max-w-[90vw] md:max-w-md
+      `}
+          >
+            {/* Animated Icon */}
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
+              className={`relative flex items-center justify-center w-7 h-7 rounded-full ${
+                popup.type === "success"
+                  ? "bg-gradient-to-br from-green-500 to-emerald-600"
+                  : "bg-gradient-to-br from-red-500 to-rose-600"
+              }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                {popup.type === "success" ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                )}
+              </svg>
+            </motion.div>
 
+            {/* Message Content */}
+            <div className="flex flex-col">
+              <span className="font-bold text-gray-900 text-sm md:text-base">
+                {popup.type === "success" ? "Success! 🎉" : "Error!"}
+              </span>
+              <motion.span
+                initial={{ opacity: 0, x: 4 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.18 }}
+                className="text-gray-700 text-xs md:text-sm font-normal"
+              >
+                {popup.message}
+              </motion.span>
+            </div>
+
+            {/* Close button */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setPopup(null)}
+              className="ml-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </motion.button>
+
+            {/* Animated progress bar */}
+            <motion.div
+              initial={{ scaleX: 1 }}
+              animate={{ scaleX: 0 }}
+              transition={{ duration: 5, ease: "linear" }}
+              className={`absolute bottom-0 left-0 right-0 h-1 origin-left rounded-b-xl ${
+                popup.type === "success"
+                  ? "bg-gradient-to-r from-green-400 to-emerald-500"
+                  : "bg-gradient-to-r from-red-400 to-rose-500"
+              }`}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         <div className="text-center mb-8">
           <h6 className="text-3xl sm:text-4xl font-bold text-gray-100 mb-4">
@@ -126,53 +228,73 @@ const FreeQuotation = () => {
           </div>
 
           <form
-            className="grid grid-cols-1 mTd:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
             onSubmit={onSubmit}
           >
-            <input
-              aria-label="Full Name"
-              className="w-full px-4 py-3 rounded-lg border-2 border-blue-400 bg-transparent text-gray-50 placeholder-blue-400"
-              id="home_name"
-              name="home_name"
-              type="text"
-              placeholder="Enter Full Name"
-            />
+            <div className="w-full col-span-1">
+              <input
+                aria-label="Full Name"
+                className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${
+                  errors.name ? "border-red-500" : "border-blue-400"
+                }`}
+                id="home_name"
+                name="home_name"
+                type="text"
+                placeholder="Enter Full Name"
+              />
+              {errors.name && (
+                <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+              )}
+            </div>
 
-            <input
-              aria-label="Email Address"
-              className="w-full px-4 py-3 rounded-lg border-2 border-blue-400 bg-transparent text-gray-50 placeholder-blue-400"
-              id="home_email"
-              name="home_email"
-              type="email"
-              placeholder="Email Id"
-            />
+            <div className="w-full col-span-1">
+              <input
+                aria-label="Email Address"
+                className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${
+                  errors.email ? "border-red-500" : "border-blue-400"
+                }`}
+                id="home_email"
+                name="home_email"
+                type="email"
+                placeholder="Email Id"
+              />
+              {errors.email && (
+                <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+              )}
+            </div>
 
-            <input
-              aria-label="Phone Number"
-              className="w-full px-4 py-3 rounded-lg border-2 border-blue-400 bg-transparent text-gray-50 placeholder-blue-400"
-              id="home_phone"
-              name="home_phone"
-              type="tel"
-              placeholder="Contact Number"
-            />
+            <div className="w-full col-span-1">
+              <input
+                aria-label="Phone Number"
+                className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${
+                  errors.phone ? "border-red-500" : "border-blue-400"
+                }`}
+                id="home_phone"
+                name="home_phone"
+                type="tel"
+                placeholder="Contact Number"
+              />
+              {errors.phone && (
+                <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+              )}
+            </div>
 
-            <textarea
-              aria-label="Message"
-              className="w-full md:col-span-3 px-4 py-3 rounded-lg border-2 border-b-8 border-blue-400 bg-transparent text-gray-50 placeholder-blue-400 outline-none"
-              id="home_message"
-              name="home_message"
-              placeholder="Message"
-              rows={4}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  const form = e.currentTarget.closest("form");
-                  form?.dispatchEvent(
-                    new Event("submit", { cancelable: true, bubbles: true })
-                  );
-                }
-              }}
-            ></textarea>
+            <div className="w-full col-span-3">
+              <textarea
+                aria-label="Message"
+                className={`w-full px-4 py-3 rounded-lg border-2 border-b-8 bg-transparent text-gray-50 placeholder-blue-400 outline-none ${
+                  errors.message ? "border-red-500" : "border-blue-400"
+                }`}
+                id="home_message"
+                name="home_message"
+                rows={4}
+                placeholder="Message"
+              ></textarea>
+
+              {errors.message && (
+                <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+              )}
+            </div>
 
             <div className="md:col-span-3">
               <button

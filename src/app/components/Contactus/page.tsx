@@ -6,7 +6,13 @@ import { HiOutlineMail } from "react-icons/hi";
 import { FiUser } from "react-icons/fi";
 import { MdOutlineWork } from "react-icons/md";
 import { TbMessageDots } from "react-icons/tb";
-import { Button } from "../submit-button-ui";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  validateName,
+  validateEmail,
+  validatePhone,
+  validateMessage,
+} from "@/utils/validators";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -19,21 +25,23 @@ export default function ContactUs() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [successPopup, setSuccessPopup] = useState(false);
 
-  const validate = () => {
+  const validateContactForm = () => {
     const newErrors: { [key: string]: string } = {};
-    if (!formData.name) newErrors.name = "Full Name is required";
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
-    }
-    if (!formData.phone) {
-      newErrors.phone = "Phone number is required";
-    } else if (!/^[0-9]{10}$/.test(formData.phone)) {
-      newErrors.phone = "Phone number must be 10 digits";
-    }
-    if (!formData.message) newErrors.message = "Message is required";
+
+    const nameError = validateName(formData.name);
+    if (nameError) newErrors.name = nameError;
+
+    const emailError = validateEmail(formData.email);
+    if (emailError) newErrors.email = emailError;
+
+    const phoneError = validatePhone(formData.phone);
+    if (phoneError) newErrors.phone = phoneError;
+
+    const messageError = validateMessage(formData.message);
+    if (messageError) newErrors.message = messageError;
+
     return newErrors;
   };
 
@@ -43,36 +51,43 @@ export default function ContactUs() {
     >
   ) => {
     const { name, value } = e.target;
+
     setFormData({ ...formData, [name]: value });
-    // Clear error when user starts typing
+
     if (errors[name]) {
       setErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors[name];
-        return newErrors;
+        const updated = { ...prev };
+        delete updated[name];
+        return updated;
       });
     }
   };
 
   const handleSubmit = async () => {
-    const newErrors = validate();
+    const newErrors = validateContactForm();
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
+
     setErrors({});
     setLoading(true);
     setSubmitError(null);
 
-    const payload = {
-      type: "contact",
-      ...formData,
-      source: "contact",
-    };
-
     try {
-      await axios.post("/api/enquiry", payload);
-      // Clear form on successful submission
+      await axios.post("/api/enquiry", {
+        type: "contact",
+        ...formData,
+        source: "contact",
+      });
+      console.log("FORM SUBMIT SUCCESS >>>", formData);
+      setSuccessPopup(true); // show success message
+
+      setTimeout(() => {
+        setSuccessPopup(false); // hide after 3 sec
+      }, 5000);
+
       setFormData({
         name: "",
         email: "",
@@ -81,15 +96,7 @@ export default function ContactUs() {
         message: "",
       });
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        setSubmitError(
-          err.message || "An error occurred while submitting the application."
-        );
-      } else {
-        setSubmitError(
-          String(err) || "An error occurred while submitting the application."
-        );
-      }
+      setSubmitError("Error sending message.");
     } finally {
       setLoading(false);
     }
@@ -97,10 +104,102 @@ export default function ContactUs() {
 
   return (
     <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove py-20 px-8 md:px-16 scroll-smooth">
+      <AnimatePresence>
+        {successPopup && (
+          <motion.div
+            initial={{ y: -50, opacity: 0, scale: 0.8 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: -30, opacity: 0, scale: 0.9 }}
+            transition={{
+              duration: 0.4,
+              ease: [0.4, 0, 0.2, 1],
+              scale: { duration: 0.3 },
+            }}
+            className="
+        fixed top-6 left-1/2 -translate-x-1/2
+        bg-gradient-to-r from-green-50 to-emerald-50/80
+        backdrop-blur-xl text-gray-900 
+        px-6 py-4 rounded-2xl shadow-2xl shadow-green-200/50
+        border border-green-200/60 border-t-white/20 border-l-white/20
+        font-semibold z-[9999]
+        text-sm md:text-base flex items-center gap-3
+        max-w-[90vw] md:max-w-md
+      "
+          >
+            {/* Animated Checkmark */}
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-green-400/20 blur-md rounded-full"></div>
+              <div className="relative flex items-center justify-center w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+            </motion.div>
+
+            {/* Text with gradient */}
+            <div className="flex flex-col">
+              <span className="font-bold text-gray-900 text-sm md:text-base">
+                Thank you! 🎉
+              </span>
+              <span className="text-gray-700 text-xs md:text-sm font-normal">
+                Our team will contact you shortly.
+              </span>
+            </div>
+
+            {/* Close button */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setSuccessPopup(false)}
+              className="ml-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </motion.button>
+
+            {/* Animated progress bar */}
+            <motion.div
+              initial={{ scaleX: 1 }}
+              animate={{ scaleX: 0 }}
+              transition={{ duration: 5, ease: "linear" }}
+              className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-emerald-500 origin-left rounded-b-2xl"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="max-w-7xl mx-auto">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 bg-transparent border-1 border-gray-300 p-8 rounded-2xl shadow-lg ">
-          <div className="order-2 md:order-1">
-            {loading && (
+          <div className="order-2 md:order-1 relative">
+            {/* {loading && (
               <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-lg bg-orange-500 text-white shadow-lg animate-slide-in font-semibold">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -116,9 +215,15 @@ export default function ContactUs() {
                 </svg>
                 <span>Sending your message...</span>
               </div>
-            )}
+            )} */}
 
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
+              className="space-y-6"
+            >
               {/* Name Field */}
               <div className="relative w-full">
                 <div className="relative">
@@ -132,6 +237,10 @@ export default function ContactUs() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
+                    onBlur={() => {
+                      const err = validateName(formData.name);
+                      if (err) setErrors((prev) => ({ ...prev, name: err }));
+                    }}
                     placeholder="Full Name"
                     className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
                       errors.name ? "border-red-500" : ""
@@ -158,6 +267,10 @@ export default function ContactUs() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    onBlur={() => {
+                      const err = validateEmail(formData.email);
+                      if (err) setErrors((prev) => ({ ...prev, email: err }));
+                    }}
                     placeholder="Email Address"
                     className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
                       errors.email ? "border-red-500" : ""
@@ -184,6 +297,10 @@ export default function ContactUs() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
+                    onBlur={() => {
+                      const err = validatePhone(formData.phone);
+                      if (err) setErrors((prev) => ({ ...prev, phone: err }));
+                    }}
                     placeholder="Phone Number"
                     className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
                       errors.phone ? "border-red-500" : ""
@@ -212,9 +329,6 @@ export default function ContactUs() {
                   <option value={"web-development"}>Web Development</option>
                   <option value={"mobile-app-development"}>
                     Mobile App Development
-                  </option>
-                  <option value={"game-app-development"}>
-                    Game App Development
                   </option>
                   <option value={"ui-ux-design"}>UI/UX Design</option>
                   <option value={"idea-based-website-development"}>
@@ -266,14 +380,50 @@ export default function ContactUs() {
                 </div>
               )}
 
-              <Button
-                disabled={loading}
-                id="animated-submit-btn"
-                onClick={handleSubmit}
-                className="w-full bg-orange-500 hover:bg-orange-600 hover:ring-orange-500 cursor-pointer text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? "Sending..." : "Submit"}
-              </Button>
+              <div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className={`
+        w-full rounded-2xl shadow-sm sm:text-sm font-semibold
+        flex items-center justify-center gap-2
+        text-white transition-all duration-300 py-3
+        ${
+          loading
+            ? "bg-orange-400 cursor-not-allowed opacity-80"
+            : "bg-orange-600 hover:bg-orange-700 hover:shadow-lg active:scale-[0.98]"
+        }
+      `}
+                >
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <svg
+                        className="animate-spin h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                        />
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    "Send Message"
+                  )}
+                </button>
+              </div>
             </form>
           </div>
 
