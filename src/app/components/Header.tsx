@@ -863,55 +863,57 @@ const Header: React.FC = () => {
     <header className="fixed top-0 left-0 right-0 z-[1000]  bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove shadow-md">
       <AnimatePresence>
         {!hideMarquee && (
-          <motion.div
-            initial={{ opacity: 0, height: 0, y: -20 }}
-            animate={{ opacity: 1, height: "auto", y: 0 }}
-            exit={{ opacity: 0, height: 0, y: -20 }}
-            transition={{ duration: 0.45, ease: "easeInOut" }}
-            className="overflow-hidden"
-          >
-            <div className="relative bg-orange-500 border-b border-yellow-400/40 shadow-[0_3px_10px_rgba(0,0,0,0.25)]">
-              <div className="max-w-7xl mx-auto flex items-center justify-between py-2 px-4">
-                {/* LEFT: MARQUEE */}
-                <div className="relative overflow-hidden flex-1 mr-4">
-                  <div className="animate-marquee whitespace-nowrap flex items-center">
-                    {[...Array(3)].map((_, i) => (
-                      <span
-                        key={i}
-                        className="mx-10 text-white text-sm md:text-[13px] font-medium tracking-wide"
-                      >
-                        ✦ Celebrate Christmas with
-                        <span className="font-semibold text-yellow-300 mx-1 drop-shadow-[0_0_12px_rgba(255,215,0,0.8)]">
-                          UP TO 50% OFF
+          <Link href="/component/company/contact">
+            <motion.div
+              initial={{ opacity: 0, height: 0, y: -20 }}
+              animate={{ opacity: 1, height: "auto", y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -20 }}
+              transition={{ duration: 0.45, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <div className="relative bg-orange-500 border-b border-yellow-400/40 shadow-[0_3px_10px_rgba(0,0,0,0.25)]">
+                <div className="max-w-7xl mx-auto flex items-center justify-between py-2 md:py-1 px-4">
+                  {/* LEFT: MARQUEE */}
+                  <div className="relative overflow-hidden flex-1 mr-4">
+                    <div className="animate-marquee whitespace-nowrap flex items-center">
+                      {[...Array(3)].map((_, i) => (
+                        <span
+                          key={i}
+                          className="mx-10 text-white text-sm md:text-[13px] font-medium tracking-wide"
+                        >
+                          ✦ Celebrate Christmas with
+                          <span className="font-semibold text-yellow-300 mx-1 drop-shadow-[0_0_12px_rgba(255,215,0,0.8)] underline">
+                            UP TO 50% OFF
+                          </span>
+                          on All Fintech Solutions! ✦
                         </span>
-                        on All Fintech Solutions! ✦
-                      </span>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* RIGHT: CONTACT BUTTON WITH SHAKE PHONE ICON */}
-                <motion.button
-                  onClick={() => router.push("/component/company/contact")}
-                  whileHover="hover"
-                  className="bg-white text-black font-medium text-sm px-4 py-2 rounded-lg flex items-center gap-2 shadow-sm hover:bg-gray-100 transition cursor-pointer"
-                >
-                  <motion.span
-                    variants={{
-                      hover: {
-                        rotate: [0, -15, 15, -10, 10, 0],
-                        transition: { duration: 0.55 },
-                      },
-                    }}
-                    className="flex items-center"
+                  {/* RIGHT: CONTACT BUTTON WITH SHAKE PHONE ICON */}
+                  <motion.button
+                    onClick={() => router.push("/component/company/contact")}
+                    whileHover="hover"
+                    className="hidden md:flex bg-white text-black font-medium text-sm px-4 py-2 rounded-full items-center gap-2 shadow-sm hover:bg-gray-100 transition cursor-pointer"
                   >
-                    <FiPhoneCall className="w-5 h-5" />
-                  </motion.span>
-                  Contact Us
-                </motion.button>
+                    <motion.span
+                      variants={{
+                        hover: {
+                          rotate: [0, -15, 15, -10, 10, 0],
+                          transition: { duration: 0.55 },
+                        },
+                      }}
+                      className="flex items-center"
+                    >
+                      <FiPhoneCall className="w-4 h-4" />
+                    </motion.span>
+                    Contact Us
+                  </motion.button>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </Link>
         )}
       </AnimatePresence>
       <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
@@ -962,7 +964,7 @@ const Header: React.FC = () => {
             </span>
           </span>
         </Link>
-        <nav className="hidden md:flex  md:space-x-2 lg:space-x-4 items-center relative font-normal ">
+        <nav className="hidden md:flex  md:space-x-2 lg:space-x-4 items-center relative font-normal">
           {navItems.map((item, idx) =>
             item.dropdown ? (
               <div

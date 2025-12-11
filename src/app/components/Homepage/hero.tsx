@@ -49,7 +49,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove pt-10 md:py-18 overflow-hidden">
+    <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove pt-20 md:py-18 overflow-hidden">
       <div className="flex flex-col md:flex-row pt-16 md:py-0">
         <FormPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
         <motion.div
@@ -58,8 +58,8 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="flex flex-col items-center justify-center w-full md:w-3/5"
         >
-          <div className="max-w-2xl space-y-4 px-4 sm:px-4">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+          <div className="max-w-2xl space-y-4 px-4 sm:px-2">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl  font-bold text-gray-900 leading-tight">
               Camlenio is a Leading Software
               <br />
               Development in{" "}

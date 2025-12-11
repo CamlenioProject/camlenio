@@ -231,7 +231,7 @@ const FreeQuotation = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
             onSubmit={onSubmit}
           >
-            <div className="w-full col-span-1">
+            <div className="w-full col-span-3 md:col-span-1">
               <input
                 aria-label="Full Name"
                 className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${
@@ -247,7 +247,7 @@ const FreeQuotation = () => {
               )}
             </div>
 
-            <div className="w-full col-span-1">
+            <div className="w-full col-span-3 md:col-span-1">
               <input
                 aria-label="Email Address"
                 className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${
@@ -263,7 +263,7 @@ const FreeQuotation = () => {
               )}
             </div>
 
-            <div className="w-full col-span-1">
+            <div className="w-full col-span-3 md:col-span-1">
               <input
                 aria-label="Phone Number"
                 className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${
@@ -296,7 +296,7 @@ const FreeQuotation = () => {
               )}
             </div>
 
-            <div className="md:col-span-3">
+            <div className="w-full col-span-3">
               <button
                 type="submit"
                 disabled={loading}

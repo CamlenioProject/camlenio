@@ -72,7 +72,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <div className="relative bg-gray-800 text-white px-6 pt-12 pb-2">
+    <div className="relative bg-gray-800 text-white px-6 pt-6 pb-2">
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -80,54 +80,61 @@ export default function Footer() {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto"
       >
-        <div className="w-full bg-gradient-to-r from-indigo-100 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove flex items-center justify-start md:justify-center rounded-[1.5rem] mb-8 p-4">
-          <div className="flex flex-col md:flex-row md:justify-around w-full gap-6">
-            <div className="flex flex-col md:flex-row items-center justify-start  md:gap-6 gap-3">
-              <span className="text-gray-800 text-2xl md:text-3xl">
-                <GiRotaryPhone />
-              </span>
-              <div className="text-gray-950  md:border-l pl-2 md:pl-2 border-gray-800">
-                <p>+91-9773323814</p>
-              </div>
+        <div className="w-full flex items-center justify-center bg-transparent rounded-[1.5rem]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-between w-full">
+            {/* LEFT — TITLE */}
+            <div className="text-left space-y-1">
+              <h2 className="text-[1.62rem] md:text-4xl lg:text-[2.9rem] font-extrabold leading-tight text-gray-50">
+                Build smarter.
+              </h2>
+              <h2 className="text-[1.62rem] md:text-4xl lg:text-[2.9rem] font-extrabold leading-tight text-gray-50">
+                Scale faster with Camlenio.
+              </h2>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center md:gap-6 gap-3">
-              <span className="text-gray-800 text-2xl md:text-3xl">
-                <MdEmail />
-              </span>
-              <div className="text-gray-950  md:border-l pl-2 md:pl-2 border-gray-800">
-                <p>business@camlenio.com</p>
+            {/* RIGHT — CONTACT SECTION */}
+            <div className="space-y-1 bg-gray-600 text-gray-100 rounded-2xl p-4 inline-block ">
+              <div className="flex items-start gap-4 group">
+                <div className="text-white text-2xl group-hover:scale-110 transition-all duration-300">
+                  <GiRotaryPhone />
+                </div>
+                <div className="text-white border-l border-white/20 pl-4">
+                  <p className=" text-sm md:text-xl tracking-wide">
+                    +91-9773323814
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div className="flex flex-col md:flex-row items-center md:gap-6 gap-3">
-              <span className="text-gray-800 text-2xl md:text-3xl">
-                <ImLocation2 />
-              </span>
-              <div className="text-gray-950 text-center md:text-left  md:border-l pl-2 md:pl-2 border-gray-800 ">
-                <p className="text-sm">
-                  Ground Floor, Gopi Tower, Ajmer Rd,
-                  <br /> Near Kamla Devi Govt. School,
-                  <br /> Satya Colony, Tagore Nagar,Jaipur,
-                  <br /> Rajasthan 302021
-                </p>
+              <div className="flex items-start gap-4 group">
+                <div className="text-white text-2xl group-hover:scale-110 transition-all duration-300">
+                  <MdEmail />
+                </div>
+                <div className="text-white border-l border-white/20 pl-4">
+                  <p className="font-semibold text-lg md:text-xl tracking-wide break-all">
+                    business@camlenio.com
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 group">
+                <div className="text-white text-2xl group-hover:scale-110 transition-all duration-300">
+                  <ImLocation2 />
+                </div>
+                <div className="text-white border-l border-white/20 pl-4">
+                  <p className="text-sm md:text-base leading-relaxed font-medium">
+                    Ground Floor, Gopi Tower, Ajmer Rd, Near Kamla Devi Govt.
+                    School, Satya Colony, Tagore Nagar, Jaipur, Rajasthan 302021
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Build smarter.
-            <br />
-            Scale faster with Camlenio.
-          </h2>
-        </div>
-
         <div className="border-t border-gray-500 my-6" />
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-base">
-          <div className="col-span-2 md:col-span-1 w-full  flex  flex-col items-center mb-4">
+          <div className="col-span-2 md:col-span-1 w-full  flex  flex-col items-start sm:items-center mb-4">
             <Link href="/" className="flex items-center">
               <Image
                 src="/logo-w.png"

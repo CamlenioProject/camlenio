@@ -21,6 +21,10 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%;

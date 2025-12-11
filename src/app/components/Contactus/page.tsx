@@ -199,24 +199,6 @@ export default function ContactUs() {
       <div className="max-w-7xl mx-auto">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 bg-transparent border-1 border-gray-300 p-8 rounded-2xl shadow-lg ">
           <div className="order-2 md:order-1 relative">
-            {/* {loading && (
-              <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-lg bg-orange-500 text-white shadow-lg animate-slide-in font-semibold">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-white animate-spin"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>Sending your message...</span>
-              </div>
-            )} */}
-
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -242,7 +224,7 @@ export default function ContactUs() {
                       if (err) setErrors((prev) => ({ ...prev, name: err }));
                     }}
                     placeholder="Full Name"
-                    className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
+                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base ${
                       errors.name ? "border-red-500" : ""
                     }`}
                   />
@@ -272,7 +254,7 @@ export default function ContactUs() {
                       if (err) setErrors((prev) => ({ ...prev, email: err }));
                     }}
                     placeholder="Email Address"
-                    className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
+                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base ${
                       errors.email ? "border-red-500" : ""
                     }`}
                   />
@@ -302,7 +284,7 @@ export default function ContactUs() {
                       if (err) setErrors((prev) => ({ ...prev, phone: err }));
                     }}
                     placeholder="Phone Number"
-                    className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 ${
+                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base ${
                       errors.phone ? "border-red-500" : ""
                     }`}
                   />
@@ -315,7 +297,7 @@ export default function ContactUs() {
               </div>
 
               {/* Project Field - No error handling needed */}
-              <div className="relative w-full">
+              <div className="relative w-full text-sm sm:text-base">
                 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center h-full px-3">
                   <MdOutlineWork className="text-gray-900 text-xl" />
                   <span className="ml-2 h-6 border-r border-gray-300"></span>
@@ -324,7 +306,7 @@ export default function ContactUs() {
                   name="project"
                   value={formData.project}
                   onChange={handleChange}
-                  className="w-full pl-16 pr-3 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none text-gray-600"
+                  className="w-full pl-12 sm:pl-16 pr-3 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none text-gray-600 placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base"
                 >
                   <option value={"web-development"}>Web Development</option>
                   <option value={"mobile-app-development"}>
@@ -360,7 +342,7 @@ export default function ContactUs() {
                       }
                     }}
                     placeholder="About Your Project"
-                    className={`w-full pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 resize-none ${
+                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 resize-none placeholder:text-sm sm:placeholder:text-base ${
                       errors.message ? "border-red-500" : ""
                     }`}
                   />
@@ -427,11 +409,14 @@ export default function ContactUs() {
             </form>
           </div>
 
-          <div className="order-1 md:order-2 relative flex flex-col justify-center bg-gray-900 text-white rounded-2xl p-8 min-h-[500px]">
+          <div className="order-1 md:order-2 relative flex flex-col justify-center bg-gray-900 text-white rounded-2xl p-4 sm:p-6 md:p-8 h-full">
+            {/* Background Image */}
             <div className="absolute inset-0 bg-[url('/navcompany/support.png')] bg-cover bg-center opacity-20 rounded-2xl"></div>
-            <div className="max-w-full relative z-10 space-y-4 text-center">
+
+            {/* Foreground Content */}
+            <div className="relative z-10 space-y-3 sm:space-y-4 text-center w-full px-0 sm:px-2">
               <h2
-                className="text-3xl md:text-6xl font-bold text-orange-500"
+                className="text-2xl sm:text-4xl md:text-6xl font-bold text-orange-500 break-words"
                 style={{
                   textShadow:
                     "-1px -1px 0px #da5f00, 3px 3px 0px #3f4653, 4px 6px 0px #ff582336",
@@ -439,17 +424,21 @@ export default function ContactUs() {
               >
                 Get in Touch
               </h2>
-              <p className="text-white text-base md:text-3xl">
+
+              <p className="text-white text-sm sm:text-lg md:text-3xl">
                 Mail to our sales teams
               </p>
-              <p className="text-xl md:text-2xl font-semibold text-orange-50">
+
+              <p className="text-xs sm:text-lg md:text-xl font-normal  text-orange-50 break-words">
                 business@camlenio.com
               </p>
-              <div className="mt-6">
-                <h3 className="text-2xl text-orange-500 font-semibold">
+
+              <div className="mt-4 sm:mt-6">
+                <h3 className="text-lg sm:text-2xl text-orange-500 font-semibold">
                   Our Address
                 </h3>
-                <p className="text-gray-300 text-xs md:text-xl">
+
+                <p className="text-gray-300 text-xs sm:text-sm md:text-xl leading-relaxed break-words capitalize">
                   ground Floor, Gopi Tower, Ajmer Rd,
                   <br />
                   Near Kamla Devi Govt. School, Satya Colony,
