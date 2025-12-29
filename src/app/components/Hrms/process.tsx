@@ -77,7 +77,6 @@ const HorizontalScrollTimeline = () => {
     if (!trackRef.current) return;
 
     const handleResize = () => {
-      // Logic to check if we are on desktop for the animation
       setIsDesktop(window.innerWidth >= 1024);
 
       const trackWidth = trackRef.current?.scrollWidth || 0;
@@ -117,10 +116,6 @@ const HorizontalScrollTimeline = () => {
               Process
             </span>
           </h2>
-
-          <p className="text-gray-700 text-sm md:text-base pl-1 font-sans text-justify">
-            Scroll down to see the journey →
-          </p>
         </div>
 
         {/* Cards Container */}

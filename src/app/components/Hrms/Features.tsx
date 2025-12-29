@@ -16,19 +16,14 @@ const services = [
       "The system provides advanced role-based access control to ensure data security and confidentiality. Access rights are assigned based on user roles such as Admin, HR Manager, Team Lead, and Employee.",
   },
   {
-    title: "Automated Workflows & Approvals",
-    description:
-      "Our software automates HR workflows such as leave requests, attendance corrections, reimbursements, onboarding, and exit processes. Approval hierarchies can be customized according to company structure, ensuring faster decision-making, reduced paperwork, and elimination of manual errors.",
-  },
-  {
     title: "Real-Time HR Reports & Analytics",
     description:
       "Gain valuable insights with real-time HR reports and analytics. The system offers comprehensive dashboards and customizable reports for attendance, payroll, employee performance, attrition, and compliance.",
   },
   {
-    title: "Secure Document Management",
+    title: "Automated Workflows & Approvals",
     description:
-      "The HR Management Software includes a secure document management system to store and manage employee documents such as offer letters, ID proofs, contracts, appraisals, and policy documents.",
+      "Our software automates HR workflows such as leave requests, attendance corrections, reimbursements, onboarding, and exit processes. Approval hierarchies can be customized according to company structure, ensuring faster decision-making, reduced paperwork, and elimination of manual errors.",
   },
   {
     title: "Multi-Branch & Multi-Location Support",
@@ -36,14 +31,19 @@ const services = [
       "Designed for growing organizations, the system supports multiple branches and locations from a single centralized platform. HR teams can manage employees across different offices, regions, or cities while maintaining branch-specific policies, shifts, holidays, and reporting structures.",
   },
   {
-    title: "Integration with Biometric & Payroll Systems",
+    title: "Secure Document Management",
     description:
-      "Our HR software seamlessly integrates with biometric devices for accurate attendance tracking and links directly with payroll systems. This ensures error-free salary calculations based on real attendance data, overtime, and leave policies, reducing manual effort and payroll discrepancies.",
+      "The HR Management Software includes a secure document management system to store and manage employee documents such as offer letters, ID proofs, contracts, appraisals, and policy documents.",
   },
   {
     title: "Cloud-Based & On-Premise Deployment",
     description:
       "Camlenio Software offers flexible deployment options to suit your business needs. Choose a cloud-based solution for easy access, scalability, and minimal infrastructure, or an on-premise deployment for enhanced control and compliance.",
+  },
+  {
+    title: "Integration with Biometric & Payroll Systems",
+    description:
+      "Our HR software seamlessly integrates with biometric devices for accurate attendance tracking and links directly with payroll systems. This ensures error-free salary calculations based on real attendance data, overtime, and leave policies, reducing manual effort and payroll discrepancies.",
   },
 ];
 

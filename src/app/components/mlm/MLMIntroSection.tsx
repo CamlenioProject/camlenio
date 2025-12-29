@@ -99,14 +99,14 @@ export default function MLMIntroSection() {
               <div className="flex justify-center gap-4">
                 <a
                   href="/content/company/contact"
-                  className="relative overflow-hidden px-8 py-4 rounded-full text-[14px] font-semibold text-white bg-gradient-to-r from-orange-500 to-rose-400 transition-all duration-300 hover:scale-105"
+                  className="relative overflow-hidden px-8 py-4 rounded-full text-[14px] font-semibold text-white bg-orange-500 transition-all duration-300"
                 >
                   Get Started Free
                 </a>
               </div>
 
               {/* stats */}
-              <div className="mt-14 pt-10 border-t border-gray-200">
+              <div className="mt-10 pt-10 border-t border-gray-200">
                 <div className="grid grid-cols-4 gap-8 max-w-4xl mx-auto">
                   {[
                     { v: "500+", l: "Clients" },

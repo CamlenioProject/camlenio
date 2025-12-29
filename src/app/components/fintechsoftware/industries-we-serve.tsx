@@ -71,11 +71,11 @@ export default function IndustriesWeServe() {
               key={industry.id}
               onMouseEnter={() => setActiveIndex(index)}
               onMouseLeave={() => setActiveIndex(null)}
-              className="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-orange-100 hover:border-orange-300"
+              className="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-orange-100 hover:border-orange-200/60"
             >
               {/* Background Gradient Effect */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br from-orange-100 to-orange-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                className={`absolute inset-0 bg-gradient-to-br from-orange-100 to-orange-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
               ></div>
 
               {/* Animated Corner Accent */}

@@ -80,7 +80,7 @@ const Industries = () => {
             return (
               <div
                 key={index}
-                className="group flex flex-col items-center p-6 rounded-2xl bg-orange-50/50 border border-orange-100 hover:border-orange-300 hover:bg-gray-100/30 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 cursor-default"
+                className="group flex flex-col items-center p-6 rounded-2xl bg-orange-50/50 border border-orange-100 hover:border-orange-100 hover:bg-gray-100/10 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 cursor-default"
               >
                 {/* Icon Circle */}
                 <div className="h-14 w-14 rounded-full  flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300 shadow-sm">

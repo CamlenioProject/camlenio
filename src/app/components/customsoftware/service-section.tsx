@@ -87,13 +87,15 @@ export default function SoftwareDevelopmentProcess() {
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               Our Customized Software{" "}
-             <span
-              className="text-orange-500"
-              style={{
-                textShadow:
-                  "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
-              }}
-            >Development Process</span>
+              <span
+                className="text-orange-500"
+                style={{
+                  textShadow:
+                    "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
+                }}
+              >
+                Development Process
+              </span>
             </h2>
 
             <p className="mt-6 text-base text-gray-900 leading-relaxed font-sans text-justify">
@@ -114,7 +116,7 @@ export default function SoftwareDevelopmentProcess() {
               <m.div
                 key={step.step}
                 variants={{
-                  hidden: { opacity: 0, y: 40 },
+                  hidden: { opacity: 0, y: 20 },
                   show: {
                     opacity: 1,
                     y: 0,
@@ -124,11 +126,9 @@ export default function SoftwareDevelopmentProcess() {
                     },
                   },
                 }}
-                whileHover={{ y: -8 }}
+                whileHover={{ y: -4 }}
                 className="group relative"
               >
-                {/* Hover Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-200/50 to-orange-300/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
 
                 {/* Step Number with Circle */}
                 <div className="flex items-center gap-4 mb-4">
@@ -141,10 +141,7 @@ export default function SoftwareDevelopmentProcess() {
                     </span>
                   </m.div>
 
-                  {/* Connecting Line (except last row on desktop) */}
-                  {index < processSteps.length - 0 && (
-                    <div className="hidden lg:block absolute top-6 right-full w-12 h-0.5 bg-gradient-to-r from-orange-300 to-transparent" />
-                  )}
+                
                 </div>
 
                 {/* Content */}

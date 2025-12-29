@@ -64,14 +64,6 @@ export default function IndustriesWeServe() {
             animate={{ y: [0, -25, 0], x: [0, -20, 0] }}
             transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
           />
-
-          {/* Floating Dot */}
-          <m.div
-            className="absolute top-5 right-1/4 h-20 w-20 rounded-full bg-orange-500/20"
-            animate={{ y: [0, -20, 0], opacity: [0.4, 0.8, 0.4] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          />
-
         </div>
 
         <div className="relative mx-auto max-w-7xl px-6">
@@ -114,17 +106,6 @@ export default function IndustriesWeServe() {
                 viewport={{ once: true }}
                 className="relative border-l-2 border-orange-500 pl-5"
               >
-                {/* Small animated dot */}
-                <m.span
-                  className="absolute -left-[6px] top-2 h-2 w-2 rounded-full bg-orange-500"
-                  animate={{ scale: [1, 1.4, 1] }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-950">
                   {industry.title}
                 </h3>

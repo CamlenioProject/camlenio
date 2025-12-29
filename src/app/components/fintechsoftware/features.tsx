@@ -57,7 +57,7 @@ const features: FeatureItem[] = [
 
 export default function Feature() {
   return (
-    <section className="relative overflow-hidden  py-24">
+    <section className="relative overflow-hidden  py-10">
 
       <div className="relative mx-auto max-w-7xl px-6">
         <LazyMotion features={domAnimation}>

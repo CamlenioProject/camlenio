@@ -327,7 +327,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                     </AnimatePresence>
 
                     <div className="flex flex-col-reverse md:flex-row bg-white">
-                      <div className="w-full sm:w-1/2 p-4 md:p-6">
+                      <div className="w-full sm:w-1/2 p-4 md:p-6 overflow-hidden">
                         <div className="flex justify-between">
                           <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
                             Get in Touch
@@ -528,7 +528,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
 
                       <div className="w-full md:w-1/2">
                         <Image
-                          src="/MERRY-CHRISTMAS.png"
+                          src="/popup.webp"
                           alt="Contact us"
                           width={600}
                           height={600}

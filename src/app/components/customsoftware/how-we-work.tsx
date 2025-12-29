@@ -55,7 +55,7 @@ export default function SoftwareKeyFeaturesSignal() {
 
               {/* Signal List */}
               <div className="relative">
-                <div className="absolute left-3 top-0 h-full w-px bg-gradient-to-b from-orange-400/80 via-orange-300/40 to-transparent" />
+                {/* <div className="absolute left-3 top-0 h-full w-px bg-gradient-to-b from-orange-400/80 via-orange-300/40 to-transparent" /> */}
 
                 <ul className="space-y-4">
                   {features.map((feature, index) => (
@@ -69,11 +69,11 @@ export default function SoftwareKeyFeaturesSignal() {
                         delay: index * 0.06,
                         ease: [0.22, 1, 0.36, 1],
                       }}
-                      className="flex items-start gap-6"
+                      className="flex items-start gap-3"
                     >
-                      <span className="relative mt-1 h-3 w-3 flex-shrink-0">
+                      <span className="relative mt-2 h-3 w-3 flex-shrink-0">
                         <span className="absolute h-3 w-3 rounded-full bg-orange-500" />
-                        <span className="absolute h-6 w-6 rounded-full bg-orange-400/30 blur-md" />
+                        {/* <span className="absolute h-6 w-6 rounded-full bg-orange-400/30 blur-md" /> */}
                       </span>
 
                       <p className="text-base sm:text-lg leading-relaxed text-slate-700 font-sans">

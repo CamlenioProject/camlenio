@@ -78,7 +78,7 @@ export default function FAQSection() {
 
   return (
     <LazyMotion features={domMax}>
-      <section className="py-10">
+      <section className="relative">
         <div className="max-w-4xl mx-auto px-6">
           {/* Header */}
           <m.div
