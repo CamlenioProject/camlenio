@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "../../../lib/utils";
-import { motion, Transition, Variants } from "framer-motion";
+import { m, Transition, Variants, LazyMotion, domMax } from "framer-motion";
 import React, { CSSProperties } from "react";
 
 type SpinningTextProps = {
@@ -67,44 +67,46 @@ export function SpinningText({
   };
 
   return (
-    <motion.div
-      className={cn("relative", className)}
-      style={{
-        ...style,
-      }}
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-      transition={{
-        ...BASE_TRANSITION,
-        ...transition,
-        duration: (transition as { duration?: number })?.duration ?? duration,
-      }}
-    >
-      {letters.map((letter, index) => (
-        <motion.span
-          aria-hidden="true"
-          key={`${index}-${letter}`}
-          variants={itemVariants}
-          className="absolute left-1/2 top-1/2 inline-block"
-          style={
-            {
-              "--index": index,
-              "--total": letters.length,
-              "--radius": radius,
-              transform: `
+    <LazyMotion features={domMax}>
+      <m.div
+        className={cn("relative", className)}
+        style={{
+          ...style,
+        }}
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        transition={{
+          ...BASE_TRANSITION,
+          ...transition,
+          duration: (transition as { duration?: number })?.duration ?? duration,
+        }}
+      >
+        {letters.map((letter, index) => (
+          <m.span
+            aria-hidden="true"
+            key={`${index}-${letter}`}
+            variants={itemVariants}
+            className="absolute left-1/2 top-1/2 inline-block"
+            style={
+              {
+                "--index": index,
+                "--total": letters.length,
+                "--radius": radius,
+                transform: `
                   translate(-50%, -50%)
                   rotate(calc(360deg / var(--total) * var(--index)))
                   translateY(calc(var(--radius, 5) * -1ch))
                 `,
-              transformOrigin: "center",
-            } as React.CSSProperties
-          }
-        >
-          {letter}
-        </motion.span>
-      ))}
-      <span className="sr-only">{children}</span>
-    </motion.div>
+                transformOrigin: "center",
+              } as React.CSSProperties
+            }
+          >
+            {letter}
+          </m.span>
+        ))}
+        <span className="sr-only">{children}</span>
+      </m.div>
+    </LazyMotion>
   );
 }

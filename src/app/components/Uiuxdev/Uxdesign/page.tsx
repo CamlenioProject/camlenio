@@ -92,7 +92,7 @@ export default function UxDesign() {
           className=" relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] "
         >
           <Image
-            src="/uiuxdesign/ux-design.webp"
+            src="/ServiceDropdown/uiuxdesign/ux-design.webp"
             alt="Ux Design"
             width={600}
             height={600}

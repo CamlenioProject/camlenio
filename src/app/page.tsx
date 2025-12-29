@@ -22,7 +22,7 @@ const Testimonials = dynamic(
 );
 const FreeDemo = dynamic(() => import("./components/Homepage/free-demo"));
 const BlogSection = dynamic(() => import("./components/Homepage/blog-section"));
-const LogoSlider = dynamic(() => import("./components/Homepage/logo-slider"));
+import { LogoSlider } from "./components/Homepage/logoslider";
 
 const Home = () => {
   return (

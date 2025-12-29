@@ -1,22 +1,29 @@
 "use client";
-import ContactUs from "../../../components/Contactus/page";
 import Hero from "../../../components/ecommercedevelopment/hero";
-import WhyChooseUs from "../../../components/ecommercedevelopment/why-choose-us";
-import Services from "../../../components/ecommercedevelopment/services";
-import OurProcess from "../../../components/ecommercedevelopment/our-process";
-import EcommerceServicesSection from "@/app/components/ecommercedevelopment/EcommerceServicesSection";
-import { CTA } from "@/app/components/ecommercedevelopment/cta-section";
+import EcommerceServices from "../../../components/ecommercedevelopment/EcommerceServices";
+import Expertise from "../../../components/ecommercedevelopment/Expertise";
+import OurProcess from "../../../components/ecommercedevelopment/weDeliver";
+import EcommerceDevelopment from "@/app/components/ecommercedevelopment/WhyChoose";
+import FAQSection from "@/app/components/ecommercedevelopment/FAQSection";
+import CTA from "@/app/components/cta";
 
 export default function EcommerceSoftware() {
   return (
-    <div>
+    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove overflow-hidden">
       <Hero />
-      <WhyChooseUs />
-      <Services />
+      <EcommerceServices />
+      <Expertise />
       <OurProcess />
-      <EcommerceServicesSection />
-      <CTA />
-      <ContactUs />
+      <EcommerceDevelopment />
+      <FAQSection />
+      <CTA
+        title={" Ready to Transform Your E-commerce Business?"}
+        highlightedTitle={"E-commerce"}
+        subtitle={
+          " Whether you want to launch a new e-commerce software or upgrade an existing one, we’re here to help."
+        }
+        buttontext={"Get Free Consultation"}
+      />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import { HoverEffect } from "../../About-card-hover-effect";
 import GsapReveal from "../../GsapReveal";
-import React from "react";
 import {
   RiTeamFill,
   RiLightbulbFlashFill,

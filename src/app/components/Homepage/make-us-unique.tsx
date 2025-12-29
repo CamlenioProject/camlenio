@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+
 const cards = [
   {
     title: "Innovative Approach",
@@ -9,7 +9,7 @@ const cards = [
   {
     icon: "/Homepage/SolutionsThatScale/expertise.svg",
     title: "End-to-End Expertise",
-    desc: "From idea to design, development, and launch — we handle everything seamlessly under one roof.",
+    desc: "From idea to design, development, and launch we handle everything seamlessly under one roof.",
   },
   {
     icon: "/Homepage/SolutionsThatScale/secure.svg",
@@ -25,10 +25,10 @@ const cards = [
 
 export default function MakeUsUnique() {
   return (
-    <div className="relative overflow-hidden py-16 bg-gray-800/30 ">
 
-        <div className="absolute -top-10 -right-10 w-64 h-64 bg-orange-500 rounded-full opacity-100 blur-3xl -z-10"></div>
-  <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-orange-500 rounded-full opacity-100 blur-3xl -z-10"></div>
+    <div className="relative overflow-hidden py-16 bg-gray-800/30 ">
+      <div className="absolute -top-10 -right-10 w-64 h-64 bg-orange-500 rounded-full opacity-100 blur-3xl -z-10"></div>
+      <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-orange-500 rounded-full opacity-100 blur-3xl -z-10"></div>
       <div className="max-w-7xl mx-auto px-8 md:px-16 text-center">
         <span className="relative inline-block px-4 py-1.5 rounded-full border border-orange-400 bg-gray-50 shadow-sm text-sm font-medium text-gray-950 mb-4">
           <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>

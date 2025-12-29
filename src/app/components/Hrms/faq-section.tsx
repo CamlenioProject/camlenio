@@ -1,95 +1,164 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { LazyMotion, domMax, m, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import Image from "next/image";
 
-const faqs = [
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
   {
-    question: "What is Camlenio HRMS?",
+    question: "What is Camlenio HRMS Software?",
     answer:
-      "Camlenio HRMS is a cloud-based Human Resource Management Software that automates HR operations like recruitment, payroll, performance, and employee tracking.",
+      "Camlenio HRMS is a complete Human Resource Management Software designed to automate HR processes like recruitment, payroll, attendance, leave, and employee performance management.",
   },
   {
-    question: "Is it suitable for small businesses?",
+    question: "Who can use Camlenio HRMS?",
     answer:
-      "Yes, Camlenio HRMS is fully scalable and works perfectly for startups, SMEs, and enterprises.",
+      "Camlenio HRMS is ideal for startups, SMEs, enterprises, IT companies, and organizations of all sizes looking to streamline HR operations.",
   },
   {
-    question: "Can it integrate with other tools?",
+    question: "What HR functions does Camlenio HRMS cover?",
     answer:
-      "Yes, Camlenio HRMS supports easy integration with payroll, accounting, and communication tools.",
+      "It includes employee management, payroll processing, attendance & leave management, recruitment, performance tracking, reporting, and compliance management.",
   },
   {
-    question: "How secure is the data?",
+    question: "Is Camlenio HRMS customizable?",
     answer:
-      "Your data is protected with enterprise-grade security and regular backups.",
+      "Yes, Camlenio offers fully customizable HRMS solutions based on your business requirements and organizational workflow.",
+  },
+  {
+    question: "Does Camlenio HRMS support payroll automation?",
+    answer:
+      "Yes, it automates payroll calculations, salary slips, deductions, and statutory compliance to reduce errors and save time.",
+  },
+  {
+    question: "Is employee data secure in Camlenio HRMS?",
+    answer:
+      "Absolutely. Camlenio HRMS follows strict security standards to ensure data privacy, secure access, and role-based permissions.",
+  },
+  {
+    question: "Can Camlenio HRMS integrate with other systems?",
+    answer:
+      "Yes, it integrates with third-party software, accounting tools, biometric devices, and external APIs.",
+  },
+  {
+    question: "Is Camlenio HRMS cloud-based or on-premise?",
+    answer:
+      "Camlenio HRMS is available as cloud-based, on-premise, or hybrid solutions depending on your business needs.",
+  },
+  {
+    question: "Does Camlenio provide support and maintenance?",
+    answer:
+      "Yes, Camlenio offers ongoing technical support, regular updates, and maintenance after deployment.",
+  },
+  {
+    question: "How can I get a demo of Camlenio HRMS?",
+    answer:
+      "You can request a free demo by contacting Camlenio through the website or by reaching out to the sales team.",
   },
 ];
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <div className="w-full py-20 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
-      <div className="max-w-7xl mx-auto px-8 md:px-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
-              Frequently Asked Questions
+    <LazyMotion features={domMax}>
+      <section className="py-10 md:py-32">
+        <div className="max-w-4xl mx-auto px-6">
+          {/* Header */}
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              Frequently Asked{" "}
+              <span
+                className="text-orange-500"
+                style={{
+                  textShadow:
+                    "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
+                }}
+              >
+                Questions
+              </span>
             </h2>
 
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl shadow-md p-5 cursor-pointer border border-gray-200 bg-orange-100"
-                  onClick={() => toggleFAQ(index)}
-                >
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-base font-semibold text-gray-800">
-                      {faq.question}
-                    </h3>
-                    <ChevronDown
-                      className={`w-4 h-4 text-gray-600 transform transition-transform ${
-                        openIndex === index ? "rotate-180" : ""
-                      }`}
-                    />
-                  </div>
+            <p className="mt-3 text-gray-600 text-sm sm:text-base">
+              Camlenio Human Resource Management Software
+            </p>
+          </m.div>
 
-                  <AnimatePresence>
-                    {openIndex === index && (
-                      <motion.div
+          {/* FAQ List */}
+          <div className="space-y-2 touch-pan-y">
+            {faqs.map((faq, index) => {
+              const isOpen = activeIndex === index;
+
+              return (
+                <m.div
+                  key={index}
+                  className={`rounded-2xl border overflow-hidden transition-all
+                    ${
+                      isOpen
+                        ? "border-orange-400 shadow-md"
+                        : "border-gray-200 hover:border-orange-300"
+                    }`}
+                >
+                  {/* Question */}
+                  <button
+                    type="button"
+                    onClick={() => setActiveIndex(isOpen ? null : index)}
+                    className="w-full flex items-center justify-between px-5 py-4 text-left group"
+                  >
+                    <span className="text-sm sm:text-base font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                      {faq.question}
+                    </span>
+
+                    <m.span
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors
+                        ${
+                          isOpen
+                            ? "bg-orange-100 text-orange-600"
+                            : "bg-gray-100 text-gray-600 group-hover:bg-orange-50"
+                        }`}
+                    >
+                      <ChevronDown className="w-4 h-4" />
+                    </m.span>
+                  </button>
+
+                  {/* Answer */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <m.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        transition={{
+                          height: { duration: 0.35, ease: "easeOut" },
+                          opacity: { duration: 0.2 },
+                        }}
                         className="overflow-hidden"
                       >
-                        <p className="text-gray-600 mt-3 text-sm">{faq.answer}</p>
-                      </motion.div>
+                        <div className="px-6 pb-6 text-sm sm:text-base text-gray-700 leading-relaxed font-sans">
+                          {faq.answer}
+                        </div>
+                      </m.div>
                     )}
                   </AnimatePresence>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative w-full h-[500px] rounded-2xl overflow-hidden ">
-            <Image
-              src="/ServiceDropdown/hrmssoftware/FAQ.png"
-              alt="FAQ Illustration"
-              fill
-              className="object-contain"
-            />
+                </m.div>
+              );
+            })}
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </LazyMotion>
   );
 }

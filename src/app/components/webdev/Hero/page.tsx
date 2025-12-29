@@ -17,7 +17,7 @@ export default function Hero() {
   return (
     <div className="relative pt-20 overflow-hidden bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove">
       <Image
-        src="/bg-hero.webp"
+        src="/ServiceDropdown/webdevpage/webdevhero.webp"
         alt="Background"
         width={500}
         height={500}
@@ -57,7 +57,7 @@ export default function Hero() {
             className="w-full  max-w-md mx-auto relative"
           >
             <Image
-              src="/webdevpage/webdevhero.webp"
+              src="/ServiceDropdown/webdevpage/webdevhero.webp"
               alt="Hero image"
               width={500}
               height={500}

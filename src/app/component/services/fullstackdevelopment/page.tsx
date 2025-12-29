@@ -5,7 +5,6 @@ import DiscussProject from "../../../components/Fullstackdev/discuss-project";
 import ContactUs from "../../../components/Contactus/page";
 import HireAppDev from "../../../components/Mobappdev/Hireappdev/page";
 import WhyCamlenio from "../../../components/Fullstackdev/why-camlenio";
-import LogoSlider from "../../../components/Homepage/logo-slider";
 
 export default function FullStackDevelopment() {
   return (
@@ -16,7 +15,6 @@ export default function FullStackDevelopment() {
       <WhyCamlenio />
       <HireAppDev />
       <ContactUs />
-      <LogoSlider />
     </div>
   );
 }

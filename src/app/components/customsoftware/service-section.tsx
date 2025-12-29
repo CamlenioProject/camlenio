@@ -1,125 +1,176 @@
 "use client";
 
-import { motion, useAnimationFrame, useMotionValue, wrap } from "framer-motion";
-import { useRef, useEffect } from "react";
-import { Cog, Cloud, Smartphone, Link2, LifeBuoy } from "lucide-react";
+import { LazyMotion, domMax, m } from "framer-motion";
 
-export default function OurServicesCarousel() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const halfWidth = useRef(0);
-  const isDragging = useRef(false);
-  const speed = -50;
+interface ProcessStep {
+  step: string;
+  title: string;
+  description: string;
+}
 
-  const services = [
-    {
-      icon: Cog,
-      title: "Business Process Automation",
-      desc: "Automate repetitive tasks and workflows to save time, reduce errors, and increase efficiency.",
+const processSteps: ProcessStep[] = [
+  {
+    step: "01",
+    title: "Requirement Analysis",
+    description:
+      "Understanding your business needs, challenges, and goals to define a clear software roadmap.",
+  },
+  {
+    step: "02",
+    title: "UI/UX Design",
+    description:
+      "Creating user-friendly, intuitive, and conversion-focused designs that enhance user experience.",
+  },
+  {
+    step: "03",
+    title: "Software Development",
+    description:
+      "Building secure, scalable, and high-performance software using modern technologies.",
+  },
+  {
+    step: "04",
+    title: "Testing & Quality Assurance",
+    description:
+      "Ensuring bug-free, reliable, and performance-optimized software through rigorous testing.",
+  },
+  {
+    step: "05",
+    title: "Deployment & Launch",
+    description:
+      "Executing a smooth and secure go-live process with minimal disruption.",
+  },
+  {
+    step: "06",
+    title: "Support & Enhancements",
+    description:
+      "Providing ongoing monitoring, improvements, and scalability support as your business grows.",
+  },
+];
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.2,
     },
-    {
-      icon: Cloud,
-      title: "Web & Cloud Applications",
-      desc: "High-performance, secure, and responsive web apps built for your exact requirements.",
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Applications",
-      desc: "Native Android, iOS, or cross-platform apps designed for your audience and business needs.",
-    },
-    {
-      icon: Link2,
-      title: "Integration & API Solutions",
-      desc: "Connect your existing software and systems seamlessly for a unified workflow.",
-    },
-    {
-      icon: LifeBuoy,
-      title: "Maintenance & Support",
-      desc: "Continuous monitoring, updates, and support to ensure your system always runs smoothly.",
-    },
-  ];
+  },
+};
 
-  const loopedServices = [...services, ...services];
-
-  useEffect(() => {
-    const calculateWidth = () => {
-      if (scrollerRef.current) {
-        halfWidth.current = scrollerRef.current.scrollWidth / 2;
-      }
-    };
-    calculateWidth();
-    window.addEventListener("resize", calculateWidth);
-    return () => window.removeEventListener("resize", calculateWidth);
-  }, []);
-
-  useAnimationFrame((t, delta) => {
-    if (!isDragging.current && halfWidth.current) {
-      const moveBy = speed * (delta / 1000);
-      x.set(wrap(-halfWidth.current, 0, x.get() + moveBy));
-    }
-  });
-
+export default function SoftwareDevelopmentProcess() {
   return (
-    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-50 bg-[length:200%_200%] animate-gradientMove scroll-smooth py-20">
-      <div className="max-w-7xl mx-auto px-8 md:px-16 text-center">
-        <span className="relative inline-block px-4 py-1.5 rounded-full border border-orange-50 bg-orange-100 shadow-sm text-sm font-medium text-orange-600 mb-4">
-          <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>
-          Camlenio Development Company
-        </span>
-         <h2
-          className="text-3xl sm:text-4xl font-bold mb-4 text-orange-500"
-          style={{
-            textShadow:
-              "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336", 
-          }}
-        >
-          Our Services
-
-        </h2>
-        <p className="max-w-5xl mx-auto text-gray-600 text-sm text-left md:text-base flex-wrap break-words mb-12 font-sans">
-          Our customized software solutions are crafted to align perfectly with
-          the way your business operates—streamlining workflows, reducing manual
-          effort, and supporting your long-term growth objectives.
-        </p>
-        <div
-          ref={containerRef}
-          className="overflow-hidden relative active:cursor-grabbing"
-        >
-          <motion.div
-            ref={scrollerRef}
-            className="flex gap-6"
-            style={{ x }}
-            drag="x"
-            onDragStart={() => (isDragging.current = true)}
-            onDragEnd={() => {
-              isDragging.current = false;
-              x.set(wrap(-halfWidth.current, 0, x.get()));
-            }}
-          >
-            {loopedServices.map((s, i) => (
-              <div
-                key={i}
-                className="w-72 flex-shrink-0 p-6 mb-4 rounded-2xl border border-orange-200 bg-transparent shadow-md "
-              >
-                <div className="flex flex-col items-start gap-4">
-                  <div className="rounded-2xl p-3 bg-orange-100 border border-gray-200 shadow-sm">
-                    <s.icon className="w-6 h-6 text-orange-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-gray-600">
-                      {s.desc}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </motion.div>
+    <LazyMotion features={domMax}>
+      <section className="relative py-10 md:py-20">
+        {/* Background Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 right-10 w-72 h-72 bg-orange-200/30 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-10 w-96 h-96 bg-orange-300/20 rounded-full blur-3xl" />
         </div>
-      </div>
-    </div>
+
+        <div className="relative mx-auto max-w-7xl px-6  py-2 lg:py-10">
+          {/* Header */}
+          <m.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-3xl mb-12 sm:mb-16 lg:mb-20"
+          >
+            <m.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-500 mb-6 origin-left"
+            />
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              Our Customized Software{" "}
+             <span
+              className="text-orange-500"
+              style={{
+                textShadow:
+                  "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
+              }}
+            >Development Process</span>
+            </h2>
+
+            <p className="mt-6 text-base text-gray-900 leading-relaxed font-sans text-justify">
+              A structured, transparent, and scalable development approach
+              designed to deliver high-quality software solutions efficiently.
+            </p>
+          </m.div>
+
+          {/* Process Flow */}
+          <m.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
+          >
+            {processSteps.map((step, index) => (
+              <m.div
+                key={step.step}
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.6,
+                      ease: [0.22, 1, 0.36, 1],
+                    },
+                  },
+                }}
+                whileHover={{ y: -8 }}
+                className="group relative"
+              >
+                {/* Hover Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-200/50 to-orange-300/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+
+                {/* Step Number with Circle */}
+                <div className="flex items-center gap-4 mb-4">
+                  <m.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-orange-500 flex items-center justify-center shadow-lg shadow-orange-300/50"
+                  >
+                    <span className="text-lg font-bold text-white">
+                      {step.step}
+                    </span>
+                  </m.div>
+
+                  {/* Connecting Line (except last row on desktop) */}
+                  {index < processSteps.length - 0 && (
+                    <div className="hidden lg:block absolute top-6 right-full w-12 h-0.5 bg-gradient-to-r from-orange-300 to-transparent" />
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="px-4">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 ">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-sm sm:text-base leading-relaxed text-gray-900  font-sans">
+                    {step.description}
+                  </p>
+                </div>
+
+                {/* Bottom Accent Line */}
+                <m.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+                  className="mt-6 h-1 bg-gradient-to-r from-orange-400 to-orange-300 origin-left rounded-full"
+                />
+              </m.div>
+            ))}
+          </m.div>
+        </div>
+      </section>
+    </LazyMotion>
   );
 }

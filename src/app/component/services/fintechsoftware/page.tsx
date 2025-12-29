@@ -1,28 +1,35 @@
 "use client";
 import Hero from "../../../components/fintechsoftware/hero";
-import ResellerMarketSection from "@/app/components/fintechsoftware/recommend-section";
+import About from "@/app/components/fintechsoftware/about";
 import Features from "@/app/components/fintechsoftware/features";
-import WhatFintech from "@/app/components/fintechsoftware/WhatFintech";
-import AePSSection from "@/app/components/fintechsoftware/aeps-section";
-import SecureAePSSection from "@/app/components/fintechsoftware/secure-aeps-section";
-import B2BAepsFeatures from "@/app/components/fintechsoftware/b2b-aeps-features";
-import BBPSFeatures from "@/app/components/fintechsoftware/BBPSFeatures";
-import BBPSRecurringPayments from "@/app/components/fintechsoftware/BBPSRecurringPayments";
-import { CTA } from "@/app/components/fintechsoftware/cta";
+import BuildFintechSolution from "@/app/components/fintechsoftware/BuildFintechSolution";
+import IndustriesWeServe from "@/app/components/fintechsoftware/industries-we-serve";
+import WhyChoose from "@/app/components/fintechsoftware/why-choose";
+import Expertise from "@/app/components/fintechsoftware/expertise";
+import FintechFAQ from "@/app/components/fintechsoftware/Fintechfaq";
+import CTA from "@/app/components/cta";
 
 export default function FintechSoftware() {
   return (
-    <div className="relative">
+    <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
       <Hero />
-      <ResellerMarketSection />
-      <WhatFintech />
+      <About />
+      <IndustriesWeServe />
+      <BuildFintechSolution />
       <Features />
-      <AePSSection />
-      <SecureAePSSection />
-      <B2BAepsFeatures />
-      <BBPSFeatures />
-      <BBPSRecurringPayments />
-      <CTA />
+      <Expertise />
+      <WhyChoose />
+      <FintechFAQ />
+      <CTA
+        title={
+          " Let us assist you on your FinTech Software Project!"
+        }
+        highlightedTitle={"FinTech Software"}
+        subtitle={
+          " From concept to deployment, we build secure, scalable, and compliant fintech solutions tailored to your business needs."
+        }
+        buttontext={"Book A Free Demo"}
+      />
     </div>
   );
 }

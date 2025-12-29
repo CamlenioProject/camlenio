@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { FaCalendarAlt, FaComments, FaHeart } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { m, LazyMotion, domMax } from "framer-motion";
 import React from "react";
 
 const BlogSection = () => {
@@ -36,109 +36,111 @@ const BlogSection = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-50 bg-[length:200%_200%] animate-gradientMove py-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 md:px-16 text-center">
-        <div className="relative inline-block px-4 py-1.5 rounded-full border border-orange-50 bg-orange-100 shadow-sm text-sm font-medium text-orange-600 mb-4">
-          <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>
-          Blogs
+    <LazyMotion features={domMax}>
+      <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-50 bg-[length:200%_200%] animate-gradientMove py-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-8 md:px-16 text-center">
+          <div className="relative inline-block px-4 py-1.5 rounded-full border border-orange-50 bg-orange-100 shadow-sm text-sm font-medium text-orange-600 mb-4">
+            <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>
+            Blogs
+          </div>
+
+          <m.h2
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
+          >
+            Blogs
+          </m.h2>
+
+          <m.p
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans"
+          >
+            Camlenio is an established software development company in India
+            that is committed to helping businesses thrive through innovative
+            digital solutions. Our expert team Blends creativity, technology,
+            and strategy to build custom websites, mobile apps, and fintech
+            platforms that actually transact business.
+          </m.p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+            {blogs.map((blog) => (
+              <div
+                key={blog.id}
+                className="rounded-xl shadow-md overflow-hidden flex flex-col h-full bg-orange-100 border-1 border-gray-300 group"
+              >
+                <div className="relative glare-img hover:scale-102 transition-all duration-300">
+                  <Image
+                    src={blog.img}
+                    alt={blog.title}
+                    width={500}
+                    height={300}
+                    className="w-full h-85 object-cover object-center "
+                  />
+                </div>
+                <div className="p-4 flex flex-col flex-grow">
+                  <div className="flex items-center gap-3 text-gray-500 text-sm mb-1">
+                    <span className="flex items-center gap-1">
+                      <FaCalendarAlt /> {blog.date}
+                    </span>
+                    <span>-</span>
+                    <span className="flex items-center gap-1">
+                      <FaComments /> Comments ({blog.comments})
+                    </span>
+                  </div>
+
+                  <h3 className="text-base font-semibold mb-1 text-gray-800 text-left transition-colors duration-500 ease-in-out">
+                    <a href={blog.href}>{blog.title}</a>
+                  </h3>
+
+                  <div className="mt-auto flex items-center justify-between">
+                    <a
+                      href={blog.href}
+                      className="flex items-center gap-2 text-orange-500 font-medium hover:gap-3 transition-all duration-300 group-hover:scale-x-110 group-hover:tracking-wider origin-left"
+                    >
+                      Read More →
+                    </a>
+                    <button className="text-gray-400 hover:text-red-500 transition-colors duration-300">
+                      <FaHeart />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <motion.h2
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
-        >
-          Blogs
-        </motion.h2>
+        <style jsx>{`
+          .glare-img {
+            position: relative;
+            overflow: hidden;
+          }
 
-        <motion.p
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans"
-        >
-          Camlenio is an established software development company in India that
-          is committed to helping businesses thrive through innovative digital
-          solutions. Our expert team Blends creativity, technology, and strategy
-          to build custom websites, mobile apps, and fintech platforms that
-          actually transact business.
-        </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
-          {blogs.map((blog) => (
-            <div
-              key={blog.id}
-              className="rounded-xl shadow-md overflow-hidden flex flex-col h-full bg-orange-100 border-1 border-gray-300 group"
-            >
-              <div className="relative glare-img hover:scale-102 transition-all duration-300">
-                <Image
-                  src={blog.img}
-                  alt={blog.title}
-                  width={500}
-                  height={300}
-                  className="w-full h-85 object-cover object-center "
-                />
-              </div>
-              <div className="p-4 flex flex-col flex-grow">
-                <div className="flex items-center gap-3 text-gray-500 text-sm mb-1">
-                  <span className="flex items-center gap-1">
-                    <FaCalendarAlt /> {blog.date}
-                  </span>
-                  <span>-</span>
-                  <span className="flex items-center gap-1">
-                    <FaComments /> Comments ({blog.comments})
-                  </span>
-                </div>
+          .glare-img::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              -30deg,
+              rgba(255, 255, 255, 0) 60%,
+              rgba(255, 255, 255, 0.35) 70%,
+              rgba(255, 255, 255, 0) 100%
+            );
+            transition: 800ms ease;
+            background-size: 200% 200%;
+            background-position: -100% -100%;
+          }
 
-                <h3 className="text-base font-semibold mb-1 text-gray-800 text-left transition-colors duration-500 ease-in-out">
-                  <a href={blog.href}>{blog.title}</a>
-                </h3>
-
-                <div className="mt-auto flex items-center justify-between">
-                  <a
-                    href={blog.href}
-                    className="flex items-center gap-2 text-orange-500 font-medium hover:gap-3 transition-all duration-300 group-hover:scale-x-110 group-hover:tracking-wider origin-left"
-                  >
-                    Read More →
-                  </a>
-                  <button className="text-gray-400 hover:text-red-500 transition-colors duration-300">
-                    <FaHeart />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+          .glare-img:hover::before {
+            background-position: 100% 100%;
+          }
+        `}</style>
       </div>
-
-      <style jsx>{`
-        .glare-img {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .glare-img::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            -30deg,
-            rgba(255, 255, 255, 0) 60%,
-            rgba(255, 255, 255, 0.35) 70%,
-            rgba(255, 255, 255, 0) 100%
-          );
-          transition: 800ms ease;
-          background-size: 200% 200%;
-          background-position: -100% -100%;
-        }
-
-        .glare-img:hover::before {
-          background-position: 100% 100%;
-        }
-      `}</style>
-    </div>
+    </LazyMotion>
   );
 };
 export default BlogSection;

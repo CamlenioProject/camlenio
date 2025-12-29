@@ -12,7 +12,7 @@ import {
   validateEmail,
   validatePhone,
   validateMessage,
-} from "@/utils/validators";
+} from "../../../../lib/validators";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({

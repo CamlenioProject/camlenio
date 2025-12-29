@@ -26,7 +26,7 @@ export default function UIDesign() {
           className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] "
         >
           <Image
-            src="/uiuxdesign/ui-design.png"
+            src="/ServiceDropdown/uiuxdesign/ui-design.png"
             alt="UI Design"
             width={600}
             height={600}

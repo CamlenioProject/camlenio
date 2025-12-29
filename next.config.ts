@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  allowedDevOrigins: ["http://localhost:3000", "http://192.168.1.28:3000"],
+  // eslint: {
+  //   ignoreDuringBuilds: true,
+  // },
   async redirects() {
     return [
       {
@@ -13,11 +14,16 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ["res.cloudinary.com"],
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "images.unsplash.com",
+        pathname: "/**",
       },
     ],
   },

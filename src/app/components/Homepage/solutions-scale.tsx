@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { m, LazyMotion, domMax } from "framer-motion";
 
 type Industry = {
   id: number;
@@ -117,34 +118,42 @@ function Track({
 
 export default function SolutionsScale() {
   return (
-    <div className="grid gap-6 p-6 py-20 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove ">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ">
-        <span className="relative inline-block px-4 py-1.5 rounded-full border border-orange-50 bg-orange-100 shadow-sm text-sm font-medium text-orange-500 mb-4">
-          <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>
-          Solutions That Scale
-        </span>
-        <h6 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-          Serving a Diverse Range of{" "}
-          <span
-            className="text-orange-500"
-            style={{
-              textShadow:
-                "-1px -1px 0px #da5f00, 3px 3px 0px #F3F4F6, 4px 6px 0px #ff582336",
-            }}
-          >
-            Industries
+    <LazyMotion features={domMax}>
+      <div className="grid gap-6 p-6 py-20 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ">
+          <span className="relative inline-block px-4 py-1.5 rounded-full border border-orange-50 bg-orange-100 shadow-sm text-sm font-medium text-orange-500 mb-4">
+            <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>
+            Solutions That Scale
           </span>
-        </h6>
+          <m.h6
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
+          >
+            Serving a Diverse Range of{" "}
+            <span
+              className="text-orange-500"
+              style={{
+                textShadow:
+                  "-1px -1px 0px #da5f00, 3px 3px 0px #F3F4F6, 4px 6px 0px #ff582336",
+              }}
+            >
+              Industries
+            </span>
+          </m.h6>
 
-        <p className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans ">
-          We serve and collaborate with a diverse range of industries. Over the
-          years, Camlenio Software has broadened its portfolio by partnering
-          with businesses across sectors and empowering them to scale in today’s
-          fast-evolving digital world.
-        </p>
+          <p className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans ">
+            We serve and collaborate with a diverse range of industries. Over
+            the years, Camlenio Software has broadened its portfolio by
+            partnering with businesses across sectors and empowering them to
+            scale in today’s fast-evolving digital world.
+          </p>
+        </div>
+        <Track items={INDUSTRIES} reverse={false} speed={66} />
+        <Track items={INDUSTRIES.slice().reverse()} reverse={true} speed={66} />
       </div>
-      <Track items={INDUSTRIES} reverse={false} speed={66} />
-      <Track items={INDUSTRIES.slice().reverse()} reverse={true} speed={66} />
-    </div>
+    </LazyMotion>
   );
 }

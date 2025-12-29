@@ -3,7 +3,7 @@ import ContactUs from "../../../components/Contactus/page";
 import AppDevServices from "../../../components/Mobappdev/Appdevservices/page";
 import HireAppDev from "../../../components/Mobappdev/Hireappdev/page";
 import MobAppIntegration from "../../../components/Mobappdev/Mobappintegration/page";
-import LogoSlider from "../../../components/Homepage/logo-slider";
+import {LogoSlider} from "../../../components/Homepage/logoslider";
 
 export const metadata = {
   title: "Camlenio|Android App Development",

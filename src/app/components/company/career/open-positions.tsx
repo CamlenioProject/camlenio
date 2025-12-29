@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { MapPin, Clock, Filter } from "lucide-react";
 import { jobs } from "../../../../../lib/jobs";
 import Link from "next/link";

@@ -1,6 +1,5 @@
 "use client";
 import ContactUs from "../../../components/Contactus/page";
-import LogoSlider from "../../../components/Homepage/logo-slider";
 import Hero from "../../../components/webdev/Hero/page";
 import Migration from "../../../components/webdev/Migrations/page";
 import WebDevExperts from "../../../components/webdev/WebDevExperts/page";
@@ -14,7 +13,6 @@ export default function Home() {
       <WebDevSolution />
       <Migration />
       <ContactUs />
-      <LogoSlider />
     </div>
   );
 }

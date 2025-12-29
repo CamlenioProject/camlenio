@@ -21,8 +21,13 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
+} */
+
+
+p {
+  font-family: sans-serif;
 }
 
 @keyframes gradientMove {

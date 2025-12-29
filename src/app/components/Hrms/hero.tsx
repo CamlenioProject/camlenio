@@ -1,83 +1,125 @@
-import React from "react";
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-
+import { domMax, m, LazyMotion } from "framer-motion";
+import Link from "next/link";
 
 const Hero = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+    },
+  };
+
   return (
-    <div className="relative min-h-screen bg-orange-500">
-      <div className="absolute inset-0 w-full lg:w-4/5 lg:rounded-br-[36rem] overflow-hidden">
-        <Image
-          src="/ServiceDropdown/hrmssoftware/bg-hrms.jpg"
-          alt="HRMS Background"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/70 lg:bg-black/80"></div>
-      </div>
+    <LazyMotion features={domMax}>
+      <section className="relative min-h-screen overflow-hidden ">
+        {/* <div className="absolute inset-0 w-full overflow-hidden z-0 pointer-events-none">
+          <Image
+            src="/ServiceDropdown/hrmssoftware/bg-hrms.jpg"
+            alt="HRMS Background"
+            fill
+            className="object-cover transform-gpu"
+            priority
+            quality={75}
+            sizes="(max-width: 1024px) 100vw, 85vw"
+          />
+          <div className="absolute inset-0 bg-black/80" />
+        </div> */}
 
-      <div className="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between min-h-screen max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-8 md:py-12">
-        <div className="flex-1 max-w-2xl text-center lg:text-left lg:mb-0">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
-            Modern HR Management <span className="block">Made Simple</span>
-          </h1> 
-          <p className="text-gray-200 text-sm sm:text-base md:text-lg mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-            Streamline your HR processes with our all-in-one Human Resource
-            Management System
-          </p>
+        <m.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between min-h-screen max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-30 lg:pt-20"
+        >
+          <div className="flex-1 max-w-2xl text-center lg:text-left mt-10 lg:mt-0">
+            <m.h1
+              variants={{
+                hidden: { y: 20, opacity: 0 },
+                visible: {
+                  y: 0,
+                  opacity: 1,
+                  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="text-3xl sm:text-4xl lg:text-5xl  font-bold text-gray-900 mb-4"
+            >
+              Human Resource Management{" "}
+              <span
+                className="text-orange-500"
+                style={{
+                  textShadow:
+                    "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
+                }}
+              >
+                Software Development
+              </span>
+            </m.h1>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center transition-colors duration-300 min-w-[140px]">
-              Get Started <ArrowRight className="ml-2 h-5 w-5" />
-            </button>
-            <button className="bg-white/20 hover:bg-white/30 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center transition-colors duration-300 min-w-[140px] backdrop-blur-sm">
-              Learn More <ArrowRight className="ml-2 h-5 w-5" />
-            </button>
+            <m.p
+              variants={{
+                hidden: { y: 20, opacity: 0 },
+                visible: {
+                  y: 0,
+                  opacity: 1,
+                  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="max-w-5xl mx-auto text-gray-800 text-sm md:text-base  font-sans text-justify"
+            >
+              Camlenio develops smart HR Management Software to automate hiring,
+              payroll, and performance.
+            </m.p>
+
+            <m.div
+              variants={{
+                hidden: { y: 20, opacity: 0 },
+                visible: {
+                  y: 0,
+                  opacity: 1,
+                  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+              <Link href="/component/company/contact">
+                <button className="my-6 px-6 py-3 self-center md:self-start bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl shadow-md cursor-pointer">
+                  Schedule a call
+                </button>
+              </Link>
+            </m.div>
           </div>
-        </div>
 
-        <div className="relative flex-1 flex items-center justify-center w-full max-w-2xl">
-          <div
-            className="relative w-full max-w-[280px] h-[220px] 
-                  sm:max-w-[380px] sm:h-[300px] 
-                  md:max-w-[420px] md:h-[330px] 
-                  lg:max-w-[480px] lg:h-[360px] 
-                  xl:max-w-[550px] xl:h-[400px] 
-                  2xl:max-w-[600px] 2xl:h-[450px] 
-                  overflow-hidden rounded-full border-2 border-gray-400 lg:rounded-tl-full lg:rounded-tr-full lg:rounded-bl-full lg:rounded-br-none mx-auto"
+          {/* Right Image: Optimized sizes & Priority */}
+          <m.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="relative flex-1 flex items-center justify-center w-full max-w-lg lg:max-w-none"
           >
-            <Image
-              src="/ServiceDropdown/hrmssoftware/hrms-right-hero.jpg"
-              alt="HRMS Software Dashboard showing employee management interface"
-              width={800}
-              height={600}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </div>
-        </div>
-      </div>
+            <div className="relative w-64 h-64 sm:w-96 sm:h-96 lg:w-[480px] lg:h-[480px] will-change-transform">
+              {/* <div className="absolute inset-0 bg-orange-400/20 rounded-full blur-2xl" /> */}
 
-      <div className="absolute z-10 grid grid-cols-4 gap-6 w-[90%] max-w-6xl -bottom-10 bg-orange-100 p-8 text-center transform -translate-x-1/2 left-1/2 rounded-3xl shadow-lg px-4 sm:px-6 md:px-8 mx-auto">
-        <div className="flex flex-col items-center justify-center border border-gray-300 rounded-3xl ">
-          <span className="text-4xl font-bold text-gray-800">01</span>
-          <p className="text-gray-800 text-sm mt-2">Planning</p>
-        </div>
-        <div className="flex flex-col items-center justify-center border border-gray-300 rounded-3xl">
-          <span className="text-4xl font-bold text-gray-800">02</span>
-          <p className="text-gray-800 text-sm mt-2">Design</p>
-        </div>
-        <div className="flex flex-col items-center justify-center border border-gray-300 rounded-3xl">
-          <span className="text-4xl font-bold text-gray-800">03</span>
-          <p className="text-gray-800 text-sm mt-2">Development</p>
-        </div>
-        <div className="flex flex-col items-center justify-center border border-gray-300 rounded-3xl">
-          <span className="text-4xl font-bold text-gray-800">04</span>
-          <p className="text-gray-800 text-sm mt-2">Launch</p>
-        </div>
-      </div>
-    </div>
+              <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] lg:rounded-t-[200px] lg:rounded-bl-[200px] border-2 border-orange-500/10 shadow-xl">
+                <Image
+                  src="/ServiceDropdown/hrmssoftware/hrms-right-hero.jpg"
+                  alt="HRMS Dashboard"
+                  fill
+                  className="object-cover"
+                  priority
+                  quality={80}
+                  sizes="(max-width: 768px) 256px, (max-width: 1280px) 480px, 600px"
+                />
+              </div>
+            </div>
+          </m.div>
+        </m.div>
+      </section>
+    </LazyMotion>
   );
 };
 

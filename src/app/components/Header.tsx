@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, m, LazyMotion, domMax } from "framer-motion";
 import clsx from "clsx";
 import { safeLink } from "../../../lib/utils";
 import { usePathname } from "next/navigation";
@@ -17,13 +17,14 @@ import { MobileDropdown } from "./MobileDropdown";
 import { FiPhoneCall } from "react-icons/fi";
 
 const availablePages = [
-  // "/portfolio",
+  "/portfolio",
   "/component/services/customizedsoftware",
-  // "/component/services/crmsoftware",
+  "/component/services/crmsoftware",
   "/component/services/ecommerceportel",
   "/component/services/fintechsoftware",
   // "/component/services/fullstackdevelopment",
-  "/component/services/billingsoftware",
+  // "/component/services/billingsoftware",
+  "/component/services/mlmsoftware",
   "/component/services/hrmssoftware",
   // "/component/services/androidappdevelopment",
   // "/component/services/ui_uxdesigning",
@@ -590,7 +591,7 @@ const DesktopDropdown = React.memo(
     return (
       <AnimatePresence>
         {openDropdown === item.title && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -1, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -1, scale: 0.95 }}
@@ -717,7 +718,7 @@ const DesktopDropdown = React.memo(
                 </a>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     );
@@ -860,334 +861,336 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[1000]  bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove shadow-md">
-      <AnimatePresence>
-        {!hideMarquee && (
-          <Link href="/component/company/contact">
-            <motion.div
-              initial={{ opacity: 0, height: 0, y: -20 }}
-              animate={{ opacity: 1, height: "auto", y: 0 }}
-              exit={{ opacity: 0, height: 0, y: -20 }}
-              transition={{ duration: 0.45, ease: "easeInOut" }}
-              className="overflow-hidden"
-            >
-              <div className="relative bg-orange-500 border-b border-yellow-400/40 shadow-[0_3px_10px_rgba(0,0,0,0.25)]">
-                <div className="max-w-7xl mx-auto flex items-center justify-between py-2 md:py-1 px-4">
-                  {/* LEFT: MARQUEE */}
-                  <div className="relative overflow-hidden flex-1 mr-4">
-                    <div className="animate-marquee whitespace-nowrap flex items-center">
-                      {[...Array(3)].map((_, i) => (
-                        <span
-                          key={i}
-                          className="mx-10 text-white text-sm md:text-[13px] font-medium tracking-wide"
-                        >
-                          ✦ Celebrate Christmas with
-                          <span className="font-semibold text-yellow-300 mx-1 drop-shadow-[0_0_12px_rgba(255,215,0,0.8)] underline">
-                            UP TO 50% OFF
+    <LazyMotion features={domMax}>
+      <header className="fixed top-0 left-0 right-0 z-[1000]  bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove shadow-xs">
+        <AnimatePresence>
+          {!hideMarquee && (
+            <Link href="/component/company/contact">
+              <m.div
+                initial={{ opacity: 0, height: 0, y: -20 }}
+                animate={{ opacity: 1, height: "auto", y: 0 }}
+                exit={{ opacity: 0, height: 0, y: -20 }}
+                transition={{ duration: 0.45, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <div className="relative bg-orange-500 border-b border-yellow-400/40 shadow-[0_3px_10px_rgba(0,0,0,0.25)]">
+                  <div className="max-w-7xl mx-auto flex items-center justify-between py-2 md:py-1 px-4">
+                    {/* LEFT: MARQUEE */}
+                    <div className="relative overflow-hidden flex-1 mr-4">
+                      <div className="animate-marquee whitespace-nowrap flex items-center">
+                        {[...Array(3)].map((_, i) => (
+                          <span
+                            key={i}
+                            className="mx-10 text-white text-sm md:text-[13px] font-medium tracking-wide"
+                          >
+                            ✦ Celebrate New Year with
+                            <span className="font-semibold text-yellow-300 mx-1 drop-shadow-[0_0_12px_rgba(255,215,0,0.8)] underline">
+                              UP TO 50% OFF
+                            </span>
+                            on All Fintech Solutions! ✦
                           </span>
-                          on All Fintech Solutions! ✦
-                        </span>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* RIGHT: CONTACT BUTTON WITH SHAKE PHONE ICON */}
-                  <motion.button
-                    onClick={() => router.push("/component/company/contact")}
-                    whileHover="hover"
-                    className="hidden md:flex bg-white text-black font-medium text-sm px-4 py-2 rounded-full items-center gap-2 shadow-sm hover:bg-gray-100 transition cursor-pointer"
-                  >
-                    <motion.span
-                      variants={{
-                        hover: {
-                          rotate: [0, -15, 15, -10, 10, 0],
-                          transition: { duration: 0.55 },
-                        },
-                      }}
-                      className="flex items-center"
+                    {/* RIGHT: CONTACT BUTTON WITH SHAKE PHONE ICON */}
+                    <m.button
+                      onClick={() => router.push("/component/company/contact")}
+                      whileHover="hover"
+                      className="hidden md:flex bg-white text-black font-medium text-sm px-4 py-2 rounded-full items-center gap-2 shadow-sm hover:bg-gray-100 transition cursor-pointer"
                     >
-                      <FiPhoneCall className="w-4 h-4" />
-                    </motion.span>
-                    Contact Us
-                  </motion.button>
+                      <m.span
+                        variants={{
+                          hover: {
+                            rotate: [0, -15, 15, -10, 10, 0],
+                            transition: { duration: 0.55 },
+                          },
+                        }}
+                        className="flex items-center"
+                      >
+                        <FiPhoneCall className="w-4 h-4" />
+                      </m.span>
+                      Contact Us
+                    </m.button>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </Link>
-        )}
-      </AnimatePresence>
-      <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
-        <Link href="/" className="flex items-center justify-center space-x-1">
-          <motion.div
-            initial={{ opacity: 1, scale: 0.9 }}
-            animate={shakeMode === "fast" ? fastShake : slowShake}
-            transition={{
-              duration: shakeMode === "fast" ? 0.4 : 1.2,
-              repeat: shakeMode === "slow" ? Infinity : 0,
-              repeatDelay: shakeMode === "slow" ? 2 : 0,
-              ease: "easeInOut",
-            }}
-          >
-            <Image
-              src="/logo-chrishmas.png"
-              alt="Camlenio"
-              width={180}
-              height={60}
-              className="w-8 sm:w-8 md:w-9 lg:w-11 xl:w-9 h-auto object-contain"
-            />
-          </motion.div>
-
-          <span className="text-2xl md:text-[1.8rem] lg:text-3xl xl:text-[1.8rem] 2xl:text-4xl font-bold text-black mt-1 -ml-1">
-            <span id="c" className="inline-block">
-              C
-            </span>
-            <span id="a" className="inline-block">
-              a
-            </span>
-            <span id="m" className="inline-block">
-              m
-            </span>
-            <span id="l" className="inline-block">
-              l
-            </span>
-            <span id="e" className="inline-block">
-              e
-            </span>
-            <span id="n" className="inline-block">
-              n
-            </span>
-            <span id="i" className="inline-block">
-              i
-            </span>
-            <span id="o" className="inline-block">
-              o
-            </span>
-          </span>
-        </Link>
-        <nav className="hidden md:flex  md:space-x-2 lg:space-x-4 items-center relative font-normal">
-          {navItems.map((item, idx) =>
-            item.dropdown ? (
-              <div
-                key={idx}
-                className="relative"
-                onMouseEnter={() => handleMouseEnter(item.title)}
-                onMouseLeave={handleMouseLeave}
-                ref={item.title === openDropdown ? navItemRef : null}
-              >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  onClick={() => toggleDropdown(item.title)}
-                  className={clsx(
-                    "inline-flex items-center text-gray-900 text-xs lg:text-sm font-medium hover:text-orange-500 cursor-pointer",
-                    openDropdown === item.title && "text-orange-500"
-                  )}
-                >
-                  {item.title}
-                  <ChevronDownIcon className="ml-1 w-4 h-4" />
-                </motion.button>
-                {openDropdown === item.title && (
-                  <DesktopDropdown
-                    item={item}
-                    openDropdown={openDropdown}
-                    closeDropdownWithDelay={handleMouseLeave}
-                    openDropdownImmediate={handleMouseEnter}
-                    pathname={pathname}
-                    closeDropdown={() => setOpenDropdown(null)}
-                    toggleDropdown={toggleDropdown}
-                  />
-                )}
-              </div>
-            ) : (
-              <Link
-                key={idx}
-                href={item.href}
-                className="text-xs md:text-sm mt-1 text-gray-900 hover:text-orange-500 font-medium"
-              >
-                {item.title}
-              </Link>
-            )
+              </m.div>
+            </Link>
           )}
-        </nav>
+        </AnimatePresence>
+        <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
+          <Link href="/" className="flex items-center justify-center space-x-1">
+            <m.div
+              // initial={{ opacity: 1, scale: 0.9 }}
+              // animate={shakeMode === "fast" ? fastShake : slowShake}
+              // transition={{
+              //   duration: shakeMode === "fast" ? 0.4 : 1.2,
+              //   repeat: shakeMode === "slow" ? Infinity : 0,
+              //   repeatDelay: shakeMode === "slow" ? 2 : 0,
+              //   ease: "easeInOut",
+              // }}
+            >
+              <Image
+                src="/logo-icon.png"
+                alt="Camlenio"
+                width={180}
+                height={60}
+                className="w-8 sm:w-8 md:w-9 lg:w-11 xl:w-9 h-auto object-contain"
+              />
+            </m.div>
 
-        <div className="md:hidden flex items-center gap-2">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? (
-              <XMarkIcon className="w-8 h-8 text-gray-800" />
-            ) : (
-              <Bars3Icon className="w-8 h-8 text-gray-800" />
-            )}
-          </button>
-        </div>
-      </div>
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0.5 }}
-            animate={{ opacity: 1, transition: { duration: 0.2 } }}
-            exit={{ opacity: 0, transition: { duration: 0.2 } }}
-            className="fixed inset-0 bg-black/40 z-40"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -50, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove shadow-lg rounded-b-2xl p-6 md:hidden overflow-y-auto max-h-screen"
-          >
-            <div className="flex justify-between">
-              <Link
-                href="/"
-                className="flex items-center space-x-1 tracking-tight "
-              >
-                <Image
-                  src="/logo-chrishmas.png"
-                  alt="Camlenio"
-                  width={180}
-                  height={60}
-                  className="w-8 md:w-11 h-auto object-contain"
-                />
-                <span className="text-2xl md:text-4xl font-bold text-black">
-                  <span id="c" className="inline-block">
-                    C
-                  </span>
-                  <span id="a" className="inline-block">
-                    a
-                  </span>
-                  <span id="m" className="inline-block">
-                    m
-                  </span>
-                  <span id="l" className="inline-block">
-                    l
-                  </span>
-                  <span id="e" className="inline-block">
-                    e
-                  </span>
-                  <span id="n" className="inline-block">
-                    n
-                  </span>
-                  <span id="i" className="inline-block">
-                    i
-                  </span>
-                  <span id="o" className="inline-block">
-                    o
-                  </span>
-                </span>
-              </Link>{" "}
-              <div className="md:hidden">
-                <AnimatePresence>
-                  <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                    {mobileMenuOpen ? (
-                      <XMarkIcon className="w-8 h-8 text-gray-800" />
-                    ) : (
-                      <Bars3Icon className="w-8 h-8 text-gray-800" />
-                    )}
-                  </button>
-                </AnimatePresence>
-              </div>
-            </div>
+            <span className="text-2xl md:text-[1.8rem] lg:text-3xl xl:text-[1.8rem] 2xl:text-4xl font-bold text-black mt-1 -ml-1">
+              <span id="c" className="inline-block">
+                C
+              </span>
+              <span id="a" className="inline-block">
+                a
+              </span>
+              <span id="m" className="inline-block">
+                m
+              </span>
+              <span id="l" className="inline-block">
+                l
+              </span>
+              <span id="e" className="inline-block">
+                e
+              </span>
+              <span id="n" className="inline-block">
+                n
+              </span>
+              <span id="i" className="inline-block">
+                i
+              </span>
+              <span id="o" className="inline-block">
+                o
+              </span>
+            </span>
+          </Link>
+          <nav className="hidden md:flex  md:space-x-2 lg:space-x-4 items-center relative font-normal">
             {navItems.map((item, idx) =>
               item.dropdown ? (
-                <div key={idx} className="mb-2">
-                  <button
-                    onClick={() =>
-                      setMobileDropdown(
-                        mobileDropdown === item.title ? null : item.title
-                      )
-                    }
-                    className="w-full flex justify-between items-center text-base p-4 text-gray-800 font-semibold rounded hover:bg-orange-50 transition-all duration-300"
+                <div
+                  key={idx}
+                  className="relative"
+                  onMouseEnter={() => handleMouseEnter(item.title)}
+                  onMouseLeave={handleMouseLeave}
+                  ref={item.title === openDropdown ? navItemRef : null}
+                >
+                  <m.button
+                    whileHover={{ scale: 1.05 }}
+                    onClick={() => toggleDropdown(item.title)}
+                    className={clsx(
+                      "inline-flex items-center text-gray-900 text-xs lg:text-sm font-medium hover:text-orange-500 cursor-pointer",
+                      openDropdown === item.title && "text-orange-500"
+                    )}
                   >
                     {item.title}
-                    <ChevronDownIcon
-                      className={clsx(
-                        "w-5 h-5 transition-transform duration-300 ",
-                        mobileDropdown === item.title && "rotate-180"
-                      )}
+                    <ChevronDownIcon className="ml-1 w-4 h-4" />
+                  </m.button>
+                  {openDropdown === item.title && (
+                    <DesktopDropdown
+                      item={item}
+                      openDropdown={openDropdown}
+                      closeDropdownWithDelay={handleMouseLeave}
+                      openDropdownImmediate={handleMouseEnter}
+                      pathname={pathname}
+                      closeDropdown={() => setOpenDropdown(null)}
+                      toggleDropdown={toggleDropdown}
                     />
-                  </button>
-
-                  <AnimatePresence>
-                    {mobileDropdown === item.title && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="overflow-hidden mt-2 pl-4 "
-                      >
-                        {Array.isArray(item.items) ? (
-                          item.items.map(
-                            (
-                              link: string | { title: string; href: string }
-                            ) => (
-                              <Link
-                                key={
-                                  typeof link === "string" ? link : link.title
-                                }
-                                href={
-                                  typeof link === "string"
-                                    ? safeLink(
-                                        `/component/${item.href}/${link
-                                          .replace(/\s+/g, "")
-                                          .toLowerCase()}`,
-                                        availablePages
-                                      )
-                                    : link.href
-                                }
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="block text-base p-2 text-gray-700 hover:text-orange-900 space-y-2"
-                              >
-                                {typeof link === "string" ? link : link.title}
-                              </Link>
-                            )
-                          )
-                        ) : (
-                          <MobileDropdown
-                            item={
-                              item as {
-                                href: string;
-                                items: Record<string, string[]>;
-                              }
-                            }
-                            setMobileMenuOpen={setMobileMenuOpen}
-                          />
-                        )}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  )}
                 </div>
               ) : (
                 <Link
                   key={idx}
-                  href={safeLink(item.href, availablePages)}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block text-gray-900 font-medium px-2 py-2 mb-2 hover:bg-orange-50 rounded"
+                  href={item.href}
+                  className="text-xs md:text-sm mt-1 text-gray-900 hover:text-orange-500 font-medium"
                 >
                   {item.title}
                 </Link>
               )
             )}
-            <div className="hidden md:flex justify-start items-center gap-4 border-t-1 border-gray-800  mt-2 pw-full p-2 rounded ">
-              {socialIcons.map((s, idx) => (
-                <a
-                  key={idx}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-gray-600 text-xs hover:text-orange-500 transition-all duration-150 "
+          </nav>
+
+          <div className="md:hidden flex items-center gap-2">
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? (
+                <XMarkIcon className="w-7 sm:w-8 h-7 sm:h-8 text-gray-800" />
+              ) : (
+                <Bars3Icon className="w-7 sm:w-8 h-7 sm:h-8 text-gray-800" />
+              )}
+            </button>
+          </div>
+        </div>
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <m.div
+              initial={{ opacity: 0.5 }}
+              animate={{ opacity: 1, transition: { duration: 0.2 } }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
+              className="fixed inset-0 bg-black/40 z-40"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <m.div
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -50, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove shadow-lg rounded-b-2xl p-6 md:hidden overflow-y-auto max-h-screen"
+            >
+              <div className="flex justify-between">
+                <Link
+                  href="/"
+                  className="flex items-center space-x-1 tracking-tight "
                 >
-                  {s.title}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+                  <Image
+                    src="/logo-chrishmas.png"
+                    alt="Camlenio"
+                    width={180}
+                    height={60}
+                    className="w-8 md:w-11 h-auto object-contain"
+                  />
+                  <span className="text-2xl md:text-4xl font-bold text-black">
+                    <span id="c" className="inline-block">
+                      C
+                    </span>
+                    <span id="a" className="inline-block">
+                      a
+                    </span>
+                    <span id="m" className="inline-block">
+                      m
+                    </span>
+                    <span id="l" className="inline-block">
+                      l
+                    </span>
+                    <span id="e" className="inline-block">
+                      e
+                    </span>
+                    <span id="n" className="inline-block">
+                      n
+                    </span>
+                    <span id="i" className="inline-block">
+                      i
+                    </span>
+                    <span id="o" className="inline-block">
+                      o
+                    </span>
+                  </span>
+                </Link>{" "}
+                <div className="md:hidden">
+                  <AnimatePresence>
+                    <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                      {mobileMenuOpen ? (
+                        <XMarkIcon className="w-8 h-8 text-gray-800" />
+                      ) : (
+                        <Bars3Icon className="w-8 h-8 text-gray-800" />
+                      )}
+                    </button>
+                  </AnimatePresence>
+                </div>
+              </div>
+              {navItems.map((item, idx) =>
+                item.dropdown ? (
+                  <div key={idx} className="mb-2">
+                    <button
+                      onClick={() =>
+                        setMobileDropdown(
+                          mobileDropdown === item.title ? null : item.title
+                        )
+                      }
+                      className="w-full flex justify-between items-center text-base p-4 text-gray-800 font-semibold rounded hover:bg-orange-50 transition-all duration-300"
+                    >
+                      {item.title}
+                      <ChevronDownIcon
+                        className={clsx(
+                          "w-5 h-5 transition-transform duration-300 ",
+                          mobileDropdown === item.title && "rotate-180"
+                        )}
+                      />
+                    </button>
+
+                    <AnimatePresence>
+                      {mobileDropdown === item.title && (
+                        <m.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4 }}
+                          className="overflow-hidden mt-2 pl-4 "
+                        >
+                          {Array.isArray(item.items) ? (
+                            item.items.map(
+                              (
+                                link: string | { title: string; href: string }
+                              ) => (
+                                <Link
+                                  key={
+                                    typeof link === "string" ? link : link.title
+                                  }
+                                  href={
+                                    typeof link === "string"
+                                      ? safeLink(
+                                          `/component/${item.href}/${link
+                                            .replace(/\s+/g, "")
+                                            .toLowerCase()}`,
+                                          availablePages
+                                        )
+                                      : link.href
+                                  }
+                                  onClick={() => setMobileMenuOpen(false)}
+                                  className="block text-base p-2 text-gray-700 hover:text-orange-900 space-y-2"
+                                >
+                                  {typeof link === "string" ? link : link.title}
+                                </Link>
+                              )
+                            )
+                          ) : (
+                            <MobileDropdown
+                              item={
+                                item as {
+                                  href: string;
+                                  items: Record<string, string[]>;
+                                }
+                              }
+                              setMobileMenuOpen={setMobileMenuOpen}
+                            />
+                          )}
+                        </m.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link
+                    key={idx}
+                    href={safeLink(item.href, availablePages)}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block text-gray-900 font-medium px-2 py-2 mb-2 hover:bg-orange-50 rounded"
+                  >
+                    {item.title}
+                  </Link>
+                )
+              )}
+              <div className="hidden md:flex justify-start items-center gap-4 border-t-1 border-gray-800  mt-2 pw-full p-2 rounded ">
+                {socialIcons.map((s, idx) => (
+                  <a
+                    key={idx}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-gray-600 text-xs hover:text-orange-500 transition-all duration-150 "
+                  >
+                    {s.title}
+                  </a>
+                ))}
+              </div>
+            </m.div>
+          )}
+        </AnimatePresence>
+      </header>
+    </LazyMotion>
   );
 };
 
