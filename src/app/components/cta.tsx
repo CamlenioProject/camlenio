@@ -21,7 +21,7 @@ export default function CTA({
         aria-labelledby="cta-title"
         className="relative overflow-hidden py-8"
       >
-        <div className="relative mx-auto max-w-7xl px-6  bg-orange-500/5 rounded-2xl">
+        <div className="relative mx-auto max-w-7xl px-6  bg-orange-50 rounded-2xl">
           <div className="rounded-3xl p-10 text-center">
             <m.h2
               initial={{ opacity: 0, y: 20 }}
@@ -60,7 +60,7 @@ export default function CTA({
               viewport={{ once: true }}
               className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <Link href="/component/company/contact">
+              <Link href="/contact">
                 <button
                   type="button"
                   className="inline-flex items-center justify-center rounded-full bg-orange-500 px-8 py-3 text-sm sm:text-base font-semibold text-white shadow-lg shadow-orange-500/30 hover:bg-orange-600 hover:shadow-orange-600/40 transition-all duration-300 focus:outline-none cursor-pointer"

@@ -36,18 +36,6 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
 
   const [countryCode, setCountryCode] = useState("+91");
 
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const shown = sessionStorage.getItem("popupShown");
-
-    if (shown === "true") {
-      onClose();
-    } else {
-      sessionStorage.setItem("popupShown", "true");
-    }
-  }, [isOpen, onClose]);
-
   const countryCodes = [
     { code: "+91", country: "India" },
     { code: "+44", country: "UK" },
@@ -216,11 +204,10 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                           animate={{ y: 0, opacity: 1, scale: 1 }}
                           exit={{ y: -15, opacity: 0, scale: 0.95 }}
                           transition={{ duration: 0.25, ease: "easeOut" }}
-                          className={`fixed top-6 left-1/2 -translate-x-1/2 z-[9999] ${
-                            error
+                          className={`fixed top-6 left-1/2 -translate-x-1/2 z-[9999] ${error
                               ? "bg-gradient-to-r from-red-50 to-rose-50/80 border-red-200/60 shadow-2xl shadow-red-200/50"
                               : "bg-gradient-to-r from-green-50 to-emerald-50/80 border-green-200/60 shadow-2xl shadow-green-200/50"
-                          }        backdrop-blur-xl text-gray-900 
+                            }        backdrop-blur-xl text-gray-900 
         px-6 py-3 rounded-xl        border border-t-white/20 border-l-white/20        font-semibold text-sm md:text-base flex items-center gap-3        max-w-[90vw] md:max-w-md      `}
                         >
                           {/* Animated Icon */}
@@ -232,11 +219,10 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                               type: "spring",
                               stiffness: 200,
                             }}
-                            className={`relative flex items-center justify-center w-7 h-7 rounded-full ${
-                              error
+                            className={`relative flex items-center justify-center w-7 h-7 rounded-full ${error
                                 ? "bg-gradient-to-br from-red-500 to-rose-600"
                                 : "bg-gradient-to-br from-green-500 to-emerald-600"
-                            }`}
+                              }`}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -316,11 +302,10 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                             initial={{ scaleX: 1 }}
                             animate={{ scaleX: 0 }}
                             transition={{ duration: 5, ease: "linear" }}
-                            className={`absolute bottom-0 left-0 right-0 h-1 origin-left rounded-b-xl ${
-                              error
+                            className={`absolute bottom-0 left-0 right-0 h-1 origin-left rounded-b-xl ${error
                                 ? "bg-gradient-to-r from-red-400 to-rose-500"
                                 : "bg-gradient-to-r from-green-400 to-emerald-500"
-                            }`}
+                              }`}
                           />
                         </m.div>
                       )}
@@ -467,11 +452,10 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                                   e.currentTarget.form?.requestSubmit();
                                 }
                               }}
-                              className={`mt-1 block w-full px-3 py-1 text-[.7rem] bg-white placeholder-opacity-40 border rounded-md shadow-sm placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 sm:text-sm ${
-                                messageError
+                              className={`mt-1 block w-full px-3 py-1 text-[.7rem] bg-white placeholder-opacity-40 border rounded-md shadow-sm placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 sm:text-sm ${messageError
                                   ? "border-red-500"
                                   : "border-gray-300"
-                              }`}
+                                }`}
                               placeholder="Your message..."
                             />
 
@@ -528,7 +512,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
 
                       <div className="w-full md:w-1/2">
                         <Image
-                          src="/popup.webp"
+                          src="/Custom-Software-popup-post.webp"
                           alt="Contact us"
                           width={600}
                           height={600}

@@ -367,7 +367,7 @@ export default function ContactUs() {
                   type="submit"
                   disabled={loading}
                   className={`
-        w-full rounded-2xl shadow-sm sm:text-sm font-semibold
+        w-full rounded-2xl shadow-sm sm:text-sm cursor-pointer font-semibold
         flex items-center justify-center gap-2
         text-white transition-all duration-300 py-3
         ${

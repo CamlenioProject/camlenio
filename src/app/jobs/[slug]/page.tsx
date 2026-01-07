@@ -30,11 +30,11 @@ export default async function JobApplyPage({
 
   return (
     <main className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
-      <div className="max-w-3xl mx-auto px-4 py-20">
+      <div className="max-w-3xl mx-auto px-4 py-20 md:py-30">
         <div className="border-1 border-orange-200 rounded-xl p-4">
           <div className="mb-8">
             <Link
-              href="/component/company/career"
+              href="/career"
               className="inline-flex items-center text-gray-700 hover:text-gray-900 transition-colors"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -60,7 +60,7 @@ export default async function JobApplyPage({
 
           <div className="rounded-xl bg-card text-gray-700 shadow-sm border-1 border-orange-200 mb-8">
             <div className="p-6">
-              <p className="text-muted-foreground text-pretty">
+              <p className="text-muted-foreground text-pretty font-sans">
                 {job.longDescription || job.description}
               </p>
             </div>
@@ -70,7 +70,7 @@ export default async function JobApplyPage({
             job.responsibilities.length > 0 && (
               <div className="mb-8 text-gray-900">
                 <h2 className="text-xl font-semibold mb-3">Responsibilities</h2>
-                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                <ul className="list-disc pl-6 space-y-2 text-muted-foreground font-sans">
                   {job.responsibilities.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
@@ -80,7 +80,7 @@ export default async function JobApplyPage({
           {Array.isArray(job.requirements) && job.requirements.length > 0 && (
             <div className="mb-10 text-gray-900">
               <h2 className="text-xl font-semibold mb-3">Requirements</h2>
-              <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+              <ul className="list-disc pl-6 space-y-2 text-muted-foreground font-sans">
                 {job.requirements.map((item, i) => (
                   <li key={i} className="text-pretty">
                     {item}

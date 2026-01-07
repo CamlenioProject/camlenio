@@ -199,11 +199,10 @@ export default function SimpleFormChatBot() {
         onMouseEnter={disableBodyScroll}
         onMouseLeave={enableBodyScroll}
         onWheel={(e) => e.stopPropagation()}
-        className={`transition-all duration-500 mb-3 ${
-          open && !minimized
-            ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 scale-90 translate-y-6 pointer-events-none"
-        }`}
+        className={`transition-all duration-500 mb-3 ${open && !minimized
+          ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
+          : "opacity-0 scale-90 translate-y-6 pointer-events-none"
+          }`}
       >
         <div className="w-[90vw] max-w-[330px] max-h-[75vh] rounded-2xl overflow-hidden border border-gray-200/40 shadow-xl backdrop-blur-2xl bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100">
           <div className="px-4 py-4 flex justify-between items-center bg-white/60 backdrop-blur-xl border-b border-gray-300/40 shadow-[0_0_25px_rgba(255,140,0,0.25)]">
@@ -232,7 +231,7 @@ export default function SimpleFormChatBot() {
                 <Minus className="w-4 h-4 text-gray-600" />
               </button>
               <button
-                className="p-2 rounded-xl hover:bg-gray-200 transition"
+                className="p-2 rounded-xl hover:bg-gray-200 transition cursor-pointer"
                 onClick={() => setOpen(false)}
               >
                 <X className="w-4 h-4 text-gray-600" />
@@ -243,7 +242,7 @@ export default function SimpleFormChatBot() {
           <div
             className="p-4 overflow-y-auto overscroll-contain max-h-[60vh] text-gray-700 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-transparent
 "
-           
+
           >
             {!showForm && !submitted && (
               <div className="space-y-4">
@@ -417,7 +416,7 @@ export default function SimpleFormChatBot() {
         >
           <button
             onClick={() => setShowSuggestion(false)}
-            className="w-7 h-7 flex items-center justify-center bg-white/80 backdrop-blur-xl border border-gray-200 shadow-md rounded-full text-gray-600 hover:bg-gray-100 active:scale-90 transition"
+            className="w-7 h-7 flex items-center justify-center bg-white/80 backdrop-blur-xl border border-gray-200 shadow-md rounded-full text-gray-600 hover:bg-gray-100 active:scale-90 transition cursor-pointer"
           >
             ✕
           </button>

@@ -191,11 +191,11 @@ const DevServices = () => {
   const activeFeature = features.find((f) => f.id === active);
   return (
     <LazyMotion features={domMax}>
-      <div className="relative py-16 overflow-hidden bg-transparent">
+      <div className="relative py-16 overflow-hidden bg-gray-800">
         <div className="mx-auto px-8 md:px-16 relative -mb-[60px]">
           <div className="max-w-6xl mx-auto text-center mb-4">
             <span className="relative inline-block px-4 py-1.5 rounded-full border border-orange-200 bg-gray-100 shadow-sm text-xs md:text-sm font-medium text-black mb-4 z-20">
-              <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>
+              <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
               Innovating the Future Together
             </span>
             <h4 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
@@ -227,24 +227,21 @@ const DevServices = () => {
                     key={feature.id}
                     onClick={() => setActive(feature.id)}
                     whileHover={{ scale: 1.02 }}
-                    className={`flex items-center group gap-3 text-left p-2 rounded-xl cursor-pointer transition-colors duration-300 ${
-                      active === feature.id
-                        ? "bg-orange-500 text-white"
-                        : "bg-gray-200 text-gray-900 hover:bg-orange-500 hover:text-white"
-                    }`}
+                    className={`flex items-center group gap-3 text-left p-2 rounded-xl cursor-pointer transition-colors duration-300 ${active === feature.id
+                      ? "bg-orange-500 text-white"
+                      : "bg-gray-200 text-gray-900 hover:bg-orange-500 hover:text-white"
+                      }`}
                   >
                     <div className="relative w-[50px] h-[50px] flex-shrink-0">
                       <span
-                        className={`absolute inset-0 transition-opacity duration-300 ${
-                          active === feature.id ? "opacity-0" : "opacity-100"
-                        } group-hover:opacity-0`}
+                        className={`absolute inset-0 transition-opacity duration-300 ${active === feature.id ? "opacity-0" : "opacity-100"
+                          } group-hover:opacity-0`}
                       >
                         {feature.icon}
                       </span>
                       <span
-                        className={`absolute inset-0 transition-opacity duration-300 ${
-                          active === feature.id ? "opacity-100" : "opacity-0"
-                        } group-hover:opacity-100`}
+                        className={`absolute inset-0 transition-opacity duration-300 ${active === feature.id ? "opacity-100" : "opacity-0"
+                          } group-hover:opacity-100`}
                       >
                         {feature.hoverIcon}
                       </span>
@@ -274,7 +271,7 @@ const DevServices = () => {
 
                     <button
                       onClick={() => {
-                        router.push("./component/company/contact");
+                        router.push("/contact");
                       }}
                       className="relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 overflow-hidden font-semibold text-gray-900 bg-gray-100 rounded-full group text-sm sm:text-base lg:text-lg cursor-pointer"
                     >

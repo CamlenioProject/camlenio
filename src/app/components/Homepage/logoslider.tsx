@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { m, domMax, LazyMotion } from "framer-motion";
 import Image from "next/image";
@@ -11,68 +11,83 @@ interface Logo {
 const logos: Logo[] = [
   {
     src: "/ServiceDropdown/ecommercedevelopment/icici-logo.png",
-    alt: "Innovation",
+    alt: "ICICI Bank",
   },
   {
     src: "/ServiceDropdown/ecommercedevelopment/paysprint-logo.svg",
-    alt: "Performance",
+    alt: "Paysprint",
   },
   {
     src: "/ServiceDropdown/ecommercedevelopment/logo-sbmbank.webp",
-    alt: "Design",
+    alt: "SBM Bank",
   },
   {
     src: "/ServiceDropdown/ecommercedevelopment/instantpay-logo.svg",
-    alt: "Design",
+    alt: "InstantPay",
   },
   {
     src: "/ServiceDropdown/ecommercedevelopment/idfc-logo.svg",
-    alt: "Design",
+    alt: "IDFC Bank",
   },
   {
     src: "/ServiceDropdown/ecommercedevelopment/hdfc-logo.svg",
-    alt: "Design",
+    alt: "HDFC Bank",
   },
   {
     src: "/ServiceDropdown/ecommercedevelopment/cashfree-logo.svg",
-    alt: "Design",
+    alt: "Cashfree",
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+
 export function LogoSlider() {
+  // Duplicate logos for seamless infinite scroll
+  const unlimitedLogos = [...logos, ...logos];
+
   return (
     <LazyMotion features={domMax}>
-      <section
-        aria-labelledby="cta-title"
-        className="relative overflow-hidden"
-      >
-        <div className="relative py-8 overflow-hidden bg-gradient-to-r from-orange-100 via-orange-100 to-orange-100">
-          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-r from-gray-100 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-l from-gray-100 to-transparent z-10 pointer-events-none" />
-
-          <m.div
-            className="flex items-center gap-12 md:gap-16"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              ease: "linear",
-              duration: 30,
-              repeat: Infinity,
-            }}
-            style={{ width: "max-content" }}
-          >
-            {[...logos, ...logos].map((logo, index) => (
-              <div key={index} className="flex-shrink-0">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={320}
-                  height={80}
-                  className="h-6 sm:h-8 md:h-10 w-auto object-contain opacity-70"
-                  priority={index < logos.length}
-                />
-              </div>
-            ))}
-          </m.div>
+      <section className=" overflow-hidden ">
+        <div className="w-full max-w-[85rem] mx-auto px-2">
+          <div className=" rounded-3xl shadow-[0_10px_40px_-10px_rgba(249,115,22,0.1)] py-12 px-4 md:px-12 relative overflow-hidden border border-orange-100">
+            <div className="flex relative overflow-hidden">
+              <m.div
+                className="flex gap-12 md:gap-24 items-center whitespace-nowrap"
+                animate={{
+                  x: ["0%", "-50%"],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  ease: "linear",
+                  duration: 25,
+                }}
+              >
+                {unlimitedLogos.map((logo, index) => (
+                  <div
+                    key={index}
+                    className="relative flex items-center justify-center h-12 md:h-16 w-32 md:w-40 flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+                  >
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 120px, 160px"
+                    />
+                  </div>
+                ))}
+              </m.div>
+            </div>
+          </div>
         </div>
       </section>
     </LazyMotion>

@@ -66,7 +66,7 @@ const TechnologiesTabs = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-10">
           <span className=" relative inline-block px-4 py-1.5 rounded-full border border-orange-200 bg-gray-50 shadow-sm text-sm font-medium text-gray-950 mb-4">
-            <span className="absolute w-8 h-2 rounded-full bg-orange-500 left-[-1.4rem] top-1/2 -translate-y-1/2"></span>
+            <span className="absolute w-8 h-2 rounded-full bg-orange-500 right-[-1.4rem] top-1/2 -translate-y-1/2"></span>
             Technologies - Now About our Weapons
           </span>
           <h6 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">

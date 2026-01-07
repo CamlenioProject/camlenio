@@ -45,7 +45,7 @@ const MakeUsTop = () => {
         <div className="max-w-7xl mx-auto text-center px-4">
           {" "}
           <div className="relative inline-block px-4 py-1.5 rounded-full border border-orange-50 bg-orange-100 shadow-sm text-sm font-medium text-orange-600 mb-4">
-            <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>
+            <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
             Camlenio Software Development Company
           </div>
           <h5 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -70,8 +70,6 @@ const MakeUsTop = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
             <div className="relative group rounded-2xl hover:scale-101 transition-transform duration-500 ease-in p-6 text-left overflow-hidden flex flex-col justify-center md:col-span-2 lg:col-span-2 leading-snug border-2  bg-orange-200/30 backdrop-blur-lg border-orange-200">
-              <div className="absolute -top-10 -right-10 w-64 h-64 bg-orange-500 rounded-full opacity-20 blur-3xl animate-glow-slow -z-10"></div>
-              <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-orange-500 rounded-full opacity-20 blur-3xl animate-glow-slow -z-10"></div>
               <div className="w-20 h-20 z-20 py-4 mb-6 ">
                 {" "}
                 <Image

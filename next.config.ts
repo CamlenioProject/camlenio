@@ -25,6 +25,11 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "blogs.camlenio.com",
+        pathname: "/wp-content/uploads/**",
+      },
     ],
   },
 };

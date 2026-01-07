@@ -1,11 +1,11 @@
-"use client";
-
-import { LazyMotion, m, domMax } from "framer-motion";
+// "use client";
+import { LazyMotion, m, domMax, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState, FC } from "react";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { useInView } from "react-intersection-observer";
 import awardAnimation from "@/animations/award.json";
 import Image from "next/image";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 // Counter component
 const Counter: FC<{ target: number; trigger: boolean }> = ({
@@ -36,6 +36,7 @@ const Counter: FC<{ target: number; trigger: boolean }> = ({
 
 const ItSolution: FC = () => {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
+  const [isVideoPopupOpen, setIsVideoPopupOpen] = useState(false);
 
   // Intersection observer for triggering counters
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
@@ -52,15 +53,8 @@ const ItSolution: FC = () => {
 
   return (
     <LazyMotion features={domMax}>
-      <div
-        ref={ref}
-        className="relative scroll-mt-10 py-16 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove"
-      >
-        <div className="max-w-7xl mx-auto px-8 md:px-16 text-center">
-          <div className="relative inline-block px-4 py-1.5 rounded-full border border-orange-50 bg-orange-100 shadow-sm text-sm font-medium text-orange-600 mb-4">
-            <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>
-            Camlenio Software Development Company
-          </div>
+      <div ref={ref} className="relative scroll-mt-10 py-10">
+        <div className="max-w-7xl mx-auto px-8 md:px-16 text-left md:text-center">
 
           <m.h2
             initial={{ y: 50, opacity: 0 }}
@@ -69,7 +63,7 @@ const ItSolution: FC = () => {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
           >
-            Excellence – Our foundation for every project{" "}
+            Excellence Our foundation for every project{" "}
             <span
               className="text-orange-500"
               style={{
@@ -111,19 +105,65 @@ const ItSolution: FC = () => {
               </p>
             </div>
 
-            {/* Video */}
-            <div className="h-54 bg-gray-200 relative rounded-xl shadow-xl overflow-hidden md:col-span-2 lg:col-span-2">
+            {/* YouTube Video - Clean Embed */}
+            <div className="h-60 bg-gray-200 relative rounded-xl shadow-xl overflow-hidden md:col-span-2 lg:col-span-2">
               <video
-                src="Homepage/itsolution/test1.mp4"
+                src="https://res.cloudinary.com/dxpbriwey/video/upload/v1767704386/video_3_kug49x.mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover rounded-lg"
-                preload="auto"
+                className="w-full h-full object-cover  rounded-lg absolute inset-0 pointer-events-none"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              {/* Clickable overlay to open video popup */}
+              <div
+                className="absolute inset-0 cursor-pointer hover:bg-white/10 transition-colors"
+                onClick={() => setIsVideoPopupOpen(true)}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
             </div>
+
+            {/* Video Popup Modal */}
+            <AnimatePresence>
+              {isVideoPopupOpen && (
+                /* Backdrop */
+                <m.div
+                  key="video-modal"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4"
+                  onClick={() => setIsVideoPopupOpen(false)}
+                >
+                  {/* Modal Content */}
+                  <m.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ type: "spring", duration: 0.5 }}
+                    className="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Close Button */}
+                    <button
+                      onClick={() => setIsVideoPopupOpen(false)}
+                      className="absolute -top-12 right-0 w-10 h-10 bg-white hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors z-10"
+                    >
+                      <XMarkIcon className="w-6 h-6 text-gray-900" />
+                    </button>
+
+                    {/* Full YouTube Player with Controls */}
+                    <video
+                      src="https://res.cloudinary.com/dxpbriwey/video/upload/v1767704386/video_3_kug49x.mp4"
+                      controls
+                      autoPlay
+                      playsInline
+                      className="w-full h-full"
+                    />
+                  </m.div>
+                </m.div>
+              )}
+            </AnimatePresence>
 
             {/* Clients */}
             <div className="relative bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center">
@@ -195,7 +235,7 @@ const ItSolution: FC = () => {
           </div>
         </div>
       </div>
-    </LazyMotion>
+    </LazyMotion >
   );
 };
 

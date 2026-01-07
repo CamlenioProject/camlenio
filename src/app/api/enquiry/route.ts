@@ -103,7 +103,7 @@ export async function POST(req: Request) {
 
     await transporter.sendMail(mailOptions);
     const BACKEND_URL = process.env.BACKEND_URL;
-    console.log(BACKEND_URL, "alhdkjadlkj");
+    // console.log(BACKEND_URL, "alhdkjadlkj");
     const saveResponse = await fetch(
       `${BACKEND_URL}/api/user/enquiry/add-enquiry`,
       {

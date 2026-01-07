@@ -22,17 +22,16 @@ const availablePages = [
   "/component/services/crmsoftware",
   "/component/services/ecommerceportel",
   "/component/services/fintechsoftware",
-  // "/component/services/fullstackdevelopment",
-  // "/component/services/billingsoftware",
+  "/component/services/grocerysoftware",
+  "/component/services/realestatesoftware",
   "/component/services/mlmsoftware",
   "/component/services/hrmssoftware",
   // "/component/services/androidappdevelopment",
   // "/component/services/ui_uxdesigning",
   // "/component/services/webdevelopment",
-  "/component/company/blog",
-  "/component/company/about",
-  "/component/company/career",
-  "/component/company/contact",
+  "/about",
+  "/careers",
+  "/contact",
 ];
 
 const navItems = [
@@ -41,10 +40,10 @@ const navItems = [
     href: "company",
     dropdown: true,
     items: [
-      { title: "About", href: "/component/company/about" },
-      { title: "Contact", href: "/component/company/contact" },
+      { title: "About", href: "/about" },
       { title: "Blog", href: "https://blogs.camlenio.com" },
-      { title: "Career", href: "/component/company/career" },
+      { title: "Career", href: "/careers" },
+      { title: "Contact", href: "/contact" },
     ],
     dropdownClassName: "left-1/2 md: -translate-x-[35%]  lg:-translate-x-[45%]",
   },
@@ -660,8 +659,8 @@ const DesktopDropdown = React.memo(
                     href={
                       typeof link === "string"
                         ? `/component/${item.href}/${link
-                            .replace(/\s+/g, "")
-                            .toLowerCase()}`
+                          .replace(/\s+/g, "")
+                          .toLowerCase()}`
                         : link.href
                     }
                     className="block text-gray-700 text-sm p-2 hover:text-orange-500"
@@ -865,7 +864,7 @@ const Header: React.FC = () => {
       <header className="fixed top-0 left-0 right-0 z-[1000]  bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove shadow-xs">
         <AnimatePresence>
           {!hideMarquee && (
-            <Link href="/component/company/contact">
+            <Link href="/contact">
               <m.div
                 initial={{ opacity: 0, height: 0, y: -20 }}
                 animate={{ opacity: 1, height: "auto", y: 0 }}
@@ -895,7 +894,7 @@ const Header: React.FC = () => {
 
                     {/* RIGHT: CONTACT BUTTON WITH SHAKE PHONE ICON */}
                     <m.button
-                      onClick={() => router.push("/component/company/contact")}
+                      onClick={() => router.push("/contact")}
                       whileHover="hover"
                       className="hidden md:flex bg-white text-black font-medium text-sm px-4 py-2 rounded-full items-center gap-2 shadow-sm hover:bg-gray-100 transition cursor-pointer"
                     >
@@ -921,14 +920,14 @@ const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
           <Link href="/" className="flex items-center justify-center space-x-1">
             <m.div
-              // initial={{ opacity: 1, scale: 0.9 }}
-              // animate={shakeMode === "fast" ? fastShake : slowShake}
-              // transition={{
-              //   duration: shakeMode === "fast" ? 0.4 : 1.2,
-              //   repeat: shakeMode === "slow" ? Infinity : 0,
-              //   repeatDelay: shakeMode === "slow" ? 2 : 0,
-              //   ease: "easeInOut",
-              // }}
+            // initial={{ opacity: 1, scale: 0.9 }}
+            // animate={shakeMode === "fast" ? fastShake : slowShake}
+            // transition={{
+            //   duration: shakeMode === "fast" ? 0.4 : 1.2,
+            //   repeat: shakeMode === "slow" ? Infinity : 0,
+            //   repeatDelay: shakeMode === "slow" ? 2 : 0,
+            //   ease: "easeInOut",
+            // }}
             >
               <Image
                 src="/logo-icon.png"
@@ -1047,7 +1046,7 @@ const Header: React.FC = () => {
                   className="flex items-center space-x-1 tracking-tight "
                 >
                   <Image
-                    src="/logo-chrishmas.png"
+                    src="/logo-icon.png"
                     alt="Camlenio"
                     width={180}
                     height={60}
@@ -1133,11 +1132,11 @@ const Header: React.FC = () => {
                                   href={
                                     typeof link === "string"
                                       ? safeLink(
-                                          `/component/${item.href}/${link
-                                            .replace(/\s+/g, "")
-                                            .toLowerCase()}`,
-                                          availablePages
-                                        )
+                                        `/component/${item.href}/${link
+                                          .replace(/\s+/g, "")
+                                          .toLowerCase()}`,
+                                        availablePages
+                                      )
                                       : link.href
                                   }
                                   onClick={() => setMobileMenuOpen(false)}

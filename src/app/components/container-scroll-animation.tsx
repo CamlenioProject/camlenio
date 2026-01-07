@@ -50,14 +50,14 @@ export const ContainerScroll = ({
   return (
     <div
       ref={containerRef}
-      className="relative flex items-center justify-center h-[22rem] sm:h-[48rem] md:h-[46rem] px-4"
+      className="relative flex items-center justify-center h-[26rem] sm:h-[48rem] md:h-[46rem] px-4 -z-10"
     >
       <div className="relative w-full" style={{ perspective: "1000px" }}>
         {/* OPTIONAL TITLE */}
         {titleComponent && (
           <motion.div
             style={{ translateY }}
-            className="mx-auto mb-8 max-w-5xl text-center"
+            className="mx-auto mb-8 max-w-6xl text-center"
           >
             {titleComponent}
           </motion.div>

@@ -1,18 +1,15 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { m, LazyMotion, domMax } from "framer-motion";
 import { Facebook, Instagram, Linkedin, X } from "lucide-react";
 import Image from "next/image";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 import { GiRotaryPhone } from "react-icons/gi";
 import { ImLocation2 } from "react-icons/im";
 import { MdEmail } from "react-icons/md";
 import CookieSettings from "./CookieSettings";
+
 const footerData = [
   {
     title: "Mobile App Development",
@@ -56,20 +53,10 @@ const footerData = [
 ];
 
 export default function Footer() {
-  const bgTextRef = useRef(null);
+  const pathname = usePathname();
 
-  useEffect(() => {
-    gsap.fromTo(
-      bgTextRef.current,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 0.8,
-        y: 0,
-        duration: 0.8,
-        ease: "power3.out",
-      }
-    );
-  }, []);
+  // Hide footer on portfolio page
+  if (pathname === '/portfolio') return null;
 
   return (
     <LazyMotion features={domMax}>
@@ -95,7 +82,9 @@ export default function Footer() {
 
               {/* RIGHT — CONTACT SECTION */}
               <div className="space-y-1 bg-gray-600 text-gray-100 rounded-2xl p-4 inline-block ">
-                <div className="flex items-start gap-4 group">
+                <div
+                  className="flex items-start gap-4 group"
+                >
                   <div className="text-white text-2xl group-hover:scale-110 transition-all duration-300">
                     <GiRotaryPhone />
                   </div>
@@ -106,7 +95,9 @@ export default function Footer() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 group">
+                <div
+                  className="flex items-start gap-4 group"
+                >
                   <div className="text-white text-2xl group-hover:scale-110 transition-all duration-300">
                     <MdEmail />
                   </div>
@@ -117,7 +108,9 @@ export default function Footer() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 group">
+                <div
+                  className="flex items-start gap-4 group"
+                >
                   <div className="text-white text-2xl group-hover:scale-110 transition-all duration-300">
                     <ImLocation2 />
                   </div>
@@ -230,16 +223,13 @@ export default function Footer() {
           </div>
           <div className="relative overflow-hidden">
             <h1
-              ref={bgTextRef}
               className="flex items-end justify-center text-[5rem] md:text-[8rem] lg:text-[10rem] xl:text-[14rem] font-bold  select-none pointer-events-none tracking-wider bg-gradient-to-b from-gray-100/90 via-gray-800 to-transparent bg-clip-text text-transparent -mb-40"
             >
               Camlenio
             </h1>
           </div>
         </m.div>
-      </div>
-    </LazyMotion>
+      </div >
+    </LazyMotion >
   );
 }
-
-//

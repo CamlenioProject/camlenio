@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
-import Header from "./components/Header";
+import Header from "./components/HeaderNew";
 import Footer from "./components/Footer";
 import localFont from "next/font/local";
 import LenisWrapper from "./LenisWrapper";

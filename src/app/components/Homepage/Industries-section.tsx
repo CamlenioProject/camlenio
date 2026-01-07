@@ -7,10 +7,10 @@ import { MdArrowRightAlt } from "react-icons/md";
 const IndustriesSection = () => {
   return (
     <LazyMotion features={domMax}>
-      <div className="relative py-20 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove overflow-hidden ">
-        <div className="max-w-7xl mx-auto px-8 md:px-16 relative text-center">
+      <div className="relative py-20  overflow-hidden ">
+        <div className="max-w-7xl mx-auto px-8 md:px-16 relative text-left md:text-center">
           <div className="relative inline-block px-4 py-1.5 rounded-full border border-orange-50 bg-orange-100 shadow-sm text-sm font-medium text-orange-600 mb-4">
-            <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>
+            <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
             From Ideas to Impact
           </div>
           <m.h3
@@ -82,7 +82,7 @@ const IndustriesSection = () => {
                   >
                     <div className="flex items-center gap-2 text-white font-normal text-base">
                       {card.title}
-                      <MdArrowRightAlt className="text-white text-xl transition-transform duration-300 group-hover:translate-x-1" />
+                      {/* <MdArrowRightAlt className="text-white text-xl transition-transform duration-300 group-hover:translate-x-1" /> */}
                     </div>
                   </div>
                 </div>
