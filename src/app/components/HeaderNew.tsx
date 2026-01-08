@@ -47,7 +47,7 @@ import clsx from "clsx";
 
 // --- Data Constants ---
 const availablePages = [
-  "/portfolio",
+  // "/portfolio",
   "/services/customizedsoftware",
   "/services/crmsoftware",
   "/services/ecommerceportel",
@@ -120,7 +120,7 @@ const servicesMenuData = [
     ]
   },
   {
-    title: "Software Development",
+    title: "Custom Web Development",
     items: [
       { title: "Web Application Development", href: "webdevelopment", icon: GlobeAltIcon },
       { title: "Frontend Development", href: "frontenddevelopment", icon: CodeBracketIcon },
@@ -128,10 +128,6 @@ const servicesMenuData = [
       { title: "Full-Stack Development", href: "fullstackdevelopment", icon: CommandLineIcon },
       { title: "PWA Solutions", href: "pwasolutions", icon: DevicePhoneMobileIcon },
     ]
-  }, {
-    title: "Custom Web Development",
-    image: "/header/custom-web-development.png",
-    items: []
   },
   {
     title: "Logo & Graphic Designing",
@@ -465,7 +461,7 @@ const ServicesMegaMenu = ({ baseHref }: { baseHref: string }) => {
             className="h-full w-full flex flex-col"
           >
             {/* Dynamic Header - Conditional */}
-            {(activeTitle === "App Development" || activeTitle === "Software Development") && (
+            {(activeTitle === "App Development" || activeTitle === "Custom Web Development") && (
               <div className="mb-6 p-6 rounded-2xl bg-orange-50/50 border border-orange-200/60 flex items-center justify-between relative overflow-hidden">
                 {/* Decorative Background Blur */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/50 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />

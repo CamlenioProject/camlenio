@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { FaArrowDownLong } from "react-icons/fa6";
-import { SpinningText } from "../../components/SpinningText";
 
 export default function HeroSection() {
   const handleScroll = () => {
@@ -59,11 +58,6 @@ export default function HeroSection() {
             See Portfolio <FaArrowDownLong />
           </motion.button>
         </div>
-      </div>
-      <div className="absolute bottom-30 left-30 font-bold ">
-        <SpinningText radius={5} duration={15}>
-          Camlenio Work
-        </SpinningText>
       </div>
     </div>
   );
