@@ -61,11 +61,7 @@ export default function Footer() {
   return (
     <LazyMotion features={domMax}>
       <div className="relative bg-gray-800 text-white px-6 pt-6 pb-2">
-        <m.div
-          initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+        <div
           className="max-w-7xl mx-auto"
         >
           <div className="w-full flex items-center justify-center bg-transparent rounded-[1.5rem]">
@@ -228,7 +224,7 @@ export default function Footer() {
               Camlenio
             </h1>
           </div>
-        </m.div>
+        </div>
       </div >
     </LazyMotion >
   );

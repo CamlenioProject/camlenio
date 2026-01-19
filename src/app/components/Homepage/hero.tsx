@@ -126,7 +126,7 @@ const Hero = () => {
             {/* Tech Stand Base - Replicating Reference in Orange Theme */}
 
             {/* 1. Base Glow (Ambient Ground) */}
-            <div className="absolute bottom-[0%] md:bottom-[0%] left-1/2 -translate-x-1/2 w-[300px] h-[90px] md:w-[400px] md:h-[120px] bg-orange-500/20 blur-[50px] rounded-full pointer-events-none opacity-50" />
+            <div className="absolute bottom-[0%] md:bottom-[10%] left-1/2 -translate-x-1/2 w-[300px] h-[90px] md:w-[200px] md:h-[80px] bg-orange-500/20 blur-[50px] rounded-full pointer-events-none opacity-50" />
 
             {/* 2. Outer Dashed Ring (Tech Perimeter) */}
             <div className="absolute bottom-[5%] md:bottom-[5%] left-1/2 -translate-x-1/2 w-[280px] h-[75px] md:w-[380px] md:h-[100px] border-[1.5px] border-dashed border-orange-300/40 rounded-[100%] pointer-events-none" />

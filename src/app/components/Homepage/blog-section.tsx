@@ -109,15 +109,16 @@ export default function BlogSection(): React.JSX.Element {
                           </span>
                         </div>
 
-                        <h3 className="text-lg font-semibold leading-snug mb-5 text-gray-900">
-                          {blog.title.rendered}
-                        </h3>
+                        <h3
+                          className="text-lg font-semibold leading-snug mb-5 text-gray-900"
+                          dangerouslySetInnerHTML={{ __html: blog.title.rendered }}
+                        />
 
                         <div className="mt-auto flex items-center justify-between">
                           Read More →
                           <FaHeart className="text-gray-400 hover:text-red-500 transition" />
                         </div>
-                      </div>
+                      </div> 
                     </div>
                   </Link>
                 );

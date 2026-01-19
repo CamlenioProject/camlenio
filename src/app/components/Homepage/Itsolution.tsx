@@ -63,7 +63,7 @@ const ItSolution: FC = () => {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
           >
-            Excellence Our foundation for every project{" "}
+            Your trusted{" "}
             <span
               className="text-orange-500"
               style={{
@@ -71,8 +71,9 @@ const ItSolution: FC = () => {
                   "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
               }}
             >
-              We Deliver
-            </span>
+              Mobile App Development
+            </span>{" "}
+            Company in India
           </m.h2>
 
           <m.p
@@ -82,23 +83,14 @@ const ItSolution: FC = () => {
             viewport={{ once: true }}
             className="max-w-5xl mx-auto text-gray-600 text-sm md:text-base mb-12 font-sans text-justify"
           >
-            Our journey at Camlenio Software is a testament to what can be
-            achieved when people are genuinely committed to making a meaningful
-            impact. We are driven by a team of experienced and passionate
-            professionals who bring creativity, innovation, and dedication to
-            every project.
+            The Camlenio is the top leading Mobile App Development Company in India, it delivers high-performance digital solutions for beginners, SMEs and enterprises. Here, Camelino Custom Development Company in India is a trustworthy software development company with several years of experience. As our expert team supports the business with smooth solutions, increases consumer engagement and levels quickly via innovative technology.
             <br />
-            Each member of our team is focused on delivering high-quality
-            digital solutions that empower businesses to grow, adapt, and
-            succeed in an ever-evolving technological landscape. From developing
-            cutting-edge software to creating seamless user experiences, our
-            story is built on innovation, collaboration, and a relentless
-            pursuit of excellence.
+            As the global spending on business software crossed the USD 856B in 2024. Also, proving how essential custom digital operations have become for advanced companies. Align with the growing needs by providing secure and focused business software solutions customised to the real-world demands.
           </m.p>
 
-          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
+          <div className="relative grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
             {/* Year */}
-            <div className="relative bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center md:col-span-2 lg:col-span-1">
+            <div className="relative bg-white rounded-xl p-6 flex flex-col items-center justify-center md:col-span-2 lg:col-span-1 z-20">
               <h3 className="text-4xl font-extrabold text-orange-600">2022</h3>
               <p className="text-gray-800 text-xl font-bold font-sans">
                 We&apos;re epic since
@@ -113,7 +105,7 @@ const ItSolution: FC = () => {
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover  rounded-lg absolute inset-0 pointer-events-none"
+                className="w-full h-full object-cover rounded-lg absolute inset-0 pointer-events-none"
               />
               {/* Clickable overlay to open video popup */}
               <div
@@ -166,7 +158,7 @@ const ItSolution: FC = () => {
             </AnimatePresence>
 
             {/* Clients */}
-            <div className="relative bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center">
+            <div className="relative bg-white rounded-xl p-6 flex flex-col items-center justify-center z-20">
               <h3 className="text-4xl font-extrabold text-orange-600">
                 <Counter target={115} trigger={inView} />+
               </h3>
@@ -176,7 +168,7 @@ const ItSolution: FC = () => {
             </div>
 
             {/* Completed Projects */}
-            <div className="relative bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center">
+            <div className="relative bg-white rounded-xl p-6 flex flex-col items-center justify-center">
               <h3 className="text-4xl font-extrabold text-orange-600">
                 <Counter target={150} trigger={inView} />+
               </h3>
@@ -187,7 +179,7 @@ const ItSolution: FC = () => {
 
             {/* Award-winning Lottie */}
             <div
-              className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center text-center"
+              className="bg-white rounded-xl p-6 flex flex-col items-center justify-center text-center z-20"
               onMouseEnter={handleMouseEnter}
             >
               <h3 className="text-gray-700 font-semibold font-sans">
@@ -206,7 +198,7 @@ const ItSolution: FC = () => {
               </p>
             </div>
 
-            <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center text-center">
+            <div className="bg-white rounded-xl p-6 flex flex-col items-center justify-center text-center z-20">
               <h3 className="text-gray-700 font-semibold font-sans">
                 Award-winning solution
               </h3>
@@ -224,7 +216,7 @@ const ItSolution: FC = () => {
             </div>
 
             {/* Business Partners */}
-            <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center md:col-span-2 lg:col-span-1">
+            <div className="bg-white rounded-xl  p-6 flex flex-col items-center justify-center md:col-span-2 lg:col-span-1">
               <h3 className="text-4xl font-extrabold text-orange-600">
                 <Counter target={20} trigger={inView} />+
               </h3>

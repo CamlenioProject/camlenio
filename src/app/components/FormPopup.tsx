@@ -194,7 +194,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 30 }}
                     transition={{ type: "spring", stiffness: 400, damping: 40 }}
-                    className="relative bg-white rounded-2xl shadow-xl w-[75vw] h-auto sm:w-full sm:h-full overflow-x-hidden overflow-y-auto overscroll-contain pointer-events-auto "
+                    className="relative bg-white rounded-2xl shadow-xl w-[75vw] h-auto sm:w-full sm:h-auto overflow-x-hidden overflow-y-auto overscroll-contain pointer-events-auto "
                     onClick={(e) => e.stopPropagation()}
                   >
                     <AnimatePresence>
@@ -207,8 +207,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                           className={`fixed top-6 left-1/2 -translate-x-1/2 z-[9999] ${error
                               ? "bg-gradient-to-r from-red-50 to-rose-50/80 border-red-200/60 shadow-2xl shadow-red-200/50"
                               : "bg-gradient-to-r from-green-50 to-emerald-50/80 border-green-200/60 shadow-2xl shadow-green-200/50"
-                            }        backdrop-blur-xl text-gray-900 
-        px-6 py-3 rounded-xl        border border-t-white/20 border-l-white/20        font-semibold text-sm md:text-base flex items-center gap-3        max-w-[90vw] md:max-w-md      `}
+                            } backdrop-blur-xl text-gray-900 px-6 py-3 rounded-xl border border-t-white/20 border-l-white/20 font-semibold text-sm md:text-base flex items-center gap-3 max-w-[90vw] md:max-w-md`}
                         >
                           {/* Animated Icon */}
                           <m.div

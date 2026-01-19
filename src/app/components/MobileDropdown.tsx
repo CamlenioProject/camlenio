@@ -1,122 +1,119 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
 import { safeLink } from "../../../lib/utils";
 
-const availablePages = [
-  "/portfolio",
-  "/services/customizedsoftware",
-  "/services/crmsoftware",
-  "/services/ecommerceportel",
-  "/services/fintechsoftware",
-  // "/services/grocerysoftware",
-  "/services/realestatesoftware",
-  "/services/mlmsoftware",
-  "/services/hrmssoftware",
-  "/services/hotelmanagement",
-  // "/services/androidappdevelopment",
-  // "/services/fullstackdevelopment",
-  // "/services/ui_uxdesigning",
-  // "/services/webdevelopment",
-  // "/services/billingsoftware",
-  // "/services/softwaredevelopment",
-  // "/services/mobileappdevelopment",
-  // "/services/iosappdevelopment",
-  // "/services/iotappdevelopment",
-  // "/services/ondemandappdevelopment",
-  // "/services/hybridappdevelopment",
-  "https://blogs.camlenio.com",
-  "/about",
-  "/careers",
-  "/contact",
-  // "/testimonials",
-  // "/fintechsoftware/aepsservices",
-  // "/fintechsoftware/rechargeservices",
-  // "/fintechsoftware/bbpsservices",
-  // "/fintechsoftware/dmtservices",
-  // "/fintechsoftware/uti(pancard)services",
-  // "/fintechsoftware/upipayoutservices",
-  // "/fintechsoftware/m-atmservice",
-  // "/fintechsoftware/m-posservice",
-  // "/fintechsoftware/creditcardbillpaymentservice",
-  // "/fintechsoftware/fasttagrechargeservice",
-  // "/fintechsoftware/dynamicofflineservices",
-  // "/services/neobanking",
-  // "/services/healthcaresoftware",
-  // "/services/artbankingsoftware",
-  // "/services/schoolmanagementsoftware",
-  // "/services/onlineeducationsoftware",
-  // "/services/learningmanagementsoftware",
-  // "/services/travelbookingsoftware",
-  // "/services/fooddeliverysoftware",
-  // "/services/restaurantmanagement",
-  // "/services/employeetracking",
-  // "/services/resellersoftware",
-  // "/services/inventorymanagement",
-  // "/services/cabbooking",
-  // "/press",
-  // "/hireateam/hiredevelopers",
-  // "/hireateam/hirefront-enddevelopers",
-  // "/hireateam/hireback-enddevelopers",
-  // "/hireateam/hirecmsdevelopers",
-  // "/hireateam/hireaiengineers",
-  // "/hireateam/hiredigitalmarketingexperts",
-  // "/hireateam/hiregraphicdesigners",
-];
-
-interface MobileDropdownItem {
-  href: string;
-  items: Record<string, string[]>;
+interface MobileDropdownProps {
+  item: any;
+  isOpen: boolean;
+  onToggle: () => void;
+  closeMenu: () => void;
+  availablePages: string[];
 }
 
 export const MobileDropdown = ({
   item,
-  setMobileMenuOpen,
-}: {
-  item: MobileDropdownItem;
-  setMobileMenuOpen: (isOpen: boolean) => void;
-}) => {
-  const servicesObj = item.items as Record<string, string[]>;
-  const tabs = Object.keys(servicesObj);
-  const [activeMobileTab, setActiveMobileTab] = useState(tabs[0]);
-
+  isOpen,
+  onToggle,
+  closeMenu,
+  availablePages,
+}: MobileDropdownProps) => {
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-wrap border-b border-gray-300 mb-2">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveMobileTab(tab)}
-            className={clsx(
-              "p-2 text-sm font-medium",
-              activeMobileTab === tab
-                ? "text-orange-600 border-b-2 border-orange-600"
-                : "text-gray-600"
-            )}
+    <div>
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between py-3 text-left group border-b border-gray-200"
+      >
+        <span
+          className={clsx(
+            "text-[18px] md:text-[20px] font-medium transition-colors",
+            isOpen ? "text-orange-600" : "text-black"
+          )}
+        >
+          {item.title}
+        </span>
+        <span
+          className={clsx(
+            "text-xl transition-transform duration-300",
+            isOpen ? "rotate-45" : "rotate-0"
+          )}
+        >
+          +
+        </span>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
           >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-        ))}
-      </div>
-      <div>
-        {(servicesObj[activeMobileTab] || []).map((link) => (
-          <Link
-            key={link}
-            href={safeLink(
-              `/component/${item.href}/${link
-                .replace(/\s+/g, "")
-                .toLowerCase()}`,
-              availablePages
-            )}
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm text-gray-700 hover:text-gray-900 p-2 rounded hover:bg-orange-50"
-          >
-            {link}
-          </Link>
-        ))}
-      </div>
+            <div className="pl-4 pb-6 pt-4 space-y-4 bg-gray-50/30 rounded-b-2xl mb-4">
+              {item.isComplex ? (
+                Object.values(item.items).map((col: any) => (
+                  <div key={col.title} className="mb-4">
+                    <div className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-2 pl-2 border-l-2 border-orange-200">
+                      {col.title}
+                    </div>
+                    {col.items.map((sub: any) => {
+                      const rawHref = sub.href.startsWith("/")
+                        ? sub.href
+                        : `/${item.href}/${sub.href}`;
+                      const linkHref = safeLink(rawHref, availablePages);
+                      const isUnavailable = linkHref === "/coming-soon";
+                      return (
+                        <Link
+                          key={sub.title}
+                          href={linkHref}
+                          onClick={!isUnavailable ? closeMenu : undefined}
+                          className={clsx(
+                            "block text-[14px] py-1.5 pl-4 transition-colors",
+                            isUnavailable
+                              ? "text-gray-400 opacity-50"
+                              : "text-gray-600 hover:text-black"
+                          )}
+                        >
+                          {sub.title}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                ))
+              ) : (
+                (item.items as any[]).map((sub: any, i: number) => {
+                  const title = typeof sub === "string" ? sub : sub.title;
+                  const href =
+                    typeof sub === "string"
+                      ? `/${item.href}/${sub
+                        .replace(/\s+/g, "")
+                        .toLowerCase()}`
+                      : sub.href;
+                  const linkHref = safeLink(href, availablePages);
+                  const isUnavailable = linkHref === "/coming-soon";
+                  return (
+                    <Link
+                      key={i}
+                      href={linkHref}
+                      onClick={!isUnavailable ? closeMenu : undefined}
+                      className={clsx(
+                        "block text-[14px] py-1.5 pl-4 transition-colors",
+                        isUnavailable
+                          ? "text-gray-400 opacity-50"
+                          : "text-gray-600 hover:text-black"
+                      )}
+                    >
+                      {title}
+                    </Link>
+                  );
+                })
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
