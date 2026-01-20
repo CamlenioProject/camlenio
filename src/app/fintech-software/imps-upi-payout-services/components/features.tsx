@@ -158,33 +158,33 @@ export default function Features() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight will-change-transform transform-gpu"
           >
             Features of <span className="text-orange-600">Payroll & Payout</span>
           </motion.h2>
         </div>
 
         {/* Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <AnimatePresence mode="popLayout">
             {features.slice(0, visibleCount).map((feature, idx) => (
               <motion.div
-                layout
                 key={feature.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.3 }}
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className="group relative h-[380px] rounded-[2rem] overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-slate-200 transition-all duration-500"
+                className="group relative h-[380px] rounded-[2rem] overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-slate-200 transition-all duration-300 transform-gpu will-change-transform"
               >
                 {/* Background Image - Full Size */}
-                <div className="absolute inset-0">
+                <div className="absolute inset-0 bg-slate-100">
                   <Image
                     src={feature.image}
                     alt={feature.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* Overlay Gradient */}
@@ -192,45 +192,49 @@ export default function Features() {
                 </div>
 
                 {/* Floating Content Card */}
-                <motion.div
-                  className="absolute inset-x-4 bottom-4 bg-white/95 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/20 overflow-hidden"
-                  initial={false}
-                  animate={{
-                    height: hoveredIndex === idx ? "180px" : "80px",
-                    y: 0
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                <div
+                  className="absolute inset-x-4 bottom-4 bg-white rounded-3xl p-6 shadow-lg border border-white/20 overflow-hidden transition-all duration-300"
                 >
-                  <div className="flex items-center justify-between h-5 mb-4 mt-1">
+                  <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
                         <feature.icon className="w-4 h-4" />
                       </div>
-                      <h3 className="text-base font-bold text-slate-900 line-clamp-1">
+                      <h3
+                        className={`text-base font-bold text-slate-900 leading-tight transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${hoveredIndex === idx ? "" : "line-clamp-1"}`}
+                      >
                         {feature.title}
                       </h3>
                     </div>
                     {/* Arrow that rotates on hover */}
-                    <span className={`text-slate-400 group-hover:text-orange-500 transition-colors duration-300 transform group-hover:-rotate-45`}>
+                    <span className={`text-slate-400 group-hover:text-orange-500 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform-gpu group-hover:-rotate-45 mt-1 shrink-0`}>
                       <ArrowRight className="w-5 h-5" />
                     </span>
                   </div>
 
                   {/* Description - Revealed on Expand */}
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: hoveredIndex === idx ? 1 : 0 }}
-                    transition={{ duration: 0.2, delay: 0.1 }}
+                    initial={false}
+                    animate={{
+                      height: hoveredIndex === idx ? "auto" : 0,
+                      opacity: hoveredIndex === idx ? 1 : 0,
+                      marginTop: hoveredIndex === idx ? 8 : 0
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: [0.16, 1, 0.3, 1] // The "Barba/GSAP" style silky smooth ease
+                    }}
+                    className="overflow-hidden"
                   >
-                    <p className="text-sm text-slate-600 leading-relaxed mb-1 line-clamp-3">
+                    <p className="text-sm text-slate-600 leading-relaxed">
                       {feature.description}
                     </p>
                   </motion.div>
-                </motion.div>
+                </div>
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* Bottom Button */}
         <div className="mt-20 flex justify-center">
