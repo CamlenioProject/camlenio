@@ -48,7 +48,7 @@ import { MobileDropdown } from "./MobileDropdown";
 
 // --- Data Constants ---
 const availablePages = [
-  "/company/portfolio",
+  // "/company/portfolio",
   "/solutions/customized-software",
   "/services/frontend-development",
   "/solutions/crm-software",
