@@ -801,11 +801,12 @@ export default function HeaderNew() {
               <Link href="/" className="flex items-center gap-1 relative z-50 flex-shrink-0 group">
                 <div className="relative mb-1">
                   <Image
-                    src="/logo-icon.png"
+                    src="/logo2.gif"
                     alt="Camlenio"
                     width={40}
                     height={40}
                     className="w-9 h-auto transition-transform duration-500 group-hover:rotate-12"
+                    unoptimized
                   />
                 </div>
                 <span className={clsx("flex items-center text-2xl font-bold tracking-tight transition-colors duration-300", isTop ? "text-gray-900" : "text-black")}>
