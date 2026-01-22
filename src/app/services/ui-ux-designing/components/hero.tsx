@@ -13,6 +13,7 @@ import { InteractiveHoverButton } from "@/app/components/interactive-hover-butto
 import { FaArrowDownLong } from "react-icons/fa6";
 import BackToTopButton from "@/app/components/BackToTopButton";
 import MetaBalls from "@/app/components/metaBalls";
+import { Button } from "@/app/components/ui/Button";
 
 // const MetaBalls = dynamic(() => import("@/app/components/metaBalls"), {
 //   ssr: false,
@@ -119,12 +120,14 @@ export default function HeroSection() {
           </motion.div>
         </div>
         <div className="text-center z-10">
-          <button
+          <Button
             onClick={handleScroll}
-            className="absolute bottom-20 left-1/2 -translate-x-1/2 hidden md:inline-flex items-center gap-2 px-6 py-3 border-2 border-orange-500 text-orange-500 text-lg rounded-full shadow-xl hover:bg-orange-600 hover:text-white font-bold transition-all duration-300 "
+            variant="outline"
+            size="xl"
+            className="absolute bottom-20 left-1/2 -translate-x-1/2 hidden md:inline-flex items-center gap-2 border-2 rounded-full shadow-xl hover:bg-orange-600 font-bold transition-all duration-300"
           >
             Explore More <FaArrowDownLong />
-          </button>
+          </Button>
         </div>
         <BackToTopButton />
       </div>

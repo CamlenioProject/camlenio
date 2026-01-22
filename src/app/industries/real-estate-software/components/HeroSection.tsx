@@ -4,6 +4,7 @@ import { m } from "framer-motion";
 import { FaBuilding } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { Button } from "@/app/components/ui/Button";
 
 export const HeroSection = () => {
   const router = useRouter();
@@ -41,9 +42,13 @@ export const HeroSection = () => {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <m.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => router.push("/contact")} className="inline-flex items-center justify-center rounded-xl bg-orange-500 px-8 py-4 text-sm font-bold text-white transition hover:bg-orange-600 shadow-lg shadow-orange-500/30">
+            <Button
+              onClick={() => router.push("/contact")}
+              size="xl"
+              className="px-8 py-4 text-sm font-bold shadow-lg shadow-orange-500/30 hover:scale-105 active:scale-95 transition-transform" // keeping some animation feel via css
+            >
               Get Free Consultation
-            </m.button>
+            </Button>
           </div>
         </m.div>
       </div>

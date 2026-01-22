@@ -4,6 +4,7 @@ import { m, LazyMotion, domMax, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { ArrowRightIcon, MapPinIcon, StarIcon } from "@heroicons/react/24/solid";
 import { useRef } from "react";
+import { Button } from "@/app/components/ui/Button";
 
 export default function TravelHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -56,12 +57,15 @@ export default function TravelHero() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <button className="px-8 py-4 bg-slate-900 text-white font-bold rounded-full hover:bg-orange-500 transition-all duration-300 shadow-xl hover:shadow-orange-500/25 flex items-center gap-3 group">
+                <Button
+                  size="xl"
+                  className="px-8 py-4 h-auto bg-slate-900 text-white hover:bg-orange-500 rounded-full shadow-xl hover:shadow-orange-500/25 gap-3 group transition-all duration-300 border-none"
+                >
                   Start Your Project
                   <div className="bg-white/20 p-1.5 rounded-full group-hover:bg-white/30 transition-colors">
                     <ArrowRightIcon className="w-4 h-4" />
                   </div>
-                </button>
+                </Button>
               </div>
             </m.div>
 

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { motion } from "framer-motion";
 import BackToTopButton from "@/app/components/BackToTopButton";
 import { FaArrowDownLong } from "react-icons/fa6";
+import { Button } from "@/app/components/ui/Button";
 
 export default function Hero() {
   const handleScroll = () => {
@@ -46,9 +47,13 @@ export default function Hero() {
               technology, we serve clients across the UK and Bharat to help them
               achieve their digital goals.
             </p>
-            <button className="mt-8 text-orange-500 hover:bg-orange-500 border-1 border-orange-500 hover:text-white text-base sm:text-lg font-semibold px-6 py-3 rounded-xl transition duration-500 capitalize">
+            <Button
+              variant="outline"
+              size="xl"
+              className="mt-8 capitalize border-1 transition duration-500" // Added transition duration to match original if needed, though default has transition
+            >
               hire Web developer →
-            </button>
+            </Button>
           </div>
           <motion.div
             initial={{ x: 50, opacity: 0 }}
@@ -68,12 +73,14 @@ export default function Hero() {
         </div>
       </div>
       <div className="text-center z-10">
-        <button
+        <Button
           onClick={handleScroll}
-          className="absolute bottom-20 left-1/2 -translate-x-1/2 md:inline-flex items-center gap-2 px-6 py-3 border-2 border-orange-500 text-orange-500 text-lg rounded-full shadow-xl hover:bg-orange-600 hover:text-white font-bold transition-all duration-300 hidden"
+          variant="outline"
+          size="xl"
+          className="absolute bottom-20 left-1/2 -translate-x-1/2 md:inline-flex items-center gap-2 border-2 rounded-full shadow-xl hover:bg-orange-600 font-bold hidden transition-all duration-300"
         >
           Explore More <FaArrowDownLong />
-        </button>
+        </Button>
       </div>
       <BackToTopButton />
     </div>

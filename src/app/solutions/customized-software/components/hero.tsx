@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { LazyMotion, domMax, m } from "framer-motion";
 import Link from "next/link";
+import { Button } from "@/app/components/ui/Button";
 
 export default function PremiumHero() {
   return (
@@ -43,9 +44,12 @@ export default function PremiumHero() {
               {/* CTA */}
               <div className="mt-4 flex flex-wrap items-center gap-4">
                 <Link href="/contact">
-                  <button className="my-6 px-6 py-3 self-center md:self-start bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl shadow-md cursor-pointer">
+                  <Button
+                    size="xl"
+                    className="my-6 self-center md:self-start shadow-md"
+                  >
                     Get Free Consultation
-                  </button>
+                  </Button>
                 </Link>
               </div>
             </m.div>

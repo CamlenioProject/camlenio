@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { FaArrowDownLong } from "react-icons/fa6";
 import BackToTopButton from "@/app/components/BackToTopButton";
+import { Button } from "@/app/components/ui/Button";
 
 export default function Hero() {
   const handleScroll = () => {
@@ -31,9 +32,13 @@ export default function Hero() {
               specializes in designing customized business-oriented apps capable
               of providing cutting-edge operational support...
             </p>
-            <button className="mt-8  hover:bg-orange-500 border-1 border-orange-500 text-orange-500 hover:text-white text-base sm:text-lg font-normal px-6 py-3  rounded-xl transition duration-300 capitalize">
+            <Button
+              variant="outline"
+              size="xl"
+              className="mt-8 font-normal capitalize transition duration-300"
+            >
               hire developer →
-            </button>
+            </Button>
           </div>
           <div className="w-full md:w-2/5 max-w-lg mx-auto relative">
             <Image
@@ -47,12 +52,14 @@ export default function Hero() {
           </div>
         </div>
         <div className="text-center z-10">
-          <button
+          <Button
             onClick={handleScroll}
-            className="absolute bottom-20 left-1/2 -translate-x-1/2 hidden md:inline-flex items-center gap-2 px-4 py-2 border-2 border-orange-500 text-orange-500 text-lg rounded-full shadow-xl hover:bg-orange-500 hover:text-white font-bold transition-all duration-300 "
+            variant="outline"
+            size="xl"
+            className="absolute bottom-20 left-1/2 -translate-x-1/2 hidden md:inline-flex items-center gap-2 border-2 rounded-full shadow-xl hover:bg-orange-500 hover:text-white font-bold transition-all duration-300"
           >
             Explore More <FaArrowDownLong />
-          </button>
+          </Button>
         </div>
       </div>
       <BackToTopButton />

@@ -7,6 +7,7 @@ import { HeroTextAnimate } from "../HeroTextAnimate";
 import BackToTopButton from "../BackToTopButton";
 import { useRouter } from "next/navigation";
 import { LogoSlider } from "./logoslider";
+import { Button } from "../ui/Button";
 
 const Hero = () => {
   const router = useRouter();
@@ -106,12 +107,13 @@ const Hero = () => {
                   </span>
                 </li>
               </ul>
-              <button
+              <Button
                 onClick={() => router.push("/contact")}
-                className="my-6 px-6 py-3 self-center md:self-start bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl shadow-md cursor-pointer"
+                size="xl"
+                className="my-6 self-center md:self-start shadow-md"
               >
                 Schedule a call
-              </button>
+              </Button>
             </div>
           </m.div>
           {/* right */}

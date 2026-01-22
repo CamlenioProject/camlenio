@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "@/app/components/ui/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -81,12 +82,19 @@ const Hero = () => {
           </p>
 
           <div className="flex xs:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 xs:px-6 rounded-xl flex items-center justify-center transition-colors duration-300 min-w-[140px] text-sm xs:text-base">
+            <Button
+              size="xl"
+              className="min-w-[140px] text-sm xs:text-base border-none"
+            >
               Get Started <ArrowRight className="ml-2 h-4 w-4 xs:h-5 xs:w-5" />
-            </button>
-            <button className="bg-white/80 hover:bg-white text-gray-900 font-bold py-3 px-4 xs:px-6 rounded-xl flex items-center justify-center transition-colors duration-300 min-w-[140px] text-sm xs:text-base border border-gray-200">
+            </Button>
+            <Button
+              size="xl"
+              variant="outline"
+              className="min-w-[140px] text-sm xs:text-base bg-white/80 hover:bg-white text-gray-900 hover:text-gray-900 border-gray-200"
+            >
               Learn More <ArrowRight className="ml-2 h-4 w-4 xs:h-5 xs:w-5" />
-            </button>
+            </Button>
           </div>
         </div>
 

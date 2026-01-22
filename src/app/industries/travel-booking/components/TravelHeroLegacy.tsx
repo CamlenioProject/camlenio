@@ -2,6 +2,7 @@
 
 import { m, LazyMotion, domMax } from "framer-motion";
 import Image from "next/image";
+import { Button } from "@/app/components/ui/Button";
 
 export default function TravelHero() {
   return (
@@ -38,9 +39,12 @@ export default function TravelHero() {
                 <p className="text-slate-600 text-lg leading-relaxed font-medium">
                   Your next digital transformation starts here. Plan, build, and scale your travel business with Camlenio — your reliable technology partner.
                 </p>
-                <button className="px-10 py-4 bg-orange-500 text-white font-bold rounded-full hover:bg-orange-600 transition-all shadow-lg hover:shadow-orange-500/30 w-full md:w-auto">
+                <Button
+                  size="xl"
+                  className="w-full md:w-auto px-10 py-4 rounded-full shadow-lg hover:shadow-orange-500/30"
+                >
                   Start Innovation
-                </button>
+                </Button>
               </m.div>
             </div>
           </div>

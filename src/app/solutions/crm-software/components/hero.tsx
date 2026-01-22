@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ContainerScroll } from "../../../components/container-scroll-animation";
 import BackgroundRipple from "@/app/components/ui/BackgroundRipple";
 import { BarChart3, Users } from "lucide-react";
+import { Button } from "@/app/components/ui/Button";
 
 export default function CrmHero(): React.JSX.Element {
   return (
@@ -71,12 +72,13 @@ export default function CrmHero(): React.JSX.Element {
 
           <div className="flex justify-center pt-1">
             <Link href="/contact">
-              <button
+              <Button
                 type="button"
-                className="rounded-xl bg-orange-500 px-6 py-3 text-sm font-semibold cursor-pointer text-white hover:bg-orange-600 transition-colors"
+                size="xl"
+                className="text-sm" // preserving original text size preference if important, or remove to use default
               >
                 Get Started
-              </button>
+              </Button>
             </Link>
           </div>
         </div>

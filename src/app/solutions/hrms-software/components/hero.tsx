@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { domMax, m, LazyMotion } from "framer-motion";
 import Link from "next/link";
+import { Button } from "@/app/components/ui/Button";
 
 const Hero = () => {
   const containerVariants = {
@@ -21,7 +22,7 @@ const Hero = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between  max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-22 lg:pt-24"
+          className="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between min-h-[95vh]  max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-22 lg:pt-24"
         >
           <div className="flex-1 max-w-2xl text-center lg:text-left mt-10 lg:mt-0">
             <m.h1
@@ -74,9 +75,12 @@ const Hero = () => {
               className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <Link href="/contact">
-                <button className="my-6 px-6 py-3 self-center md:self-start bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl shadow-md cursor-pointer">
+                <Button
+                  size="xl"
+                  className="my-6 self-center md:self-start shadow-md"
+                >
                   Schedule a call
-                </button>
+                </Button>
               </Link>
             </m.div>
           </div>
