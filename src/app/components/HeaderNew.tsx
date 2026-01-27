@@ -801,29 +801,19 @@ export default function HeaderNew() {
               <Link href="/" className="flex items-center gap-1 relative z-50 flex-shrink-0 group">
                 <div className="relative mb-1">
                   <Image
-                    src="/logo2.gif"
+                    src="/logo-icon.png"
                     alt="Camlenio"
                     width={40}
                     height={40}
-                    className="w-7 h-auto transition-transform duration-500 group-hover:rotate-12"
+                    className="w-8 h-auto transition-transform duration-500 group-hover:rotate-12"
                     unoptimized
                   />
                 </div>
-                <span className="flex items-center text-2xl font-bold tracking-tight">
+                <span className={clsx("flex items-center text-2xl font-bold tracking-tight transition-colors duration-300", isTop ? "text-gray-900" : "text-black")}>
                   {"Camlenio".split("").map((char, index) => {
                     // Replicating specific legacy animations per character
                     let animateProps: any = {};
                     const isLooping = index === 6 || index === 7; // i and o
-
-                    // Indian Flag Tricolor Logic
-                    let colorClass = "";
-                    if (index <= 2) {
-                      colorClass = "text-[#FF9933]"; // Saffron (Cam)
-                    } else if (index <= 4) {
-                      colorClass = "text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.2)]"; // White (le)
-                    } else {
-                      colorClass = "text-[#138808]"; // Green (nio)
-                    }
 
                     switch (index) {
                       case 0: // C
@@ -887,7 +877,7 @@ export default function HeaderNew() {
                     return (
                       <m.span
                         key={index}
-                        className={clsx("inline-block origin-center", colorClass)}
+                        className="inline-block origin-center"
                         {...animateProps}
                       >
                         {char}
