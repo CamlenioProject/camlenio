@@ -13,6 +13,7 @@ import {
   validatePhone,
   validateMessage,
 } from "../../../../lib/validators";
+import CustomCaptcha from "../CustomCaptcha";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -26,6 +27,8 @@ export default function ContactUs() {
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [successPopup, setSuccessPopup] = useState(false);
+  const [isCaptchaValid, setIsCaptchaValid] = useState(false);
+  const [captchaKey, setCaptchaKey] = useState(0);
 
   const validateContactForm = () => {
     const newErrors: { [key: string]: string } = {};
@@ -66,6 +69,11 @@ export default function ContactUs() {
   const handleSubmit = async () => {
     const newErrors = validateContactForm();
 
+    if (!isCaptchaValid) {
+      setSubmitError("Please complete the captcha.");
+      return;
+    }
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
@@ -95,6 +103,8 @@ export default function ContactUs() {
         project: "Web Development",
         message: "",
       });
+      setCaptchaKey(prev => prev + 1);
+      setIsCaptchaValid(false);
     } catch (err: unknown) {
       setSubmitError("Error sending message.");
     } finally {
@@ -115,16 +125,7 @@ export default function ContactUs() {
               ease: [0.4, 0, 0.2, 1],
               scale: { duration: 0.3 },
             }}
-            className="
-        fixed top-6 left-1/2 -translate-x-1/2
-        bg-gradient-to-r from-green-50 to-emerald-50/80
-        backdrop-blur-xl text-gray-900 
-        px-6 py-4 rounded-2xl shadow-2xl shadow-green-200/50
-        border border-green-200/60 border-t-white/20 border-l-white/20
-        font-semibold z-[9999]
-        text-sm md:text-base flex items-center gap-3
-        max-w-[90vw] md:max-w-md
-      "
+            className="fixed top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-50 to-emerald-50/80 backdrop-blur-xl text-gray-900 px-6 py-4 rounded-2xl shadow-2xl shadow-green-200/50 border border-green-200/60 border-t-white/20 border-l-white/20 font-semibold z-[9999] text-sm md:text-base flex items-center gap-3 max-w-[90vw] md:max-w-md"
           >
             {/* Animated Checkmark */}
             <motion.div
@@ -224,9 +225,8 @@ export default function ContactUs() {
                       if (err) setErrors((prev) => ({ ...prev, name: err }));
                     }}
                     placeholder="Full Name"
-                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base ${
-                      errors.name ? "border-red-500" : ""
-                    }`}
+                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base ${errors.name ? "border-red-500" : ""
+                      }`}
                   />
                 </div>
                 {errors.name && (
@@ -254,9 +254,8 @@ export default function ContactUs() {
                       if (err) setErrors((prev) => ({ ...prev, email: err }));
                     }}
                     placeholder="Email Address"
-                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base ${
-                      errors.email ? "border-red-500" : ""
-                    }`}
+                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base ${errors.email ? "border-red-500" : ""
+                      }`}
                   />
                 </div>
                 {errors.email && (
@@ -284,9 +283,8 @@ export default function ContactUs() {
                       if (err) setErrors((prev) => ({ ...prev, phone: err }));
                     }}
                     placeholder="Phone Number"
-                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base ${
-                      errors.phone ? "border-red-500" : ""
-                    }`}
+                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base ${errors.phone ? "border-red-500" : ""
+                      }`}
                   />
                 </div>
                 {errors.phone && (
@@ -342,9 +340,8 @@ export default function ContactUs() {
                       }
                     }}
                     placeholder="About Your Project"
-                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 resize-none placeholder:text-sm sm:placeholder:text-base ${
-                      errors.message ? "border-red-500" : ""
-                    }`}
+                    className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 resize-none placeholder:text-sm sm:placeholder:text-base ${errors.message ? "border-red-500" : ""
+                      }`}
                   />
                 </div>
                 {errors.message && (
@@ -352,6 +349,14 @@ export default function ContactUs() {
                     {errors.message}
                   </p>
                 )}
+              </div>
+
+              {/* Custom Captcha */}
+              <div className="w-full">
+                <CustomCaptcha
+                  key={captchaKey}
+                  onValidate={setIsCaptchaValid}
+                />
               </div>
 
               {submitError && (
@@ -370,11 +375,10 @@ export default function ContactUs() {
         w-full rounded-2xl shadow-sm sm:text-sm cursor-pointer font-semibold
         flex items-center justify-center gap-2
         text-white transition-all duration-300 py-3
-        ${
-          loading
-            ? "bg-orange-400 cursor-not-allowed opacity-80"
-            : "bg-orange-600 hover:bg-orange-700 hover:shadow-lg active:scale-[0.98]"
-        }
+        ${loading
+                      ? "bg-orange-400 cursor-not-allowed opacity-80"
+                      : "bg-orange-600 hover:bg-orange-700 hover:shadow-lg active:scale-[0.98]"
+                    }
       `}
                 >
                   {loading ? (
@@ -449,7 +453,7 @@ export default function ContactUs() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }

@@ -43,7 +43,7 @@ const INDUSTRIES: Industry[] = [
     text: "Payment gateways, e-wallets, platforms for lending, built for speed and security, and to establish trust in finance are in our purvey.",
     img: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627726/fintech_l4mial.jpg",
     icon: "/Homepage/Industries/svg/fintech.svg",
-    href: "/services/fintechsoftware",
+    href: "/industries/fintech-softwares",
   },
   {
     id: 5,
@@ -51,7 +51,7 @@ const INDUSTRIES: Industry[] = [
     text: "We create online shopping, ecommerce platforms that increase sales, enhance engagement, and simplify the customer's journey.",
     img: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627727/retail-ecommerce_phngbh.jpg",
     icon: "/Homepage/Industries/svg/Retail-Ecommerce.svg",
-    href: "/services/fintechsoftware",
+    href: "/industries/ecommerce-portal",
   },
   {
     id: 6,

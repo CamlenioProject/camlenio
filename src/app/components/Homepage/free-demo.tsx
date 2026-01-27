@@ -11,6 +11,7 @@ import {
   validatePhone,
   validateMessage,
 } from "../../../../lib/validators";
+import CustomCaptcha from "../CustomCaptcha";
 
 const FreeQuotation = () => {
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,8 @@ const FreeQuotation = () => {
     type: "error" | "success";
     message: string;
   } | null>(null);
+  const [isCaptchaValid, setIsCaptchaValid] = useState(false);
+  const [captchaKey, setCaptchaKey] = useState(0);
 
   const showPopup = (type: "error" | "success", message: string) => {
     setPopup({ type, message });
@@ -72,6 +75,12 @@ const FreeQuotation = () => {
       return;
     }
 
+    if (!isCaptchaValid) {
+      showPopup("error", "Please complete the captcha.");
+      setLoading(false);
+      return;
+    }
+
     setErrors({});
 
     try {
@@ -83,6 +92,8 @@ const FreeQuotation = () => {
 
       showPopup("success", "Demo request sent successfully!");
       formElement.reset();
+      setCaptchaKey((prev) => prev + 1);
+      setIsCaptchaValid(false);
     } catch (err) {
       console.log(err);
       showPopup("error", "Something went wrong.");
@@ -101,30 +112,20 @@ const FreeQuotation = () => {
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: -15, opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className={`
-        fixed top-6 left-1/2 -translate-x-1/2 z-[2000] !important
-        ${
-          popup.type === "success"
-            ? "bg-gradient-to-r from-green-50 to-emerald-50/80 border-green-200/60 shadow-2xl shadow-green-200/50"
-            : "bg-gradient-to-r from-red-50 to-rose-50/80 border-red-200/60 shadow-2xl shadow-red-200/50"
-        }
-        backdrop-blur-xl text-gray-900 
-        px-6 py-3 rounded-xl
-        border border-t-white/20 border-l-white/20
-        font-semibold text-sm md:text-base flex items-center gap-3
-        max-w-[90vw] md:max-w-md
-      `}
+              className={`fixed top-6 left-1/2 -translate-x-1/2 z-[2000] !important ${popup.type === "success"
+                ? "bg-gradient-to-r from-green-50 to-emerald-50/80 border-green-200/60 shadow-2xl shadow-green-200/50"
+                : "bg-gradient-to-r from-red-50 to-rose-50/80 border-red-200/60 shadow-2xl shadow-red-200/50"
+                } backdrop-blur-xl text-gray-900 px-6 py-3 rounded-xl border border-t-white/20 border-l-white/20 font-semibold text-sm md:text-base flex items-center gap-3 max-w-[90vw] md:max-w-md`}
             >
               {/* Animated Icon */}
               <m.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
-                className={`relative flex items-center justify-center w-7 h-7 rounded-full ${
-                  popup.type === "success"
-                    ? "bg-gradient-to-br from-green-500 to-emerald-600"
-                    : "bg-gradient-to-br from-red-500 to-rose-600"
-                }`}
+                className={`relative flex items-center justify-center w-7 h-7 rounded-full ${popup.type === "success"
+                  ? "bg-gradient-to-br from-green-500 to-emerald-600"
+                  : "bg-gradient-to-br from-red-500 to-rose-600"
+                  }`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -193,11 +194,10 @@ const FreeQuotation = () => {
                 initial={{ scaleX: 1 }}
                 animate={{ scaleX: 0 }}
                 transition={{ duration: 5, ease: "linear" }}
-                className={`absolute bottom-0 left-0 right-0 h-1 origin-left rounded-b-xl ${
-                  popup.type === "success"
-                    ? "bg-gradient-to-r from-green-400 to-emerald-500"
-                    : "bg-gradient-to-r from-red-400 to-rose-500"
-                }`}
+                className={`absolute bottom-0 left-0 right-0 h-1 origin-left rounded-b-xl ${popup.type === "success"
+                  ? "bg-gradient-to-r from-green-400 to-emerald-500"
+                  : "bg-gradient-to-r from-red-400 to-rose-500"
+                  }`}
               />
             </m.div>
           )}
@@ -235,9 +235,8 @@ const FreeQuotation = () => {
               <div className="w-full col-span-3 md:col-span-1">
                 <input
                   aria-label="Full Name"
-                  className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${
-                    errors.name ? "border-red-500" : "border-blue-400"
-                  }`}
+                  className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${errors.name ? "border-red-500" : "border-blue-400"
+                    }`}
                   id="home_name"
                   name="home_name"
                   type="text"
@@ -251,9 +250,8 @@ const FreeQuotation = () => {
               <div className="w-full col-span-3 md:col-span-1">
                 <input
                   aria-label="Email Address"
-                  className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${
-                    errors.email ? "border-red-500" : "border-blue-400"
-                  }`}
+                  className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${errors.email ? "border-red-500" : "border-blue-400"
+                    }`}
                   id="home_email"
                   name="home_email"
                   type="email"
@@ -267,9 +265,8 @@ const FreeQuotation = () => {
               <div className="w-full col-span-3 md:col-span-1">
                 <input
                   aria-label="Phone Number"
-                  className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${
-                    errors.phone ? "border-red-500" : "border-blue-400"
-                  }`}
+                  className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${errors.phone ? "border-red-500" : "border-blue-400"
+                    }`}
                   id="home_phone"
                   name="home_phone"
                   type="tel"
@@ -283,9 +280,8 @@ const FreeQuotation = () => {
               <div className="w-full col-span-3">
                 <textarea
                   aria-label="Message"
-                  className={`w-full px-4 py-3 rounded-lg border-2 border-b-8 bg-transparent text-gray-50 placeholder-blue-400 outline-none ${
-                    errors.message ? "border-red-500" : "border-blue-400"
-                  }`}
+                  className={`w-full px-4 py-3 rounded-lg border-2 border-b-8 bg-transparent text-gray-50 placeholder-blue-400 outline-none ${errors.message ? "border-red-500" : "border-blue-400"
+                    }`}
                   id="home_message"
                   name="home_message"
                   rows={4}
@@ -295,6 +291,13 @@ const FreeQuotation = () => {
                 {errors.message && (
                   <p className="text-red-400 text-sm mt-1">{errors.message}</p>
                 )}
+              </div>
+
+              <div className="w-full col-span-3">
+                <CustomCaptcha
+                  key={captchaKey}
+                  onValidate={setIsCaptchaValid}
+                />
               </div>
 
               <div className="w-full col-span-3">

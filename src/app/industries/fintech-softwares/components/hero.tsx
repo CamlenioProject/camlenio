@@ -106,7 +106,7 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="pt-28 md:pt-20 grid grid-cols-1 items-center gap-6 px-4 sm:px-6 md:min-h-screen md:grid-cols-2 lg:gap-12 lg:px-8 xl:px-16">
+      <div className="w-full max-w-[90rem] mx-auto lg:min-h-[80vh] pt-28 md:pt-20 grid grid-cols-1 items-center gap-6 px-4 sm:px-6 md:min-h-screen md:grid-cols-2 lg:gap-12 lg:px-8 xl:px-16">
         <div ref={leftContentRef} className="animation-optimized">
           <p className="text-gray-900 text-sm mb-2 font-semibold ml-1 tracking-wide">
             {"Fintech Solution —"}
@@ -155,7 +155,7 @@ export default function Hero() {
           <div className="grid grid-cols-2 grid-rows-1 md:grid-rows-2 gap-3 sm:gap-4 lg:gap-6 py-4 md:py-8">
             {/* Top-left: tall image */}
             <div ref={topLeftRef} className="flex justify-end">
-              <div className="relative aspect-[3/4] w-full sm:w-4/5 md:w-3/4 overflow-hidden rounded-2xl sm:rounded-3xl">
+              <div className="relative aspect-[3/4] w-full sm:w-4/5  overflow-hidden rounded-2xl sm:rounded-3xl">
                 <Image
                   src="/ServiceDropdown/fintechsoftware/fintech1.webp"
                   alt="Fintech innovation visualization"
@@ -204,7 +204,7 @@ export default function Hero() {
 
             {/* Bottom-right: tall image */}
             <div ref={bottomRightRef} className="hidden md:flex justify-start">
-              <div className="relative aspect-[3/4] w-full sm:w-4/5 md:w-3/4 overflow-hidden rounded-2xl sm:rounded-3xl">
+              <div className="relative aspect-[3/4] w-full sm:w-4/5 overflow-hidden rounded-2xl sm:rounded-3xl">
                 <Image
                   src="/ServiceDropdown/fintechsoftware/fintech4.webp"
                   alt="Digital banking solution"

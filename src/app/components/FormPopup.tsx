@@ -12,6 +12,7 @@ import {
   validatePhone,
   validateMessage,
 } from "../../../lib/validators";
+import CustomCaptcha from "./CustomCaptcha";
 
 interface FormPopupProps {
   isOpen: boolean;
@@ -33,6 +34,8 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
   const [gmailError, setGmailError] = useState<string | null>(null);
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [messageError, setMessageError] = useState<string | null>(null);
+  const [isCaptchaValid, setIsCaptchaValid] = useState(false);
+  const [captchaKey, setCaptchaKey] = useState(0);
 
   const [countryCode, setCountryCode] = useState("+91");
 
@@ -87,6 +90,12 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
       return;
     }
 
+    if (!isCaptchaValid) {
+      setError("Please complete the captcha.");
+      setLoading(false);
+      return;
+    }
+
     const payload = {
       type: "popup",
       name,
@@ -106,7 +115,10 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
       setPhoneNumber("");
       setMessage("");
       setGmailError(null);
+      setGmailError(null);
       setPhoneError(null);
+      setCaptchaKey((prev) => prev + 1);
+      setIsCaptchaValid(false);
 
       setTimeout(() => {
         router.push("/");
@@ -205,8 +217,8 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                           exit={{ y: -15, opacity: 0, scale: 0.95 }}
                           transition={{ duration: 0.25, ease: "easeOut" }}
                           className={`fixed top-6 left-1/2 -translate-x-1/2 z-[9999] ${error
-                              ? "bg-gradient-to-r from-red-50 to-rose-50/80 border-red-200/60 shadow-2xl shadow-red-200/50"
-                              : "bg-gradient-to-r from-green-50 to-emerald-50/80 border-green-200/60 shadow-2xl shadow-green-200/50"
+                            ? "bg-gradient-to-r from-red-50 to-rose-50/80 border-red-200/60 shadow-2xl shadow-red-200/50"
+                            : "bg-gradient-to-r from-green-50 to-emerald-50/80 border-green-200/60 shadow-2xl shadow-green-200/50"
                             } backdrop-blur-xl text-gray-900 px-6 py-3 rounded-xl border border-t-white/20 border-l-white/20 font-semibold text-sm md:text-base flex items-center gap-3 max-w-[90vw] md:max-w-md`}
                         >
                           {/* Animated Icon */}
@@ -219,8 +231,8 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                               stiffness: 200,
                             }}
                             className={`relative flex items-center justify-center w-7 h-7 rounded-full ${error
-                                ? "bg-gradient-to-br from-red-500 to-rose-600"
-                                : "bg-gradient-to-br from-green-500 to-emerald-600"
+                              ? "bg-gradient-to-br from-red-500 to-rose-600"
+                              : "bg-gradient-to-br from-green-500 to-emerald-600"
                               }`}
                           >
                             <svg
@@ -302,8 +314,8 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                             animate={{ scaleX: 0 }}
                             transition={{ duration: 5, ease: "linear" }}
                             className={`absolute bottom-0 left-0 right-0 h-1 origin-left rounded-b-xl ${error
-                                ? "bg-gradient-to-r from-red-400 to-rose-500"
-                                : "bg-gradient-to-r from-green-400 to-emerald-500"
+                              ? "bg-gradient-to-r from-red-400 to-rose-500"
+                              : "bg-gradient-to-r from-green-400 to-emerald-500"
                               }`}
                           />
                         </m.div>
@@ -452,8 +464,8 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                                 }
                               }}
                               className={`mt-1 block w-full px-3 py-1 text-[.7rem] bg-white placeholder-opacity-40 border rounded-md shadow-sm placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 sm:text-sm ${messageError
-                                  ? "border-red-500"
-                                  : "border-gray-300"
+                                ? "border-red-500"
+                                : "border-gray-300"
                                 }`}
                               placeholder="Your message..."
                             />
@@ -466,16 +478,18 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                           </div>
 
                           <div>
+                            <CustomCaptcha
+                              key={captchaKey}
+                              onValidate={setIsCaptchaValid}
+                              className="!flex-col sm:!flex-row" // Make it column on very small popup
+                            />
+                          </div>
+
+                          <div>
                             <button
                               type="submit"
                               disabled={loading}
-                              className={`
-      w-full rounded-md shadow-sm sm:text-sm 
-      flex items-center justify-center gap-2 
-      text-white bg-orange-600 hover:bg-orange-700 
-      transition-all py-2 cursor-pointer
-      ${loading ? "opacity-70 cursor-not-allowed" : ""}
-    `}
+                              className={`w-full rounded-md shadow-sm sm:text-sm flex items-center justify-center gap-2 text-white bg-orange-600 hover:bg-orange-700 transition-all py-2 cursor-pointer ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
                             >
                               {loading ? (
                                 <span className="flex items-center gap-2">
