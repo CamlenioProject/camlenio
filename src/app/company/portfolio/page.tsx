@@ -1,36 +1,33 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import PortfolioHeader from "./components/PortfolioHeader";
-
-// Components
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import AboutAI from "./components/AboutAI";
+import AIIntro from "./components/AIIntro";
+import AITools from "./components/AITools";
+import ContactAI from "./components/ContactAI";
 import PortfolioHero from "./components/PortfolioHero";
-import CompanyProfile from "./components/CompanyProfile";
-import FeaturedProjects from "./components/FeaturedProjects";
-import ProcessSection from "./components/ProcessSection";
-import TechStack from "./components/TechStack";
-import PortfolioCTA from "./components/PortfolioCTA";
+import ProjectsGrid from "./components/ProjectsGrid";
+import WelcomeScreen from "./components/WelcomeScreen";
 
-export default function PortfolioPage() {
+// This is the main entry point for the new AI Portfolio
+export default function Home() {
+  const [showWelcome, setShowWelcome] = useState(true);
+
   return (
-    <main className="w-full bg-black min-h-screen">
-      <PortfolioHeader />
+    <div className="bg-black min-h-screen text-white selection:bg-cyan-500/30">
+      <AnimatePresence mode="wait">
+        {showWelcome && (
+          <WelcomeScreen onComplete={() => setShowWelcome(false)} />
+        )}
+      </AnimatePresence>
 
       <PortfolioHero />
-      <CompanyProfile />
-      <FeaturedProjects />
-      <ProcessSection />
-      <TechStack />
-      <PortfolioCTA />
-
-      {/* Hide Global Header & Footer specifically for this immersive page */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        header:not([class*="PortfolioHeader"]) { display: none !important; }
-        footer { display: none !important; }
-        body > header { display: none !important; } 
-        .site-header { display: none !important; }
-      ` }} />
-    </main>
+      <AIIntro />
+      <ProjectsGrid />
+      <AITools />
+      <AboutAI />
+      <ContactAI />
+    </div>
   );
 }

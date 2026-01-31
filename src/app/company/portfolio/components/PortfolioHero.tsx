@@ -1,192 +1,153 @@
 "use client";
 
-import React, { useRef } from "react";
-import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Stars, Sparkles } from "@react-three/drei";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import * as THREE from "three";
+import { Github, Linkedin, ArrowDown } from "lucide-react";
 
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
-
-export default function PortfolioHero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const bgImageRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const nextSectionRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          pin: true,
-          // marker: true, // Uncomment for debugging
-        },
-      });
-
-      // Background zoom effect: scale 1 -> 2
-      tl.to(bgImageRef.current, {
-        scale: 2,
-        opacity: 0,
-        ease: "none", // Linear scrub
-        transformOrigin: "center center",
-      });
-
-      // Content scale effect: scale 1 -> 1.1 (subtle push)
-      tl.to(
-        contentRef.current,
-        {
-          scale: 1.1,
-          opacity: 0, // Fade out content as we scroll deep
-          ease: "none",
-        },
-        "<" // Start at same time
-      );
-
-      // Next Section reveal effect: Fade in + Scale up
-      tl.fromTo(
-        nextSectionRef.current,
-        { opacity: 0, scale: 0.9 },
-        {
-          opacity: 1,
-          scale: 1,
-          ease: "none",
-        },
-        "<+=0.1" // Start slightly after the fade out begins for a smooth crossover
-      );
-    },
-    { scope: containerRef }
-  );
+function FloatingParticles() {
+  const mesh = useRef<THREE.Group>(null);
+  useFrame((state, delta) => {
+    if (mesh.current) {
+      mesh.current.rotation.x -= delta / 15;
+      mesh.current.rotation.y -= delta / 20;
+    }
+  });
 
   return (
-    <section ref={containerRef} className="relative w-full h-screen overflow-hidden bg-black">
-      {/* Background Image Container */}
-      <div ref={bgImageRef} className="absolute inset-0 z-0 w-full h-full">
-        <Image
-          src="/portfolio/hero_bg.png"
-          alt="Futuristic Hero Background"
-          fill
-          priority
-          className="object-cover object-center opacity-80"
-          quality={100}
-        />
-        {/* Dark Overlay for better text contrast */}
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90" />
-      </div>
-
-      {/* Hero Content (Fades Out) */}
-      <div
-        ref={contentRef}
-        className="relative z-10 w-full h-full flex flex-col justify-between p-6 md:p-12 text-white pointer-events-none"
-      >
-        {/* Spacer for Fixed Header */}
-        <div className="h-24 w-full" />
-
-        {/* Main Hero Text Centralized */}
-        <div className="flex flex-col justify-center items-start absolute top-1/2 left-6 md:left-12 -translate-y-1/2 w-full pr-12">
-          <div className="overflow-hidden mb-2">
-            <span className="font-mono text-cyan-500 text-sm md:text-base tracking-widest border border-cyan-500/30 px-3 py-1 rounded-full bg-cyan-950/30 backdrop-blur-md">
-                  // CAMLENIO INNOVATION
-            </span>
-          </div>
-
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.9] mb-6 mix-blend-screen relative">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-500">CAMLENIO</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradientMove bg-[length:200%_200%]">
-              DIGITAL
-            </span>
-          </h1>
-
-          <div className="flex items-start gap-6 max-w-xl pl-2 border-l-2 border-cyan-500/50">
-            <p className="text-lg md:text-xl font-light text-gray-300 leading-relaxed">
-              At <span className="text-white font-medium">Camlenio</span>, we engineer cinematic digital ecosystems where art meets high-performance code.
-            </p>
-          </div>
-        </div>
-
-        {/* Bottom Tech Stats / Scroll */}
-        <div className="flex justify-between items-end border-b border-white/20 pb-6 relative">
-          <div className="absolute bottom-0 left-0 w-32 h-[1px] bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.8)]" />
-          <div className="absolute bottom-0 right-0 w-32 h-[1px] bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.8)]" />
-
-          <div className="hidden md:flex gap-8 font-mono text-[10px] text-white/50 tracking-widest">
-            <div>COORD: 34.0522° N, 118.2437° W</div>
-            <div>LATENCY: 12ms</div>
-          </div>
-
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest animate-pulse">Initialize Scroll</span>
-            <div className="h-12 w-[1px] bg-gradient-to-b from-cyan-500 to-transparent" />
-          </div>
-
-          <div className="font-mono text-4xl text-white/10 font-bold">
-            01
-          </div>
-        </div>
-      </div>
-
-      {/* Next Section (Fades In) - Featured Projects Preview */}
-      <div
-        ref={nextSectionRef}
-        className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
-      >
-        <div className="w-full max-w-7xl px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <span className="text-cyan-400 font-mono tracking-widest text-sm">LATEST WORK</span>
-            <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-              Check our <br /> Latest Work
-            </h2>
-            <p className="text-gray-400 max-w-md">
-              We push the boundaries of what is possible on the web. Explore our curated selection of award-winning projects.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 opacity-80">
-            <div className="space-y-4 pt-12">
-              <div className="w-full h-40 relative rounded-lg overflow-hidden border border-white/10 group">
-                <Image
-                  src="/portfolio/project1.png"
-                  alt="Abstract Crystal Design"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="w-full h-56 relative rounded-lg overflow-hidden border border-white/10 group">
-                <Image
-                  src="/portfolio/project2.png"
-                  alt="Futuristic Dashboard UI"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div className="w-full h-56 relative rounded-lg overflow-hidden border border-white/10 group">
-                <Image
-                  src="/portfolio/project3.png"
-                  alt="Cyberpunk City Concept"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="w-full h-40 relative rounded-lg overflow-hidden border border-white/10 group">
-                <Image
-                  src="/portfolio/project4.png"
-                  alt="Data Flow Visualization"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section>
+    <group ref={mesh}>
+      <Stars radius={100} depth={50} count={7000} factor={4} saturation={0} fade speed={1} />
+      <Sparkles count={150} scale={15} size={3} speed={0.3} opacity={0.7} color="#00ffff" />
+      <Sparkles count={100} scale={12} size={2} speed={0.3} opacity={0.5} color="#bd00ff" />
+    </group>
   );
 }
+
+const PortfolioHero = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+
+  return (
+    <section className="relative h-screen w-full bg-black overflow-hidden flex flex-col justify-center items-center">
+      {/* 3D Background */}
+      <div className="absolute inset-0 z-0">
+        <Canvas camera={{ position: [0, 0, 5] }}>
+          <ambientLight intensity={0.5} />
+          <FloatingParticles />
+        </Canvas>
+        {/* Gradient Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/80 z-[1] pointer-events-none" />
+      </div>
+
+      {/* Content Overlay */}
+      <div className="z-10 text-center px-4 relative w-full max-w-5xl mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col items-center"
+        >
+          {/* Name & Title */}
+          <motion.h1
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              visible: {
+                y: 0,
+                opacity: 1,
+                transition: { duration: 0.8, ease: "easeOut" }
+              },
+            }}
+            className="text-7xl md:text-9xl font-bold tracking-tighter mb-4"
+          >
+            <span className="text-white">Rahul</span>
+            <span className="text-cyan-500">.</span>
+          </motion.h1>
+
+          <motion.div variants={{
+            hidden: { y: 20, opacity: 0 },
+            visible: {
+              y: 0,
+              opacity: 1,
+              transition: { duration: 0.8, ease: "easeOut" }
+            },
+          }} className="overflow-hidden">
+            <h2 className="text-2xl md:text-4xl font-light text-gray-300 tracking-widest uppercase mb-8">
+              AI <span className="text-purple-500 mx-2">/</span> Full-Stack Developer
+            </h2>
+          </motion.div>
+
+          <motion.p
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              visible: {
+                y: 0,
+                opacity: 1,
+                transition: { duration: 0.8, ease: "easeOut" }
+              },
+            }}
+            className="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-12"
+          >
+            Crafting intelligent digital experiences where code meets consciousness.
+          </motion.p>
+
+          {/* Actions */}
+          <motion.div variants={{
+            hidden: { y: 20, opacity: 0 },
+            visible: {
+              y: 0,
+              opacity: 1,
+              transition: { duration: 0.8, ease: "easeOut" }
+            },
+          }} className="flex flex-col md:flex-row items-center gap-6">
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(0, 255, 255, 0.4)" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-10 py-4 bg-white text-black text-lg font-bold rounded-full hover:bg-cyan-50 transition-colors flex items-center gap-2"
+            >
+              View Work
+              <ArrowDown size={20} className="animate-bounce" />
+            </motion.button>
+
+            <div className="flex items-center gap-4">
+              <motion.a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.2, color: "#00ffff" }}
+                whileTap={{ scale: 0.9 }}
+                className="p-3 bg-white/10 rounded-full border border-white/10 text-white hover:border-cyan-500/50 transition-colors"
+              >
+                <Github size={24} />
+              </motion.a>
+
+              <motion.a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.2, color: "#00ffff" }}
+                whileTap={{ scale: 0.9 }}
+                className="p-3 bg-white/10 rounded-full border border-white/10 text-white hover:border-cyan-500/50 transition-colors"
+              >
+                <Linkedin size={24} />
+              </motion.a>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default PortfolioHero;
