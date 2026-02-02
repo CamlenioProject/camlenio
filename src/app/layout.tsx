@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import localFont from "next/font/local";
 import LenisWrapper from "./LenisWrapper";
 import AnimatedChatBot from "./AnimatedChatBot";
+import React from "react";
 
 export const metadata = {
   title: "Camlenio | Digital Solutions",
@@ -36,13 +37,30 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}) {
+}): React.JSX.Element {
   return (
     <html
       lang="en"
       className={`${lufgaFont.className} scrollbar-thin scrollbar-track-sozo-gray/20 scrollbar-thumb-sozo-yellow hover:scrollbar-thumb-sozo-amber`}
     >
       <head>
+        {/* Google Analytics (GA4) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-SSQZK50PKC"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-SSQZK50PKC', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+
+        {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -58,6 +76,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
+
       <body>
         <Header />
         <main>

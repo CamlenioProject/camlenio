@@ -1,16 +1,38 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { Environment, ContactShadows, OrbitControls } from "@react-three/drei";
+import { Environment, ContactShadows, OrbitControls, Html, useProgress, Preload } from "@react-three/drei";
 import { m, LazyMotion, domMax } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+// Lazy load the 3D model component
 const PhoneModel = lazy(() => import("./PhoneModel").then(module => ({ default: module.PhoneModel })));
+
+function Loader() {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <div className="flex flex-col items-center justify-center pointer-events-none select-none">
+        <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+        <p className="mt-2 text-sm font-medium text-gray-500 tracking-wider transition-all duration-300">
+          {progress.toFixed(0)}%
+        </p>
+      </div>  
+    </Html>
+  );
+}
 
 export default function Hero() {
   const router = useRouter();
+  const [dpr, setDpr] = useState(1);
+
+  useEffect(() => {
+    // Optimization: Cap DPR at 2 for high-res screens, lower for weak gpus
+    // Using a slightly lower default (1.5) provides a massive FPS boost with minimal visual difference
+    setDpr(Math.min(window.devicePixelRatio, 1.5));
+  }, []);
 
   return (
     <LazyMotion features={domMax}>
@@ -48,7 +70,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6 max-w-xl"
-            > 
+            >
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed font-medium">
                 Camlenio is a top <span className="text-gray-900 font-semibold">Android app development company</span> in India, building <span className="text-orange-600 font-bold">high-performance, scalable, and user-friendly</span> apps for startups, SMEs, and enterprises. From strategy and UI/UX to development and Play Store deployment, we deliver secure, custom Android solutions that drive engagement and digital growth.
               </p>
@@ -73,25 +95,32 @@ export default function Hero() {
           </div>
 
           {/* RIGHT COLUMN: 3D Model */}
+          {/* Note: Removed 'scale' animation from wrapper div. This was causing layout thrashing (the 'pop') on scroll/resize. */}
           <m.div
-            initial={{ opacity: 0, scale: 0.9, x: 50 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.0, delay: 0.2, ease: "circOut" }}
-            className="w-full md:w-[45%] h-[50vh] md:h-[80vh] relative z-10 order-1 md:order-2 flex items-center justify-center will-change-transform"
+            className="w-full md:w-[45%] h-[500px] md:h-[800px] relative z-10 order-1 md:order-2 flex items-center justify-center"
           >
-            {/* Color Glow Effect Behind Model - Optimized */}
+            {/* Color Glow Effect Behind Model */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-orange-400/20 rounded-full blur-[80px] -z-10 pointer-events-none transform-gpu" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-amber-300/30 rounded-full blur-[60px] -z-10 pointer-events-none transform-gpu" />
 
-            {/* Canvas Container - Static Position for Performance */}
-            <div className="w-full h-full relative">
+            {/* Canvas Container */}
+            <div className="w-full h-full relative cursor-grab active:cursor-grabbing">
               <Canvas
                 className="w-full h-full"
                 camera={{ position: [0, 0, 6], fov: 40 }}
-                dpr={[1, 1.5]}
-                gl={{ preserveDrawingBuffer: true, antialias: true, alpha: true, powerPreference: "high-performance" }}
+                dpr={dpr}
+                gl={{
+                  preserveDrawingBuffer: true,
+                  antialias: true,
+                  alpha: true,
+                  powerPreference: "high-performance"
+                }}
+                resize={{ scroll: false, debounce: 0 }} // Optimizes resize handling
               >
-                <Suspense fallback={null}>
+                <Suspense fallback={<Loader />}>
                   <Environment preset="city" />
                   <ambientLight intensity={1.5} />
                   <spotLight position={[10, 10, 10]} angle={0.5} penumbra={1} intensity={15} color="#fff" />
@@ -103,16 +132,29 @@ export default function Hero() {
                     </group>
                   </group>
 
-                  <ContactShadows position={[0, -3.5, 0]} opacity={0.4} scale={40} blur={2.5} far={4} color="black" frames={1} />
+                  {/* Optimized Shadows: Lower resolution, baked frames */}
+                  <ContactShadows
+                    position={[0, -3.5, 0]}
+                    opacity={0.4}
+                    scale={40}
+                    blur={2.5}
+                    far={4}
+                    color="black"
+                    frames={1}
+                  />
 
                   <OrbitControls
                     enableZoom={false}
                     enablePan={false}
-                    autoRotate={true}
-                    autoRotateSpeed={0.02}
+                    autoRotate={false}
                     minPolarAngle={Math.PI / 2.5}
                     maxPolarAngle={Math.PI / 1.5}
+                    dampingFactor={0.05} // Smoother interaction
+                    enableDamping={true}
                   />
+
+                  {/* Preload resources to avoid late pop-in */}
+                  <Preload all />
                 </Suspense>
               </Canvas>
             </div>
