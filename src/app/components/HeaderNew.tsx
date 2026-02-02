@@ -59,7 +59,7 @@ const availablePages = [
   "/solutions/hrms-software",
   "/industries/fintech-softwares",
   "/industries/hotel-management",
-  // "/services/android-app-development",
+  "/services/android-app-development",
   // "/services/full-stack-development",
   // "/services/ui-ux-designing",
   // "/services/web-development",

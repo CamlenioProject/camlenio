@@ -19,7 +19,7 @@ function Loader() {
         <p className="mt-2 text-sm font-medium text-gray-500 tracking-wider transition-all duration-300">
           {progress.toFixed(0)}%
         </p>
-      </div>  
+      </div>
     </Html>
   );
 }
@@ -29,8 +29,6 @@ export default function Hero() {
   const [dpr, setDpr] = useState(1);
 
   useEffect(() => {
-    // Optimization: Cap DPR at 2 for high-res screens, lower for weak gpus
-    // Using a slightly lower default (1.5) provides a massive FPS boost with minimal visual difference
     setDpr(Math.min(window.devicePixelRatio, 1.5));
   }, []);
 
@@ -39,13 +37,13 @@ export default function Hero() {
       <section className="relative min-h-screen w-full bg-transparent overflow-hidden flex items-center justify-center pt-20 md:pt-0">
 
         {/* 2. Grid Pattern Overlay (Darker lines for Light Bg) */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+        {/* <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" /> */}
 
         {/* --- CONTENT CONTAINER --- */}
         <div className="relative z-30 w-full flex flex-col md:flex-row items-center justify-between px-6 md:px-12 lg:px-24 max-w-[90rem] mx-auto min-h-[80vh]">
 
           {/* LEFT COLUMN: Text Content */}
-          <div className="w-full md:w-[55%] flex flex-col items-start text-left space-y-8 z-40 order-2 md:order-1 mt-12 md:mt-0">
+          <div className="w-full md:w-[55%] flex flex-col items-start text-left space-y-8 z-40 mt-4 md:mt-0">
 
             {/* Hero Headline */}
             <m.div
@@ -53,7 +51,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.1] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600 drop-shadow-[0_0_15px_rgba(249,115,22,0.2)]">
                   Android Mobile App
                 </span>
@@ -85,7 +83,7 @@ export default function Hero() {
             >
               <button
                 onClick={() => router.push("/contact")}
-                className="relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-orange-600 rounded-full hover:bg-orange-700 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 shadow-[0_4px_14px_0_rgba(234,88,12,0.39)]"
+                className="relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-orange-600 rounded-full hover:bg-orange-700 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 shadow-[0_4px_14px_0_rgba(234,88,12,0.39)] cursor-pointer"
               >
                 Get Started
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -100,7 +98,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.0, delay: 0.2, ease: "circOut" }}
-            className="w-full md:w-[45%] h-[500px] md:h-[800px] relative z-10 order-1 md:order-2 flex items-center justify-center"
+            className="w-full md:w-[45%] h-[500px] md:h-[800px] relative z-10 flex items-center justify-center"
           >
             {/* Color Glow Effect Behind Model */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-orange-400/20 rounded-full blur-[80px] -z-10 pointer-events-none transform-gpu" />
