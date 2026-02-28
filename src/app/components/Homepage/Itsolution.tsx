@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import { LazyMotion, m, domMax, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState, FC } from "react";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
@@ -97,19 +97,20 @@ const ItSolution: FC = () => {
               </p>
             </div>
 
-            {/* YouTube Video - Clean Embed */}
+            {/* YouTube Video - Optimized Embed */}
             <div className="h-60 bg-gray-200 relative rounded-xl shadow-xl overflow-hidden md:col-span-2 lg:col-span-2">
               <video
-                src="https://res.cloudinary.com/dxpbriwey/video/upload/v1767704386/video_3_kug49x.mp4"
+                src="https://res.cloudinary.com/dxpbriwey/video/upload/f_auto,q_auto/v1767704386/video_3_kug49x.mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-lg absolute inset-0 pointer-events-none"
               />
               {/* Clickable overlay to open video popup */}
               <div
-                className="absolute inset-0 cursor-pointer hover:bg-white/10 transition-colors"
+                className="absolute inset-0 cursor-pointer hover:bg-white/10 transition-colors z-10"
                 onClick={() => setIsVideoPopupOpen(true)}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
@@ -144,12 +145,13 @@ const ItSolution: FC = () => {
                       <XMarkIcon className="w-6 h-6 text-gray-900" />
                     </button>
 
-                    {/* Full YouTube Player with Controls */}
+                    {/* Full Player with Optimization */}
                     <video
-                      src="https://res.cloudinary.com/dxpbriwey/video/upload/v1767704386/video_3_kug49x.mp4"
+                      src="https://res.cloudinary.com/dxpbriwey/video/upload/f_auto,q_auto/v1767704386/video_3_kug49x.mp4"
                       controls
                       autoPlay
                       playsInline
+                      preload="auto"
                       className="w-full h-full"
                     />
                   </m.div>
@@ -198,7 +200,7 @@ const ItSolution: FC = () => {
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-6 flex flex-col items-center justify-center text-center z-20">
+            <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center text-center">
               <h3 className="text-gray-700 font-semibold font-sans">
                 Award-winning solution
               </h3>
@@ -214,6 +216,7 @@ const ItSolution: FC = () => {
                 We&apos;ve got a few awards thanks to our amazing clients.
               </p>
             </div>
+
 
             {/* Business Partners */}
             <div className="bg-white rounded-xl  p-6 flex flex-col items-center justify-center md:col-span-2 lg:col-span-1">

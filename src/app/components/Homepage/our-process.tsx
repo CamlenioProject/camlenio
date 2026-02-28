@@ -96,7 +96,7 @@ const OurProcess = () => {
 
   return (
     <LazyMotion features={domMax}>
-      <div className="py-20 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove overflow-hidden">
+      <div className="py-20 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-8 md:px-16 text-center">
           <span className=" relative inline-block px-4 py-1.5 rounded-full border border-orange-50 bg-orange-100  shadow-sm text-sm font-medium text-orange-600 mb-4">
             <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>

@@ -186,7 +186,7 @@ export default function Footer() {
 
           <div className="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-gray-300 ">
             <div>
-              <h3>Copyright © 2022-25 All Right Reserved</h3>
+              <h3>Copyright © 2022-26 All Right Reserved</h3>
             </div>
 
             <div className="flex space-x-2 md:mt-0">

@@ -104,7 +104,7 @@ const FreeQuotation = () => {
 
   return (
     <LazyMotion features={domMax}>
-      <div className="relative py-16 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_200%] animate-gradientMove overflow-hidden">
+      <div className="relative py-16 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 overflow-hidden">
         <AnimatePresence>
           {popup && (
             <m.div

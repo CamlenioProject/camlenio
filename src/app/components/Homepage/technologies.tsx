@@ -62,7 +62,7 @@ const TechnologiesTabs = () => {
   const [activeTab, setActiveTab] = useState("mobile");
 
   return (
-    <div className=" py-16 text-white relative bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_200%] animate-gradientMove">
+    <div className=" py-16 text-white relative bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 ">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-10">
           <span className=" relative inline-block px-4 py-1.5 rounded-full border border-orange-200 bg-gray-50 shadow-sm text-sm font-medium text-gray-950 mb-4">

@@ -53,7 +53,7 @@ export default function Testimonials() {
 
   return (
     <LazyMotion features={domMax}>
-      <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove py-20">
+      <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 py-20">
         <div className="max-w-7xl mx-auto px-8 md:px-16 text-center">
           <span className="relative inline-block px-6 py-1 text-base font-medium text-orange-500 bg-orange-100 border-1 border-orange-50 rounded-full mb-4">
             <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>

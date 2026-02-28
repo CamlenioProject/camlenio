@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ShoppingBag, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { cn } from "../../../../../lib/utils";
+import { cn } from "../../../../lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 

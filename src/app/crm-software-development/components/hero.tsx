@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ContainerScroll } from "../../../components/container-scroll-animation";
+import { ContainerScroll } from "../../components/container-scroll-animation";
 import BackgroundRipple from "@/app/components/ui/BackgroundRipple";
 import { BarChart3, Users } from "lucide-react";
 import { Button } from "@/app/components/ui/Button";

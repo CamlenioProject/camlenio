@@ -5,7 +5,7 @@ import { LazyMotion, domMax, m, useInView } from "framer-motion";
 import { FaCheckCircle, FaArrowRight } from "react-icons/fa";
 import { Hotel, Palmtree, Building2, Building, BedDouble, Key, Users } from "lucide-react";
 import { featureCategories } from "./data";
-import { RevealSection } from "../../real-estate-software/components/RevealSection";
+import { RevealSection } from "../../real-estate-software-development/components/RevealSection";
 
 // Define generic types
 type Feature = {
@@ -382,6 +382,6 @@ export const FeatureTabs = () => {
           </div>
         </div>
       </section>
-    </LazyMotion>             
+    </LazyMotion>
   );
 };

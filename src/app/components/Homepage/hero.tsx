@@ -4,9 +4,9 @@ import { m, LazyMotion, domMax } from "framer-motion";
 import { GiCheckMark } from "react-icons/gi";
 import { useState, useEffect, useMemo } from "react";
 import { HeroTextAnimate } from "../HeroTextAnimate";
-import BackToTopButton from "../BackToTopButton";
+// import BackToTopButton from "../BackToTopButton";
 import { useRouter } from "next/navigation";
-import { LogoSlider } from "./logoslider";
+// import { LogoSlider } from "./logoslider";
 import { Button } from "../ui/Button";
 
 const Hero = () => {
@@ -14,14 +14,14 @@ const Hero = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(1);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const interval = setInterval(() => {
       if (hoveredIndex === null) {
         setActiveIndex((prev) => (prev + 1) % 3);
       }
     }, 5000);
     return () => clearInterval(interval);
-  }, [hoveredIndex]);
+  }, [hoveredIndex]); */
 
   const cards = useMemo(
     () => [
@@ -55,7 +55,7 @@ const Hero = () => {
 
   return (
     <LazyMotion features={domMax}>
-      <div className="relative  pt-20 md:py-12 overflow-hidden">
+      <div className="relative pt-20 md:py-12 overflow-hidden">
         <div className="flex flex-col md:flex-row">
           <m.div
             initial={{ opacity: 0, x: -50 }}
@@ -124,70 +124,6 @@ const Hero = () => {
             style={{ willChange: "transform" }}
             className="relative h-[36rem] flex-grow flex flex-col items-center justify-center px-2 py-28 md:py-20 md:rounded-bl-[3rem] md:w-[50%] overflow-hidden"
           >
-
-            {/* Tech Stand Base - Replicating Reference in Orange Theme */}
-
-            {/* 1. Base Glow (Ambient Ground) */}
-            <div className="absolute bottom-[0%] md:bottom-[10%] left-1/2 -translate-x-1/2 w-[300px] h-[90px] md:w-[200px] md:h-[80px] bg-orange-500/20 blur-[50px] rounded-full pointer-events-none opacity-50" />
-
-            {/* 2. Outer Dashed Ring (Tech Perimeter) */}
-            <div className="absolute bottom-[5%] md:bottom-[5%] left-1/2 -translate-x-1/2 w-[280px] h-[75px] md:w-[380px] md:h-[100px] border-[1.5px] border-dashed border-orange-300/40 rounded-[100%] pointer-events-none" />
-
-            {/* 3. Middle Dot Ring (Digital Markers) */}
-            {/* <div className="absolute bottom-[7%] md:bottom-[7%] left-1/2 -translate-x-1/2 w-[240px] h-[65px] md:w-[320px] md:h-[95px] border-[3px] border-dotted border-orange-500/50 rounded-[100%] pointer-events-none" /> */}
-
-            {/* 4. Tier 1 - Main Platform Base */}
-            <div className="absolute bottom-[10%] md:bottom-[10%] left-1/2 -translate-x-1/2 w-[200px] h-[50px] md:w-[260px] md:h-[70px] bg-gradient-to-b from-orange-500/10 to-transparent border border-orange-400/50 rounded-[100%] pointer-events-none shadow-[0_0_15px_rgba(249,115,22,0.2)]" />
-
-            {/* 5. Tier 2 - Inner Glowing Ring */}
-            <div className="absolute bottom-[12%] md:bottom-[12%] left-1/2 -translate-x-1/2 w-[150px] h-[40px] md:w-[200px] md:h-[55px] border-[2px] border-orange-300 rounded-[100%]  pointer-events-none bg-orange-500/5" />
-
-
-            {/* Rising Energy Rings - Power Transfer Effect */}
-            <m.div
-              initial={{ bottom: "25%", opacity: 0, scale: 0.5, width: "140px", height: "40px" }}
-              animate={{
-                bottom: "55%",
-                opacity: [0, 0.4, 0],
-                scale: 1.5,
-                width: "200px",
-                height: "60px",
-              }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
-              className="absolute left-1/2 -translate-x-1/2 border border-orange-300/30 rounded-[100%] pointer-events-none"
-            />
-            <m.div
-              initial={{ bottom: "25%", opacity: 0, scale: 0.5, width: "100px", height: "30px" }}
-              animate={{
-                bottom: "50%",
-                opacity: [0, 0.3, 0],
-                scale: 1.2,
-                width: "160px",
-                height: "50px",
-              }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 1.5 }}
-              className="absolute left-1/2 -translate-x-1/2 border border-orange-200/20 rounded-[100%] pointer-events-none"
-            />
-
-            {/* 7. Vertical Light Beam - Enhanced Flow */}
-            <m.div
-              animate={{
-                background: [
-                  "linear-gradient(to top, rgba(251,146,60,0.3), rgba(253,186,116,0.1), transparent)",
-                  "linear-gradient(to top, rgba(251,146,60,0.4), rgba(253,186,116,0.2), transparent)",
-                  "linear-gradient(to top, rgba(251,146,60,0.3), rgba(253,186,116,0.1), transparent)",
-                ],
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="absolute bottom-[13%] md:bottom-[13%] left-1/2 -translate-x-1/2 w-[90px] h-[300px] md:w-[120px] blur-[20px] pointer-events-none rounded-full"
-            />
-
-            {/* 8. Beam Core - High Intensity Transfer Line */}
-            <m.div
-              animate={{ height: ["300px", "320px", "300px"], opacity: [0.6, 0.8, 0.6] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-[13%] md:bottom-[13%] left-1/2 -translate-x-1/2 w-[30px] md:w-[40px] bg-gradient-to-t from-orange-100/50 via-transparent to-transparent blur-[8px] pointer-events-none"
-            />
             <div
               className="relative flex justify-center items-center w-full h-full [perspective:1200px]"
               onMouseLeave={() => setHoveredIndex(null)}
@@ -241,13 +177,15 @@ const Hero = () => {
                       ...(isAnyHovered ? hovered : initial),
                       opacity: isAnyHovered ? (isHovered ? 1 : 0.3) : (isCenter ? 1 : 0.6),
                     }}
-                    transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                    transition={{ type: "spring", stiffness: 100, damping: 20, mass: 1 }}
                     viewport={{ once: true }}
                     style={{
                       zIndex: isHovered ? 50 : isCenter ? 10 : isLeft ? 5 : 4,
-                      willChange: "transform",
+                      willChange: "transform, opacity",
+                      transformStyle: "preserve-3d",
+                      backfaceVisibility: "hidden",
                     }}
-                    className="absolute bg-white p-5 rounded-2xl shadow-xl flex flex-col w-[12rem] md:w-[10rem] lg:w-[14rem]"
+                    className="absolute bg-white p-5 rounded-2xl shadow-xl flex flex-col w-[12rem] md:w-[10rem] lg:w-[14rem] transform-gpu"
                   >
                     <m.span
                       layout
@@ -263,14 +201,20 @@ const Hero = () => {
                       {card.decs}
                     </p>
                     {card.image && (
-                      <div className="mt-3 w-full h-24 rounded-lg overflow-hidden relative shadow-inner">
+                      <div className="mt-3 w-full h-24 rounded-lg overflow-hidden relative shadow-inner pointer-events-none">
                         <Image
                           src={card.image}
                           alt={card.tag}
                           fill
                           className="object-cover"
-                          sizes="300px"
-                          priority={index === 1}
+                          sizes="(max-width: 640px) 192px, (max-width: 1024px) 160px, 224px"
+                          priority={isCenter || index === 1}
+                          style={{
+                            willChange: "opacity, transform, filter",
+                            display: "inline-block",
+                            backfaceVisibility: "hidden",
+                            WebkitFontSmoothing: "antialiased"
+                          }}
                         />
                       </div>
                     )}
@@ -280,10 +224,6 @@ const Hero = () => {
             </div>
           </m.div>
         </div>
-
-
-
-        <BackToTopButton />
       </div>
     </LazyMotion>
   );

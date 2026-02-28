@@ -1,6 +1,6 @@
 "use client";
 
-import { RevealSection } from "../../real-estate-software/components/RevealSection";
+import { RevealSection } from "../../real-estate-software-development/components/RevealSection";
 import { solutions } from "./data";
 
 import { FaArrowRight } from "react-icons/fa";

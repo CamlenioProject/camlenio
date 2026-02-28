@@ -40,7 +40,7 @@ interface FeatureCardProps {
 const MakeUsTop = () => {
   return (
     <LazyMotion features={domMax}>
-      <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove overflow-hidden py-22">
+      <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 overflow-hidden py-22">
         <Divider />
         <div className="max-w-7xl mx-auto text-center px-4">
           {" "}

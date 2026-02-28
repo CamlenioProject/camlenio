@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { IconArrowNarrowLeft, IconArrowNarrowRight } from "@tabler/icons-react";
-import { cn } from "../../../../../../lib/utils";
+import { cn } from "../../../../../lib/utils";
 import { motion } from "motion/react";
 
 interface CarouselProps {

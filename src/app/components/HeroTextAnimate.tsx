@@ -49,7 +49,7 @@ export function HeroTextAnimate({
         >
           {longestWord}
         </span>
-        <div className="col-start-1 row-start-1 w-full text-center">
+        <div className="col-start-1 row-start-1 w-full text-center overflow-hidden">
           <AnimatePresence mode="wait">
             <m.div
               key={words[currentWordIndex]}
@@ -57,24 +57,34 @@ export function HeroTextAnimate({
                 "col-start-1 row-start-1 whitespace-nowrap",
                 textClassName
               )}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
             >
               {words[currentWordIndex].split("").map((letter, i) => (
                 <m.span
                   key={`${words[currentWordIndex]}-${i}`}
-                  initial={{ opacity: 0, filter: "blur(8px)", y: 5 }}
-                  animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                  exit={{
-                    opacity: 0,
-                    filter: "blur(8px)",
-                    transition: { duration: 0.2 },
+                  variants={{
+                    hidden: { opacity: 0, filter: "blur(8px)", y: 5 },
+                    visible: { opacity: 1, filter: "blur(0px)", y: 0 },
+                    exit: {
+                      opacity: 0,
+                      filter: "blur(8px)",
+                      transition: { duration: 0.15 }
+                    }
                   }}
                   transition={{
-                    delay: i * 0.02, // Slightly faster staggered delay
-                    duration: animationDuration / 1000,
-                    ease: "easeOut",
+                    delay: i * 0.015, // Slightly faster staggered delay for better feel
+                    duration: 0.4,
+                    ease: [0.22, 1, 0.36, 1], // Smoother quintic ease-out
                   }}
-                  style={{ willChange: "filter, opacity, transform" }}
-                  className="inline-block"
+                  style={{
+                    willChange: "opacity, transform, filter",
+                    display: "inline-block",
+                    backfaceVisibility: "hidden",
+                    WebkitFontSmoothing: "antialiased"
+                  }}
+                  className="transform-gpu"
                 >
                   {letter === " " ? "\u00A0" : letter}
                 </m.span>

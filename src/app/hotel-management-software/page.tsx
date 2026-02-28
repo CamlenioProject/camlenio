@@ -8,8 +8,8 @@ import { AutomateBusiness } from "./components/AutomateBusiness";
 // Using MotionLayout from realestatesoftware to keep consistency
 // Import RevealSection here too for the middle text
 import { useRouter } from "next/navigation";
-import { MotionLayout } from "../real-estate-software/components/MotionLayout";
-import { RevealSection } from "../real-estate-software/components/RevealSection";
+import { MotionLayout } from "../real-estate-software-development/components/MotionLayout";
+import { RevealSection } from "../real-estate-software-development/components/RevealSection";
 
 export default function HotelManagementPage() {
   const router = useRouter();

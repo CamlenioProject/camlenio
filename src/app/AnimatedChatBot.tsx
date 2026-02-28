@@ -159,7 +159,7 @@ export default function SimpleFormChatBot() {
 
     const timer = setTimeout(() => {
       if (!open) setShowSuggestion(true);
-    }, 2000);
+    }, 60000);
 
     window.addEventListener("keydown", handleEsc);
 

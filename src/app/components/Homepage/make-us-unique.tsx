@@ -25,7 +25,6 @@ const cards = [
 
 export default function MakeUsUnique() {
   return (
-
     <div className="relative overflow-hidden py-16 bg-gray-800">
       <div className="absolute -top-10 -right-10 w-64 h-64 bg-orange-500 rounded-full opacity-100 blur-3xl -z-10"></div>
       <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-orange-500 rounded-full opacity-100 blur-3xl -z-10"></div>

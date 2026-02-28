@@ -37,6 +37,7 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [captchaKey, setCaptchaKey] = useState(0);
 
+  const [isImgLoading, setIsImgLoading] = useState(true);
   const [countryCode, setCountryCode] = useState("+91");
 
   const countryCodes = [
@@ -522,14 +523,18 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                           </div>
                         </form>
                       </div>
-
-                      <div className="w-full md:w-1/2">
+                      <div className="w-full md:w-1/2 relative min-h-[300px] md:min-h-full">
+                        {isImgLoading && (
+                          <div className="absolute inset-0 bg-gray-200 animate-pulse md:rounded-r-2xl" />
+                        )}
                         <Image
-                          src="/Custom-Software-popup-post.webp"
+                          src="/Holi_ad_Post(02-28-2026).webp"
                           alt="Contact us"
                           width={600}
                           height={600}
-                          className="w-100 md:w-full md:h-full object-fill md:rounded-r-2xl"
+                          onLoadingComplete={() => setIsImgLoading(false)}
+                          className={`w-100 md:w-full md:h-full object-fill md:rounded-r-2xl transition-opacity duration-300 ${isImgLoading ? "opacity-0" : "opacity-100"
+                            }`}
                           priority
                         />
                       </div>
