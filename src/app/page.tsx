@@ -2,8 +2,7 @@
 import dynamic from "next/dynamic";
 import Hero from "./components/Homepage/hero";
 import SectionWrapper from "./components/SectionWrapper";
-import HoliInteract from "./components/HoliInteract";
-import FormPopup from "./components/FormPopup";
+// import FormPopup from "./components/FormPopup";
 
 const ItSolution = dynamic(() => import("./components/Homepage/Itsolution"));
 const IndustriesSection = dynamic(
@@ -19,14 +18,14 @@ const SolutionsScale = dynamic(
   () => import("./components/Homepage/solutions-scale")
 );
 const OurProcess = dynamic(() => import("./components/Homepage/our-process"));
-const Technologies = dynamic(
-  () => import("./components/Homepage/technologies")
-);
+// const Technologies = dynamic(
+//   () => import("./components/Homepage/technologies")
+// );
 const Testimonials = dynamic(
   () => import("./components/Homepage/testimonials")
 );
 const FreeDemo = dynamic(() => import("./components/Homepage/free-demo"));
-const BlogSection = dynamic(() => import("./components/Homepage/blog-section"));
+// const BlogSection = dynamic(() => import("./components/Homepage/blog-section"));
 import { useState, useEffect } from "react";
 import { LogoSlider } from "./components/Homepage/logoslider";
 
@@ -86,27 +85,27 @@ const Home = () => {
       <SectionWrapper minHeight="700px">
         <OurProcess />
       </SectionWrapper>
-
+{/* 
       <SectionWrapper minHeight="300px">
         <Technologies />
-      </SectionWrapper>
+      </SectionWrapper> */}
 
       <SectionWrapper minHeight="400px">
         <Testimonials />
       </SectionWrapper>
 
-      <SectionWrapper minHeight="300px">
+      {/* <SectionWrapper minHeight="300px">
         <FreeDemo />
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper minHeight="500px">
+      {/* <SectionWrapper minHeight="500px">
         <BlogSection />
-      </SectionWrapper>
-      <HoliInteract />
-      <FormPopup
+      </SectionWrapper> */}
+
+      {/* <FormPopup
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
-      />
+      /> */}
     </div>
   );
 };

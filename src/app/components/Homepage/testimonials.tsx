@@ -71,13 +71,13 @@ export default function Testimonials() {
               Inspire Us
             </span>
           </h6>
-          <p className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans">
-            We take pride in being a trusted partner for our clients. Our
-            commitment lies in delivering innovative, secure, and user-friendly
-            solutions that truly make a difference. We believe in building
-            long-term relationships based on reliability, transparency, and
-            customer satisfaction.
-          </p>
+            {/* <p className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans">
+              We take pride in being a trusted partner for our clients. Our
+              commitment lies in delivering innovative, secure, and user-friendly
+              solutions that truly make a difference. We believe in building
+              long-term relationships based on reliability, transparency, and
+              customer satisfaction.
+            </p> */}
           <div className="relative max-w-5xl mx-auto overflow-hidden grid md:grid-cols-2 rounded-4xl border-2 border-orange-500 mt-4">
             <div className="p-8 flex flex-col justify-center ">
               <div className="text-center mb-12">

@@ -7,6 +7,8 @@ import { ArrowRight } from "lucide-react";
 import { Suspense, lazy, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { LoadingScreen } from "@/components/LoadingScreen";
+
 // Lazy load the 3D model component
 const PhoneModel = lazy(() => import("./PhoneModel").then(module => ({ default: module.PhoneModel })));
 
@@ -14,11 +16,13 @@ function Loader() {
   const { progress } = useProgress();
   return (
     <Html center>
-      <div className="flex flex-col items-center justify-center pointer-events-none select-none">
-        <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
-        <p className="mt-2 text-sm font-medium text-gray-500 tracking-wider transition-all duration-300">
-          {progress.toFixed(0)}%
-        </p>
+      <div className="flex flex-col items-center justify-center pointer-events-none select-none -translate-y-6">
+        <LoadingScreen
+          variant="inline"
+          message="Loading 3D Model"
+          subtitle={`${progress.toFixed(0)}%`}
+          className="!bg-transparent"
+        />
       </div>
     </Html>
   );

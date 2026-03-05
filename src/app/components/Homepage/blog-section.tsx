@@ -72,9 +72,10 @@ export default function BlogSection(): React.JSX.Element {
                 return (
                   <Link
                     key={blog.id}
-                    href={blog.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    //  href={blog.link}
+                    // target="_blank"
+                    // rel="noopener noreferrer"
+                    href={`/blog/${blog.id}`}
                     className="block"
                   >
                     <div
@@ -118,7 +119,7 @@ export default function BlogSection(): React.JSX.Element {
                           Read More →
                           <FaHeart className="text-gray-400 hover:text-red-500 transition" />
                         </div>
-                      </div> 
+                      </div>
                     </div>
                   </Link>
                 );

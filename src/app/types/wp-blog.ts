@@ -9,6 +9,8 @@ export interface WPFeaturedMedia {
     sizes?: {
       medium_large?: WPFeaturedMediaSize;
       full?: WPFeaturedMediaSize;
+      medium?: WPFeaturedMediaSize;
+      thumbnail?: WPFeaturedMediaSize;
     };
   };
 }
@@ -16,11 +18,19 @@ export interface WPFeaturedMedia {
 export interface WPBlog {
   id: number;
   date: string;
+  slug: string;
   link: string;
   title: {
     rendered: string;
   };
+  content: {
+    rendered: string;
+  };
+  excerpt: {
+    rendered: string;
+  };
   _embedded?: {
     "wp:featuredmedia"?: WPFeaturedMedia[];
+    "author"?: Array<{ name: string }>;
   };
 }
