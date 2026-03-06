@@ -7,7 +7,7 @@ import Link from "next/link";
 import { WPBlog } from "../../types/wp-blog";
 import { CalendarIcon, ClockIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
-import { LoadingScreen } from "@/components/LoadingScreen";
+import { LoadingScreen } from "@/app/components/ui/LoadingScreen";
 
 export default function SingleBlogPage() {
   const { id } = useParams();

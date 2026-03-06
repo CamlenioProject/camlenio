@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { WPBlog } from "../types/wp-blog";
 import { MagnifyingGlassIcon, Squares2X2Icon, ListBulletIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-import { LoadingScreen } from "@/components/LoadingScreen";
+import { LoadingScreen } from "@/app/components/ui/LoadingScreen";
 
 export default function BlogListingPage() {
   const [posts, setPosts] = useState<WPBlog[]>([]);

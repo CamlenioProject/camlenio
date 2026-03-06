@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { AnimatePresence, useScroll, useMotionValueEvent, motion, domMax } from "framer-motion";
+import { AnimatePresence, useScroll, useMotionValueEvent, m, LazyMotion, domMax } from "framer-motion";
 import {
   XMarkIcon,
   ChevronDownIcon,
@@ -48,88 +48,50 @@ import { MobileDropdown } from "./MobileDropdown";
 
 // --- Data Constants ---
 const availablePages = [
-  // "/company/portfolio",
-  "/solutions/customized-software",
-  "/services/frontend-development",
-  "/solutions/crm-software",
-  "/industries/ecommerce-portal",
-  // "/industries/grocery-software",
-  // "/industries/real-estate-software",
-  "/solutions/mlm-software",
-  "/solutions/hrms-software",
-  "/industries/fintech-softwares",
-  "/industries/hotel-management",
-  // "/services/android-app-development",
-  // "/services/full-stack-development",
-  // "/services/ui-ux-designing",
-  // "/services/web-development",
-  // "/solutions/billing-software",
-  // "/services/software-development",
-  // "/services/mobile-app-development",
-  // "/services/ios-app-development",
-  // "/services/iot-app-development",
-  // "/services/ondemand-app-development",
-  // "/services/hybrid-app-development",
-  // "https://blogs.camlenio.com",
-  "/blog",
-  "/company/about",
+  // "/portfolio",
+  "/custom-software-development-services",
+  "/frontend-development",
+  "/crm-software-development",
+  "/ecommerce-software-development",
+  "/grocery-software",
+  "/real-estate-software-development",
+  "/mlm-software-development-company",
+  "/human-resource-management-software-development",
+  "/fintech-software-development-company",
+  "/hotel-management-software",
+  "/android-mobile-app-development",
+  "/full-stack-development",
+  "/ui-ux-designing",
+  "/web-development",
+  "/billing-software",
+  "/travel-booking",
+  "/blogs",
+  "/about",
   "/careers",
   "/contact",
-  // "/testimonials",
-  // "/fintech-software/aeps-services",
-  // "/fintech-software/recharge-services",
-  // "/fintech-software/bbps-services",
-  // "/fintech-software/dmt-services",
-  // "/fintech-software/uti-pancard-services",
-  // "/fintech-software/m-atm-service",
-  "/fintech-software/imps-upi-payout-services",
-  // "/fintech-software/m-pos-service",
-  // "/fintech-software/credit-card-bill-payment-service",
-  // "/fintech-software/fasttag-recharge-service",
-  // "/fintech-software/dynamic-offline-services",
-  // "/services/neobanking",
-  // "/services/healthcare-software",
-  // "/services/art-banking-software",
-  // "/services/school-management-software",
-  // "/services/online-education-software",
-  // "/services/learning-management-software",
-  // "/industries/travel-booking",
-  // "/services/food-delivery-software",
-  // "/services/restaurant-management",
-  // "/services/employee-tracking",
-  // "/services/reseller-software",
-  // "/services/inventory-management",
-  // "/services/cab-booking",
-  "/company/press-events",
-  // "/hireateam/hire-developers",
-  // "/hireateam/hire-front-end-developers",
-  // "/hireateam/hire-back-end-developers",
-  // "/hireateam/hire-cms-developers",
-  // "/hireateam/hire-ai-engineers",
-  // "/hireateam/hire-digital-marketing-experts",
-  // "/hireateam/hire-graphic-designers",
+  "/imps-upi-payout-services",
+  "/press-events",
 ];
 
 const servicesMenuData = [
-
   {
     title: "App Development",
     items: [
-      { title: "Android Mobile App Development", href: "android-app-development", icon: DevicePhoneMobileIcon },
-      { title: "IPhone Mobile App Development", href: "ios-app-development", icon: DevicePhoneMobileIcon },
-      { title: "IoT App Development", href: "iot-app-development", icon: CpuChipIcon },
-      { title: "On-Demand App Development", href: "ondemand-app-development", icon: TruckIcon },
-      { title: "Hybrid App Development", href: "hybrid-app-development", icon: CodeBracketIcon },
+      { title: "Android Mobile App Development", href: "/android-mobile-app-development", icon: DevicePhoneMobileIcon },
+      { title: "IPhone Mobile App Development", href: "/coming-soon", icon: DevicePhoneMobileIcon },
+      { title: "IoT App Development", href: "/coming-soon", icon: CpuChipIcon },
+      { title: "On-Demand App Development", href: "/coming-soon", icon: TruckIcon },
+      { title: "Hybrid App Development", href: "/coming-soon", icon: CodeBracketIcon },
     ]
   },
   {
     title: "Custom Web Development",
     items: [
-      { title: "Web Application Development", href: "web-development", icon: GlobeAltIcon },
-      { title: "Frontend Development", href: "frontend-development", icon: CodeBracketIcon },
-      { title: "Backend Development", href: "backend-development", icon: ServerIcon },
-      { title: "Full-Stack Development", href: "full-stack-development", icon: CommandLineIcon },
-      { title: "PWA Solutions", href: "pwa-solutions", icon: DevicePhoneMobileIcon },
+      { title: "Web Application Development", href: "/web-development", icon: GlobeAltIcon },
+      { title: "Frontend Development", href: "/frontend-development", icon: CodeBracketIcon },
+      { title: "Backend Development", href: "/coming-soon", icon: ServerIcon },
+      { title: "Full-Stack Development", href: "/full-stack-development", icon: CommandLineIcon },
+      { title: "PWA Solutions", href: "/coming-soon", icon: DevicePhoneMobileIcon },
     ]
   },
   {
@@ -151,11 +113,11 @@ const navItems = [
     href: "company",
     dropdown: true,
     items: [
-      { title: "About Us", href: "/company/about", sub: "About our company", icon: InformationCircleIcon },
-      { title: "Portfolio", href: "/company/portfolio", sub: "Explore our work", icon: BriefcaseIcon },
-      { title: "Testimonials", href: "/testimonials", sub: "What clients say", icon: ChatBubbleLeftRightIcon },
-      { title: "Press & Events", href: "/company/press-events", sub: "News & Events", icon: GlobeAltIcon },
-      { title: "Blog", href: "/blog", sub: "Latest insights", icon: NewspaperIcon },
+      { title: "About Us", href: "/about", sub: "About our company", icon: InformationCircleIcon },
+      { title: "Portfolio", href: "/portfolio", sub: "Explore our work", icon: BriefcaseIcon },
+      { title: "Testimonials", href: "/coming-soon", sub: "What clients say", icon: ChatBubbleLeftRightIcon },
+      { title: "Press & Events", href: "/press-events", sub: "News & Events", icon: GlobeAltIcon },
+      { title: "Blog", href: "https://blogs.camlenio.com", sub: "Latest insights", icon: NewspaperIcon },
     ],
   },
   {
@@ -175,50 +137,50 @@ const navItems = [
         title: "Finance & Banking",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Neo-Banking", href: "neobanking", desc: "Next-gen digital banking solutions", icon: CurrencyRupeeIcon },
-          { title: "Fintech Softwares", href: "fintech-softwares", desc: "Comprehensive financial tech", icon: CreditCardIcon },
+          { title: "Neo-Banking", href: "/coming-soon", desc: "Next-gen digital banking solutions", icon: CurrencyRupeeIcon },
+          { title: "Fintech Softwares", href: "/fintech-software-development-company", desc: "Comprehensive financial tech", icon: CreditCardIcon },
         ]
       },
       {
         title: "Commerce & Retail",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "E-commerce Software", href: "ecommerce-portal", desc: "Robust online store platforms", icon: ShoppingBagIcon },
-          { title: "Grocery Software", href: "grocery-software", desc: "Delivery & management systems", icon: ShoppingBagIcon },
-          { title: "Food Delivery Software", href: "food-delivery-software", desc: "Order tracking & logistics", icon: CakeIcon },
+          { title: "E-commerce Software", href: "/ecommerce-software-development", desc: "Robust online store platforms", icon: ShoppingBagIcon },
+          { title: "Grocery Software", href: "/grocery-software", desc: "Delivery & management systems", icon: ShoppingBagIcon },
+          { title: "Food Delivery Software", href: "/coming-soon", desc: "Order tracking & logistics", icon: CakeIcon },
         ]
       },
       {
         title: "Healthcare",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Healthcare Software", href: "healthcare-software", desc: "Patient management systems", icon: UserGroupIcon },
-          { title: "ART Banking Software", href: "art-banking-software", desc: "Specialized fertility tools", icon: UserGroupIcon }
+          { title: "Healthcare Software", href: "/coming-soon", desc: "Patient management systems", icon: UserGroupIcon },
+          { title: "ART Banking Software", href: "/coming-soon", desc: "Specialized fertility tools", icon: UserGroupIcon }
         ]
       },
       {
         title: "Education",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "School Management", href: "school-management-software", desc: "Streamlined administration", icon: AcademicCapIcon },
-          { title: "Online Education", href: "online-education-software", desc: "Virtual classrooms & LMS", icon: AcademicCapIcon },
-          { title: "Learning Management", href: "learning-management-software", desc: "Course delivery platforms", icon: AcademicCapIcon }
+          { title: "School Management", href: "/coming-soon", desc: "Streamlined administration", icon: AcademicCapIcon },
+          { title: "Online Education", href: "/coming-soon", desc: "Virtual classrooms & LMS", icon: AcademicCapIcon },
+          { title: "Learning Management", href: "/coming-soon", desc: "Course delivery platforms", icon: AcademicCapIcon }
         ]
       },
       {
         title: "Travel & Hospitality",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Travel Booking", href: "travel-booking", desc: "Global reservation engines", icon: RocketLaunchIcon },
-          { title: "Hotel Management", href: "hotel-management", desc: "Property management systems", icon: BuildingOfficeIcon },
-          { title: "Cab Booking", href: "cab-booking", desc: "Ride-hailing solutions", icon: TruckIcon }
+          { title: "Travel Booking", href: "/travel-booking", desc: "Global reservation engines", icon: RocketLaunchIcon },
+          { title: "Hotel Management", href: "/hotel-management-software", desc: "Property management systems", icon: BuildingOfficeIcon },
+          { title: "Cab Booking", href: "/coming-soon", desc: "Ride-hailing solutions", icon: TruckIcon }
         ]
       },
       {
         title: "Real Estate",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Real Estate Software", href: "real-estate-software", desc: "Property listings & CRM", icon: HomeIcon }
+          { title: "Real Estate Software", href: "/real-estate-software-development", desc: "Property listings & CRM", icon: HomeIcon }
         ]
       },
     ],
@@ -233,46 +195,46 @@ const navItems = [
         title: "Human Resources",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Employee Tracking", href: "employee-tracking", desc: "Monitor workforce efficiency", icon: UserGroupIcon },
-          { title: "HRMS Software", href: "hrms-software", desc: "Complete HR management", icon: BriefcaseIcon },
+          { title: "Employee Tracking", href: "/coming-soon", desc: "Monitor workforce efficiency", icon: UserGroupIcon },
+          { title: "HRMS Software", href: "/human-resource-management-software-development", desc: "Complete HR management", icon: BriefcaseIcon },
         ]
       },
       {
         title: "Finance & Commerce",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Billing Software", href: "billing-software", desc: "Invoicing & accounts", icon: CreditCardIcon },
-          { title: "Reseller Software", href: "reseller-software", desc: "Manage reseller networks", icon: UserGroupIcon },
+          { title: "Billing Software", href: "/billing-software", desc: "Invoicing & accounts", icon: CreditCardIcon },
+          { title: "Reseller Software", href: "/coming-soon", desc: "Manage reseller networks", icon: UserGroupIcon },
         ]
       },
       {
         title: "Customer Relations",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "CRM Software", href: "crm-software", desc: "Customer relationship tools", icon: UserGroupIcon },
-          { title: "MLM Software", href: "mlm-software", desc: "Multi-level marketing", icon: ChartBarIcon },
+          { title: "CRM Software", href: "/crm-software-development", desc: "Customer relationship tools", icon: UserGroupIcon },
+          { title: "MLM Software", href: "/mlm-software-development-company", desc: "Multi-level marketing", icon: ChartBarIcon },
         ]
       },
       {
         title: "Operations & Inventory",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Inventory Management", href: "inventory-management", desc: "Stock tracking systems", icon: BriefcaseIcon },
+          { title: "Inventory Management", href: "/coming-soon", desc: "Stock tracking systems", icon: BriefcaseIcon },
         ]
       },
       {
         title: "Hospitality & Food",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Restaurant Management", href: "restaurant-management", desc: "POS & kitchen mgmt", icon: ShoppingBagIcon },
+          { title: "Restaurant Management", href: "/coming-soon", desc: "POS & kitchen mgmt", icon: ShoppingBagIcon },
         ]
       },
       {
         title: "Software & Transport",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Customized Software", href: "customized-software", desc: "Tailored IT solutions", icon: CommandLineIcon },
-          { title: "Cab Booking", href: "cab-booking", desc: "Taxi dispatch system", icon: TruckIcon },
+          { title: "Customized Software", href: "/custom-software-development-services", desc: "Tailored IT solutions", icon: CommandLineIcon },
+          { title: "Cab Booking", href: "/coming-soon", desc: "Taxi dispatch system", icon: TruckIcon },
         ]
       },
     ],
@@ -288,47 +250,47 @@ const navItems = [
         title: "Banking Services",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "AEPS Services", href: "aeps-services", desc: "High secure payments", icon: FingerPrintIcon },
-          { title: "M-ATM Service", href: "m-atm-service", desc: "Mobile ATM Access", icon: DevicePhoneMobileIcon },
+          { title: "AEPS Services", href: "/coming-soon", desc: "High secure payments", icon: FingerPrintIcon },
+          { title: "M-ATM Service", href: "/coming-soon", desc: "Mobile ATM Access", icon: DevicePhoneMobileIcon },
         ]
       },
       {
         title: "Money Transfer",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "DMT Services", href: "dmt-services", desc: "Instant money transfer", icon: CurrencyRupeeIcon },
-          { title: "IMPS UPI Payout Services", href: "imps-upi-payout-services", desc: "Seamless UPI payments", icon: QrCodeIcon },
+          { title: "DMT Services", href: "/coming-soon", desc: "Instant money transfer", icon: CurrencyRupeeIcon },
+          { title: "IMPS UPI Payout Services", href: "/imps-upi-payout-services", desc: "Seamless UPI payments", icon: QrCodeIcon },
         ]
       },
       {
         title: "Payment Systems",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Credit Card Bill Payment", href: "credit-card-bill-payment-service", desc: "Easy bill settlements", icon: CreditCardIcon },
-          { title: "M-POS Service", href: "m-pos-service", desc: "Point of sale units", icon: CreditCardIcon },
+          { title: "Credit Card Bill Payment", href: "/coming-soon", desc: "Easy bill settlements", icon: CreditCardIcon },
+          { title: "M-POS Service", href: "/coming-soon", desc: "Point of sale units", icon: CreditCardIcon },
         ]
       },
       {
         title: "Utility Payments",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "BBPS Services", href: "bbps-services", desc: "Bill payment system", icon: BuildingOfficeIcon },
-          { title: "UTI (Pancard) Services", href: "uti-pancard-services", desc: "Pan card services", icon: InformationCircleIcon },
+          { title: "BBPS Services", href: "/coming-soon", desc: "Bill payment system", icon: BuildingOfficeIcon },
+          { title: "UTI (Pancard) Services", href: "/coming-soon", desc: "Pan card services", icon: InformationCircleIcon },
         ]
       },
       {
         title: "Recharge Solutions",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Recharge Services", href: "recharge-services", desc: "Mobile & DTH", icon: BoltIcon },
-          { title: "Fasttag Recharge Service", href: "fasttag-recharge-service", desc: "Toll payments", icon: TruckIcon },
+          { title: "Recharge Services", href: "/coming-soon", desc: "Mobile & DTH", icon: BoltIcon },
+          { title: "Fasttag Recharge Service", href: "/coming-soon", desc: "Toll payments", icon: TruckIcon },
         ]
       },
       {
         title: "Offline & POS",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Dynamic Offline Services", href: "dynamic-offline-services", desc: "Offline transactions", icon: SignalIcon },
+          { title: "Dynamic Offline Services", href: "/coming-soon", desc: "Offline transactions", icon: SignalIcon },
         ]
       },
     ],
@@ -343,43 +305,43 @@ const navItems = [
         title: "Dedicated Teams",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Hire Developers", href: "hiredevelopers", desc: "Build your dream team", icon: CodeBracketIcon },
+          { title: "Hire Developers", href: "/coming-soon", desc: "Build your dream team", icon: CodeBracketIcon },
         ]
       },
       {
         title: "Web Engineering",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Hire Front-End Developers", href: "hirefront-end-developers", desc: "UI/UX implementation", icon: ComputerDesktopIcon },
-          { title: "Hire Back-End Developers", href: "hireback-end-developers", desc: "Robust server logic", icon: ServerIcon },
+          { title: "Hire Front-End Developers", href: "/coming-soon", desc: "UI/UX implementation", icon: ComputerDesktopIcon },
+          { title: "Hire Back-End Developers", href: "/coming-soon", desc: "Robust server logic", icon: ServerIcon },
         ]
       },
       {
         title: "CMS Solutions",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Hire CMS Developers", href: "hirecmsdevelopers", desc: "WordPress & more", icon: CommandLineIcon },
+          { title: "Hire CMS Developers", href: "/coming-soon", desc: "WordPress & more", icon: CommandLineIcon },
         ]
       },
       {
         title: "Advanced Tech",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Hire AI Engineers", href: "hireaiengineers", desc: "AI & ML integration", icon: CpuChipIcon },
+          { title: "Hire AI Engineers", href: "/coming-soon", desc: "AI & ML integration", icon: CpuChipIcon },
         ]
       },
       {
         title: "Digital Marketing",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Hire Digital Marketing Experts", href: "hiredigitalmarketingexperts", desc: "Grow your reach", icon: ChartBarIcon },
+          { title: "Hire Digital Marketing Experts", href: "/coming-soon", desc: "Grow your reach", icon: ChartBarIcon },
         ]
       },
       {
         title: "Creative Design",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Hire Graphic Designers", href: "hiregraphicdesigners", desc: "Creative visuals", icon: PaintBrushIcon },
+          { title: "Hire Graphic Designers", href: "/coming-soon", desc: "Creative visuals", icon: PaintBrushIcon },
         ]
       },
     ],
@@ -415,7 +377,7 @@ const ServicesMegaMenu = ({ baseHref }: { baseHref: string }) => {
   const activeData = servicesMenuData.find(d => d.title === activeTitle);
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}
@@ -437,7 +399,7 @@ const ServicesMegaMenu = ({ baseHref }: { baseHref: string }) => {
             <span className="relative z-10">{group.title}</span>
             {/* Active Indicator & Transition */}
             {activeTitle === group.title && (
-              <motion.div
+              <m.div
                 layoutId="activeGlow"
                 className="absolute inset-0 bg-white rounded-xl -z-10 shadow-sm"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
@@ -454,7 +416,7 @@ const ServicesMegaMenu = ({ baseHref }: { baseHref: string }) => {
       {/* Right Content - Advanced Cards & Grids */}
       <div className="flex-1 p-6 pl-8 relative min-h-[440px]">
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeTitle}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -544,10 +506,10 @@ const ServicesMegaMenu = ({ baseHref }: { baseHref: string }) => {
                 </div>
               </div>
             )}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -634,6 +596,7 @@ const CompanyDropdown = ({ item, baseHref }: { item: any, baseHref: string }) =>
 
           <Link
             href={blogItem.href}
+            target="_blank"
             className="relative z-10 inline-flex items-center gap-2 group w-fit mt-2"
           >
             <span className="text-white font-bold text-sm relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-white after:transition-all after:duration-300 group-hover:after:w-full">
@@ -775,268 +738,270 @@ export default function HeaderNew() {
 
   return (
     <>
-      <motion.header
-        variants={{
-          visible: { y: 0 },
-          hidden: { y: 0 },
-        }}
-        initial="visible"
-        animate="visible"
-        transition={{ duration: 0.35, ease: "easeInOut" }}
-        className={clsx(
-          "fixed top-0 inset-x-0 z-[999] transition-all duration-500 ease-in-out bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove ",
-          (isPageWithSolidHeader || !isTop)
-            ? "bg-orange-100"
-            : "bg-transparent lg:bg-orange-100 "
-        )}
-      >
-        {/* Navbar Container */}
-        <div className={clsx(
-          "w-full flex items-center relative z-[1001] transition-all duration-500",
-          isTop ? "h-18" : "h-16"
-        )}>
-          <div className="w-full px-6 md:px-8 flex items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-1 relative z-50 flex-shrink-0 group">
-              <div className="relative mb-1">
-                <Image
-                  src="/logo-icon.png"
-                  alt="Camlenio"
-                  width={40}
-                  height={40}
-                  className="w-9 h-auto transition-transform duration-500 group-hover:rotate-12"
-                  unoptimized
-                />
+      <LazyMotion features={domMax}>
+        <m.header
+          variants={{
+            visible: { y: 0 },
+            hidden: { y: 0 },
+          }}
+          initial="visible"
+          animate="visible"
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className={clsx(
+            "fixed top-0 inset-x-0 z-[999] transition-all duration-500 ease-in-out bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove ",
+            (isPageWithSolidHeader || !isTop)
+              ? "bg-orange-100"
+              : "bg-transparent lg:bg-orange-100 "
+          )}
+        >
+          {/* Navbar Container */}
+          <div className={clsx(
+            "w-full flex items-center relative z-[1001] transition-all duration-500",
+            isTop ? "h-18" : "h-16"
+          )}>
+            <div className="w-full px-6 md:px-8 flex items-center justify-between">
+              {/* Logo */}
+              <Link href="/" className="flex items-center gap-1 relative z-50 flex-shrink-0 group">
+                <div className="relative mb-1">
+                  <Image
+                    src="/logo-icon.png"
+                    alt="Camlenio"
+                    width={40}
+                    height={40}
+                    className="w-8 h-auto transition-transform duration-500 group-hover:rotate-12"
+                    unoptimized
+                  />
+                </div>
+                <span className={clsx("flex items-center text-2xl font-bold tracking-tight transition-colors duration-300", isTop ? "text-gray-900" : "text-black")}>
+                  {"Camlenio".split("").map((char, index) => {
+                    // Replicating specific legacy animations per character
+                    let animateProps: any = {};
+                    const isLooping = index === 6 || index === 7; // i and o
+
+                    switch (index) {
+                      case 0: // C
+                        animateProps = {
+                          initial: { y: -5, opacity: 0, rotateX: -15, rotateY: -10 },
+                          animate: { y: 0, opacity: 1, rotateX: 0, rotateY: 0 },
+                          transition: { duration: 0.8, ease: "easeInOut" }
+                        };
+                        break;
+                      case 1: // a
+                        animateProps = {
+                          initial: { y: 50, opacity: 0, rotateX: -90, transformOrigin: "bottom center" },
+                          animate: { y: 0, opacity: 1, rotateX: 0 },
+                          transition: { duration: 1, ease: "easeOut" }
+                        };
+                        break;
+                      case 2: // m
+                        animateProps = {
+                          initial: { x: 0 },
+                          animate: { x: [0, 20, 0] },
+                          transition: { duration: 1.2, ease: "easeOut", times: [0, 0.6, 1] }
+                        };
+                        break;
+                      case 3: // l (Was missing in legacy, adding simple fade)
+                        animateProps = {
+                          initial: { opacity: 0, scale: 0.9 },
+                          animate: { opacity: 1, scale: 1 },
+                          transition: { duration: 0.5, delay: 0.2 }
+                        };
+                        break;
+                      case 4: // e
+                        animateProps = {
+                          initial: { y: -30, opacity: 0 },
+                          animate: { y: 0, opacity: 1 },
+                          transition: { type: "spring", bounce: 0.6, duration: 0.8 }
+                        };
+                        break;
+                      case 5: // n
+                        animateProps = {
+                          initial: { scale: 0, opacity: 0 },
+                          animate: { scale: 1, opacity: 1 },
+                          transition: { type: "spring", stiffness: 200 }
+                        };
+                        break;
+                      case 6: // i
+                        animateProps = {
+                          animate: { rotateX: [0, 360], scale: [1, 1.2, 1] },
+                          transition: { duration: 1.5, repeat: Infinity, repeatType: "reverse", repeatDelay: 5, ease: "easeInOut" }
+                        };
+                        break;
+                      case 7: // o
+                        animateProps = {
+                          animate: { rotateY: [0, -15, 0] },
+                          transition: { duration: 3, repeat: Infinity, repeatType: "reverse", repeatDelay: 8, ease: "easeInOut" }
+                        };
+                        break;
+                      default:
+                        break;
+                    }
+
+                    return (
+                      <m.span
+                        key={index}
+                        className="inline-block origin-center"
+                        {...animateProps}
+                      >
+                        {char}
+                      </m.span>
+                    );
+                  })}
+                </span>
+              </Link>
+
+              {/* Desktop Nav - Just Links, No Dropdown Rendering */}
+              <nav className="hidden lg:flex items-center gap-2 relative h-full">
+                {navItems.map((item) => (
+                  <div
+                    key={item.title}
+                    className="h-full flex items-center px-1"
+                    onMouseEnter={() => handleMouseEnter(item.title)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className="cursor-pointer relative flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-orange-200/60 transition-all duration-300 group">
+                      {item.dropdown ? (
+                        <div
+                          className={clsx(
+                            "text-[13px] font-medium transition-colors flex items-center gap-1.5",
+                            isTop ? "text-gray-800" : "text-gray-900"
+                          )}
+                        >
+                          {item.title}
+                          <ChevronDownIcon className={clsx("w-3 h-3 stroke-[3] transition-transform duration-300", hoveredNav === item.title ? "-rotate-180 text-orange-600" : "text-gray-400 group-hover:text-orange-600")} />
+                        </div>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          className={clsx(
+                            "text-[15px] font-medium transition-colors flex items-center gap-1.5",
+                            isTop ? "text-gray-800" : "text-gray-900"
+                          )}
+                        >
+                          {item.title}
+                        </Link>
+                      )}
+
+                      {item.title === "Portfolio" && (
+                        <span className={clsx(
+                          "absolute bottom-0 left-0 w-full h-[2px] bg-orange-600 transform origin-left transition-transform duration-300 ease-out",
+                          hoveredNav === item.title ? "scale-x-100" : "scale-x-0"
+                        )} />
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </nav>
+
+              {/* Right Side */}
+              <div className="flex items-center gap-4 flex-shrink-0">
+                <Link
+                  href="/contact"
+                  className="hidden lg:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2.5 rounded-full text-[15px] font-medium transition-all duration-300 active:scale-95 group/btn"
+                >
+                  <PhoneIcon className="w-4 h-4 text-white/90 group-hover/btn:rotate-12 transition-transform duration-300" />
+                  <span>Contact Us</span>
+                </Link>
+
+                <label className="hamburger lg:hidden p-2 text-black relative z-[1002] block">
+                  <input
+                    type="checkbox"
+                    checked={mobileMenuOpen}
+                    onChange={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  />
+                  <svg viewBox="0 0 32 32" className="h-10 w-10">
+                    <path className="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+                    <path className="line" d="M7 16 27 16"></path>
+                  </svg>
+                </label>
               </div>
-              <span className={clsx("flex items-center text-2xl font-bold tracking-tight transition-colors duration-300", isTop ? "text-gray-900" : "text-black")}>
-                {"Camlenio".split("").map((char, index) => {
-                  // Replicating specific legacy animations per character
-                  let animateProps: any = {};
-                  const isLooping = index === 6 || index === 7; // i and o
+            </div>
+          </div>
 
-                  switch (index) {
-                    case 0: // C
-                      animateProps = {
-                        initial: { y: -5, opacity: 0, rotateX: -15, rotateY: -10 },
-                        animate: { y: 0, opacity: 1, rotateX: 0, rotateY: 0 },
-                        transition: { duration: 0.8, ease: "easeInOut" }
-                      };
-                      break;
-                    case 1: // a
-                      animateProps = {
-                        initial: { y: 50, opacity: 0, rotateX: -90, transformOrigin: "bottom center" },
-                        animate: { y: 0, opacity: 1, rotateX: 0 },
-                        transition: { duration: 1, ease: "easeOut" }
-                      };
-                      break;
-                    case 2: // m
-                      animateProps = {
-                        initial: { x: 0 },
-                        animate: { x: [0, 20, 0] },
-                        transition: { duration: 1.2, ease: "easeOut", times: [0, 0.6, 1] }
-                      };
-                      break;
-                    case 3: // l (Was missing in legacy, adding simple fade)
-                      animateProps = {
-                        initial: { opacity: 0, scale: 0.9 },
-                        animate: { opacity: 1, scale: 1 },
-                        transition: { duration: 0.5, delay: 0.2 }
-                      };
-                      break;
-                    case 4: // e
-                      animateProps = {
-                        initial: { y: -30, opacity: 0 },
-                        animate: { y: 0, opacity: 1 },
-                        transition: { type: "spring", bounce: 0.6, duration: 0.8 }
-                      };
-                      break;
-                    case 5: // n
-                      animateProps = {
-                        initial: { scale: 0, opacity: 0 },
-                        animate: { scale: 1, opacity: 1 },
-                        transition: { type: "spring", stiffness: 200 }
-                      };
-                      break;
-                    case 6: // i
-                      animateProps = {
-                        animate: { rotateX: [0, 360], scale: [1, 1.2, 1] },
-                        transition: { duration: 1.5, repeat: Infinity, repeatType: "reverse", repeatDelay: 5, ease: "easeInOut" }
-                      };
-                      break;
-                    case 7: // o
-                      animateProps = {
-                        animate: { rotateY: [0, -15, 0] },
-                        transition: { duration: 3, repeat: Infinity, repeatType: "reverse", repeatDelay: 8, ease: "easeInOut" }
-                      };
-                      break;
-                    default:
-                      break;
-                  }
-
-                  return (
-                    <motion.span
-                      key={index}
-                      className="inline-block origin-center"
-                      {...animateProps}
-                    >
-                      {char}
-                    </motion.span>
-                  );
-                })}
-              </span>
-            </Link>
-
-            {/* Desktop Nav - Just Links, No Dropdown Rendering */}
-            <nav className="hidden lg:flex items-center gap-2 relative h-full">
-              {navItems.map((item) => (
-                <div
+          {/* Desktop Mega Menu Dropdowns */}
+          <AnimatePresence>
+            {navItems.map((item) => (
+              hoveredNav === item.title && item.dropdown && (
+                <m.div
                   key={item.title}
-                  className="h-full flex items-center px-1"
+                  initial={{ opacity: 0, y: -20, x: "-50%" }}
+                  animate={{ opacity: 1, y: 0, x: "-50%" }}
+                  exit={{ opacity: 0, y: 10, x: "-50%" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="fixed left-1/2 z-[2000] w-auto"
+                  style={{
+                    top: isTop ? "72px" : "64px",
+                  }}
                   onMouseEnter={() => handleMouseEnter(item.title)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <div className="cursor-pointer relative flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-orange-200/60 transition-all duration-300 group">
+                  {item.title === "Services" ? (
+                    <ServicesMegaMenu baseHref={item.href} />
+                  ) : item.title === "Solutions" || item.title === "Hire Talent" || item.title === "Fintech Software" || item.title === "Industries" ? (
+                    <IndustriesDropdown item={item} baseHref={item.href} />
+                  ) : item.title === "Our Company" ? (
+                    <CompanyDropdown item={item} baseHref={item.href} />
+                  ) : null}
+                </m.div>
+              )
+            ))}
+          </AnimatePresence>
+
+
+        </m.header>
+
+        {/* Mobile Menu Overlay - Positions below header and slides down */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <m.div
+              key="mobile-menu"
+              initial={{ opacity: 0, scaleY: 0 }}
+              animate={{ opacity: 1, scaleY: 1 }}
+              exit={{ opacity: 0, scaleY: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed left-0 right-0 bottom-0 z-[998] bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 flex flex-col lg:hidden overflow-y-auto border-t border-gray-100/50 shadow-xl"
+              style={{ top: isTop ? "4.5rem" : "4rem", transformOrigin: "top" }}
+            >
+              <div className="flex-1 px-6 md:px-10 py-4 flex flex-col gap-0 overflow-y-auto pb-4">
+                {navItems.map((item, idx) => (
+                  <div key={idx}>
                     {item.dropdown ? (
-                      <div
-                        className={clsx(
-                          "text-[13px] font-medium transition-colors flex items-center gap-1.5",
-                          isTop ? "text-gray-800" : "text-gray-900"
-                        )}
-                      >
-                        {item.title}
-                        <ChevronDownIcon className={clsx("w-3 h-3 stroke-[3] transition-transform duration-300", hoveredNav === item.title ? "-rotate-180 text-orange-600" : "text-gray-400 group-hover:text-orange-600")} />
-                      </div>
+                      <MobileDropdown
+                        item={item}
+                        isOpen={activeMobileTab === item.title}
+                        onToggle={() => setActiveMobileTab(activeMobileTab === item.title ? null : item.title)}
+                        closeMenu={() => setMobileMenuOpen(false)}
+                        availablePages={availablePages}
+                      />
                     ) : (
                       <Link
                         href={item.href}
-                        className={clsx(
-                          "text-[15px] font-medium transition-colors flex items-center gap-1.5",
-                          isTop ? "text-gray-800" : "text-gray-900"
-                        )}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="text-[18px] md:text-[20px] font-medium text-black hover:text-orange-600 transition-colors block py-2 border-b border-gray-200"
                       >
                         {item.title}
                       </Link>
                     )}
+                  </div>
+                ))}
+              </div>
 
-                    {item.title === "Portfolio" && (
-                      <span className={clsx(
-                        "absolute bottom-0 left-0 w-full h-[2px] bg-orange-600 transform origin-left transition-transform duration-300 ease-out",
-                        hoveredNav === item.title ? "scale-x-100" : "scale-x-0"
-                      )} />
-                    )}
+              <div className="p-4 border-t border-gray-100 bg-white/50 backdrop-blur-sm">
+                <div className="flex flex-col gap-4">
+                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center w-full bg-orange-500 text-white py-3 rounded-full font-medium text-lg hover:bg-orange-600 transition-colors">
+                    Contact
+                  </Link>
+                  <div className="flex gap-6 justify-center mt-4">
+                    {socialIcons.map((s, i) => (
+                      <a key={i} href={s.href} target="_blank" className="text-gray-500 hover:text-black transition-colors text-sm font-medium">{s.title}</a>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </nav>
-
-            {/* Right Side */}
-            <div className="flex items-center gap-4 flex-shrink-0">
-              <Link
-                href="/contact"
-                className="hidden lg:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2.5 rounded-full text-[15px] font-medium transition-all duration-300 active:scale-95 group/btn"
-              >
-                <PhoneIcon className="w-4 h-4 text-white/90 group-hover/btn:rotate-12 transition-transform duration-300" />
-                <span>Contact Us</span>
-              </Link>
-
-              <label className="hamburger lg:hidden p-2 text-black relative z-[1002] block">
-                <input
-                  type="checkbox"
-                  checked={mobileMenuOpen}
-                  onChange={() => setMobileMenuOpen(!mobileMenuOpen)}
-                />
-                <svg viewBox="0 0 32 32" className="h-10 w-10">
-                  <path className="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
-                  <path className="line" d="M7 16 27 16"></path>
-                </svg>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop Mega Menu Dropdowns */}
-        <AnimatePresence>
-          {navItems.map((item) => (
-            hoveredNav === item.title && item.dropdown && (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: -20, x: "-50%" }}
-                animate={{ opacity: 1, y: 0, x: "-50%" }}
-                exit={{ opacity: 0, y: 10, x: "-50%" }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="fixed left-1/2 z-[2000] w-auto"
-                style={{
-                  top: isTop ? "72px" : "64px",
-                }}
-                onMouseEnter={() => handleMouseEnter(item.title)}
-                onMouseLeave={handleMouseLeave}
-              >
-                {item.title === "Services" ? (
-                  <ServicesMegaMenu baseHref={item.href} />
-                ) : item.title === "Solutions" || item.title === "Hire Talent" || item.title === "Fintech Software" || item.title === "Industries" ? (
-                  <IndustriesDropdown item={item} baseHref={item.href} />
-                ) : item.title === "Our Company" ? (
-                  <CompanyDropdown item={item} baseHref={item.href} />
-                ) : null}
-              </motion.div>
-            )
-          ))}
-        </AnimatePresence>
-
-
-      </motion.header>
-
-      {/* Mobile Menu Overlay - Positions below header and slides down */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, scaleY: 0 }}
-            animate={{ opacity: 1, scaleY: 1 }}
-            exit={{ opacity: 0, scaleY: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed left-0 right-0 bottom-0 z-[998] bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 flex flex-col lg:hidden overflow-y-auto border-t border-gray-100/50 shadow-xl"
-            style={{ top: isTop ? "4.5rem" : "4rem", transformOrigin: "top" }}
-          >
-            <div className="flex-1 px-6 md:px-10 py-4 flex flex-col gap-0 overflow-y-auto pb-4">
-              {navItems.map((item, idx) => (
-                <div key={idx}>
-                  {item.dropdown ? (
-                    <MobileDropdown
-                      item={item}
-                      isOpen={activeMobileTab === item.title}
-                      onToggle={() => setActiveMobileTab(activeMobileTab === item.title ? null : item.title)}
-                      closeMenu={() => setMobileMenuOpen(false)}
-                      availablePages={availablePages}
-                    />
-                  ) : (
-                    <Link
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-[18px] md:text-[20px] font-medium text-black hover:text-orange-600 transition-colors block py-2 border-b border-gray-200"
-                    >
-                      {item.title}
-                    </Link>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <div className="p-4 border-t border-gray-100 bg-white/50 backdrop-blur-sm">
-              <div className="flex flex-col gap-4">
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center w-full bg-orange-500 text-white py-3 rounded-full font-medium text-lg hover:bg-orange-600 transition-colors">
-                  Contact
-                </Link>
-                <div className="flex gap-6 justify-center mt-4">
-                  {socialIcons.map((s, i) => (
-                    <a key={i} href={s.href} target="_blank" className="text-gray-500 hover:text-black transition-colors text-sm font-medium">{s.title}</a>
-                  ))}
-                </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </m.div>
+          )}
+        </AnimatePresence>
+      </LazyMotion >
     </>
   );
 }

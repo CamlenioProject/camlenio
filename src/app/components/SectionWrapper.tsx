@@ -23,11 +23,10 @@ const SectionWrapper = ({
     triggerOnce: true,
   });
 
-  // Defer rendering slightly to avoid main-thread blocking during scroll peak
+  // Render immediately when in view to feel faster
   useEffect(() => {
     if (inView) {
-      const timer = setTimeout(() => setShouldRender(true), 50);
-      return () => clearTimeout(timer);
+      setShouldRender(true);
     }
   }, [inView]);
 
@@ -37,7 +36,6 @@ const SectionWrapper = ({
         ref={ref}
         style={{
           minHeight: !shouldRender ? minHeight : "auto",
-          // contentVisibility: "auto", // Modern CSS hint for skip-rendering (use with caution)
           containIntrinsicSize: `auto ${minHeight}`,
           willChange: "opacity, transform"
         }}
@@ -45,9 +43,12 @@ const SectionWrapper = ({
       >
         {shouldRender ? (
           <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              ease: [0.22, 1, 0.36, 1] // Custom quint ease for smoother feel
+            }}
           >
             {children}
           </m.div>

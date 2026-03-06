@@ -20,7 +20,7 @@ const IndustriesSection = () => {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
           >
-            Creating Value by Innovating More, and{" "}
+            Why Does Camlenio Build{" "}
             <span
               className="text-orange-500"
               style={{
@@ -29,8 +29,9 @@ const IndustriesSection = () => {
                 WebkitFontSmoothing: "antialiased"
               }}
             >
-              Experience More
+              Digital Products{" "}
             </span>
+            That Scale?
           </m.h3>
 
           <m.p
@@ -40,29 +41,24 @@ const IndustriesSection = () => {
             viewport={{ once: true }}
             className="max-w-5xl mx-auto text-gray-600 text-sm md:text-base mb-12 font-sans text-justify"
           >
-            We firmly believe that living by our core values allows us to create
-            a bigger impact in the world—more innovation, more growth, more
-            opportunities, and more support for businesses. In the realm of
-            software development, this philosophy translates to empowering
-            companies with solutions that help them achieve their goals, scale
-            efficiently, and lead confidently in their industry.
+            We focused on creating a Mobile App Development Company, which provides a reliable, high-performance digital operation for modern businesses. We mix methods and engineering to turn the plans into secure scalable products. From the starting level to enterprises, our expert team delivers the technology that performs speedily, user-friendly, and provides long-term growth across the industries.
           </m.p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
             {[
               {
-                title: "Who We Are?",
-                img: "/Homepage/IndustriesSection/who-we-are.webp",
-                text: "We are passionate and innovative developers, designers, and strategists. Camlenio has been founded to promise to deliver solutions that really transform businesses digitally. With quality, creativity, and problem-solving attributes, we give ideas life and make technology simple, effective, and ready for the future for every client we serve.",
-              },
-              {
-                title: "The origin of smart solutions",
+                title: "Platforms That Power B2B Growth",
                 img: "/Homepage/IndustriesSection/come-from.webp",
-                text: "Founded in Jaipur, India, Camlenio was born with the vision of bridging the gap between technology and business. Starting as a small team with big dreams, we have grown into a trusted IT solutions provider. By combining local insights with global expertise, we deliver world-class software, fintech platforms, and digital solutions tailored to modern business needs.",
+                text: "We develop advanced B2B Digital Service Platform, such as recharge and payments. As we create a plan that our team maintains accurate time processing, high volumes, and partners with management to provide comfort. With several years of experience in a mobile App Development Company, these platforms are optimized for performance, scalability, and long-term active efficiency.",
               },
               {
-                title: "What We Do?",
+                title: "End-to-End Product Engineering",
+                img: "/Homepage/IndustriesSection/who-we-are.webp",
+                text: "Our team members maintain everything from finding to deployment, which is a trusted Custom Software Development Company. We analyze the business objectives, such as designing intuitive interfaces and building strong architectures that scale easily. Also, our agile method guarantees quick releases, as lower-risk items that include a smooth transition as your business grows.",
+              },
+              {
+                title: "Secure Fintech & Payment Solutions",
                 img: "/Homepage/IndustriesSection/what-we-do.jpg",
-                text: "Camlenio gives the entire range of technology solutions fitting every business, however big or small. From custom software, mobile apps, fintech, and responsive websites, we develop platforms that are secure, scalable, and user-friendly. Our goal is to empower businesses to survive, innovate, and grow in this fast-paced, now digital-first economy.",
+                text: "We specialize in fintech & Digital Financial Platforms, where we built protection at the core level. Our operational support guarantees compliance with encrypted transactions and is hassle-free. If it's wallets, fund gateways, and financial dashboards, we support businesses in delivering speed and reliability to their users. You gain a technology partner committed to innovation and outcomes.",
               },
             ].map((card, i) => (
               <m.div
@@ -71,7 +67,7 @@ const IndustriesSection = () => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
                 viewport={{ once: true }}
-                className="rounded-xl shadow-md overflow-hidden group bg-white transform-gpu"
+                className="rounded-xl shadow-md overflow-hidden group bg-orange-100/40 transform-gpu"
                 style={{ willChange: "transform, opacity" }}
               >
                 <div className="relative overflow-hidden aspect-[5/3]">
@@ -87,13 +83,13 @@ const IndustriesSection = () => {
                     className="absolute inset-0 bg-black/50 flex items-center justify-center px-4 
                         opacity-0 group-hover:opacity-80 transition-all duration-500 ease-in-out backdrop-blur-[2px]"
                   >
-                    <div className="flex items-center gap-2 text-white font-medium text-base transform-gpu group-hover:scale-105 transition-transform">
+                    <div className="flex items-center gap-2 text-white p-4 font-medium text-base transform-gpu group-hover:scale-105 transition-transform">
                       {card.title}
                       <MdArrowRightAlt className="text-xl" />
                     </div>
                   </div>
                 </div>
-                <div className="p-5 space-y-3">
+                <div className="p-4 space-y-3">
                   <div className="text-orange-500 text-lg md:text-xl font-bold">
                     <h2>{card.title}</h2>
                   </div>

@@ -49,7 +49,6 @@ const MakeUsTop = () => {
             Camlenio Software Development Company
           </div>
           <h5 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Comprehensive Solutions for Banking & all{" "}
             <span
               className="text-orange-500"
               style={{
@@ -57,16 +56,13 @@ const MakeUsTop = () => {
                   "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
               }}
             >
-              Finance categories
-            </span>
+              Comprehensive
+            </span>{" "}
+            Software Development Services
           </h5>
           <p className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans">
-            We provide end-to-end solutions for banking and all finance
-            categories, catering to the diverse needs of financial institutions,
-            fintech companies, and payment service providers. Our offerings
-            include customized software, payment gateways integration, digital
-            wallets solutions, and more, all designed to ensure seamless
-            financial operations.
+            As an IT software company in Jaipur,India, a business-specific software development method guarantees that each operation aligns with your goals while helping the scalable software operations for future growth.We provide several types of services to meet the various business needs:
+
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
             <div className="relative group rounded-2xl hover:scale-101 transition-transform duration-500 ease-in p-6 text-left overflow-hidden flex flex-col justify-center md:col-span-2 lg:col-span-2 leading-snug border-2  bg-orange-200/30 backdrop-blur-lg border-orange-200">

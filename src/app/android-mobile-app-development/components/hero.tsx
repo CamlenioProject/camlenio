@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { Suspense, lazy, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { LoadingScreen } from "@/components/LoadingScreen";
+import { LoadingScreen } from "@/app/components/ui/LoadingScreen";
 
 // Lazy load the 3D model component
 const PhoneModel = lazy(() => import("./PhoneModel").then(module => ({ default: module.PhoneModel })));

@@ -17,18 +17,24 @@ const Counter: FC<{ target: number; trigger: boolean }> = ({
   useEffect(() => {
     if (!trigger) return;
 
-    const interval = setInterval(() => {
-      setCount((prevCount) => {
-        if (prevCount >= target) {
-          clearInterval(interval);
-          return target;
-        }
-        const step = Math.max(1, Math.ceil((target - prevCount) / 10));
-        return prevCount + step;
-      });
-    }, 40);
+    let startTime: number;
+    const duration = 2000; // 2 seconds for counting
 
-    return () => clearInterval(interval);
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+
+      // Easing function for smoother finish
+      const easeOutQuad = (t: number) => t * (2 - t);
+
+      setCount(Math.floor(easeOutQuad(progress) * target));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
   }, [trigger, target]);
 
   return <span>{count}</span>;

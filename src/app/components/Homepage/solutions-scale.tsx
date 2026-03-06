@@ -92,27 +92,29 @@ function Track({
                 className="object-cover"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent flex flex-col justify-end p-4">
-                <div className="inline-flex items-center gap-2 bg-orange-500 rounded-full p-2 w-fit">
-                  <Image
-                    src={card.icon}
-                    alt={card.title}
-                    width={50}
-                    height={50}
-                    className="w-8 h-8 md:w-12 md:h-12 object-contain bg-white p-2 rounded-full"
-                  />
-                  <span className="text-gray-50 font-medium text-xs md:text-base transition-all duration-500 group-hover:tracking-wider">
-                    {card.title}
-                  </span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6">
+                <div className="transition-transform duration-500 group-hover:-translate-y-8">
+                  <div className="inline-flex items-center gap-2 bg-orange-500 rounded-full p-1 md:p-1.5 w-fit shadow-lg border border-white/10">
+                    <div className="bg-white p-1.5 md:p-2 rounded-full shadow-inner flex items-center justify-center w-7 h-7 md:w-10 md:h-10">
+                      <Image
+                        src={card.icon}
+                        alt={card.title}
+                        width={30}
+                        height={30}
+                        className="w-5 h-5 md:w-6 md:h-6 object-contain"
+                      />
+                    </div>
+                    <span className="text-white font-bold text-[10px] md:text-sm pr-3 uppercase tracking-wider">
+                      {card.title}
+                    </span>
+                  </div>
                 </div>
 
-                <p className="text-gray-200 text-xs md:text-base mt-3 text-justify">
-                  {card.text}
-                </p>
-
-                <span className="text-orange-400 text-sm font-semibold mt-2 flex items-center gap-1 translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                  Explore more →
-                </span>
+                <div className="absolute bottom-5 md:bottom-6 left-5 md:left-6 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-75">
+                  <span className="text-orange-400 text-[10px] md:text-xs font-bold flex items-center gap-1.5">
+                    Explore more <span className="text-sm">→</span>
+                  </span>
+                </div>
               </div>
             </article>
           </Link>
@@ -138,7 +140,7 @@ export default function SolutionsScale() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
           >
-            Serving a Diverse Range of{" "}
+             
             <span
               className="text-orange-500"
               style={{
@@ -146,15 +148,13 @@ export default function SolutionsScale() {
                   "-1px -1px 0px #da5f00, 3px 3px 0px #F3F4F6, 4px 6px 0px #ff582336",
               }}
             >
-              Industries
+              Industries {" "}
             </span>
+            Focused Software Development
           </m.h6>
 
           <p className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans ">
-            We serve and collaborate with a diverse range of industries. Over
-            the years, Camlenio Software has broadened its portfolio by
-            partnering with businesses across sectors and empowering them to
-            scale in today’s fast-evolving digital world.
+            We stand out as a trustworthy B2B Software Development Company delivering industry-specific solutions. We have several years of experience as a Fintech software development company, building secure software for payments, digital wallets, and financial automation.
           </p>
         </div>
         <Track items={INDUSTRIES} reverse={false} speed={66} />

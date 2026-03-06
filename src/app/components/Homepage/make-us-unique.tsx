@@ -4,22 +4,22 @@ const cards = [
   {
     title: "Innovative Approach",
     icon: "/Homepage/SolutionsThatScale/Innovative.svg",
-    desc: "We combine creativity with cutting-edge technology to deliver solutions that truly make a lasting impact.",
+    desc: "Experienced Custom Software Development Company, we combine creativity with high-quality technology to deliver solutions that make a lasting impact.",
   },
   {
     icon: "/Homepage/SolutionsThatScale/expertise.svg",
     title: "End-to-End Expertise",
-    desc: "From idea to design, development, and launch we handle everything seamlessly under one roof.",
+    desc: "Agile development with the fastest time to market. From idea to design, development, unique advance techlonolgy and launch we handle everything seamlessly under one roof.",
   },
   {
     icon: "/Homepage/SolutionsThatScale/secure.svg",
     title: "Scalable & Secure",
-    desc: "Our solutions are built to scale as your business grows, while ensuring top-level security and reliability.",
+    desc: "Our development solutions are built for fast, scalable, and cloud-based operations as your business grows, while we guarantee a high-level security and reliability.",
   },
   {
     icon: "/Homepage/SolutionsThatScale/centric.svg",
     title: "Client-Centric",
-    desc: "We work with transparency and collaboration, always putting your business goals and success first.",
+    desc: "Proven mobile App development Company with real business impact. We work with transparency and collaboration, always putting your business goals and success first.",
   },
 ];
 
@@ -34,7 +34,7 @@ export default function MakeUsUnique() {
           Solutions That Scale
         </span>
         <h6 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
-          See how we show up for{" "}
+          Why Choose {" "}
           <span
             className="text-orange-500"
             style={{
@@ -43,16 +43,11 @@ export default function MakeUsUnique() {
             }}
           >
             {" "}
-            our customers
+            Camlenio?
           </span>
         </h6>
         <p className="max-w-5xl mx-auto flex-wrap text-gray-50 text-sm text-justify break-words sm:text-base mb-12 font-sans">
-          At Camlenio Software, our customers are at the heart of everything we
-          do. We go beyond just providing solutions—we listen, understand, and
-          actively collaborate to ensure their unique needs are met. From
-          onboarding and training to ongoing support and innovation, we are
-          committed to delivering reliable, high-quality services that help our
-          clients achieve their business goals.
+          The Camlenio is more than just a development vendor. As we are your digital growth partner. If you are seeking a trustworthy mobile app development company that understands technology and business equally, Camlenio is the  perfect choice, as we include:
         </p>
       </div>
       <div className=" max-w-7xl mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
@@ -68,10 +63,10 @@ export default function MakeUsUnique() {
               height={300}
               className="w-20 h-20 bg-orange-200  shadow-2xl rounded-full  object-cover transition-transform duration-700 group-hover:rotate-y-360 p-4 "
             />
-            <h2 className="mt-4 text-xl font-semibold text-gray-900 group-hover:text-gray-50 transition-all duration-500">
+            <h2 className="mt-4 text-xl font-semibold text-gray-900 group-hover:text-gray-50 transition-all duration-500 ">
               {card.title}
             </h2>
-            <p className="mt-2 text-gray-600 text-base group-hover:text-gray-50 transition-all duration-500 font-sans text-center">
+            <p className="mt-2 text-gray-600 text-base group-hover:text-gray-50 transition-all duration-500 font-sans text-justify">
               {card.desc}
             </p>
           </div>

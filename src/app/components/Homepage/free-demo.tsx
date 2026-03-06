@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -104,235 +105,194 @@ const FreeQuotation = () => {
 
   return (
     <LazyMotion features={domMax}>
-      <div className="relative py-16 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 overflow-hidden">
+      <div className="relative py-24 bg-[#080b11] overflow-hidden">
+        {/* Advanced Background Elements */}
+        {/* Top Right Glow */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-600/10 blur-[120px] rounded-full pointer-events-none" />
+        {/* Bottom Left Glow */}
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
+
+        {/* Animated Grid Background */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+
         <AnimatePresence>
           {popup && (
             <m.div
-              initial={{ y: -15, opacity: 0, scale: 0.95 }}
+              initial={{ y: -20, opacity: 0, scale: 0.9 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: -15, opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className={`fixed top-6 left-1/2 -translate-x-1/2 z-[2000] !important ${popup.type === "success"
-                ? "bg-gradient-to-r from-green-50 to-emerald-50/80 border-green-200/60 shadow-2xl shadow-green-200/50"
-                : "bg-gradient-to-r from-red-50 to-rose-50/80 border-red-200/60 shadow-2xl shadow-red-200/50"
-                } backdrop-blur-xl text-gray-900 px-6 py-3 rounded-xl border border-t-white/20 border-l-white/20 font-semibold text-sm md:text-base flex items-center gap-3 max-w-[90vw] md:max-w-md`}
+              exit={{ y: -20, opacity: 0, scale: 0.9 }}
+              className={`fixed top-12 left-1/2 -translate-x-1/2 z-[2000] px-6 py-4 rounded-2xl border backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-4 min-w-[320px] ${popup.type === "success"
+                ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
+                : "bg-rose-500/10 border-rose-500/20 text-rose-400"
+                }`}
             >
-              {/* Animated Icon */}
-              <m.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
-                className={`relative flex items-center justify-center w-7 h-7 rounded-full ${popup.type === "success"
-                  ? "bg-gradient-to-br from-green-500 to-emerald-600"
-                  : "bg-gradient-to-br from-red-500 to-rose-600"
-                  }`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  {popup.type === "success" ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5 13l4 4L19 7"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  )}
-                </svg>
-              </m.div>
-
-              {/* Message Content */}
-              <div className="flex flex-col">
-                <span className="font-bold text-gray-900 text-sm md:text-base">
-                  {popup.type === "success" ? "Success! 🎉" : "Error!"}
-                </span>
-                <m.span
-                  initial={{ opacity: 0, x: 4 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.18 }}
-                  className="text-gray-700 text-xs md:text-sm font-normal"
-                >
-                  {popup.message}
-                </m.span>
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center ${popup.type === "success" ? "bg-emerald-500/20" : "bg-rose-500/20"
+                }`}>
+                {popup.type === "success" ? (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                ) : (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                )}
               </div>
-
-              {/* Close button */}
-              <m.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setPopup(null)}
-                className="ml-4 text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </m.button>
-
-              {/* Animated progress bar */}
+              <div className="flex-1">
+                <p className="font-bold text-lg">
+                  {popup.type === "success" ? "Success!" : "Action Required"}
+                </p>
+                <p className="text-sm opacity-80">{popup.message}</p>
+              </div>
               <m.div
                 initial={{ scaleX: 1 }}
                 animate={{ scaleX: 0 }}
-                transition={{ duration: 5, ease: "linear" }}
-                className={`absolute bottom-0 left-0 right-0 h-1 origin-left rounded-b-xl ${popup.type === "success"
-                  ? "bg-gradient-to-r from-green-400 to-emerald-500"
-                  : "bg-gradient-to-r from-red-400 to-rose-500"
+                transition={{ duration: 3, ease: "linear" }}
+                className={`absolute bottom-0 left-0 right-0 h-1 origin-left ${popup.type === "success" ? "bg-emerald-500" : "bg-rose-500"
                   }`}
               />
             </m.div>
           )}
         </AnimatePresence>
-        <div className="relative z-10 max-w-7xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h6 className="text-3xl sm:text-4xl font-bold text-gray-100 mb-4">
-              Every Great, Big thing starts with a decision{" "}
-              <span
-                className="text-orange-500"
-                style={{
-                  textShadow:
-                    "-1px -1px 0px #da5f00, 3px 3px 0px #323d4e, 4px 6px 0px #ff582336",
-                }}
-              >
-                that you take today
-              </span>
-            </h6>
-          </div>
 
-          <div className="relative text-center border-2 border-blue-400 p-8 rounded-2xl bg-transparent">
-            <div className="mb-6">
-              <h5 className="text-3xl font-semibold text-white">
-                Get a Free Demo
-              </h5>
-              <p className="text-xl text-white/90 font-light mb-6 font-sans">
-                Don’t worry your data and business ideas are safe with us.
-              </p>
-            </div>
-
-            <form
-              className="grid grid-cols-1 md:grid-cols-3 gap-6"
-              onSubmit={onSubmit}
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content */}
+            <m.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
             >
-              <div className="w-full col-span-3 md:col-span-1">
-                <input
-                  aria-label="Full Name"
-                  className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${errors.name ? "border-red-500" : "border-blue-400"
-                    }`}
-                  id="home_name"
-                  name="home_name"
-                  type="text"
-                  placeholder="Enter Full Name"
-                />
-                {errors.name && (
-                  <p className="text-red-400 text-sm mt-1">{errors.name}</p>
-                )}
-              </div>
 
-              <div className="w-full col-span-3 md:col-span-1">
-                <input
-                  aria-label="Email Address"
-                  className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${errors.email ? "border-red-500" : "border-blue-400"
-                    }`}
-                  id="home_email"
-                  name="home_email"
-                  type="email"
-                  placeholder="Email Id"
-                />
-                {errors.email && (
-                  <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-                )}
-              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6">
+                Every <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Great Discovery</span> Starts With A Single Step.
+              </h2>
 
-              <div className="w-full col-span-3 md:col-span-1">
-                <input
-                  aria-label="Phone Number"
-                  className={`w-full px-4 py-3 rounded-lg border-2 bg-transparent text-gray-50 placeholder-blue-400 ${errors.phone ? "border-red-500" : "border-blue-400"
-                    }`}
-                  id="home_phone"
-                  name="home_phone"
-                  type="tel"
-                  placeholder="Contact Number"
-                />
-                {errors.phone && (
-                  <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
-                )}
-              </div>
+              <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-10 max-w-lg font-sans">
+                Take the decision today that will redefine your business tomorrow. Our expert team is ready to bring your vision to life.
+              </p>
 
-              <div className="w-full col-span-3">
-                <textarea
-                  aria-label="Message"
-                  className={`w-full px-4 py-3 rounded-lg border-2 border-b-8 bg-transparent text-gray-50 placeholder-blue-400 outline-none ${errors.message ? "border-red-500" : "border-blue-400"
-                    }`}
-                  id="home_message"
-                  name="home_message"
-                  rows={4}
-                  placeholder="Message"
-                ></textarea>
-
-                {errors.message && (
-                  <p className="text-red-400 text-sm mt-1">{errors.message}</p>
-                )}
+              <div className="grid grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-3xl font-bold text-white mb-1">100+</h4>
+                  <p className="text-gray-500 text-sm">Successful Projects</p>
+                </div>
+                <div>
+                  <h4 className="text-3xl font-bold text-white mb-1">24/7</h4>
+                  <p className="text-gray-500 text-sm">Expert Support</p>
+                </div>
               </div>
+            </m.div>
 
-              <div className="w-full col-span-3">
-                <CustomCaptcha
-                  key={captchaKey}
-                  onValidate={setIsCaptchaValid}
-                />
-              </div>
+            {/* Right: Premium Form Container */}
+            <m.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative p-8 md:p-10 rounded-[2.5rem] bg-gray-900/50 backdrop-blur-3xl border border-white/5 shadow-2xl overflow-hidden group"
+            >
+              {/* Inner Glow */}
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-orange-500/5 via-transparent to-blue-500/5 pointer-events-none" />
 
-              <div className="w-full col-span-3">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="relative group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 overflow-hidden font-semibold text-gray-900 bg-white rounded-full text-sm sm:text-base lg:text-lg transition-all"
-                >
-                  <span className="absolute inset-0 w-full h-full bg-orange-500 rounded-full transform translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
-                  <span className="relative z-10 group-hover:text-white transition-all duration-500 flex items-center gap-2 group-hover:scale-x-108">
-                    {loading ? "Sending..." : "Book Your Demo"}{" "}
-                    <FaLongArrowAltRight />
-                  </span>
-                </button>
+              <div className="relative z-10">
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-white mb-2">Get a Free Demo</h3>
+                  <p className="text-gray-400 text-sm font-sans">Submit your details and we'll reach out within 24 hours.</p>
+                </div>
+
+                <form className="space-y-5" onSubmit={onSubmit}>
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div className="space-y-1.5">
+                      <label htmlFor="home_name" className="text-xs font-bold text-gray-500 uppercase ml-1">Full Name</label>
+                      <input
+                        type="text"
+                        id="home_name"
+                        name="home_name"
+                        placeholder="Your Name"
+                        className={`w-full bg-white/5 border-2 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all duration-300 focus:bg-white/[0.08] ${errors.name ? "border-rose-500/50" : "border-white/5 focus:border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0)] focus:shadow-[0_0_20px_rgba(249,115,22,0.1)]"
+                          }`}
+                      />
+                      {errors.name && <p className="text-rose-500 text-[10px] font-bold mt-1 ml-1">{errors.name}</p>}
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label htmlFor="home_phone" className="text-xs font-bold text-gray-500 uppercase ml-1">Phone Number</label>
+                      <input
+                        type="tel"
+                        id="home_phone"
+                        name="home_phone"
+                        placeholder="+91 xxx..."
+                        className={`w-full bg-white/5 border-2 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all duration-300 focus:bg-white/[0.08] ${errors.phone ? "border-rose-500/50" : "border-white/5 focus:border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0)] focus:shadow-[0_0_20px_rgba(249,115,22,0.1)]"
+                          }`}
+                      />
+                      {errors.phone && <p className="text-rose-500 text-[10px] font-bold mt-1 ml-1">{errors.phone}</p>}
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="home_email" className="text-xs font-bold text-gray-500 uppercase ml-1">Email Address</label>
+                    <input
+                      type="email"
+                      id="home_email"
+                      name="home_email"
+                      placeholder=""
+                      className={`w-full bg-white/5 border-2 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all duration-300 focus:bg-white/[0.08] ${errors.email ? "border-rose-500/50" : "border-white/5 focus:border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0)] focus:shadow-[0_0_20px_rgba(249,115,22,0.1)]"
+                        }`}
+                    />
+                    {errors.email && <p className="text-rose-500 text-[10px] font-bold mt-1 ml-1">{errors.email}</p>}
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="home_message" className="text-xs font-bold text-gray-500 uppercase ml-1">How can we help?</label>
+                    <textarea
+                      id="home_message"
+                      name="home_message"
+                      rows={3}
+                      placeholder="Tell us about your project..."
+                      className={`w-full bg-white/5 border-2 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all duration-300 focus:bg-white/[0.08] resize-none ${errors.message ? "border-rose-500/50" : "border-white/5 focus:border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0)] focus:shadow-[0_0_20px_rgba(249,115,22,0.1)]"
+                        }`}
+                    />
+                    {errors.message && <p className="text-rose-500 text-[10px] font-bold mt-1 ml-1">{errors.message}</p>}
+                  </div>
+
+                  <div className="py-2">
+                    <CustomCaptcha
+                      key={captchaKey}
+                      onValidate={setIsCaptchaValid}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full relative group h-14 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-bold text-white shadow-[0_10px_30px_rgba(249,115,22,0.3)] hover:shadow-[0_15px_40px_rgba(249,115,22,0.4)] transition-all duration-500 overflow-hidden flex items-center justify-center gap-3 disabled:opacity-70"
+                  >
+                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                    <span className="relative z-10 flex items-center gap-2">
+                      {loading ? "Processing..." : "Secure Your Free Demo"}
+                      <FaLongArrowAltRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </button>
+
+                  <p className="text-center text-[11px] text-gray-500 font-medium">
+                    By submitting, you agree to our <Link href="/privacy-policy" className="text-orange-500/80 hover:underline">Privacy Policy</Link>
+                  </p>
+                </form>
               </div>
-            </form>
+            </m.div>
           </div>
         </div>
 
-        <Image
-          src="/Homepage/shapes/global_shap.png"
-          alt="Global Shape"
-          width={600}
-          height={600}
-          className="absolute -left-80 top-10 opacity-100 animate-spin [animation-duration:50s]"
-          unoptimized
-        />
-
-        <Image
-          src="/Homepage/shapes/shape-3.png"
-          alt="Shape Bg"
-          width={400}
-          height={400}
-          className="absolute right-0 bottom-0 opacity-50"
-        />
+        {/* Floating Abstract Shapes */}
+        <m.div
+          animate={{
+            y: [0, -20, 0],
+            rotate: [0, 5, 0]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -right-20 top-20 opacity-20 pointer-events-none"
+        >
+          <Image src="/Homepage/shapes/global_shap.png" alt="" width={400} height={400} className="w-96 h-96" />
+        </m.div>
       </div>
     </LazyMotion>
   );

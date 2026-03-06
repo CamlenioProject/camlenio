@@ -49,10 +49,8 @@ const Home = () => {
 
   return (
     <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100">
-      {/* 🚀 Immediate Load: Only the Hero Section (Above the fold) */}
-      <Hero />
 
-      {/* 📥 Lazy Load: Load components only when they are close to the viewport */}
+      <Hero />
 
       <SectionWrapper minHeight="150px">
         <LogoSlider />
@@ -85,7 +83,7 @@ const Home = () => {
       <SectionWrapper minHeight="700px">
         <OurProcess />
       </SectionWrapper>
-{/* 
+      {/* 
       <SectionWrapper minHeight="300px">
         <Technologies />
       </SectionWrapper> */}
@@ -94,9 +92,9 @@ const Home = () => {
         <Testimonials />
       </SectionWrapper>
 
-      {/* <SectionWrapper minHeight="300px">
+      <SectionWrapper minHeight="300px">
         <FreeDemo />
-      </SectionWrapper> */}
+      </SectionWrapper>
 
       {/* <SectionWrapper minHeight="500px">
         <BlogSection />

@@ -11,7 +11,7 @@ const features = [
     id: 1,
     title: "Mobile App Development",
     cardtitle: "Software Development Consulting",
-    desc: "We design and develop mobile applications that blend performance, scalability, and user experience. Our solutions work seamlessly across iOS and Android, offering modern interfaces and powerful features. From real-time tracking and secure payment gateways to interactive dashboards, each app is built to enhance customer engagement, streamline operations, and accelerate business growth in today’s competitive digital era.",
+    desc: "We intended to build excellent mobile applications that convey ease of performance and reflexive functionality. For the Android and IOS users, our apps are designed for scalability, security, and user engagement across both platforms. Through merging creation with usability, our experts support businesses that connect with users anytime or anywhere with automatic Web and Mobile App development solutions.",
     icon: (
       <Image
         src="/Homepage/svg/mobile-development.svg"
@@ -42,7 +42,7 @@ const features = [
     id: 2,
     title: "Web Development",
     cardtitle: "Web Development",
-    desc: "A website is more than just an online presence — it’s the face of your brand. Our web development services focus on building responsive, high-performing platforms that reflect your identity while connecting with your audience. From business websites to custom platforms, we leverage modern technologies to ensure speed, security, and scalability, creating a site that not only looks professional but also drives measurable business results.",
+    desc: "Our web development services focus on building fast, responsive, and secure websites that affect your brand’s originality. As a design of a custom operation that is optimized for performance and scalability, guaranteeing a hassle-free user journey. From the corporate websites to complex objectives also delivers a reliable digital experience that aligns with the modern business requirements",
     icon: (
       <Image
         src="/Homepage/svg/web-development.svg"
@@ -82,7 +82,7 @@ const features = [
     id: 3,
     title: "Ecommerce Development",
     cardtitle: "Ecommerce Development",
-    desc: "We create ecommerce solutions that go beyond selling — they inspire trust and deliver results. Tailored for B2B, B2C, and D2C models, our platforms feature advanced product catalogs, secure payment integrations, and smooth navigation for effortless shopping. With a strong focus on scalability and customer experience, our ecommerce development ensures businesses can boost conversions, maximize revenue, and build lasting customer relationships.",
+    desc: "We deliver strong E commerce software operations that are intended to increase online sales and streamline solutions. Our expert designs secure, user-friendly e-commerce platforms with easy navigation, smart integrations, and scalable designs. As our supporting solutions that grow your business customer experience while maximizing the conversation and operations planning.",
     icon: (
       <Image
         src="/Homepage/svg/ecommerce-development.svg"
@@ -122,7 +122,7 @@ const features = [
     id: 4,
     title: "UI UX Design",
     cardtitle: "UI UX Design",
-    desc: " Design is at the heart of every digital experience, and our UI/UX services focus on making it intuitive and impactful. From research and wireframes to polished interfaces, we craft user journeys that are simple, engaging, and visually appealing. Every design balances aesthetics with functionality, ensuring products are not just attractive but also solve real business challenges. The result is a seamless experience that users love and remember.",
+    desc: "Our UI UX Design services focus on creating a visual request, an intuitive, and customer-driven experience with perfect drive engagement. As we merge the research, creativity, and usability principles to craft experiences that prove interaction, boost retention, and provide a valuable experience across web and mobile platforms.",
     icon: (
       <Image
         src="/Homepage/svg/ui-design.svg"
@@ -153,7 +153,7 @@ const features = [
     id: 5,
     title: "Digital Marketing",
     cardtitle: "Creative Digital Excellence",
-    desc: "We specialize in result-driven digital marketing solutions designed to help businesses grow in today’s competitive online world. From SEO, SEM, and social media marketing to content marketing, email campaigns, and paid ads, we provide a complete suite of services tailored to your business goals. Our team ensures better visibility, lead generation, and ROI by combining creativity with the latest digital tools.",
+    desc: "As a reliable Digital Marketing Company, we support the brands that grow visibility and generate eligible leads. The strategies help your business grow, which include our methods of SEO, social media, content marketing, and paid campaigns. As with dependent data performance, we guarantee measurable growth, stronger engagement, and consistent brand presence across the digital platforms.",
     icon: (
       <Image
         src="/Homepage/svg/custom-development.svg"
@@ -199,7 +199,7 @@ const DevServices = () => {
               Innovating the Future Together
             </span>
             <h4 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
-              Essential IT Solutions for {""}
+              Build a Digital Product That {" "}
               <span
                 className="text-orange-500"
                 style={{
@@ -207,16 +207,11 @@ const DevServices = () => {
                     "-1px -1px 0px #da5f00, 3px 3px 0px #161e2e, 4px 6px 0px #ff582336",
                 }}
               >
-                Modern Businesses
+                Grows Your Business
               </span>
             </h4>
             <p className="max-w-5xl mx-auto text-gray-50 text-sm md:text-base mb-12 font-sans text-justify">
-              In today’s fast-paced digital world, businesses need reliable,
-              scalable, and innovative IT solutions to stay competitive. At
-              Camlenio Software, we provide a comprehensive range of
-              services—from custom software development and web applications to
-              digital marketing and cloud solutions—designed to meet the
-              evolving needs of modern enterprises.
+              We turn the ideas into scalable digital solutions that drive accurate outcomes. Our expertise delivers secure, successful items that are customized to your business needs, whether you are a beginner enterprise. Our integrated approach connects technology and marketing to create proactive platforms that scale with your business while maintaining reliability.
             </p>
           </div>
           <div className="relative pb-10 text-gray-800">
