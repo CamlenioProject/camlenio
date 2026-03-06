@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { WPBlog } from "../../types/wp-blog";
 import { CalendarIcon, ClockIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { LoadingScreen } from "@/app/components/ui/LoadingScreen";
 
@@ -17,6 +18,7 @@ export default function SingleBlogPage() {
   const [loading, setLoading] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
+  const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -27,14 +29,22 @@ export default function SingleBlogPage() {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://blogs.camlenio.com/wp-json/wp/v2";
 
-        // Fetch current post
-        const res = await fetch(`${apiUrl}/posts/${id}?_embed`);
+        // Fetch current post by slug
+        const res = await fetch(`${apiUrl}/posts?slug=${id}&_embed`);
         if (!res.ok) throw new Error("Failed to fetch post");
         const data = await res.json();
-        setPost(data);
+
+        let fetchedPost = null;
+        if (data && data.length > 0) {
+          fetchedPost = data[0];
+          setPost(fetchedPost);
+        } else {
+          throw new Error("Post not found");
+        }
 
         // Fetch related/recent posts for sidebar
-        const relatedRes = await fetch(`${apiUrl}/posts?_embed&per_page=3&exclude=${id}`);
+        const excludeId = fetchedPost ? fetchedPost.id : "";
+        const relatedRes = await fetch(`${apiUrl}/posts?_embed&per_page=3${excludeId ? `&exclude=${excludeId}` : ''}`);
         if (relatedRes.ok) {
           const relatedData = await relatedRes.json();
           setRelatedPosts(relatedData);
@@ -103,7 +113,8 @@ export default function SingleBlogPage() {
       window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, "_blank");
     } else if (platform === "copy") {
       navigator.clipboard.writeText(shareUrl);
-      alert("Link copied to clipboard!");
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
     }
   };
 
@@ -222,25 +233,34 @@ export default function SingleBlogPage() {
 
           <div className="flex items-center gap-3">
             {/* Single Share Button */}
-            <button
-              onClick={() => handleShare("copy")}
-              className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 bg-gray-50/80 backdrop-blur-sm text-gray-500 hover:text-orange-500 hover:border-orange-500 transition-all shadow-sm"
-              title="Share Story"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-              </svg>
-            </button>
+            <div className="relative flex flex-col items-center">
+              <motion.button
+                whileTap={{ scale: 0.85 }}
+                onClick={() => handleShare("copy")}
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 bg-gray-50/80 backdrop-blur-sm text-gray-500 hover:text-orange-500 hover:border-orange-500 transition-all shadow-sm cursor-pointer"
+                title="Share Story"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                </svg>
+              </motion.button>
+              {isCopied && (
+                <span className="absolute -bottom-6 text-[10px] font-bold text-orange-500 whitespace-nowrap opacity-100 transition-opacity duration-300 drop-shadow-sm">
+                  Copied!
+                </span>
+              )}
+            </div>
 
             {/* Like Button */}
-            <button
+            <motion.button
+              whileTap={{ scale: 0.85 }}
               onClick={() => setIsLiked(!isLiked)}
-              className={`w-10 h-10 flex items-center justify-center rounded-full border hover:border-orange-500 transition-all shadow-sm ${isLiked ? 'bg-orange-50 border-orange-500 text-orange-500 scale-110' : 'bg-gray-50/80 border-gray-200 text-gray-500 hover:text-orange-500'}`}
+              className={`w-10 h-10 flex items-center justify-center rounded-full border hover:border-orange-500 transition-colors shadow-sm cursor-pointer ${isLiked ? 'bg-orange-50 border-orange-500 text-orange-500 scale-110' : 'bg-gray-50/80 border-gray-200 text-gray-500 hover:text-orange-500'}`}
             >
               <svg className="w-5 h-5" fill={isLiked ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
-            </button>
+            </motion.button>
           </div>
         </div>
 
@@ -293,7 +313,7 @@ export default function SingleBlogPage() {
                 <h3 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-widest">More Stories</h3>
                 <div className="space-y-6">
                   {relatedPosts.map(p => (
-                    <Link key={p.id} href={`/blog/${p.id}`} className="block group">
+                    <Link key={p.id} href={`/blog/${p.slug}`} className="block group">
                       <h4 className="font-bold text-gray-800 group-hover:text-orange-500 transition-colors" dangerouslySetInnerHTML={{ __html: p.title.rendered }} />
                     </Link>
                   ))}
@@ -448,7 +468,7 @@ const TableOfContents = ({ tocData, relatedPosts }: { tocData: any[], relatedPos
             relatedPosts.map((rPost) => {
               const rMedia = rPost._embedded?.["wp:featuredmedia"]?.[0];
               return (
-                <Link key={rPost.id} href={`/blog/${rPost.id}`} className="flex gap-4 group">
+                <Link key={rPost.id} href={`/blog/${rPost.slug}`} className="flex gap-4 group">
                   <div className="w-20 h-20 rounded-xl overflow-hidden relative flex-shrink-0 bg-gray-100 border border-gray-100 shadow-sm">
                     <Image
                       src={rMedia?.source_url || "/blog-placeholder.jpg"}

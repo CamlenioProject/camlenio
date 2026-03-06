@@ -9,9 +9,13 @@ import { MagnifyingGlassIcon, Squares2X2Icon, ListBulletIcon, ChevronDownIcon, C
 import clsx from "clsx";
 import { LoadingScreen } from "@/app/components/ui/LoadingScreen";
 
+let cachedPosts: WPBlog[] | null = null;
+let cachedTotalPosts: number | null = null;
+
 export default function BlogListingPage() {
-  const [posts, setPosts] = useState<WPBlog[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState<WPBlog[]>(cachedPosts || []);
+  const [totalPostsCount, setTotalPostsCount] = useState<number>(cachedTotalPosts || 0);
+  const [loading, setLoading] = useState(!cachedPosts);
   const [searchQuery, setSearchQuery] = useState("");
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState<"latest" | "oldest" | "title">("latest");
@@ -22,14 +26,27 @@ export default function BlogListingPage() {
   const itemsPerPage = 10;
 
   useEffect(() => {
+    if (cachedPosts) {
+      return;
+    }
+
     const fetchPosts = async () => {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://blogs.camlenio.com/wp-json/wp/v2";
         // Fetch more posts to make pagination meaningful
         const res = await fetch(`${apiUrl}/posts?_embed&per_page=50`);
         if (!res.ok) throw new Error("Failed to fetch posts");
+
+        const total = res.headers.get("x-wp-total");
         const data = await res.json();
+
+        const nextTotal = total ? parseInt(total, 10) : data.length;
+
+        cachedPosts = data;
+        cachedTotalPosts = nextTotal;
+
         setPosts(data);
+        setTotalPostsCount(nextTotal);
       } catch (error) {
         console.error("Error fetching blogs:", error);
       } finally {
@@ -182,7 +199,7 @@ export default function BlogListingPage() {
 
               <div className="px-6 hidden sm:block">
                 <div className="text-[9px] font-black uppercase tracking-[0.25em] text-gray-400 mb-0.5">Library</div>
-                <div className="text-sm font-black text-gray-900">{filteredPosts.length} <span className="text-[10px] text-gray-400 font-bold ml-1">POSTS</span></div>
+                <div className="text-sm font-black text-gray-900">{searchQuery || selectedCategory || selectedTag ? filteredPosts.length : totalPostsCount} <span className="text-[10px] text-gray-400 font-bold ml-1">POSTS</span></div>
               </div>
             </div>
 
@@ -330,7 +347,7 @@ export default function BlogListingPage() {
                         className={clsx("group", viewType === "list" && "flex flex-col md:flex-row gap-8 items-center text-left")}
                       >
                         <Link
-                          href={`/blog/${post.id}`}
+                          href={`/blog/${post.slug}`}
                           className={clsx(
                             "block overflow-hidden rounded-[2rem] bg-white p-3 shadow-xl shadow-gray-200/50 border border-gray-100 group-hover:shadow-2xl group-hover:shadow-orange-200/50 group-hover:-translate-y-1 transition-all duration-500",
                             viewType === "list" ? "w-full md:w-1/2 aspect-[4/3]" : "aspect-[1.1] mb-8"
@@ -347,7 +364,7 @@ export default function BlogListingPage() {
                         </Link>
 
                         <div className={clsx("flex-1", viewType === "list" ? "py-4" : "px-2")}>
-                          <Link href={`/blog/${post.id}`}>
+                          <Link href={`/blog/${post.slug}`}>
                             <h2
                               className={clsx(
                                 "font-black text-gray-900 leading-[1.15] mb-4 hover:text-orange-500 transition-colors",

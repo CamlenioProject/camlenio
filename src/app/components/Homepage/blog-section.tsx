@@ -75,7 +75,7 @@ export default function BlogSection(): React.JSX.Element {
                     //  href={blog.link}
                     // target="_blank"
                     // rel="noopener noreferrer"
-                    href={`/blog/${blog.id}`}
+                    href={`/blog/${blog.slug}`}
                     className="block"
                   >
                     <div

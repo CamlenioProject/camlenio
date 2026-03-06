@@ -65,7 +65,7 @@ const availablePages = [
   "/web-development",
   "/billing-software",
   "/travel-booking",
-  "/blogs",
+  "/blog",
   "/about",
   "/careers",
   "/contact",
@@ -117,7 +117,7 @@ const navItems = [
       { title: "Portfolio", href: "/portfolio", sub: "Explore our work", icon: BriefcaseIcon },
       { title: "Testimonials", href: "/coming-soon", sub: "What clients say", icon: ChatBubbleLeftRightIcon },
       { title: "Press & Events", href: "/press-events", sub: "News & Events", icon: GlobeAltIcon },
-      { title: "Blog", href: "https://blogs.camlenio.com", sub: "Latest insights", icon: NewspaperIcon },
+      { title: "Blog", href: "/blog", sub: "Latest insights", icon: NewspaperIcon },
     ],
   },
   {
@@ -596,7 +596,6 @@ const CompanyDropdown = ({ item, baseHref }: { item: any, baseHref: string }) =>
 
           <Link
             href={blogItem.href}
-            target="_blank"
             className="relative z-10 inline-flex items-center gap-2 group w-fit mt-2"
           >
             <span className="text-white font-bold text-sm relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-white after:transition-all after:duration-300 group-hover:after:w-full">
