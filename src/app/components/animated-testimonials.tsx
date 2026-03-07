@@ -9,43 +9,33 @@ type Testimonial = {
   name: string;
   designation: string;
   src: string;
+  logoSrc?: string;
 };
 
 const testimonials: Testimonial[] = [
   {
     quote:
-      "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
-    name: "Sarah Chen",
-    designation: "Product Manager at TechFlow",
-    src: "/Homepage/process-development-img.webp",
+      "Partnering with Camlenio Software has been a great experience for us at Neelpe. The team’s professionalism, timely support, and innovative approach have truly helped us scale our services and build more trust with our customers.",
+    name: "Neelpe Team",
+    designation: "Neelpe",
+    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
+    logoSrc: "/Homepage/testimonials/neelpe.png",
   },
   {
     quote:
-      "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
-    name: "Michael Rodriguez",
-    designation: "CTO at InnovateSphere",
-    src: "/Homepage/process-maintenance-img.webp",
+      "Camlenio Software delivered exactly what we needed for our E-commerce project at Kailash Seed. The platform they developed is fast, user-friendly, and highly secure, making it easy for us to manage products.",
+    name: "Kailash Seed Team",
+    designation: "Kailash Seed",
+    src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop",
+    logoSrc: "/Homepage/testimonials/kailash-seed.png",
   },
   {
     quote:
-      "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
-    name: "Emily Watson",
-    designation: "Operations Director at CloudScale",
-    src: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627728/education_dajq0f.jpg",
-  },
-  {
-    quote:
-      "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
-    name: "James Kim",
-    designation: "Engineering Lead at DataPro",
-    src: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627726/fintech_l4mial.jpg",
-  },
-  {
-    quote:
-      "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
-    name: "Lisa Thompson",
-    designation: "VP of Technology at FutureNet",
-    src: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627016/samples/smile.jpg",
+      "They provided us with a reliable and efficient platform to manage claim services and streamline our operations. Their professional approach, timely delivery, and constant support have added great value to our business.",
+    name: "AKMS Team",
+    designation: "AKMS Insurance Surveyors & Loss Assessors",
+    src: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2000&auto=format&fit=crop",
+    logoSrc: "/Homepage/testimonials/akms.png",
   },
 ];
 
@@ -75,7 +65,7 @@ export const AnimatedTestimonials = ({ autoplay = true }: Props) => {
   const randomRotateY = () => Math.floor(Math.random() * 21) - 10;
 
   return (
-    <div className="relative py-16 bg-gradient-to-r from-indigo-100 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="relative py-16 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-50">
       <div className="max-w-7xl mx-auto px-8 md:px-16">
         <div className="text-center">
           <span className="relative inline-block px-4 py-1.5 rounded-full text-center border border-orange-300 bg-white shadow-sm text-sm font-medium text-gray-950 mb-4">
@@ -84,19 +74,23 @@ export const AnimatedTestimonials = ({ autoplay = true }: Props) => {
           </span>
         </div>
         <h1
-          className="text-3xl sm:text-4xl font-bold text-orange-500 text-center mb-4 "
-          style={{ textShadow: "2px 2px 0 #ffff, 4px 4px 0 #FFB266" }}
+          className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-4 "
+
         >
-          What Our Clients Say
+          What Our {" "}
+          <span className="text-orange-500"
+            style={{ textShadow: "2px 2px 0 #ffff, 4px 4px 0 #FFB266" }}
+          >Clients</span> {" "}
+          Say
         </h1>
         <p className="max-w-5xl mx-auto text-gray-600 text-sm  md:text-base mb-12 font-sans text-justify">
           Emizen tech Pvt Ltd began as a Web Development Company in the year
           2013, in Jaipur, Rajasthan, with the vision to help clients grow, we
           started incorporating modern technology solutions in their businesses.
         </p>
-        <div className="mx-auto max-w-sm px-4 py-20 antialiased md:max-w-4xl md:px-8 lg:px-12">
-          <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
-            <div className="relative h-80 w-full">
+        <div className="mx-auto max-w-sm px-4 py-20 antialiased md:max-w-4xl lg:max-w-7xl md:px-8 lg:px-12">
+          <div className="relative grid grid-cols-1 gap-12 lg:gap-24 lg:grid-cols-12 items-center">
+            <div className="relative h-72 md:h-96 lg:h-[450px] w-full lg:col-span-7">
               <AnimatePresence>
                 {testimonials.map((t, i) => (
                   <motion.div
@@ -113,7 +107,7 @@ export const AnimatedTestimonials = ({ autoplay = true }: Props) => {
                       z: isActive(i) ? 0 : -100,
                       rotate: isActive(i) ? 0 : randomRotateY(),
                       zIndex: isActive(i) ? 40 : testimonials.length + 2 - i,
-                      y: isActive(i) ? [0, -80, 0] : 0,
+                      y: isActive(i) ? [0, -40, 0] : 0,
                     }}
                     exit={{
                       opacity: 0,
@@ -124,33 +118,50 @@ export const AnimatedTestimonials = ({ autoplay = true }: Props) => {
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="absolute inset-0 origin-bottom"
                   >
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent rounded-3xl z-10 pointer-events-none" />
                     <Image
                       src={t.src}
                       alt={t.name}
-                      width={500}
-                      height={500}
+                      width={1200}
+                      height={900}
                       draggable={false}
-                      className="h-full w-full rounded-3xl object-cover object-center"
+                      className="h-full w-full rounded-3xl object-cover object-left-top shadow-xl border border-gray-200/50"
                     />
                   </motion.div>
                 ))}
               </AnimatePresence>
             </div>
-            <div className="flex flex-col justify-between py-4 ">
+            <div className="flex flex-col justify-between py-4 lg:col-span-5 h-full relative">
+              <div className="absolute -left-12 -top-12 text-[120px] text-orange-500/10 font-serif leading-none select-none pointer-events-none">"</div>
               <motion.div
                 key={active}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="relative z-10"
               >
-                <h3 className="text-2xl font-bold text-gray-950">
-                  {testimonials[active].name}
-                </h3>
-                <p className="text-sm text-gray-700 dark:text-neutral-500 font-sans">
-                  {testimonials[active].designation}
-                </p>
-                <motion.p className="mt-8 text-lg text-gray-700 font-sans">
+                <div className="flex items-center gap-4 mb-6">
+                  {testimonials[active].logoSrc && (
+                    <div className="relative w-16 h-12 flex-shrink-0 bg-white rounded-lg p-2 shadow-sm border border-gray-100 flex items-center justify-center">
+                      <Image
+                        src={testimonials[active].logoSrc!}
+                        alt={testimonials[active].designation}
+                        fill
+                        className="object-contain p-1"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="text-2xl font-bold tracking-tight text-gray-900">
+                      {testimonials[active].name}
+                    </h3>
+                    <p className="text-sm font-medium text-orange-600 dark:text-orange-500 font-sans mt-0.5">
+                      {testimonials[active].designation}
+                    </p>
+                  </div>
+                </div>
+                <motion.p className="mt-8 text-lg/relaxed md:text-xl/relaxed text-gray-700 font-medium font-sans italic relative">
                   {testimonials[active].quote.split(" ").map((word, index) => (
                     <motion.span
                       key={index}
@@ -169,7 +180,7 @@ export const AnimatedTestimonials = ({ autoplay = true }: Props) => {
                 </motion.p>
               </motion.div>
 
-              <div className="flex gap-4 pt-12 md:pt-0">
+              <div className="flex gap-4 pt-10 md:pt-14 mt-auto">
                 <button
                   onClick={handlePrev}
                   className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"

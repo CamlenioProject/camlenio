@@ -21,9 +21,9 @@ const OurProcess = dynamic(() => import("./components/Homepage/our-process"));
 // const Technologies = dynamic(
 //   () => import("./components/Homepage/technologies")
 // );
-const Testimonials = dynamic(
-  () => import("./components/Homepage/testimonials")
-);
+// const Testimonials = dynamic(
+//   () => import("./components/Homepage/testimonials")
+// );
 const FreeDemo = dynamic(() => import("./components/Homepage/free-demo"));
 // const BlogSection = dynamic(() => import("./components/Homepage/blog-section"));
 import { useState, useEffect } from "react";
@@ -88,9 +88,9 @@ const Home = () => {
         <Technologies />
       </SectionWrapper> */}
 
-      <SectionWrapper minHeight="400px">
+      {/* <SectionWrapper minHeight="400px">
         <Testimonials />
-      </SectionWrapper>
+      </SectionWrapper> */}
 
       <SectionWrapper minHeight="300px">
         <FreeDemo />

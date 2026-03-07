@@ -18,6 +18,7 @@ export interface WPFeaturedMedia {
 export interface WPBlog {
   id: number;
   date: string;
+  modified: string;
   slug: string;
   link: string;
   title: {

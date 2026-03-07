@@ -65,6 +65,7 @@ const availablePages = [
   "/web-development",
   "/billing-software",
   "/travel-booking",
+  "/testimonials",
   "/blog",
   "/about",
   "/careers",
@@ -115,7 +116,7 @@ const navItems = [
     items: [
       { title: "About Us", href: "/about", sub: "About our company", icon: InformationCircleIcon },
       { title: "Portfolio", href: "/portfolio", sub: "Explore our work", icon: BriefcaseIcon },
-      { title: "Testimonials", href: "/coming-soon", sub: "What clients say", icon: ChatBubbleLeftRightIcon },
+      { title: "Testimonials", href: "/testimonials", sub: "What clients say", icon: ChatBubbleLeftRightIcon },
       { title: "Press & Events", href: "/press-events", sub: "News & Events", icon: GlobeAltIcon },
       { title: "Blog", href: "/blog", sub: "Latest insights", icon: NewspaperIcon },
     ],

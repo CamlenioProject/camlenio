@@ -9,6 +9,7 @@ import AnimatedChatBot from "./AnimatedChatBot";
 import React from "react";
 
 export const metadata = {
+  metadataBase: new URL("https://camlenio.com"),
   title: "Camlenio | Digital Solutions",
   description: "Customized software and fintech solutions tailored for growth.",
   icons: {
@@ -77,7 +78,7 @@ export default function RootLayout({
         </Script>
       </head>
 
-      <body>
+      <body className="overflow-x-clip">
         <Header />
         <main>
           <LenisWrapper>{children}</LenisWrapper>

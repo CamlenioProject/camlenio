@@ -49,5 +49,5 @@ export default function LenisWrapper({ children }: Props) {
     };
   }, [pathname]);
 
-  return <div className="overflow-x-hidden">{children}</div>;
+  return <>{children}</>;
 }
