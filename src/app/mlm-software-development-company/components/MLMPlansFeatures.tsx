@@ -122,7 +122,7 @@ const MLMPlansFeatures = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="max-w-5xl mx-auto text-center text-gray-600 text-sm md:text-base mb-12 font-sans"
+            className="max-w-5xl mx-auto text-center text-gray-700 text-sm md:text-base mb-12 font-sans"
           >
             Our MLM software supports all major and hybrid compensation plans
           </motion.p>
@@ -162,11 +162,10 @@ const MLMPlansFeatures = () => {
               <div className="relative z-10 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <CheckCircle2
-                    className={`w-5 h-5 transition-colors duration-300 ${
-                      hoveredPlan === index
+                    className={`w-5 h-5 transition-colors duration-300 ${hoveredPlan === index
                         ? "text-orange-600"
                         : "text-orange-500"
-                    }`}
+                      }`}
                   />
                   <span className="text-sm sm:text-base font-semibold text-gray-800">
                     {plan}
@@ -208,7 +207,7 @@ const MLMPlansFeatures = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="max-w-5xl mx-auto text-gray-600 text-sm md:text-base mb-12 font-sans text-center"
+            className="max-w-5xl mx-auto text-gray-700 text-sm md:text-base mb-12 font-sans text-center"
           >
             Powerful features designed to streamline your MLM business
             operations
@@ -251,7 +250,7 @@ const MLMPlansFeatures = () => {
                     {feature.title}
                   </h3>
 
-                  <p className="text-sm sm:text-base text-gray-600 leading-tight text-justify font-sans">
+                  <p className="text-sm sm:text-base text-gray-700 leading-tight text-justify font-sans">
                     {feature.description}
                   </p>
                 </div>

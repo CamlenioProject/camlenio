@@ -104,7 +104,7 @@ export default function WhyChooseUs() {
                   </span>
                 </h2>
 
-                <p className="text-base md:text-lg text-gray-400 font-medium max-w-sm leading-relaxed">
+                <p className="text-base md:text-lg text-gray-300 font-medium max-w-sm leading-relaxed">
                   We offer a variety of tools and resources to help you manage your business more effectively with our robust Android solutions.
                 </p>
 

@@ -191,7 +191,7 @@ export default function Hero() {
         <div className="absolute inset-0 z-0 bg-[url('https://res.cloudinary.com/dxpbriwey/image/upload/v1762160535/622_uhajfi.jpg')] bg-cover bg-center opacity-30" />
 
         {/* Radial Mask */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove [mask-image:radial-gradient(ellipse_160%_120%_at_50%_25%,transparent_25%,black_65%)]"></div>
+        <div className="absolute inset-0 z-0 flex items-center justify-center bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100   [mask-image:radial-gradient(ellipse_160%_120%_at_50%_25%,transparent_25%,black_65%)]"></div>
 
         {/* Floating Blobs */}
         <div className="absolute inset-0 -z-10">

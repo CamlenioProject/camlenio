@@ -21,12 +21,11 @@ export default function MLMIntroSection() {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
         <div
-          className={`transition-all duration-700 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
         >
           <div className="relative bg-orange-50 border border-orange-100 rounded-3xl overflow-hidden">
-            <div className="h-2 bg-gradient-to-r from-orange-500 via-rose-500 to-orange-500 bg-[length:200%_200%] animate-gradientMove" />
+            <div className="h-2 bg-gradient-to-r from-orange-500 via-rose-500 to-orange-500  " />
 
             <div className="px-14 py-16 text-center">
               {/* heading */}
@@ -82,10 +81,9 @@ export default function MLMIntroSection() {
                     className={`px-4 py-2 rounded-full border text-[13px] font-medium
                       bg-gray-100 text-gray-700 border-gray-200
                       transition-all duration-300 hover:bg-orange-50 hover:border-orange-300
-                      ${
-                        isVisible
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 translate-y-3" 
+                      ${isVisible
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-3"
                       }
                     `}
                     style={{ transitionDelay: `${i * 80 + 300}ms` }}
@@ -116,11 +114,10 @@ export default function MLMIntroSection() {
                   ].map((s, i) => (
                     <div
                       key={s.l}
-                      className={`transition-all duration-500 ${
-                        isVisible
+                      className={`transition-all duration-500 ${isVisible
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-3"
-                      }`}
+                        }`}
                       style={{ transitionDelay: `${i * 100 + 600}ms` }}
                     >
                       <div className="text-sm md:text-2xl font-bold bg-gradient-to-r from-orange-500 to-rose-400 bg-clip-text text-transparent">

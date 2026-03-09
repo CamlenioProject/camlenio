@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function TravelPage() {
   return (
-    <main className="bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
+    <main className="bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100  ">
       <TravelHero />
       <TravelShowcase />
       <TravelFeatures />

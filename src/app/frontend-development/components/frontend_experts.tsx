@@ -54,7 +54,7 @@ export default function FrontendExperts() {
   return (
     <div
       id="next-section"
-      className=" scroll-mt-30 bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove "
+      className=" scroll-mt-30 bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100   "
     >
       <div className=" max-w-7xl mx-auto px-6 md:px-16 py-16">
         <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 text-orange-500">
@@ -72,8 +72,8 @@ export default function FrontendExperts() {
               key={idx}
               onClick={() => setSelected(idx)}
               className={`flex items-center whitespace-nowrap gap-2 px-6 py-3 rounded-xl text-base font-medium border transition-all duration-500 ${selected === idx
-                  ? "bg-orange-100 border-orange-300 text-orange-500 shadow-sm"
-                  : "bg-white/50 border-gray-300 text-gray-700 hover:bg-orange-50"
+                ? "bg-orange-100 border-orange-300 text-orange-500 shadow-sm"
+                : "bg-white/50 border-gray-300 text-gray-700 hover:bg-orange-50"
                 }`}
             >
               {service.icon}

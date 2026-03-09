@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -60,11 +60,12 @@ const availablePages = [
   "/fintech-software-development-company",
   "/hotel-management-software",
   "/android-mobile-app-development",
+  "/iphone-mobile-app-development",
   "/full-stack-development",
   "/ui-ux-designing",
   "/web-development",
   "/billing-software",
-  "/travel-booking",
+  // "/travel-booking",
   "/testimonials",
   "/blog",
   "/about",
@@ -79,7 +80,7 @@ const servicesMenuData = [
     title: "App Development",
     items: [
       { title: "Android Mobile App Development", href: "/android-mobile-app-development", icon: DevicePhoneMobileIcon },
-      { title: "IPhone Mobile App Development", href: "/coming-soon", icon: DevicePhoneMobileIcon },
+      { title: "IPhone Mobile App Development", href: "/iphone-mobile-app-development", icon: DevicePhoneMobileIcon },
       { title: "IoT App Development", href: "/coming-soon", icon: CpuChipIcon },
       { title: "On-Demand App Development", href: "/coming-soon", icon: TruckIcon },
       { title: "Hybrid App Development", href: "/coming-soon", icon: CodeBracketIcon },
@@ -251,16 +252,16 @@ const navItems = [
         title: "Banking Services",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "AEPS Services", href: "/coming-soon", desc: "High secure payments", icon: FingerPrintIcon },
-          { title: "M-ATM Service", href: "/coming-soon", desc: "Mobile ATM Access", icon: DevicePhoneMobileIcon },
+          { title: "Aadhaar Enabled Payment System (AEPS)", href: "/coming-soon", desc: "High secure payments", icon: FingerPrintIcon },
+          { title: "M-ATM/POS", href: "/coming-soon", desc: "Mobile ATM & POS Access", icon: DevicePhoneMobileIcon },
         ]
       },
       {
         title: "Money Transfer",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "DMT Services", href: "/coming-soon", desc: "Instant money transfer", icon: CurrencyRupeeIcon },
-          { title: "IMPS UPI Payout Services", href: "/imps-upi-payout-services", desc: "Seamless UPI payments", icon: QrCodeIcon },
+          { title: "Domestic Money Transfer (DMT)", href: "/coming-soon", desc: "Instant money transfer", icon: CurrencyRupeeIcon },
+          { title: "Payout (IMPS/UPI)", href: "/imps-upi-payout-services", desc: "Seamless UPI payments", icon: QrCodeIcon },
         ]
       },
       {
@@ -268,30 +269,28 @@ const navItems = [
         color: "bg-orange-100 text-orange-800",
         items: [
           { title: "Credit Card Bill Payment", href: "/coming-soon", desc: "Easy bill settlements", icon: CreditCardIcon },
-          { title: "M-POS Service", href: "/coming-soon", desc: "Point of sale units", icon: CreditCardIcon },
         ]
       },
       {
-        title: "Utility Payments",
+        title: "Utility Services",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "BBPS Services", href: "/coming-soon", desc: "Bill payment system", icon: BuildingOfficeIcon },
-          { title: "UTI (Pancard) Services", href: "/coming-soon", desc: "Pan card services", icon: InformationCircleIcon },
+          { title: "Bharat Bill Payment System (BBPS)", href: "/coming-soon", desc: "Bill payment system", icon: BuildingOfficeIcon },
+          { title: "Pancard (UTI/NSDL)", href: "/coming-soon", desc: "Pan card services", icon: InformationCircleIcon },
         ]
       },
       {
         title: "Recharge Solutions",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Recharge Services", href: "/coming-soon", desc: "Mobile & DTH", icon: BoltIcon },
-          { title: "Fasttag Recharge Service", href: "/coming-soon", desc: "Toll payments", icon: TruckIcon },
+          { title: "Mobile Recharge", href: "/coming-soon", desc: "Mobile & DTH", icon: BoltIcon },
         ]
       },
       {
-        title: "Offline & POS",
+        title: "Offline Services",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Dynamic Offline Services", href: "/coming-soon", desc: "Offline transactions", icon: SignalIcon },
+          { title: "Offline Services", href: "/coming-soon", desc: "Offline transactions", icon: SignalIcon },
         ]
       },
     ],
@@ -549,7 +548,7 @@ const CompanyDropdown = ({ item, baseHref }: { item: any, baseHref: string }) =>
   const blogItem = item.items.find((i: any) => i.title === "Blog");
 
   return (
-    <div className="flex w-[75vw] max-w-[950px] bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove backdrop-blur-2xl rounded-b-3xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(249,115,22,0.15),0_0_0_1px_rgba(249,115,22,0.1)] mx-auto border border-orange-100/50">
+    <div className="flex w-[75vw] max-w-[950px] bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100   backdrop-blur-2xl rounded-b-3xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(249,115,22,0.15),0_0_0_1px_rgba(249,115,22,0.1)] mx-auto border border-orange-100/50">
       {/* Left: Main Navigation Grid */}
       <div className="flex-1 p-4 grid grid-cols-2 gap-2 bg-white/40">
         {standardItems.map((sub: any, idx: number) => (
@@ -612,6 +611,38 @@ const CompanyDropdown = ({ item, baseHref }: { item: any, baseHref: string }) =>
 
 
 
+
+// Fintech Software — custom 2-row × 3-column layout
+// Row 1: Banking Services | Money Transfer | Utility Services
+// Row 2: Payment Systems | Recharge Solutions | Offline Services
+const FintechDropdown = ({ item, baseHref }: { item: any; baseHref: string }) => {
+  // items order from navItems data:
+  // 0: Banking Services, 1: Money Transfer, 2: Payment Systems,
+  // 3: Utility Services, 4: Recharge Solutions, 5: Offline Services
+  const row1 = [item.items[0], item.items[1], item.items[3]];
+  const row2 = [item.items[2], item.items[4], item.items[5]];
+
+  return (
+    <div className="flex w-[95vw] max-w-[1240px] bg-orange-50/95 backdrop-blur-2xl rounded-b-3xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(249,115,22,0.15),0_0_0_1px_rgba(249,115,22,0.1)] p-8 mx-auto border border-orange-100/50 ring-1 ring-orange-100/50">
+      <div className="flex flex-col gap-8 w-full">
+        {/* Row 1 */}
+        <div className="grid grid-cols-3 gap-x-8">
+          {row1.map((group: any, idx: number) => (
+            <IndustryGroup key={idx} group={group} baseHref={baseHref} />
+          ))}
+        </div>
+        {/* Divider */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-orange-200/60 to-transparent" />
+        {/* Row 2 */}
+        <div className="grid grid-cols-3 gap-x-8">
+          {row2.map((group: any, idx: number) => (
+            <IndustryGroup key={idx} group={group} baseHref={baseHref} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const IndustriesDropdown = ({ item, baseHref }: { item: any, baseHref: string }) => (
   <div className="flex w-[95vw] max-w-[1240px] bg-orange-50/95 backdrop-blur-2xl rounded-b-3xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(249,115,22,0.15),0_0_0_1px_rgba(249,115,22,0.1)] p-8 mx-auto border border-orange-100/50 ring-1 ring-orange-100/50">
@@ -770,6 +801,7 @@ export default function HeaderNew() {
                     height={40}
                     className="w-8 h-auto transition-transform duration-500 group-hover:rotate-12"
                     unoptimized
+                    priority
                   />
                 </div>
                 <span className={clsx("flex items-center text-2xl font-bold tracking-tight transition-colors duration-300", isTop ? "text-gray-900" : "text-black")}>
@@ -937,7 +969,9 @@ export default function HeaderNew() {
                 >
                   {item.title === "Services" ? (
                     <ServicesMegaMenu baseHref={item.href} />
-                  ) : item.title === "Solutions" || item.title === "Hire Talent" || item.title === "Fintech Software" || item.title === "Industries" ? (
+                  ) : item.title === "Fintech Software" ? (
+                    <FintechDropdown item={item} baseHref={item.href} />
+                  ) : item.title === "Solutions" || item.title === "Hire Talent" || item.title === "Industries" ? (
                     <IndustriesDropdown item={item} baseHref={item.href} />
                   ) : item.title === "Our Company" ? (
                     <CompanyDropdown item={item} baseHref={item.href} />

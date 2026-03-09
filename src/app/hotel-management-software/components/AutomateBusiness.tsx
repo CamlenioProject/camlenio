@@ -18,9 +18,9 @@ export const AutomateBusiness = () => {
               <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
                 Automate Your Hotel Operations
               </h2>
-              <p className="text-gray-500 text-base md:text-lg font-medium leading-relaxed max-w-lg">
+              <h4 className="text-gray-700 text-base md:text-lg font-medium leading-relaxed max-w-lg">
                 Streamline reservations, housekeeping, and guest services to run your hotel on auto-pilot.
-              </p>
+              </h4>
             </div>
 
             <div className="space-y-4">
@@ -40,7 +40,7 @@ export const AutomateBusiness = () => {
               ))}
             </div>
 
-            <button onClick={() => {router.push("/contact")}} className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-orange-500/30 transition-all duration-300 transform ">
+            <button onClick={() => { router.push("/contact") }} className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-orange-500/30 transition-all duration-300 transform ">
               Learn More
             </button>
           </div>

@@ -13,7 +13,7 @@ export default function Hero() {
     }
   };
   return (
-    <div className="relative pt-20 overflow-hidden bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="relative pt-20 overflow-hidden bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100  ">
       <Image
         src="/ServiceDropdown/webdevpage/webdevhero.webp"
         alt="Background"

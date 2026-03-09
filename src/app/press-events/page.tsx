@@ -83,7 +83,7 @@ export default function PressPage() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-gray-50 via-orange-50/30 to-gray-50 bg-[length:200%_200%] animate-gradientMove min-h-screen">
+    <div className="bg-gradient-to-r from-gray-50 via-orange-50/30 to-gray-50   min-h-screen">
       <PressHero />
       <PressIntro />
       <PressStats />

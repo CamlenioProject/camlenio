@@ -49,6 +49,7 @@
     "react-lottie-player": "^2.1.0",
     "react-use-measure": "^2.1.7",
     "sass": "^1.97.2",
+    "sharp": "^0.34.5",
     "simplex-noise": "^4.0.3",
     "tailwind-merge": "^3.4.0",
     "tailwind-scrollbar-hide": "^4.0.0",

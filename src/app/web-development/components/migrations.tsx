@@ -33,7 +33,7 @@ const migrationlist = [
 
 const Migration = () => {
   return (
-    <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100  ">
       <div className="px-6 md:px-16 py-10 overflow-hidden">
         <div className="max-w-[85rem] mx-auto">
           <div className="flex flex-col md:flex-row items-left md:items-start justify-between gap-2 md:gap-12">

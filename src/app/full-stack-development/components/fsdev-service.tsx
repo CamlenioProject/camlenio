@@ -42,7 +42,7 @@ const FsDevServices = () => {
   ));
 
   return (
-    <div className=" bg-gradient-to-r from-indigo-100 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove flex flex-col justify-center items-center mx-auto px-8 py-10 md:py-20">
+    <div className=" bg-gradient-to-r from-indigo-100 via-orange-100 to-indigo-100   flex flex-col justify-center items-center mx-auto px-8 py-10 md:py-20">
       <motion.div
         initial={{ y: 50, opacity: 1 }}
         whileInView={{ y: 0, opacity: 1 }}

@@ -87,7 +87,7 @@ const ItSolution: FC = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="max-w-5xl mx-auto text-gray-600 text-sm md:text-base mb-12 font-sans text-justify"
+            className="max-w-5xl mx-auto text-gray-700 text-sm md:text-base mb-12 font-sans text-justify"
           >
             The Camlenio is the top leading Mobile App Development Company in India, it delivers high-performance digital solutions for beginners, SMEs and enterprises. Here, Camelino Custom Development Company in India is a trustworthy software development company with several years of experience. As our expert team supports the business with smooth solutions, increases consumer engagement and levels quickly via innovative technology.
             <br />
@@ -105,15 +105,19 @@ const ItSolution: FC = () => {
 
             {/* YouTube Video - Optimized Embed */}
             <div className="h-60 bg-gray-200 relative rounded-xl shadow-xl overflow-hidden md:col-span-2 lg:col-span-2">
-              <video
-                src="https://res.cloudinary.com/dxpbriwey/video/upload/f_auto,q_auto/v1767704386/video_3_kug49x.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                className="w-full h-full object-cover rounded-lg absolute inset-0 pointer-events-none"
-              />
+              {inView && (
+                <video
+                  src="https://res.cloudinary.com/dxpbriwey/video/upload/f_auto,q_auto/v1767704386/video_3_kug49x.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="none"
+                  className="w-full h-full object-cover rounded-lg absolute inset-0 pointer-events-none"
+                >
+                  <track kind="captions" src="/captions/hero-video.vtt" srcLang="en" label="English" default />
+                </video>
+              )}
               {/* Clickable overlay to open video popup */}
               <div
                 className="absolute inset-0 cursor-pointer hover:bg-white/10 transition-colors z-10"
@@ -159,7 +163,9 @@ const ItSolution: FC = () => {
                       playsInline
                       preload="auto"
                       className="w-full h-full"
-                    />
+                    >
+                      <track kind="captions" src="/captions/hero-video.vtt" srcLang="en" label="English" default />
+                    </video>
                   </m.div>
                 </m.div>
               )}

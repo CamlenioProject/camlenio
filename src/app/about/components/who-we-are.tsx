@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function WhoWeAre() {
   return (
-    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-50 bg-[length:200%_200%] animate-gradientMove py-16">
+    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-50   py-16">
       <div className="text-center">
         <span className="relative inline-block px-4 py-1.5 rounded-full border border-orange-300 bg-white shadow-sm text-sm font-medium text-gray-950 mb-4">
           <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 left-[-1.2rem] top-1/2 -translate-y-1/2"></span>

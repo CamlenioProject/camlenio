@@ -27,7 +27,7 @@ export function Testimonials() {
   return (
     <section
       aria-labelledby="testimonials-title"
-      className="py-16 md:py-20 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove"
+      className="py-16 md:py-20 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100  "
     >
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">

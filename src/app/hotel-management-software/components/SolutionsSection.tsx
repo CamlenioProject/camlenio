@@ -1,5 +1,6 @@
 "use client";
 
+import NextImage from "next/image";
 import { RevealSection } from "../../real-estate-software-development/components/RevealSection";
 import { solutions } from "./data";
 
@@ -63,14 +64,15 @@ export const SolutionsSection = () => {
                       <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 shadow-sm ring-2 ring-white z-30" />
                       <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-black/20 blur-[1px] -z-10 translate-y-0.5" />
 
-                      {/* 3D Illustration Pop-up (Top Right) */}
+                      {/* Content Illustrations */}
                       <div className="absolute left-0 right-4 -top-20 flex justify-end opacity-0 group-hover/card:opacity-100 transition-all duration-500 transform translate-y-10 group-hover/card:translate-y-0 z-20 pointer-events-none">
                         <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white transform rotate-12 relative">
-                          {/* Use img for external urls to avoid config issues */}
-                          <img
-                            src={(item as any).illustration || "https://placehold.co/200x200"}
+                          <NextImage
+                            src={(item as any).illustration || "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=200&auto=format&fit=crop"}
                             alt={item.title}
-                            className="w-full h-full object-cover"
+                            fill
+                            sizes="96px"
+                            className="object-cover"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-orange-500/20 to-transparent mix-blend-overlay" />
                         </div>
@@ -84,7 +86,7 @@ export const SolutionsSection = () => {
                           {item.icon}
                         </div>
                         <h3 className="text-base font-bold text-gray-900 mb-1.5 leading-tight relative z-30">{item.title}</h3>
-                        <p className="text-xs text-gray-500 leading-snug font-medium relative z-30">
+                        <p className="text-xs text-gray-600 leading-snug font-medium relative z-30">
                           {item.desc}
                         </p>
                       </div>

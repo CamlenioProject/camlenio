@@ -143,7 +143,7 @@ export const FeatureTabs = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h3>
-                      <p className="text-sm text-gray-500 leading-relaxed max-w-xl text-justify">
+                      <p className="text-sm text-gray-700 leading-relaxed max-w-xl text-justify">
                         {item.desc}
                       </p>
                     </div>

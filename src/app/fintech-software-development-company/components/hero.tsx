@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import { Calendar, MapPin } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import { ArrowRight, Shield, Zap, TrendingUp } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,15 +19,8 @@ export default function Hero() {
     const triggerElement = leftContentRef.current?.parentElement;
 
     ScrollTrigger.normalizeScroll(true);
-    ScrollTrigger.config({
-      ignoreMobileResize: true,
-    });
-
-    gsap.config({
-      force3D: true,
-      autoSleep: 60,
-      nullTargetWarn: false,
-    });
+    ScrollTrigger.config({ ignoreMobileResize: true });
+    gsap.config({ force3D: true, autoSleep: 60, nullTargetWarn: false });
 
     const allElements = [
       leftContentRef.current,
@@ -37,26 +30,20 @@ export default function Hero() {
       bottomRightRef.current,
     ].filter(Boolean);
 
-    gsap.set(allElements, {
-      willChange: "transform, opacity",
-    });
+    gsap.set(allElements, { willChange: "transform, opacity" });
 
     const scrollTriggerConfig = {
       trigger: triggerElement,
       start: "top 20%",
       end: "bottom 20%",
-      toggleActions: "play none none  none",
+      toggleActions: "play none none none",
       markers: false,
       anticipatePin: 1,
     };
 
     gsap.fromTo(
       leftContentRef.current,
-      {
-        y: "-30%",
-        opacity: 0,
-        filter: "blur(5px)",
-      },
+      { y: "-30%", opacity: 0, filter: "blur(5px)" },
       {
         y: "0%",
         opacity: 1,
@@ -68,10 +55,7 @@ export default function Hero() {
       }
     );
 
-    const imgTimeline = gsap.timeline({
-      scrollTrigger: scrollTriggerConfig,
-    });
-
+    const imgTimeline = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
     const imageRefs = [
       topLeftRef.current,
       topRightRef.current,
@@ -81,11 +65,7 @@ export default function Hero() {
 
     imgTimeline.fromTo(
       imageRefs,
-      {
-        x: "25%",
-        opacity: 0,
-        filter: "blur(3px)",
-      },
+      { x: "25%", opacity: 0, filter: "blur(3px)" },
       {
         x: "0%",
         opacity: 1,
@@ -98,7 +78,6 @@ export default function Hero() {
       0.2
     );
 
-    // Cleanup function
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
@@ -108,14 +87,16 @@ export default function Hero() {
     <section className="relative overflow-hidden">
       <div className="w-full max-w-[90rem] mx-auto lg:min-h-[80vh] pt-28 md:pt-20 grid grid-cols-1 items-center gap-6 px-4 sm:px-6 md:min-h-screen md:grid-cols-2 lg:gap-12 lg:px-8 xl:px-16">
         <div ref={leftContentRef} className="animation-optimized">
-          <p className="text-gray-900 text-sm mb-2 font-semibold ml-1 tracking-wide">
-            {"Fintech Solution —"}
-          </p>
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-orange-100 border border-orange-200 rounded-full px-4 py-1.5 mb-6">
+            <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+            <span className="text-orange-700 text-xs font-bold uppercase tracking-wider">
+              Fintech Software Development
+            </span>
+          </div>
 
-          <h1
-            id="travel-hero-heading"
-            className="text-4xl md:text-4xl lg:text-6xl  font-bold text-gray-900 leading-tight"
-          >
+          <h1 className="text-4xl md:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            {" "}
             <span
               className="text-orange-500"
               style={{
@@ -123,29 +104,47 @@ export default function Hero() {
                   "-1px -1px 0px #da5f00, 2px 2px 0px #fff, 3px 4px 0px #ff582336",
               }}
             >
-              Fintech{" "}
-            </span>
-            Software Development Company
-            <br />
+              Fintech Software
+            </span>{" "}
+            Development
           </h1>
 
-          <p className="max-w-md sm:max-w-2xl mx-auto text-gray-600 text-sm md:text-base my-6 font-sans text-justify">
-            We build secure, scalable, and future-ready fintech software
-            solutions that help businesses innovate, automate, and grow in the
-            digital finance ecosystem.
-            <br />
-            As a trusted fintech software development company, we specialize in
-            designing and developing cutting-edge financial applications that
-            ensure speed, security, compliance, and seamless user experience.
+          <p className="max-w-md sm:max-w-2xl text-gray-600 text-sm md:text-base my-6 font-sans text-justify leading-relaxed">
+            Update your Financial services with creative FinTech Software
+            Development designed for modern businesses. We create scalable,
+            secure, high-performance fintech platforms, including payment
+            systems, digital banking, and financial applications that streamline
+            transactions, improve customer experience, and support businesses
+            that grow quickly in the digital finance ecosystem.
           </p>
 
-          <div className="flex items-center">
+          {/* Mini Feature Tags */}
+          <div className="flex flex-wrap gap-3 mb-8">
+            {[
+              { icon: Shield, label: "Secure Platforms" },
+              { icon: Zap, label: "High Performance" },
+              { icon: TrendingUp, label: "Scalable Solutions" },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full px-4 py-2 shadow-sm"
+              >
+                <item.icon className="w-4 h-4 text-orange-500" />
+                <span className="text-xs font-semibold text-gray-700">
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4">
             <Link href="/contact">
               <button
                 type="button"
-                className="inline-flex max-w-md items-center justify-center cursor-pointer rounded-xl px-4 py-3 bg-orange-500 text-gray-100 text-sm font-semibold hover:bg-orange-600 transition-colors duration-200"
+                className="group inline-flex items-center justify-center cursor-pointer rounded-full px-7 py-3.5 bg-orange-500 text-white text-sm font-bold hover:bg-orange-600 hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_4px_14px_0_rgba(234,88,12,0.39)]"
               >
                 Get Started
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </Link>
           </div>
@@ -155,46 +154,47 @@ export default function Hero() {
           <div className="grid grid-cols-2 grid-rows-1 md:grid-rows-2 gap-3 sm:gap-4 lg:gap-6 py-4 md:py-8">
             {/* Top-left: tall image */}
             <div ref={topLeftRef} className="flex justify-end">
-              <div className="relative aspect-[3/4] w-full sm:w-4/5  overflow-hidden rounded-2xl sm:rounded-3xl">
+              <div className="relative aspect-[3/4] w-full sm:w-4/5 overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl">
                 <Image
                   src="/ServiceDropdown/fintechsoftware/fintech1.webp"
-                  alt="Fintech innovation visualization"
+                  alt="Fintech Software Development Platform"
                   width={400}
                   height={533}
                   className="h-full w-full object-cover object-bottom"
                   priority
                 />
-                <div className="absolute left-2 top-2 sm:left-3 sm:top-3 rounded-lg sm:rounded-xl bg-card/90 px-2 py-1 sm:px-3 sm:py-2 text-xs font-semibold text-card-foreground shadow-sm">
-                  100+ Destinations
-                  <div className="block text-[10px] font-normal text-muted-foreground">
-                    More than 100 travelers use the platform
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <div className="absolute left-3 top-3 rounded-xl bg-white/90 backdrop-blur-sm px-3 py-2 shadow-md">
+                  <p className="text-xs font-bold text-gray-900">100+ Fintech Projects</p>
+                  <p className="text-[10px] text-gray-500">Secure & Scalable Solutions</p>
                 </div>
               </div>
             </div>
 
             {/* Top-right: wide image */}
             <div ref={topRightRef} className="flex justify-start">
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl sm:rounded-3xl">
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl">
                 <Image
                   src="/ServiceDropdown/fintechsoftware/fintech2.webp"
-                  alt="Secure fintech platform"
+                  alt="Digital Banking Software Development"
                   width={500}
                   height={281}
                   className="h-full w-full object-cover"
                 />
-                <div className="absolute left-2 top-2 sm:left-3 sm:top-3 rounded-lg sm:rounded-xl bg-white/30 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-2 text-xs font-semibold text-gray-900 shadow-sm ">
-                  100% <span className="ml-1">Verified</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="absolute left-3 top-3 rounded-xl bg-white/90 backdrop-blur-sm px-3 py-2 text-xs font-bold text-gray-900 shadow-md flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  100% Verified
                 </div>
               </div>
             </div>
 
             {/* Bottom-left: wide image */}
             <div ref={bottomLeftRef} className="hidden md:flex justify-end">
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl sm:rounded-3xl">
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl">
                 <Image
                   src="/ServiceDropdown/fintechsoftware/fintech3.webp"
-                  alt="Financial technology interface"
+                  alt="Financial Software Development Services"
                   width={500}
                   height={281}
                   className="h-full w-full object-cover"
@@ -204,10 +204,10 @@ export default function Hero() {
 
             {/* Bottom-right: tall image */}
             <div ref={bottomRightRef} className="hidden md:flex justify-start">
-              <div className="relative aspect-[3/4] w-full sm:w-4/5 overflow-hidden rounded-2xl sm:rounded-3xl">
+              <div className="relative aspect-[3/4] w-full sm:w-4/5 overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl">
                 <Image
                   src="/ServiceDropdown/fintechsoftware/fintech4.webp"
-                  alt="Digital banking solution"
+                  alt="B2B Fintech Software Development"
                   width={400}
                   height={281}
                   className="h-full w-full object-cover object-top"

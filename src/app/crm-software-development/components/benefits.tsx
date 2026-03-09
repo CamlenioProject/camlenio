@@ -27,7 +27,7 @@ const benefits = [
 export default function Benefits() {
   return (
     <div className="">
-      <div className="bg-gradient-to-b from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove relative px-8 md:px-16 py-20">
+      <div className="bg-gradient-to-b from-gray-100 via-orange-100 to-gray-100   relative px-8 md:px-16 py-20">
         <div className="relative max-w-6xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-6xl font-bold text-gray-900 ">
             Why Brands Trust{" "}

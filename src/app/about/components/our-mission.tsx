@@ -6,7 +6,7 @@ import { m, LazyMotion, domMax } from "framer-motion";
 const OurMission = () => {
   return (
     <LazyMotion features={domMax}>
-      <div className="relative py-16 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
+      <div className="relative py-16 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100  ">
         <div className="max-w-7xl mx-auto text-left md:text-center px-8 md:px-16">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
             Our Mission &{" "}

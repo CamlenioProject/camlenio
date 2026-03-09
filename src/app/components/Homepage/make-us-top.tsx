@@ -6,28 +6,46 @@ import Divider from "../devider";
 
 const cardsData = [
   {
-    icon: "/Homepage/makeustop/B2B.svg",
-    title: "B2B Fintech Software",
+    icon: "/Homepage/makeustop/settings.svg",
+    title: "Web Application development",
+    bgImage: "/Homepage/makeustop/bg/ai-driven.png",
     description:
-      "Our B2B Fintech Solution is a one-stop platform meant to provide all the key digital financial services.",
+      "Web Application development Company services for a quick, responsive platform.",
   },
   {
-    icon: "/Homepage/makeustop/B2C.svg",
-    title: "B2C Software",
+    icon: "/Homepage/makeustop/B2B.svg",
+    title: "B2B Software Development",
+    bgImage: "/Homepage/makeustop/bg/b2b.png",
     description:
-      "Our B2C Software is a complete digital platform crafted to simplify financial, customize and travel software for end users who directly interact with the software.",
+      "B2B Software Development Company operations for complicated workflows.",
   },
   {
     icon: "/Homepage/makeustop/Reseller.svg",
-    title: "Reseller Fintech Software",
+    title: "API integration services",
+    bgImage: "/Homepage/makeustop/bg/reseller.png",
     description:
-      "Camlenio Reseller Fintech Software is a robust Scalable and growth-oriented, the Reseller Admin has total authority to generate several White Label Admins, each with its own branding and management system.",
+      "API integration services for hassle-free system connectivity.",
   },
   {
     icon: "/Homepage/makeustop/Travel.svg",
-    title: "Travel Software",
+    title: "Enterprises Software Development",
+    bgImage: "/Homepage/makeustop/bg/travel.png",
     description:
-      "Our API Panel is the core platform that drives and controls all fintech solutions, such as B2B Fintech Software, B2C Software, and Reseller Software. ",
+      "Enterprises Software Development for large-scale business solutions.",
+  },
+  {
+    icon: "/Homepage/makeustop/B2C.svg",
+    title: "Cloud-based software development",
+    bgImage: "/Homepage/makeustop/bg/b2c.png",
+    description:
+      "Cloud-based software development for flexibility and scalability.",
+  },
+  {
+    icon: "/Homepage/makeustop/Crm.svg",
+    title: "CRM software development",
+    bgImage: "/Homepage/makeustop/bg/ai-driven.png",
+    description:
+      "CRM software development to increase consumer relationships.",
   },
 ];
 
@@ -35,6 +53,7 @@ interface FeatureCardProps {
   icon: string;
   title: string;
   description: string;
+  bgImage: string;
 }
 
 const MakeUsTop = () => {
@@ -61,52 +80,17 @@ const MakeUsTop = () => {
             Software Development Services
           </h5>
           <p className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans">
-            As an IT software company in Jaipur,India, a business-specific software development method guarantees that each operation aligns with your goals while helping the scalable software operations for future growth.We provide several types of services to meet the various business needs:
+            As an IT software company in Jaipur, a business-specific software development method guarantees that each operation aligns with your goals while helping the scalable software operations for future growth. We provide several types of services to meet the various business needs:
 
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
-            <div className="relative group rounded-2xl hover:scale-101 transition-transform duration-500 ease-in p-6 text-left overflow-hidden flex flex-col justify-center md:col-span-2 lg:col-span-2 leading-snug border-2  bg-orange-200/30 backdrop-blur-lg border-orange-200">
-              <div className="w-20 h-20 z-20 py-4 mb-6 ">
-                {" "}
-                <Image
-                  src="/Homepage/makeustop/settings.svg"
-                  alt="setting svg"
-                  height={60}
-                  width={60}
-                  className="object-contain absolute top-10 left-10 animate-spin group-hover:scale-102 transition-transform duration-500 ease-in "
-                  style={{ animationDuration: "10s" }}
-                />{" "}
-              </div>
-              <m.h1
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                className="w-full z-20 text-xl md:text-2xl font-semibold text-gray-900 mb-2"
-              >
-                Financial’s Approach to AI-Driven Software Development
-              </m.h1>
-
-              <m.p
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                className="relative z-20 text-base  break-words flex-wrap text-gray-500 font-sans text-justify"
-              >
-                Our Fintech Software is a comprehensive, secure, and
-                user-friendly solution that provides all financial services
-                under one roof. We facilitates quicker, secure and seamless
-                transactions for businesses. Designed for B2B, B2C and Reseller
-                models, the platform accommodates multiple levels (Admin, Master
-                Distributor, Distributor, and Retailer).
-              </m.p>
-            </div>
-
             {cardsData.map((card, index) => (
               <FeatureCard
                 key={index}
                 icon={card.icon}
                 title={card.title}
                 description={card.description}
+                bgImage={card.bgImage}
               />
             ))}
           </div>
@@ -120,9 +104,19 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   icon,
   title,
   description,
+  bgImage,
 }) => (
-  <div className="border-2 border-orange-200 bg-orange-200/30 shadow-md group rounded-2xl hover:shadow-3xl p-6 flex flex-col text-left">
-    <div className="w-20 h-20 z-20 group-hover:scale-80 py-4 mb-6 transition-all duration-300">
+  <div className="relative border-2 border-orange-200 bg-orange-200/30 shadow-md group rounded-2xl hover:shadow-3xl p-6 flex flex-col text-left overflow-hidden">
+    {/* Subtle background image */}
+    <div className="absolute inset-0 opacity-[0.08]">
+      <Image
+        src={bgImage}
+        alt=""
+        fill
+        className="object-cover mix-blend-multiply"
+      />
+    </div>
+    <div className="relative z-10 w-20 h-20 group-hover:scale-80 py-4 mb-6 transition-all duration-300">
       <Image
         src={icon}
         alt={title}
@@ -131,7 +125,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         className="object-contain"
       />
     </div>
-    <div className="transition-all duration-500 group-hover:-translate-y-6 ">
+    <div className="relative z-10 transition-all duration-500 group-hover:-translate-y-6 ">
       <m.h3
         initial={{ y: 30, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}

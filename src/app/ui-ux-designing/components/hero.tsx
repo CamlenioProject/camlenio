@@ -48,7 +48,7 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="px-6 md:px-16 bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="px-6 md:px-16 bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100  ">
       <div className="relative max-w-7xl pt-14 md:min-h-screen mx-auto flex flex-col-reverse md:flex-row items-center justify-center gap-8">
         <div className=" hidden md:block absolute top-1/2 left-1/3 min-w-7xl -translate-y-1/2 z-7">
           <MetaBalls

@@ -11,7 +11,7 @@ import CTA from "@/app/components/cta";
 
 export default function CustomedSoftware() {
   return (
-    <div className="relative scroll-smooth bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="relative scroll-smooth bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100  ">
       <Hero />
       <WhyCustomSoftware />
       <OurServicesSection />

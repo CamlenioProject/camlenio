@@ -86,7 +86,7 @@ const cards = [
 
 const OurValues = () => {
   return (
-    <div className="py-16 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_200%] animate-gradientMove">
+    <div className="py-16 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800  ">
       <div className="max-w-7xl mx-auto px-8 md:px-16">
         <div className="text-center">
           <span className="relative inline-block px-4 py-1.5  rounded-full  border-2 text-base border-orange-300 bg-white shadow-sm font font-semibold text-gray-950 mb-4">

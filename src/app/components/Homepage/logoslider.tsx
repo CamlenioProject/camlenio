@@ -82,6 +82,7 @@ export function LogoSlider() {
                       fill
                       className="object-contain"
                       sizes="(max-width: 768px) 120px, 160px"
+                      priority={logo.src.includes("paysprint-logo")}
                     />
                   </div>
                 ))}

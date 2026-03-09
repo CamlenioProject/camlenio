@@ -68,7 +68,7 @@ export default function MobAppIntegration() {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100  ">
       <div
         id="next-section"
         className="max-w-7xl scroll-mt-30  mx-auto px-4 md:px-16 py-12 min-h-screen "
@@ -101,11 +101,10 @@ export default function MobAppIntegration() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative group flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4 px-4 py-4 md:px-6 md:py-6 rounded-full w-full text-center font-medium transition duration-300 text-sm sm:text-sm md:text-base lg:text-lg shadow-[inset_0_4px_8px_rgba(0,0,0,0.1),inset_0_-4px_8px_rgba(255,255,255,0.6)] ${
-                  activeTab === tab.id
+                className={`relative group flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4 px-4 py-4 md:px-6 md:py-6 rounded-full w-full text-center font-medium transition duration-300 text-sm sm:text-sm md:text-base lg:text-lg shadow-[inset_0_4px_8px_rgba(0,0,0,0.1),inset_0_-4px_8px_rgba(255,255,255,0.6)] ${activeTab === tab.id
                     ? "bg-orange-500 text-white"
                     : "bg-orange-50 text-gray-800 hover:bg-orange-500 hover:text-gray-100"
-                }`}
+                  }`}
               >
                 <span className="whitespace-nowrap capitalize">
                   {tab.label}

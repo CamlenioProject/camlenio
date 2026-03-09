@@ -138,24 +138,28 @@ export default function Footer() {
               <div className="flex mt-4 space-x-4">
                 <Link
                   href="https://x.com/camlenio"
+                  aria-label="Follow us on X (Twitter)"
                   className="transition-all duration-300 hover:text-orange-500 hover:scale-105"
                 >
                   <X size={20} />
                 </Link>
                 <Link
                   href="https://www.linkedin.com/company/camlenio/"
+                  aria-label="Visit our LinkedIn page"
                   className="transition-all duration-300 hover:text-orange-500 hover:scale-105"
                 >
                   <Linkedin size={20} />
                 </Link>
                 <Link
                   href="https://www.facebook.com/camleniosoftware/"
+                  aria-label="Visit our Facebook page"
                   className="transition-all duration-300 hover:text-orange-500 hover:scale-105"
                 >
                   <Facebook size={20} />
                 </Link>
                 <Link
                   href="https://www.instagram.com/camleniosoftware/"
+                  aria-label="Visit our Instagram page"
                   className="transition-all duration-300 hover:text-orange-500 hover:scale-105"
                 >
                   <Instagram size={20} />
@@ -164,9 +168,9 @@ export default function Footer() {
             </div>
             {footerData.map((section, i) => (
               <div key={i}>
-                <h6 className="text-base md:text-lg font-semibold mb-3 ">
+                <h4 className="text-base md:text-lg font-semibold mb-3 ">
                   {section.title}
-                </h6>
+                </h4>
                 <ul className="space-y-1 ">
                   {section.links.map((link, j) => (
                     <li key={j} className="relative text-xs md:text-sm">

@@ -10,7 +10,7 @@ export const metadata = {
 };
 export default function AndroidAppDevelopment() {
   return (
-    <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100  ">
       <Hero />
       <Expertise />
       <WhyChooseUs />

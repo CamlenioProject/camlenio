@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import { FaPiggyBank } from "react-icons/fa";
 import { RiBankFill } from "react-icons/ri";
@@ -29,7 +31,7 @@ const industries = [
     title: "Lending & Credit Companies",
     description:
       "We develop end-to-end digital lending solutions covering customer onboarding, credit scoring, loan origination, disbursement, and recovery management. Our platforms help lending companies reduce turnaround time, manage risk efficiently, and scale operations seamlessly.",
-    icon: <FaPiggyBank className="text-gray-500"/>,
+    icon: <FaPiggyBank className="text-gray-500" />,
   },
   {
     id: 5,
@@ -94,7 +96,7 @@ export default function IndustriesWeServe() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                <p className="text-gray-700 text-sm leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
                   {industry.description}
                 </p>
 

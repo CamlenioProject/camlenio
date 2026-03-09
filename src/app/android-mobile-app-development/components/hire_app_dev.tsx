@@ -3,7 +3,7 @@
 
 const MobileAppSection = () => {
   return (
-    <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100  ">
       <div className=" text-black py-10 px-8 md:px-16 overflow-hidden relative">
         <div className="max-w-7xl text-center">
           <h2 className=" text-2xl md:text-4xl lg:text-6xl font-semibold leading-snug mx-auto">

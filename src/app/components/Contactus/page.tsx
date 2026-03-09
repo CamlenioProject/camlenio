@@ -113,7 +113,7 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove py-20 px-8 md:px-16 scroll-smooth">
+    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100   py-20 px-8 md:px-16 scroll-smooth">
       <AnimatePresence>
         {successPopup && (
           <motion.div

@@ -69,7 +69,7 @@ const TechnologiesTabs = () => {
             <span className="absolute w-8 h-2 rounded-full bg-orange-500 right-[-1.4rem] top-1/2 -translate-y-1/2"></span>
             Technologies - Now About our Weapons
           </span>
-          <h6 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
+          <h4 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
             Latest and Smart{" "}
             <span
               className="text-orange-500"
@@ -80,7 +80,7 @@ const TechnologiesTabs = () => {
             >
               Technologies
             </span>
-          </h6>
+          </h4>
           <p className="max-w-5xl mx-auto flex-wrap text-gray-50 text-sm text-justify break-words sm:text-base mb-12 font-sans">
             We aim to deliver high-quality, beautifully crafted web
             and mobile applications using the latest technologies and
@@ -94,11 +94,10 @@ const TechnologiesTabs = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`relative pb-2 text-xs sm:text-sm md:text-xl ${
-                activeTab === tab.id
+              className={`relative pb-2 text-xs sm:text-sm md:text-xl ${activeTab === tab.id
                   ? "text-orange-500 after:absolute after:left-0 after:right-0 after:-bottom-[1px] after:h-[2px] after:bg-orange-500 after:origin-center after:scale-x-100 after:transition-transform after:duration-500"
                   : "text-white hover:text-orange-400 after:absolute after:left-0 after:right-0 after:-bottom-[1px] after:h-[2px] after:bg-orange-500 after:origin-center after:scale-x-0 after:transition-transform after:duration-500 hover:after:scale-x-100"
-              }`}
+                }`}
             >
               {tab.label}
             </button>

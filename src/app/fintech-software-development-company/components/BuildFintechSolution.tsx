@@ -11,6 +11,7 @@ export default function BuildFintechSolution() {
   const containerRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const description2Ref = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const bgRef1 = useRef<HTMLDivElement>(null);
@@ -29,18 +30,24 @@ export default function BuildFintechSolution() {
 
       tl.fromTo(
         headingRef.current,
-        { y: 100, opacity: 0 },
+        { y: 60, opacity: 0 },
         { y: 0, opacity: 1, duration: 1 }
       )
         .fromTo(
           descriptionRef.current,
-          { y: 80, opacity: 0 },
+          { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8 },
           "-=0.5"
         )
         .fromTo(
+          description2Ref.current,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8 },
+          "-=0.4"
+        )
+        .fromTo(
           buttonsRef.current,
-          { y: 60, opacity: 0 },
+          { y: 20, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8 },
           "-=0.4"
         )
@@ -75,7 +82,7 @@ export default function BuildFintechSolution() {
               ref={headingRef}
               className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-50 mb-4 opacity-0"
             >
-              Looking to Build a <br /> Powerful{" "}
+              B2B{" "}
               <span
                 className="text-orange-500"
                 style={{
@@ -85,17 +92,20 @@ export default function BuildFintechSolution() {
               >
                 Fintech{" "}
               </span>
-              Software Solution?
+              Software Development Solutions
             </h1>
 
             <p
               ref={descriptionRef}
               className="max-w-5xl mx-auto text-gray-100 text-sm md:text-base mb-6 font-sans text-justify opacity-0"
             >
-              From digital banking platforms and payment systems to lending,
-              insurance, and wealth management solutions, Camlenio Software Pvt
-              Ltd helps businesses build secure, scalable, and compliance-ready
-              fintech software that drives growth and innovation.
+              We offer reliable B2B Fintech Software Development services for businesses seeking to build a strong financial ecosystem. Our solutions are intended for banks, payment providers, and financial service platforms seeking to streamline solutions. Our developers are designed for advanced fintech companies, payment providers, and financial service platforms.
+            </p>
+            <p
+              ref={description2Ref}
+              className="max-w-5xl mx-auto text-gray-100 text-sm md:text-base mb-6 font-sans text-justify opacity-0"
+            >
+              Through our Fintech Software Development Services, companies can automate the financial workflows, improve transaction privacy, and scale their solutions effectively. By merging innovation with industry experience, we deliver AEPS Services with high-performance fintech solutions that drive business growth.
             </p>
             <div
               ref={buttonsRef}

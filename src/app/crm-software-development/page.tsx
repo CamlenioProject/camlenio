@@ -8,7 +8,7 @@ import CTA from "@/app/components/cta";
 
 export default function CrmSoftware() {
   return (
-    <div className="relative bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="relative bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100  ">
       <Hero />
       <Features />
       <Process />

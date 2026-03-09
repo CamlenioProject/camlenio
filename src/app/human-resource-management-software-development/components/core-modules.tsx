@@ -51,7 +51,7 @@ const CoreModules = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
+    <section className="py-16 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100  ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">

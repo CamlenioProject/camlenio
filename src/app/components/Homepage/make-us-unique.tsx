@@ -33,7 +33,7 @@ export default function MakeUsUnique() {
           <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
           Solutions That Scale
         </span>
-        <h6 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
+        <h4 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
           Why Choose {" "}
           <span
             className="text-orange-500"
@@ -45,12 +45,12 @@ export default function MakeUsUnique() {
             {" "}
             Camlenio?
           </span>
-        </h6>
+        </h4>
         <p className="max-w-5xl mx-auto flex-wrap text-gray-50 text-sm text-justify break-words sm:text-base mb-12 font-sans">
           The Camlenio is more than just a development vendor. As we are your digital growth partner. If you are seeking a trustworthy mobile app development company that understands technology and business equally, Camlenio is the  perfect choice, as we include:
         </p>
       </div>
-      <div className=" max-w-7xl mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
+      <div className=" max-w-7xl mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
         {cards.map((card, index) => (
           <div
             key={index}

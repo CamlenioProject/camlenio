@@ -114,7 +114,7 @@ const features = [
 export default function UiUxImportance() {
   return (
     <div className="">
-      <div className="relative  py-16 text-gray-900 overflow-hidden bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove">
+      <div className="relative  py-16 text-gray-900 overflow-hidden bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100  ">
         <div className="absolute left-0 top-0 w-[80px] sm:w-[120px] md:w-[160px] h-[80px] sm:h-[120px] md:h-[160px] bg-orange-500 rounded-r-full z-0"></div>
         <div className="absolute right-0 top-0 w-[80px] sm:w-[120px] md:w-[160px] h-[80px] sm:h-[120px] md:h-[160px] bg-orange-500 rounded-l-full z-0"></div>
 

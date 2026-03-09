@@ -102,7 +102,7 @@ const OurProcess = () => {
             <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
             Custom Software Development
           </span>
-          <h6 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h4 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             A Structured Approach to Building {""}
             <span
               className="text-orange-500"
@@ -113,7 +113,7 @@ const OurProcess = () => {
             >
               Smarter Software
             </span>
-          </h6>
+          </h4>
 
           <p className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans ">
             We follow a structured and methodical approach to software
@@ -136,11 +136,10 @@ const OurProcess = () => {
               {steps.map((step, index) => (
                 <li
                   key={index}
-                  className={`relative group flex text-center flex-col md:flex-row text-[0.5rem] sm:text-[0.77rem] md:text-[1.2rem] font-medium px-3 md:px-4 lg:px-6 py-2 lg:py-4 rounded-xl w-full justify-center items-center gap-1 md:gap-2 lg:gap-4 cursor-pointer z-10 transition duration-300 ease-in-out hover:scale-[1.02]  ${
-                    activeIndex === index
-                      ? "bg-orange-500 text-white "
-                      : "bg-orange-200 text-gray-800 hover:bg-orange-500 hover:text-gray-50"
-                  }`}
+                  className={`relative group flex text-center flex-col md:flex-row text-[0.5rem] sm:text-[0.77rem] md:text-[1.2rem] font-medium px-3 md:px-4 lg:px-6 py-2 lg:py-4 rounded-xl w-full justify-center items-center gap-1 md:gap-2 lg:gap-4 cursor-pointer z-10 transition duration-300 ease-in-out hover:scale-[1.02]  ${activeIndex === index
+                    ? "bg-orange-500 text-white "
+                    : "bg-orange-200 text-gray-800 hover:bg-orange-500 hover:text-gray-50"
+                    }`}
                   onClick={() => setActiveIndex(index)}
                 >
                   <Image
@@ -148,9 +147,8 @@ const OurProcess = () => {
                     alt={step.label}
                     width={24}
                     height={24}
-                    className={`w-6 h-6 object-contain shadow-2xl z-40 group-hover:invert-0 ${
-                      activeIndex === index ? "invert-0" : "invert"
-                    }`}
+                    className={`w-6 h-6 object-contain shadow-2xl z-40 group-hover:invert-0 ${activeIndex === index ? "invert-0" : "invert"
+                      }`}
                   />
                   <span className="whitespace-nowrap text-xs md:text-sm lg:text-sm capitalize text-left">
                     {step.label}
@@ -167,7 +165,7 @@ const OurProcess = () => {
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-r from-indigo-100 via-orange-200 to-indigo-100 bg-[length:200%_200%] animate-gradientMove py-10 px-6 md:px-16 rounded-3xl border-1 border-orange-100 mb-6"
+            className="bg-gradient-to-r from-indigo-100 via-orange-200 to-indigo-100   py-10 px-6 md:px-16 rounded-3xl border-1 border-orange-100 mb-6"
           >
             <AnimatePresence mode="wait">
               <m.div

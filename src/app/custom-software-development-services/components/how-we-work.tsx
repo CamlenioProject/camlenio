@@ -103,12 +103,13 @@ export default function SoftwareKeyFeaturesSignal() {
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  preload="none"
                 >
                   <source
                     src="https://res.cloudinary.com/dxpbriwey/video/upload/v1766410752/6720480_IT_Engineer_1280x720_1_stp6g9.mp4"
                     type="video/mp4"
                   />
+                  <track kind="captions" src="/captions/hero-video.vtt" srcLang="en" label="English" default />
                 </video>
 
                 {/* Overlay */}

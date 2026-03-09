@@ -70,7 +70,7 @@ const Services = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-20 px-8 md:px-16 relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove"
+      className="py-20 px-8 md:px-16 relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100  "
     >
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}

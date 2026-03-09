@@ -29,7 +29,7 @@ const cards = [
 
 const AboutTheCompany = () => {
   return (
-    <div className="relative py-16 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="relative py-16 bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100">
       <div className="max-w-7xl mx-auto px-8 md:px-16">
         <p className="max-w-6xl mx-auto text-gray-600 text-sm text-justify md:text-base flex-wrap break-words mb-12 font-sans ">
           Camlenio Software believes in creating technology that changes

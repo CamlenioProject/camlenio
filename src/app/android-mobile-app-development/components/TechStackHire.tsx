@@ -214,17 +214,17 @@ export default function TechStackHire() {
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
                     Hire Android App <br />
                     <span
-                    className="text-orange-500"
-                    style={{
-                      textShadow:
-                        "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
-                    }}
-                  >
+                      className="text-orange-500"
+                      style={{
+                        textShadow:
+                          "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
+                      }}
+                    >
                       Developers in India
                     </span>
                   </h2>
 
-                  <div className="text-lg text-gray-400 leading-relaxed space-y-4">
+                  <div className="text-lg text-gray-300 leading-relaxed space-y-4">
                     <p>
                       Looking to hire Android app developers in India? Camlenio offers dedicated development teams and flexible engagement models to match your project requirements and budget.
                     </p>
@@ -263,7 +263,7 @@ export default function TechStackHire() {
                       <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold shrink-0">JD</div>
                       <div>
                         <div className="font-bold text-gray-900 text-sm">Backend Lead</div>
-                        <div className="text-xs text-gray-400">8+ Years Experience</div>
+                        <div className="text-xs text-gray-500">8+ Years Experience</div>
                       </div>
                     </div>
                     <div className="flex gap-2">
@@ -282,7 +282,7 @@ export default function TechStackHire() {
                       <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold shrink-0">SK</div>
                       <div>
                         <div className="font-bold text-gray-900 text-sm">UI/UX Engineer</div>
-                        <div className="text-xs text-gray-400">5+ Years Experience</div>
+                        <div className="text-xs text-gray-500">5+ Years Experience</div>
                       </div>
                     </div>
                     <div className="flex gap-2">

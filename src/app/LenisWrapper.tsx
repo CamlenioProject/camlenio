@@ -20,13 +20,13 @@ export default function LenisWrapper({ children }: Props) {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.8,
+      duration: 2.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.1,
-      lerp: 0.08,
+      wheelMultiplier: 1.0,
+      lerp: 0.05,
     });
 
     window.__lenis = lenis;

@@ -46,7 +46,7 @@ const Services = [
 
 const WhyCamlenio = () => {
   return (
-    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove px-8 py-16">
+    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100   px-8 py-16">
       <div className="relative max-w-7xl mx-auto">
         <motion.div
           initial={{ y: 100, opacity: 0 }}

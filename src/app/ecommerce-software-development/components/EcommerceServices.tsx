@@ -127,7 +127,7 @@ export default function EcommerceServices() {
             </span>{" "}
             Development Services{" "}
           </h2>{" "}
-          <p className="max-w-3xl mx-auto text-gray-600 text-sm md:text-base font-sans">
+          <p className="max-w-3xl mx-auto text-gray-700 text-sm md:text-base font-sans">
             {" "}
             We provide end-to-end ecommerce software services tailored to your
             unique business goals:{" "}
@@ -162,8 +162,8 @@ export default function EcommerceServices() {
                           damping: 25,
                         }}
                         className={`relative w-full flex items-center gap-3 p-3 sm:p-3.5 rounded-xl cursor-pointer text-left transition-all duration-300 ${isActive
-                            ? "bg-gradient-to-r from-orange-200/70 to-orange-100/50 shadow-md shadow-orange-200/50"
-                            : "hover:bg-orange-50/60 hover:shadow-sm"
+                          ? "bg-gradient-to-r from-orange-200/70 to-orange-100/50 shadow-md shadow-orange-200/50"
+                          : "hover:bg-orange-50/60 hover:shadow-sm"
                           }`}
                       >
                         {/* Active Indicator */}
@@ -182,8 +182,8 @@ export default function EcommerceServices() {
                         {/* Icon */}
                         <div
                           className={`flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-xl transition-all duration-300 flex-shrink-0 ${isActive
-                              ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/40"
-                              : "bg-white text-orange-500 shadow-sm"
+                            ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/40"
+                            : "bg-white text-orange-500 shadow-sm"
                             }`}
                         >
                           <span className="text-base sm:text-lg">
@@ -240,7 +240,7 @@ export default function EcommerceServices() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.15 }}
-                          className="text-sm sm:text-base text-gray-600 leading-relaxed"
+                          className="text-sm sm:text-base text-gray-700 leading-relaxed"
                         >
                           {activeFeature.desc}
                         </m.p>

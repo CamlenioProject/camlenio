@@ -7,7 +7,7 @@ import WhyCamlenio from "./components/why-camlenio";
 
 export default function FullStackDevelopment() {
   return (
-    <div className="bg-gradient-to-r from-indigo-50 via-orange-200 to-indigo-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="bg-gradient-to-r from-indigo-50 via-orange-200 to-indigo-100  ">
       <Hero />
       <FsDevServices />
       <DiscussProject />

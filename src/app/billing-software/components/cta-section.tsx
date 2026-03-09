@@ -2,7 +2,7 @@ export function CTA() {
   return (
     <section
       aria-labelledby="cta-title"
-      className="py-16 md:py-20 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove"
+      className="py-16 md:py-20 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100  "
     >
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <div className="rounded-2xl bg-orange-500 p-2 md:p-12 text-gray-50">

@@ -13,7 +13,7 @@ export default function RealEstateSoftwarePage() {
 
   return (
     <MotionLayout>
-      <main className="min-h-screen text-gray-900 selection:bg-orange-200 selection:text-orange-900 overflow-x-hidden bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
+      <main className="min-h-screen text-gray-900 selection:bg-orange-200 selection:text-orange-900 overflow-x-hidden bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100  ">
 
         {/* Subtle Background Pattern */}
         <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.03]"

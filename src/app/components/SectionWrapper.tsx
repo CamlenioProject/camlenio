@@ -13,7 +13,7 @@ interface SectionWrapperProps {
 const SectionWrapper = ({
   children,
   threshold = 0.01,
-  rootMargin = "1000px 0px", // Aggressive pre-loading
+  rootMargin = "200px 0px",
   minHeight = "400px"
 }: SectionWrapperProps) => {
   const [shouldRender, setShouldRender] = useState(false);
@@ -23,10 +23,12 @@ const SectionWrapper = ({
     triggerOnce: true,
   });
 
-  // Render immediately when in view to feel faster
   useEffect(() => {
     if (inView) {
-      setShouldRender(true);
+      // Yielding to the main thread (1ms delay) allows critical 
+      // assets like the logo and hero to prioritize their animations.
+      const timer = setTimeout(() => setShouldRender(true), 1);
+      return () => clearTimeout(timer);
     }
   }, [inView]);
 
@@ -47,7 +49,7 @@ const SectionWrapper = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.8,
-              ease: [0.22, 1, 0.36, 1] // Custom quint ease for smoother feel
+              ease: [0.22, 1, 0.36, 1]
             }}
           >
             {children}

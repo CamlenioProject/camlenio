@@ -56,7 +56,7 @@ const IndustriesSection = () => {
                 text: "Our team members maintain everything from finding to deployment, which is a trusted Custom Software Development Company. We analyze the business objectives, such as designing intuitive interfaces and building strong architectures that scale easily. Also, our agile method guarantees quick releases, as lower-risk items that include a smooth transition as your business grows.",
               },
               {
-                title: "Secure Fintech & Payment Solutions",
+                title: "Secure & Payment Solutions",
                 img: "/Homepage/IndustriesSection/what-we-do.jpg",
                 text: "We specialize in fintech & Digital Financial Platforms, where we built protection at the core level. Our operational support guarantees compliance with encrypted transactions and is hassle-free. If it's wallets, fund gateways, and financial dashboards, we support businesses in delivering speed and reliability to their users. You gain a technology partner committed to innovation and outcomes.",
               },

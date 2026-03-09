@@ -128,7 +128,7 @@ export default function BlogListingClient() {
 
 
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <nav className="flex justify-center items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-8">
+          <nav className="flex justify-center items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-8">
             <Link href="/" className="hover:text-orange-500 transition-colors">Home</Link>
             <span>/</span>
             <span className="text-gray-900">Blog</span>
@@ -198,8 +198,8 @@ export default function BlogListingClient() {
               </div>
 
               <div className="px-6 hidden sm:block">
-                <div className="text-[9px] font-black uppercase tracking-[0.25em] text-gray-400 mb-0.5">Library</div>
-                <div className="text-sm font-black text-gray-900">{searchQuery || selectedCategory || selectedTag ? filteredPosts.length : totalPostsCount} <span className="text-[10px] text-gray-400 font-bold ml-1">POSTS</span></div>
+                <div className="text-[9px] font-black uppercase tracking-[0.25em] text-gray-500 mb-0.5">Library</div>
+                <div className="text-sm font-black text-gray-900">{searchQuery || selectedCategory || selectedTag ? filteredPosts.length : totalPostsCount} <span className="text-[10px] text-gray-500 font-bold ml-1">POSTS</span></div>
               </div>
             </div>
 
@@ -373,7 +373,7 @@ export default function BlogListingClient() {
                               dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                             />
                           </Link>
-                          <div className="flex items-center gap-2 text-[11px] font-bold text-gray-400 uppercase tracking-widest">
+                          <div className="flex items-center gap-2 text-[11px] font-bold text-gray-500 uppercase tracking-widest">
                             <span>{new Date(post.date).toLocaleDateString()}</span>
                             <span className="w-1 h-1 rounded-full bg-gray-300" />
                             <span>CAMLENIO EXPERT</span>
@@ -390,7 +390,7 @@ export default function BlogListingClient() {
                   })
                 ) : (
                   <div className="col-span-full py-20 text-center">
-                    <h3 className="text-xl font-bold text-gray-400">No matching posts found.</h3>
+                    <h3 className="text-xl font-bold text-gray-500">No matching posts found.</h3>
                     <button
                       onClick={() => { setSearchQuery(""); setSelectedCategory(null); setSelectedTag(null); }}
                       className="mt-4 text-orange-500 font-bold hover:underline cursor-pointer"
@@ -429,7 +429,7 @@ export default function BlogListingClient() {
                           onClick={() => { setCurrentPage(i + 1); window.scrollTo({ top: 400, behavior: 'smooth' }); }}
                           className={clsx(
                             "relative w-11 h-11 flex items-center justify-center rounded-[1.8rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer z-10",
-                            isActive ? "text-white" : "text-gray-400 hover:text-gray-900 hover:bg-gray-100/50"
+                            isActive ? "text-white" : "text-gray-500 hover:text-gray-900 hover:bg-gray-100/50"
                           )}
                         >
                           {isActive && (
@@ -495,7 +495,7 @@ export default function BlogListingClient() {
                         <Image src={media?.source_url || "/blog-placeholder.jpg"} alt={post.title.rendered} fill className="object-cover group-hover:scale-110 transition-transform" />
                       </div>
                       <div>
-                        <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{new Date(post.date).toLocaleDateString()}</div>
+                        <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-1">{new Date(post.date).toLocaleDateString()}</div>
                         <h4 className="text-xs font-black text-gray-900 group-hover:text-orange-500 transition-colors line-clamp-2 leading-relaxed" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                       </div>
                     </Link>

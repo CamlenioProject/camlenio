@@ -7,8 +7,15 @@
 }
 
 @keyframes wiggle {
-  0%, 100% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
+
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+
+  50% {
+    transform: rotate(3deg);
+  }
 }
 
 .animate-wiggle {
@@ -16,8 +23,17 @@
 }
 
 @keyframes draw {
-  0% { stroke-dasharray: 400; stroke-dashoffset: 400; opacity: 0; }
-  100% { stroke-dasharray: 400; stroke-dashoffset: 0; opacity: 1; }
+  0% {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    opacity: 0;
+  }
+
+  100% {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
 }
 
 .group:hover .animate-draw path {
@@ -29,20 +45,25 @@
   scrollbar-color: #f97316 transparent;
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #f97316;
   border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #ea580c;
 }
 
 body {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* ::-webkit-scrollbar {
@@ -54,35 +75,24 @@ p {
   font-family: sans-serif;
 }
 
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
-.animate-gradientMove {
-  animation: gradientMove 15s ease infinite;
-}
 
 @keyframes scrollX {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
 }
+
 .animate-scrollX {
   animation-name: scrollX;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
+
 .animate-scrollX:hover {
   animation-play-state: paused;
 }
@@ -90,13 +100,16 @@ p {
 /* about contact wiggle animation */
 
 @keyframes wiggle {
+
   0%,
   100% {
     transform: translateX(0);
   }
+
   25% {
     transform: translateX(-2px);
   }
+
   75% {
     transform: translateX(2px);
   }
@@ -123,9 +136,11 @@ p {
   0% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-20px);
   }
+
   100% {
     transform: translateY(0px);
   }
@@ -135,9 +150,11 @@ p {
   0% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-15px) rotate(10deg);
   }
+
   100% {
     transform: translateY(0px) rotate(0deg);
   }
@@ -155,6 +172,7 @@ p {
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -170,6 +188,7 @@ p {
     opacity: 0;
     transform: translateY(10px) scale(0.95);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -177,10 +196,12 @@ p {
 }
 
 @keyframes suggestBounce {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-4px);
   }
@@ -210,23 +231,24 @@ p {
 
 .line {
   fill: none;
-  stroke: currentColor; /* Changed from white to currentColor for flexibility */
+  stroke: currentColor;
+  /* Changed from white to currentColor for flexibility */
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 3;
   transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
-              stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .line-top-bottom {
   stroke-dasharray: 12 63;
 }
 
-.hamburger input:checked + svg {
+.hamburger input:checked+svg {
   transform: rotate(-45deg);
 }
 
-.hamburger input:checked + svg .line-top-bottom {
+.hamburger input:checked+svg .line-top-bottom {
   stroke-dasharray: 20 300;
   stroke-dashoffset: -32.42;
 }

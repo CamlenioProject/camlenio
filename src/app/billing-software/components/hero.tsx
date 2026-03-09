@@ -58,7 +58,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="relative min-h-screen bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100  ">
       <div className="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between min-h-screen max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-20 md:py-22 lg:py-28">
         <div
           ref={leftContentRef}

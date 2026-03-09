@@ -5,13 +5,29 @@ import Header from "./components/HeaderNew";
 import Footer from "./components/Footer";
 import localFont from "next/font/local";
 import LenisWrapper from "./LenisWrapper";
-import AnimatedChatBot from "./AnimatedChatBot";
+import ClientChatBot from "./components/ClientChatBot";
 import React from "react";
 
 export const metadata = {
   metadataBase: new URL("https://camlenio.com"),
-  title: "Camlenio | Digital Solutions",
-  description: "Customized software and fintech solutions tailored for growth.",
+  title: {
+    template: "%s | Camlenio Software",
+    default: "Camlenio Software | Custom Web & Mobile App Development Company",
+  },
+  description: "Camlenio is a leading software development company offering custom web development, mobile apps, and fintech solutions. Build smarter, scale faster.",
+  keywords: ["software development", "web development", "mobile app development", "fintech solutions", "Camlenio"],
+  alternates: {
+    canonical: "https://camlenio.com",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://camlenio.com",
+    siteName: "Camlenio",
+    title: "Camlenio Software | Custom Digital Solutions",
+    description: "Expert software development for businesses across the globe.",
+    images: ["/og-image.jpg"],
+  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
@@ -32,6 +48,7 @@ const lufgaFont = localFont({
       style: "normal",
     },
   ],
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -45,6 +62,10 @@ export default function RootLayout({
       className={`${lufgaFont.className} scrollbar-thin scrollbar-track-sozo-gray/20 scrollbar-thumb-sozo-yellow hover:scrollbar-thumb-sozo-amber`}
     >
       <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://connect.facebook.net" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+
         {/* Google Analytics (GA4) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-SSQZK50PKC"
@@ -62,7 +83,7 @@ export default function RootLayout({
         </Script>
 
         {/* Meta Pixel */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -84,7 +105,7 @@ export default function RootLayout({
           <LenisWrapper>{children}</LenisWrapper>
           <Analytics />
         </main>
-        <AnimatedChatBot />
+        <ClientChatBot />
         <Footer />
       </body>
     </html>

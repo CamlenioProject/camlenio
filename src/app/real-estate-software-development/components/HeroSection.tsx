@@ -37,7 +37,7 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-700 mb-8 max-w-lg leading-relaxed">
             At Camlenio Software, we build custom real estate software that helps brokers, agents, and property managers work smarter. Our secure, scalable solutions simplify daily operations, improve customer engagement, and support business growth.
           </p>
 

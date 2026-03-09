@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import NextImage from "next/image";
 import Link from "next/link";
 import { WPBlog } from "../../types/wp-blog";
 import { CalendarIcon, ClockIcon, XMarkIcon, EyeIcon } from "@heroicons/react/24/outline";
@@ -174,12 +174,12 @@ export default function BlogPostClient({ id }: BlogPostClientProps) {
 
   const featuredMediaArr = post._embedded ? post._embedded["wp:featuredmedia"] : null;
   const media = featuredMediaArr ? featuredMediaArr[0] : null;
-  const imageUrl = media?.media_details?.sizes?.full?.source_url || media?.source_url;
+  const imageUrl = media?.media_details?.sizes?.full?.source_url || media?.source_url || null;
 
   const authorArr = post._embedded ? post._embedded["author"] : null;
   const author = authorArr ? authorArr[0] : null;
   const authorName = author && typeof author.name === "string" ? author.name : "Camlenio Team";
-  const authorImg = (author && (author as any).avatar_urls) ? (author as any).avatar_urls["96"] : "/logo-icon.png";
+  const authorImg = (author && (author as any).avatar_urls && (author as any).avatar_urls["96"]) || "/logo-icon.png";
 
   const terms = post._embedded ? (post._embedded as any)["wp:term"] : null;
   const category = (terms && terms[0] && terms[0][0]) ? terms[0][0].name : "Business Strategy";
@@ -209,7 +209,7 @@ export default function BlogPostClient({ id }: BlogPostClientProps) {
             {/* Author Pill */}
             <div className="flex items-center gap-2 bg-gray-50/80 backdrop-blur-sm px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">
               <div className="w-6 h-6 rounded-full overflow-hidden relative">
-                <Image src={authorImg} alt={authorName} fill className="object-cover" />
+                <NextImage src={authorImg || "/logo-icon.png"} alt={authorName} fill className="object-cover" />
               </div>
               <span className="text-sm font-bold text-gray-800">{authorName}</span>
             </div>
@@ -274,10 +274,13 @@ export default function BlogPostClient({ id }: BlogPostClientProps) {
         {/* Mobile Featured Image (Hidden on Desktop) */}
         {imageUrl && (
           <div className="lg:hidden w-full rounded-[1.5rem] overflow-hidden shadow-xl shadow-gray-200/50 mb-10 border border-gray-100 bg-gray-50 flex items-center justify-center">
-            <img
+            <NextImage
               src={imageUrl}
               alt={post.title.rendered}
+              width={800}
+              height={450}
               className="w-full h-auto object-contain"
+              priority
             />
           </div>
         )}
@@ -297,10 +300,13 @@ export default function BlogPostClient({ id }: BlogPostClientProps) {
             {/* Desktop Featured Image - Middle Area */}
             {imageUrl && (
               <div className="hidden lg:flex rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl shadow-gray-200/50 mb-12 border border-gray-100 bg-gray-50 items-center justify-center">
-                <img
+                <NextImage
                   src={imageUrl}
                   alt={post.title.rendered}
+                  width={1200}
+                  height={675}
                   className="w-full h-auto object-contain"
+                  priority
                 />
               </div>
             )}
@@ -449,7 +455,7 @@ const TableOfContents = ({ tocData, relatedPosts }: { tocData: any[], relatedPos
   if (tocData.length === 0) return null;
   return (
     <div className="bg-gray-50/30 rounded-3xl p-6 border border-gray-100 shadow-sm">
-      <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 mb-6 border-b border-gray-100/50 pb-4">
+      <h3 className="text-xs font-black uppercase tracking-widest text-gray-500 mb-6 border-b border-gray-100/50 pb-4">
         Table of Contents
       </h3>
       <ul className="space-y-3">
@@ -457,7 +463,7 @@ const TableOfContents = ({ tocData, relatedPosts }: { tocData: any[], relatedPos
           <li key={item.id} className={item.level === 3 ? "pl-4" : ""}>
             <a
               href={`#${item.id}`}
-              className="toc-link text-sm font-medium text-gray-500 hover:text-orange-500 transition-colors block leading-relaxed line-clamp-2"
+              className="toc-link text-sm font-medium text-gray-600 hover:text-orange-500 transition-colors block leading-relaxed line-clamp-2"
             >
               {item.text}
             </a>
@@ -467,7 +473,7 @@ const TableOfContents = ({ tocData, relatedPosts }: { tocData: any[], relatedPos
 
       {/* Related Blogs under TOC */}
       <div className="mt-12">
-        <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 mb-6 border-b border-gray-100/50 pb-4">
+        <h3 className="text-xs font-black uppercase tracking-widest text-gray-500 mb-6 border-b border-gray-100/50 pb-4">
           Related Blogs
         </h3>
         <div className="space-y-6">
@@ -477,15 +483,15 @@ const TableOfContents = ({ tocData, relatedPosts }: { tocData: any[], relatedPos
               return (
                 <Link key={rPost.id} href={`/blog/${rPost.slug}`} className="flex gap-4 group">
                   <div className="w-20 h-20 rounded-xl overflow-hidden relative flex-shrink-0 bg-gray-100 border border-gray-100 shadow-sm">
-                    <Image
-                      src={rMedia?.source_url || "/blog-placeholder.jpg"}
-                      alt={rPost.title.rendered}
+                    <NextImage
+                      src={(rMedia?.source_url) || "/logo-icon.png"}
+                      alt={rPost.title.rendered || "Blog post"}
                       fill
                       className="object-cover group-hover:scale-102 transition-transform duration-500"
                     />
                   </div>
                   <div className="flex-1 flex flex-col justify-center">
-                    <div className="flex items-center gap-1.5 text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">
+                    <div className="flex items-center gap-1.5 text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5">
                       <CalendarIcon className="w-3 h-3 text-orange-500" />
                       <span>{new Date(rPost.date).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" })}</span>
                     </div>
@@ -498,7 +504,7 @@ const TableOfContents = ({ tocData, relatedPosts }: { tocData: any[], relatedPos
               );
             })
           ) : (
-            <p className="text-sm text-gray-400 py-4">Checking for more stories...</p>
+            <p className="text-sm text-gray-500 py-4">Checking for more stories...</p>
           )}
         </div>
       </div>

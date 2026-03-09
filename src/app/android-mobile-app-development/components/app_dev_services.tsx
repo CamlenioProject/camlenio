@@ -38,7 +38,7 @@ const Services = [
 
 const AppDevServices = () => {
   return (
-    <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove">
+    <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100  ">
       <div className="max-w-[80rem] min-h-screen flex flex-col justify-center items-center mx-auto px-4 py-10 md:py-20">
         <motion.div
           initial={{ y: -50, opacity: 0 }}

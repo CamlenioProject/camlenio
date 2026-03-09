@@ -8,7 +8,7 @@ export default function UIDesign() {
   return (
     <div
       id="next-section"
-      className="relative scroll-mt-30 text-gray-900 px-8 py-16 md:px-16 overflow-hidden bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100 bg-[length:200%_200%] animate-gradientMove "
+      className="relative scroll-mt-30 text-gray-900 px-8 py-16 md:px-16 overflow-hidden bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100   "
     >
       <div className="max-w-[86rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
         <motion.div

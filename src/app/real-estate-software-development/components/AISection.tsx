@@ -18,7 +18,7 @@ export const AISection = () => {
           <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
             AI-Powered Real Estate Solutions
           </h2>
-          <p className="text-gray-400 text-lg mb-8 max-w-3xl leading-relaxed">
+          <p className="text-gray-300 text-lg mb-8 max-w-3xl leading-relaxed">
             In today’s fast-paced property market, intelligence and automation are key. Our solutions combine cutting-edge AI with expertise to help you deliver smarter experiences, make data-driven decisions, and accelerate growth.
           </p>
 
@@ -40,7 +40,7 @@ export const AISection = () => {
               className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-orange-600/10 hover:border-orange-500/30 transition-colors"
             >
               <h4 className="text-xl font-extrabold text-white mb-3">{ai.title}</h4>
-              <p className="text-base text-gray-400 font-normal font-sans text-justify leading-relaxed">{ai.desc}</p>
+              <p className="text-base text-gray-300 font-normal font-sans text-justify leading-relaxed">{ai.desc}</p>
             </m.div>
           ))}
         </div>
