@@ -63,7 +63,7 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googletagmanager.com *.facebook.net *.facebook.com va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.cloudinary.com *.facebook.com; media-src 'self' *.cloudinary.com; connect-src 'self' *.facebook.com *.google-analytics.com; font-src 'self' data:;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googletagmanager.com *.facebook.net *.facebook.com va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.cloudinary.com *.facebook.com blogs.camlenio.com; media-src 'self' *.cloudinary.com; connect-src 'self' *.facebook.com *.google-analytics.com blogs.camlenio.com; font-src 'self' data:;",
           },
         ],
       },

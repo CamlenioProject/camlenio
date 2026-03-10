@@ -391,16 +391,32 @@ export default function BlogPostClient({ id }: BlogPostClientProps) {
         .article-body p:empty {
           display: none;
         }
-        .article-body ul, .article-body ol {
+        .article-body ul {
           margin-top: 0.5rem;
           margin-bottom: 1.5rem;
-          padding-left: 1.5rem;
+          padding-left: 1.75rem;
+          list-style-type: disc;
+        }
+        .article-body ol {
+          margin-top: 0.5rem;
+          margin-bottom: 1.5rem;
+          padding-left: 1.75rem;
+          list-style-type: decimal;
+        }
+        .article-body ul ul {
+          list-style-type: circle;
+          margin-top: 0.25rem;
+          margin-bottom: 0.25rem;
+        }
+        .article-body ul ul ul {
+          list-style-type: square;
         }
         .article-body li {
           margin-bottom: 0.5rem;
           color: #3f3f46;
           font-size: 1rem;
           line-height: 1.7;
+          display: list-item;
         }
         
         @media (min-width: 768px) {
