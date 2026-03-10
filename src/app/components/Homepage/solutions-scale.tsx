@@ -19,7 +19,7 @@ const INDUSTRIES: Industry[] = [
     text: "We build e-learning software, a student-manager system, apps, interactive software, and other solutions to meet the needs of the modern-day learners and institutions.",
     img: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627310/education_focdoj.jpg",
     icon: "/Homepage/Industries/svg/Education.svg",
-    href: "/services/fintechsoftware",
+    href: "/fintech-software-development-company",
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const INDUSTRIES: Industry[] = [
     text: "From restaurant software to delivery applications, we help businesses streamline the smooth operations for seamless dining experiences.",
     img: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627727/food-restaurants_j8sl3s.jpg",
     icon: "/Homepage/Industries/svg/food-safety.svg",
-    href: "/services/fintechsoftware",
+    href: "/fintech-software-development-company",
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const INDUSTRIES: Industry[] = [
     text: "We architect telemedicine software, patient management applications, and health platforms while making care delivery simpler and secure.",
     img: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627727/healthcare_drftbk.jpg",
     icon: "/Homepage/Industries/svg/healthcare.svg",
-    href: "/services/fintechsoftware",
+    href: "/fintech-software-development-company",
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ const INDUSTRIES: Industry[] = [
     text: "Payment gateways, e-wallets, platforms for lending, built for speed and security, and to establish trust in finance are in our purvey.",
     img: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627726/fintech_l4mial.jpg",
     icon: "/Homepage/Industries/svg/fintech.svg",
-    href: "/industries/fintech-softwares",
+    href: "/fintech-software-development-company",
   },
   {
     id: 5,
@@ -51,7 +51,7 @@ const INDUSTRIES: Industry[] = [
     text: "We create online shopping, ecommerce platforms that increase sales, enhance engagement, and simplify the customer's journey.",
     img: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627727/retail-ecommerce_phngbh.jpg",
     icon: "/Homepage/Industries/svg/Retail-Ecommerce.svg",
-    href: "/industries/ecommerce-portal",
+    href: "/fintech-software-development-company",
   },
   {
     id: 6,
@@ -59,7 +59,7 @@ const INDUSTRIES: Industry[] = [
     text: "Our solutions, from booking engines to travel apps, focus on improvements of the user experience and automation of manual processes, thus growing revenues.",
     img: "https://res.cloudinary.com/dxpbriwey/image/upload/v1758627727/travel_z5e0tn.jpg",
     icon: "/Homepage/Industries/svg/Travel-Hospitality.svg",
-    href: "/services/fintechsoftware",
+    href: "/fintech-software-development-company",
   },
 ];
 

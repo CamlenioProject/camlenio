@@ -6,7 +6,8 @@ import IndustriesWeServe from "./components/industries-we-serve";
 import WhyChoose from "./components/why-choose";
 import Expertise from "./components/expertise";
 import FintechFAQ from "./components/Fintechfaq";
-import CTA from "@/app/components/cta";
+// import CTA from "@/app/components/cta";
+import FreeDemo from "@/app/components/Homepage/free-demo";
 
 export const metadata = {
   title: "Fintech Software Development Company | Custom Fintech Solutions - Camlenio",
@@ -25,14 +26,15 @@ export default function FintechSoftware() {
       <Expertise />
       <WhyChoose />
       <FintechFAQ />
-      <CTA
+      <FreeDemo/>
+      {/* <CTA
         title={"Start Your Fintech Project With Us"}
         highlightedTitle={"Fintech Project"}
         subtitle={
           "Searching for a secure and scalable fintech platform? We provide professional Fintech Software Development Services planned to meet unique financial technology requirements."
         }
         buttontext={"Contact Us Today"}
-      />
+      /> */}
     </div>
   );
 }

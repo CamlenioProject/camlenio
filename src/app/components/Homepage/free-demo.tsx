@@ -14,7 +14,7 @@ import {
 } from "../../../../lib/validators";
 import CustomCaptcha from "../CustomCaptcha";
 
-const FreeQuotation = () => {
+const FreeDemo = () => {
   const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -290,4 +290,4 @@ const FreeQuotation = () => {
   );
 };
 
-export default FreeQuotation;
+export default FreeDemo;
