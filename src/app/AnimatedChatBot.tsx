@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { createPortal } from "react-dom";
 import { X, MessageCircle, Sparkles, Minus } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -23,7 +23,7 @@ const validateEmail = (email: string) =>
 
 const validatePhone = (phone: string) => /^[0-9]{10}$/.test(phone);
 
-export default function SimpleFormChatBot() {
+function AnimatedChatBotContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -525,4 +525,12 @@ export default function SimpleFormChatBot() {
 
   if (!portalRootRef.current) return null;
   return createPortal(chatContent, portalRootRef.current);
+}
+
+export default function SimpleFormChatBot() {
+  return (
+    <Suspense fallback={null}>
+      <AnimatedChatBotContent />
+    </Suspense>
+  );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { XMarkIcon } from "@heroicons/react/20/solid";
@@ -19,7 +19,7 @@ interface FormPopupProps {
   onClose: () => void;
 }
 
-const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
+const FormPopupContent: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -578,6 +578,14 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
         )}
       </AnimatePresence>
     </LazyMotion>
+  );
+};
+
+const FormPopup: React.FC<FormPopupProps> = (props) => {
+  return (
+    <Suspense fallback={null}>
+      <FormPopupContent {...props} />
+    </Suspense>
   );
 };
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import axios from "axios";
 import { FiPhone } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
@@ -16,7 +16,7 @@ import {
 } from "../../../../lib/validators";
 import CustomCaptcha from "../CustomCaptcha";
 
-export default function ContactUs() {
+function ContactUsContent() {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: "",
@@ -504,5 +504,13 @@ export default function ContactUs() {
         </div>
       </div >
     </div >
+  );
+}
+
+export default function ContactUs() {
+  return (
+    <Suspense fallback={null}>
+      <ContactUsContent />
+    </Suspense>
   );
 }
