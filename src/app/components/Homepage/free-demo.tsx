@@ -280,11 +280,6 @@ const FreeDemo = () => {
             </m.div>
           </div>
         </div>
-
-        {/* Floating Abstract Shapes - Static to save GPU */}
-        <div className="absolute -right-20 top-20 opacity-10 pointer-events-none">
-          <Image src="/Homepage/shapes/global_shap.png" alt="" width={400} height={400} className="w-96 h-96 object-contain" />
-        </div>
       </div>
     </LazyMotion>
   );

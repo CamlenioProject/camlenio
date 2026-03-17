@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { AnimatePresence, m, domMax, LazyMotion } from "framer-motion";
@@ -21,11 +21,19 @@ interface FormPopupProps {
 
 const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const [utmSource, setUtmSource] = useState(searchParams.get("utm_source") || "");
+  const [utmMedium, setUtmMedium] = useState(searchParams.get("utm_medium") || "");
+  const [utmCampaign, setUtmCampaign] = useState(searchParams.get("utm_campaign") || "");
+  const [utmTerm, setUtmTerm] = useState(searchParams.get("utm_term") || "");
+  const [utmContent, setUtmContent] = useState(searchParams.get("utm_content") || "");
+  const [gclid, setGclid] = useState(searchParams.get("gclid") || "");
   const isMobile = useIsMobile();
 
   const [error, setError] = useState<string | null>(null);
@@ -103,6 +111,12 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
       email,
       phone: fullPhone,
       message,
+      utm_source: utmSource,
+      utm_medium: utmMedium,
+      utm_campaign: utmCampaign,
+      utm_term: utmTerm,
+      utm_content: utmContent,
+      gclid: gclid,
       source: "popup",
     };
 
@@ -158,6 +172,23 @@ const FormPopup: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
 
     return isMobile;
   }
+
+  useEffect(() => {
+    const storedUtm = localStorage.getItem("camlenio_utm");
+    if (storedUtm) {
+      try {
+        const parsed = JSON.parse(storedUtm);
+        if (parsed.utm_source) setUtmSource(parsed.utm_source);
+        if (parsed.utm_medium) setUtmMedium(parsed.utm_medium);
+        if (parsed.utm_campaign) setUtmCampaign(parsed.utm_campaign);
+        if (parsed.utm_term) setUtmTerm(parsed.utm_term);
+        if (parsed.utm_content) setUtmContent(parsed.utm_content);
+        if (parsed.gclid) setGclid(parsed.gclid);
+      } catch (e) {
+        console.error("Error parsing stored UTM:", e);
+      }
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {

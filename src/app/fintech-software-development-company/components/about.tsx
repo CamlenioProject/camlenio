@@ -84,9 +84,9 @@ const About = () => {
 
     gsap.fromTo(
       textEl,
-      { x: "30%", opacity: 0 },
+      { y: "30%", opacity: 0 },
       {
-        x: "0%",
+        y: "0%",
         opacity: 1,
         duration: 1.2,
         ease: "power2.out",

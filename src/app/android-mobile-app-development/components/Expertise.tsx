@@ -116,6 +116,37 @@ const industries = [
   },
 ];
 
+// Custom Service Card Component for a professional SaaS feel
+const ServiceCard = ({ service, onClick, index }: { service: any, onClick: () => void, index: number }) => (
+  <m.div
+    initial={{ opacity: 0, scale: 0.95 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
+    onClick={onClick}
+    className="group relative bg-white border border-gray-100 p-8 rounded-[2.5rem] hover:border-orange-500/30 transition-all duration-500 cursor-pointer flex flex-col h-full shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(234,88,12,0.08)]"
+  >
+    <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-orange-600 group-hover:rotate-6 transition-all duration-500 shadow-sm">
+      <Smartphone className="w-7 h-7 text-orange-600 group-hover:text-white transition-colors" />
+    </div>
+
+    <h4 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-orange-600 transition-colors leading-tight">
+      {service.title}
+    </h4>
+
+    <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-grow font-medium">
+      {service.description}
+    </p>
+
+    <div className="flex items-center justify-between pt-6 border-t border-gray-50 mt-auto">
+      <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{service.category}</span>
+      <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-all duration-300 group-hover:translate-x-1 shadow-sm">
+        <ArrowUpRight className="w-5 h-5" />
+      </div>
+    </div>
+  </m.div>
+);
+
 export default function Expertise() {
   const [activeTab, setActiveTab] = useState<"services" | "industries">("services");
   const [selectedService, setSelectedService] = useState<(typeof services)[0] | null>(null);
@@ -124,39 +155,23 @@ export default function Expertise() {
     services: {
       title: (
         <>
-          <span
-            className="text-orange-500"
-            style={{
-              textShadow:
-                "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
-            }}
-          >
-            Custom Android App
-          </span>
+          <span className="text-orange-600">Custom Android App</span>
           <br />
           Development Services
         </>
       ),
-      description: "We offer end-to-end Android app development services using modern technologies and industry best practices to ensure performance, security, and scalability.",
+      description: "End-to-end Android app development using modern architecture, high-security standards, and native performance optimization.",
       data: services
     },
     industries: {
       title: (
         <>
-          <span
-            className="text-orange-500"
-            style={{
-              textShadow:
-                "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
-            }}
-          >
-            Android Apps
-          </span>
+          <span className="text-orange-600">Android Apps</span>
           <br />
           for Every Industry
         </>
       ),
-      description: "We develop Android applications across multiple industries, helping businesses stay competitive in the mobile-first world with tailored industry solutions.",
+      description: "Tailored industry solutions that bridge the gap between business objectives and mobile innovation.",
       data: industries
     }
   };
@@ -169,9 +184,7 @@ export default function Expertise() {
     <LazyMotion features={domMax}>
       <section className="relative py-20 overflow-hidden bg-transparent">
 
-        {/* Subtle Background Elements */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-orange-100/30 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-[500px] h-[500px] bg-blue-50/40 rounded-full blur-3xl pointer-events-none" />
+
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
 
@@ -223,109 +236,66 @@ export default function Expertise() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8 lg:h-[700px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-            {/* Left Column - Hero Card */}
-            <m.div
-              key={`hero-${activeTab}`} // Re-trigger animation on tab change
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:w-[45%] flex-shrink-0 relative group rounded-[2rem] overflow-hidden shadow-2xl shadow-gray-200/50 bg-white flex flex-col h-[500px] lg:h-auto border border-gray-100"
-            >
-              {/* Image Background */}
-              <div className="absolute inset-0 z-0">
+            {/* --- HERO COLUMN --- */}
+            <div className="lg:col-span-5 flex flex-col gap-6">
+              <m.div
+                key={`hero-card-${activeTab}`}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="relative h-full min-h-[400px] lg:min-h-0 rounded-[2.5rem] overflow-hidden group shadow-2xl shadow-gray-200/50"
+              >
                 <Image
                   src={mainService.image}
                   alt={mainService.title}
                   fill
-                  priority // Hero image is priority
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-              </div>
 
-              {/* Content Content - Positioned at bottom */}
-              <div className="relative z-10 p-8 md:p-12 mt-auto flex flex-col items-start text-white">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="px-3 py-1 bg-orange-500 text-white text-[10px] font-bold tracking-wider uppercase rounded-full">
-                    {mainService.category}
-                  </span>
-                  <span className="text-sm font-medium text-gray-300 flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-yellow-400" />
-                    {mainService.readTime}
-                  </span>
-                </div>
+                <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white">
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="px-3 py-1 bg-orange-600 text-white text-[10px] font-bold tracking-wider uppercase rounded-full">
+                      Professional
+                    </span>
+                    <div className="w-1 h-1 rounded-full bg-orange-600" />
+                    <span className="text-xs font-medium text-gray-300">
+                      Top Industry Standards
+                    </span>
+                  </div>
 
-                <h3 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-                  {mainService.title}
-                </h3>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+                    {mainService.title}
+                  </h3>
 
-                <p className="text-gray-300 leading-relaxed mb-8 max-w-md line-clamp-3">
-                  {mainService.longDesc || mainService.description}
-                </p>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-8 max-w-sm line-clamp-3">
+                    {mainService.longDesc || mainService.description}
+                  </p>
 
-                {/* <button className="flex items-center gap-3 text-sm font-bold bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 group-hover:pl-8 cursor-pointer">
-                  Explore {activeTab === 'services' ? 'Custom Apps' : 'Solutions'}
-                  <ArrowUpRight className="w-4 h-4" />
-                </button> */}
-              </div>
-            </m.div>
-
-            {/* Right Column - Scrollable Grid */}
-            <div className="lg:w-[55%] flex flex-col h-full">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 lg:overflow-y-auto lg:pr-2 lg:pb-4 h-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-
-                {otherServices.map((service, index) => (
-                  <m.div
-                    key={service.title} // Ensure unique key for proper diffing
-                    layoutId={service.title} // Keep card expansion animation
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
-                    onClick={() => setSelectedService(service)}
-                    className="group relative bg-white p-4 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-orange-100/50 transition-all duration-300 flex flex-col md:flex-row gap-4 h-auto cursor-pointer will-change-transform"
+                  <button
+                    onClick={() => setSelectedService(mainService)}
+                    className="flex items-center gap-3 text-sm font-bold bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all duration-300 group cursor-pointer"
                   >
-                    <m.div className="w-full md:w-28 h-32 md:h-full shrink-0 relative rounded-2xl overflow-hidden">
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 200px"
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                    </m.div>
+                    View Project Details
+                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </button>
+                </div>
+              </m.div>
+            </div>
 
-                    <div className="flex flex-col flex-1 py-1">
-                      <div className="flex items-center justify-between mb-1">
-                        <m.span
-                          className="text-[10px] font-bold text-orange-600 bg-orange-50 px-2.5 py-1 rounded-full uppercase tracking-wider inline-block"
-                        >
-                          {service.category}
-                        </m.span>
-                      </div>
-
-                      <m.h4
-                        className="text-base font-bold text-gray-900 mb-1 leading-snug group-hover:text-orange-600 transition-colors"
-                      >
-                        {service.title}
-                      </m.h4>
-
-                      <p className="text-xs text-gray-500 line-clamp-2 leading-relaxed mb-2 flex-grow">
-                        {service.description}
-                      </p>
-
-                      <div className="flex items-center justify-between pt-2 border-t border-gray-50 mt-auto">
-                        <span className="text-[10px] font-semibold text-gray-400">{service.readTime}</span>
-                        <div className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all duration-300 group-hover:rotate-45">
-                          <ArrowUpRight className="w-3 h-3" />
-                        </div>
-                      </div>
-                    </div>
-                  </m.div>
+            {/* --- GRID COLUMN --- */}
+            <div className="lg:col-span-7">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
+                {otherServices.map((service, index) => (
+                  <ServiceCard
+                    key={service.title}
+                    service={service}
+                    index={index}
+                    onClick={() => setSelectedService(service)}
+                  />
                 ))}
-
               </div>
             </div>
           </div>
@@ -346,9 +316,11 @@ export default function Expertise() {
 
               {/* Modal Container - Shared Layout */}
               <m.div
-                layoutId={selectedService.title}
-                className="relative w-full max-w-2xl bg-white !rounded-3xl overflow-hidden z-20 will-change-transform"
-                transition={{ type: "spring", stiffness: 300, damping: 25 }} // Snappy, non-laggy response
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                className="relative w-full max-w-2xl bg-white !rounded-3xl overflow-hidden z-20 shadow-2xl"
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}

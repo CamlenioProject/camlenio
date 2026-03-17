@@ -81,7 +81,7 @@ export default function TechStackHire() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 tracking-tight"
                 >
                   Technologies {" "}
                   <span
@@ -118,11 +118,11 @@ export default function TechStackHire() {
                     onClick={() => setActiveTech(index)}
                     initial={false}
                     animate={{
-                      flex: isActive ? 3 : 1,
+                      flex: isActive ? 4 : 1,
                     }}
                     transition={{
-                      layout: { type: "spring", stiffness: 120, damping: 20 },
-                      flex: { type: "spring", stiffness: 120, damping: 20 }
+                      layout: { type: "spring", stiffness: 100, damping: 20 },
+                      flex: { type: "spring", stiffness: 100, damping: 20 }
                     }}
                     className={`relative rounded-[2.5rem] overflow-hidden cursor-pointer group will-change-transform ${isActive ? '' : 'hover:scale-[0.98]'}`}
                   >
@@ -132,60 +132,42 @@ export default function TechStackHire() {
                         src={tech.image}
                         alt={tech.name}
                         fill
-                        priority={index < 2}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className={`object-cover transition-transform duration-700 ease-out ${isActive ? 'scale-105' : 'scale-100 grayscale'}`}
+                        className={`object-cover transition-all duration-700 ${isActive ? 'scale-110' : 'scale-100 grayscale opacity-40'}`}
                       />
+                      <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-60'}`} />
                     </div>
 
-                    {/* Overlays */}
-                    <div className={`absolute inset-0 z-10 bg-black/60 transition-opacity duration-300 ${isActive ? 'opacity-0' : 'opacity-100'}`} />
-                    <div className={`absolute inset-0 z-10 bg-gradient-to-br ${tech.color} mix-blend-multiply transition-opacity duration-500 ease-linear ${isActive ? 'opacity-100' : 'opacity-0'}`} />
-
-                    {/* Content Container */}
-                    <div className="relative z-20 h-full p-6 md:p-8 flex flex-col justify-between">
-                      <div className="flex justify-between items-start">
-                        <div
-                          className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 border border-white/20 ${isActive ? 'bg-white/20 text-white' : 'bg-black/40 text-white'}`}
-                        >
-                          <tech.icon className="w-6 h-6" />
-                        </div>
-                        <m.div
-                          animate={{ opacity: isActive ? 1 : 0, rotate: isActive ? 45 : 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white bg-white/10"
-                        >
-                          <ArrowUpRight className="w-5 h-5" />
-                        </m.div>
+                    {/* Content */}
+                    <div className="relative z-20 h-full p-8 md:p-10 flex flex-col justify-between items-start">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 ${isActive ? 'bg-orange-600 text-white' : 'bg-white/10 backdrop-blur-md text-white border border-white/20'}`}>
+                        <tech.icon className="w-7 h-7" />
                       </div>
 
-                      {!isActive && (
+                      <div className="w-full">
                         <m.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 origin-center whitespace-nowrap"
+                          animate={{ opacity: isActive ? 1 : 0.6, y: 0 }}
+                          className="space-y-2"
                         >
-                          <span className="text-xl font-bold text-white uppercase tracking-widest drop-shadow-md">{tech.category}</span>
-                        </m.div>
-                      )}
-
-                      <div className="relative overflow-hidden w-full">
-                        <m.div
-                          animate={{ y: isActive ? 0 : 10, opacity: isActive ? 1 : 0 }}
-                          transition={{ duration: 0.4 }}
-                        >
-                          <span className={`text-xs font-bold uppercase tracking-widest mb-1 block text-white/80`}>
+                          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
                             {tech.category}
                           </span>
-                          <h3 className={`text-2xl md:text-3xl font-bold leading-tight mb-2 text-white`}>
+                          <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
                             {tech.name}
                           </h3>
+                        </m.div>
 
-                          <div className={`transition-all duration-500 ease-out overflow-hidden ${isActive ? 'max-h-40 opacity-100 mt-2' : 'max-h-0 opacity-0 mt-0'}`}>
-                            <p className="text-white/90 text-sm md:text-base leading-relaxed max-w-sm">
-                              {tech.description}
-                            </p>
+                        <m.div
+                          animate={{ 
+                            height: isActive ? "auto" : 0,
+                            opacity: isActive ? 1 : 0 
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <p className="text-gray-300 text-sm md:text-base leading-relaxed mt-4 max-w-xs">
+                            {tech.description}
+                          </p>
+                          <div className="mt-6 flex items-center gap-2 text-orange-400 text-xs font-bold uppercase tracking-widest cursor-pointer hover:text-white transition-colors">
+                            Explore Services <ArrowRight className="w-4 h-4" />
                           </div>
                         </m.div>
                       </div>
@@ -211,17 +193,9 @@ export default function TechStackHire() {
                 {/* Left Content */}
                 <div className="space-y-8 order-2 lg:order-1">
 
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
-                    Hire Android App <br />
-                    <span
-                      className="text-orange-500"
-                      style={{
-                        textShadow:
-                          "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
-                      }}
-                    >
-                      Developers in India
-                    </span>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                    Hire Android <br />
+                    <span className="text-orange-500">App Experts</span>
                   </h2>
 
                   <div className="text-lg text-gray-300 leading-relaxed space-y-4">

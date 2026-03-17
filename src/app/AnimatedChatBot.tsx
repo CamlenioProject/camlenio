@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { X, MessageCircle, Sparkles, Minus } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 type FormData = {
   name: string;
@@ -25,6 +25,7 @@ const validatePhone = (phone: string) => /^[0-9]{10}$/.test(phone);
 
 export default function SimpleFormChatBot() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const [open, setOpen] = useState(false);
   const [minimized, setMinimized] = useState(false);
@@ -34,11 +35,17 @@ export default function SimpleFormChatBot() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuggestion, setShowSuggestion] = useState(false);
 
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<FormData & any>({
     name: "",
     email: "",
     phone: "",
     message: "",
+    utm_source: searchParams.get("utm_source") || "",
+    utm_medium: searchParams.get("utm_medium") || "",
+    utm_campaign: searchParams.get("utm_campaign") || "",
+    utm_term: searchParams.get("utm_term") || "",
+    utm_content: searchParams.get("utm_content") || "",
+    gclid: searchParams.get("gclid") || "",
   });
 
   const [errors, setErrors] = useState<FormErrors>({
@@ -120,17 +127,20 @@ export default function SimpleFormChatBot() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "chatbot",
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
+          ...formData,
           project: "",
-          message: formData.message,
         }),
       });
 
       if (resp.ok) {
         setSubmitted(true);
-        setFormData({ name: "", email: "", phone: "", message: "" });
+        setFormData((prev: any) => ({
+          ...prev,
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+        }));
       } else {
         alert("Submit failed");
       }
@@ -141,11 +151,57 @@ export default function SimpleFormChatBot() {
     }
   };
 
+  useEffect(() => {
+    const params = [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_term",
+      "utm_content",
+      "gclid",
+    ];
+    const utmObject: any = {};
+    let found = false;
+
+    params.forEach((p) => {
+      const val = searchParams.get(p);
+      if (val) {
+        utmObject[p] = val;
+        found = true;
+      }
+    });
+
+    if (found) {
+      localStorage.setItem("camlenio_utm", JSON.stringify(utmObject));
+    }
+
+    const storedUtm = localStorage.getItem("camlenio_utm");
+    console.log("camlenio_utm:", storedUtm);
+
+    if (storedUtm) {
+      try {
+        const parsed = JSON.parse(storedUtm);
+        setFormData((prev: any) => ({
+          ...prev,
+          ...parsed,
+        }));
+      } catch (e) {
+        console.error("Error parsing stored UTM:", e);
+      }
+    }
+  }, [searchParams]);
+
   const handleBack = () => {
     setShowForm(false);
     setSelectedPurpose("");
     setSubmitted(false);
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setFormData((prev: any) => ({
+      ...prev,
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    }));
     setErrors({ name: "", email: "", phone: "", message: "" });
   };
 

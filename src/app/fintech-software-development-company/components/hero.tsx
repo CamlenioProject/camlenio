@@ -34,8 +34,8 @@ export default function Hero() {
 
     const scrollTriggerConfig = {
       trigger: triggerElement,
-      start: "top 20%",
-      end: "bottom 20%",
+      start: "top 10%",
+      end: "bottom 10%",
       toggleActions: "play none none none",
       markers: false,
       anticipatePin: 1,
@@ -43,7 +43,7 @@ export default function Hero() {
 
     gsap.fromTo(
       leftContentRef.current,
-      { y: "-30%", opacity: 0, filter: "blur(5px)" },
+      { y: "-10%", opacity: 0, filter: "blur(5px)" },
       {
         y: "0%",
         opacity: 1,
@@ -65,7 +65,7 @@ export default function Hero() {
 
     imgTimeline.fromTo(
       imageRefs,
-      { x: "25%", opacity: 0, filter: "blur(3px)" },
+      { x: "10%", opacity: 0, filter: "blur(3px)" },
       {
         x: "0%",
         opacity: 1,

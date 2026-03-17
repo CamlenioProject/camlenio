@@ -4,13 +4,19 @@ import nodemailer from "nodemailer";
 const Gmail = process.env.Gmail;
 
 interface EnquiryBody {
-  type: "contact" | "popup" | "chatbot" | "demo";
+  type: "contact" | "popup" | "chatbot" | "demo" | "tracking";
   name: string;
   email: string;
   phone: string;
   project?: string;
   message?: string;
   source?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
 }
 
 export async function POST(req: Request) {
@@ -18,7 +24,31 @@ export async function POST(req: Request) {
     const body: EnquiryBody = await req.json();
     body.source = body.source || body.type;
 
-    const { type, name, email, phone, project, message } = body;
+    const {
+      type,
+      name,
+      email,
+      phone,
+      project,
+      message,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_term,
+      utm_content,
+      gclid,
+    } = body;
+
+    const trackingDataHtml = `
+      <hr />
+      <h3>Tracking Data:</h3>
+      <p><b>UTM Source:</b> ${utm_source || "N/A"}</p>
+      <p><b>UTM Medium:</b> ${utm_medium || "N/A"}</p>
+      <p><b>UTM Campaign:</b> ${utm_campaign || "N/A"}</p>
+      <p><b>UTM Term:</b> ${utm_term || "N/A"}</p>
+      <p><b>UTM Content:</b> ${utm_content || "N/A"}</p>
+      <p><b>GCLID:</b> ${gclid || "N/A"}</p>
+    `;
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -28,6 +58,29 @@ export async function POST(req: Request) {
         pass: process.env.SMTP_PASS,
       },
     });
+
+    const handleDatabaseSave = async (data: EnquiryBody) => {
+      const BACKEND_URL = process.env.BACKEND_URL;
+      const saveResponse = await fetch(
+        `${BACKEND_URL}/api/user/enquiry/add-enquiry`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!saveResponse.ok) {
+        console.log(saveResponse);
+      }
+
+      const saveResult = await saveResponse.json();
+      return NextResponse.json({
+        success: true,
+        message: data.type === "tracking" ? "Tracking saved" : "Email sent + Data saved",
+        db: saveResult,
+      });
+    };
 
     let mailOptions: Record<string, unknown> = {};
 
@@ -44,6 +97,7 @@ export async function POST(req: Request) {
             <p><b>phone:</b> ${phone}</p>
             <p><b>Project:</b> ${project || "N/A"}</p>
             <p><b>Message:</b> ${message || "N/A"}</p>
+            ${trackingDataHtml}
           `,
         };
         break;
@@ -59,6 +113,7 @@ export async function POST(req: Request) {
             <p><b>Email:</b> ${email}</p>
             <p><b>Phone:</b> ${phone}</p>
             <p><b>Message:</b> ${message || "N/A"}</p>
+            ${trackingDataHtml}
           `,
         };
         break;
@@ -75,6 +130,7 @@ export async function POST(req: Request) {
             <p><b>phone:</b> ${phone}</p>
             <p><b>Project:</b> ${project || "N/A"}</p>
             <p><b>Message:</b> ${message || "N/A"}</p>
+            ${trackingDataHtml}
           `,
         };
         break;
@@ -90,9 +146,13 @@ export async function POST(req: Request) {
             <p><b>Email:</b> ${email}</p>
             <p><b>phone:</b> ${phone}</p>
             <p><b>Message:</b> ${message || "N/A"}</p>
+            ${trackingDataHtml}
           `,
         };
         break;
+
+      case "tracking":
+        return await handleDatabaseSave(body);
 
       default:
         return NextResponse.json(
@@ -102,29 +162,7 @@ export async function POST(req: Request) {
     }
 
     await transporter.sendMail(mailOptions);
-    const BACKEND_URL = process.env.BACKEND_URL;
-    // console.log(BACKEND_URL, "alhdkjadlkj");
-    const saveResponse = await fetch(
-      `${BACKEND_URL}/api/user/enquiry/add-enquiry`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      }
-    );
-
-    if (!saveResponse.ok) {
-      console.log(saveResponse);
-      // throw new Error("Failed to save enquiry to backend");
-    }
-
-    const saveResult = await saveResponse.json();
-
-    return NextResponse.json({
-      success: true,
-      message: "Email sent + Data saved",
-      db: saveResult,
-    });
+    return await handleDatabaseSave(body);
   } catch (error) {
     console.log(error);
     return NextResponse.json(
@@ -133,3 +171,4 @@ export async function POST(req: Request) {
     );
   }
 }
+

@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import localFont from "next/font/local";
 import LenisWrapper from "./LenisWrapper";
 import ClientChatBot from "./components/ClientChatBot";
+import UTMTracker from "./components/UTMTracker";
 import React from "react";
 
 export const metadata = {
@@ -100,6 +101,7 @@ export default function RootLayout({
       </head>
 
       <body className="overflow-x-clip">
+        <UTMTracker />
         <Header />
         <main>
           <LenisWrapper>{children}</LenisWrapper>

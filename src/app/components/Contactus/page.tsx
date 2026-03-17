@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FiPhone } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
@@ -7,6 +7,7 @@ import { FiUser } from "react-icons/fi";
 import { MdOutlineWork } from "react-icons/md";
 import { TbMessageDots } from "react-icons/tb";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSearchParams } from "next/navigation";
 import {
   validateName,
   validateEmail,
@@ -16,12 +17,19 @@ import {
 import CustomCaptcha from "../CustomCaptcha";
 
 export default function ContactUs() {
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     project: "Web Development",
     message: "",
+    utm_source: searchParams.get("utm_source") || "",
+    utm_medium: searchParams.get("utm_medium") || "",
+    utm_campaign: searchParams.get("utm_campaign") || "",
+    utm_term: searchParams.get("utm_term") || "",
+    utm_content: searchParams.get("utm_content") || "",
+    gclid: searchParams.get("gclid") || "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(false);
@@ -29,6 +37,46 @@ export default function ContactUs() {
   const [successPopup, setSuccessPopup] = useState(false);
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [captchaKey, setCaptchaKey] = useState(0);
+
+  useEffect(() => {
+    const params = [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_term",
+      "utm_content",
+      "gclid",
+    ];
+    const utmObject: any = {};
+    let found = false;
+
+    params.forEach((p) => {
+      const val = searchParams.get(p);
+      if (val) {
+        utmObject[p] = val;
+        found = true;
+      }
+    });
+
+    if (found) {
+      localStorage.setItem("camlenio_utm", JSON.stringify(utmObject));
+    }
+
+    const storedUtm = localStorage.getItem("camlenio_utm");
+    console.log("camlenio_utm:", storedUtm);
+
+    if (storedUtm) {
+      try {
+        const parsed = JSON.parse(storedUtm);
+        setFormData((prev: any) => ({
+          ...prev,
+          ...parsed,
+        }));
+      } catch (e) {
+        console.error("Error parsing stored UTM:", e);
+      }
+    }
+  }, [searchParams]);
 
   const validateContactForm = () => {
     const newErrors: { [key: string]: string } = {};
@@ -96,13 +144,14 @@ export default function ContactUs() {
         setSuccessPopup(false); // hide after 3 sec
       }, 5000);
 
-      setFormData({
+      setFormData((prev) => ({
+        ...prev,
         name: "",
         email: "",
         phone: "",
         project: "Web Development",
         message: "",
-      });
+      }));
       setCaptchaKey(prev => prev + 1);
       setIsCaptchaValid(false);
     } catch (err: unknown) {

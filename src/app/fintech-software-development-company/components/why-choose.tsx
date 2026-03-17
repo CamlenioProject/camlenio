@@ -87,7 +87,7 @@ const FeatureCard = ({
   return (
     <m.div
       variants={{
-        hidden: { opacity: 0, y: 60, scale: 0.95 },
+        hidden: { opacity: 0, y: 10, scale: 0.95 },
         visible: {
           opacity: 1,
           y: 0,
@@ -101,7 +101,7 @@ const FeatureCard = ({
         },
       }}
       whileHover={{
-        y: -8,
+        y: -4,
         transition: { type: "spring", stiffness: 400, damping: 25 },
       }}
       className="relative group"
@@ -113,7 +113,7 @@ const FeatureCard = ({
         <div className="relative z-10">
           {/* Icon Container */}
           <m.div
-            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileHover={{ scale: 0.9, rotate: 5 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
             className="inline-flex mb-5 sm:mb-6"
           >
@@ -159,12 +159,12 @@ export default function WhyChoose() {
             initial={{ opacity: 0 }}
             animate={isHeaderInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
+            className="text-left md:text-center mb-12 sm:mb-16 lg:mb-20"
           >
             <m.h2
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 10, opacity: 0 }}
               animate={
-                isHeaderInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }
+                isHeaderInView ? { y: 0, opacity: 1 } : { y: 10, opacity: 0 }
               }
               transition={{
                 type: "spring",
@@ -172,7 +172,7 @@ export default function WhyChoose() {
                 damping: 20,
                 delay: 0.2,
               }}
-              className="text-3xl sm:text-4xl font-black text-gray-900 mb-4 leading-tight px-4"
+              className="text-3xl sm:text-4xl font-black text-gray-900 mb-4 leading-tight px-0 md:px-4"
             >
               Why People Choose Camlenio{" "}
               <span className="relative inline-block mt-1 sm:mt-2">
@@ -192,7 +192,7 @@ export default function WhyChoose() {
               initial={{ opacity: 0 }}
               animate={isHeaderInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="max-w-6xl mx-auto text-gray-600 text-sm md:text-base font-sans text-justify leading-relaxed px-4"
+              className="max-w-6xl mx-auto text-gray-600 text-sm md:text-base font-sans text-left md:text-center leading-relaxed px-0 md:px-4"
             >
               Most fintech businesses choose Camlenio because a reliable technology partner provides professional Fintech Software Development. Our expertise focuses on delivering secure and high-quality fintech applications. We aim to offer creative Fintech Software Solutions that boost businesses to succeed in the digital finance sector.
             </m.p>
@@ -214,12 +214,12 @@ export default function WhyChoose() {
           {/* Key Benefits Section */}
           <m.div
             ref={benefitsRef}
-            initial={{ opacity: 0, y: 40 }}
-            animate={isBenefitsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={isBenefitsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: 0.8 }}
             className="rounded-[2rem] bg-gradient-to-br from-orange-50 via-white to-orange-50 border border-orange-200/50 p-8 md:p-12 shadow-sm"
           >
-            <div className="text-center mb-10">
+            <div className="text-left md:text-center mb-10">
               <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
                 Key{" "}
                 <span
@@ -240,8 +240,8 @@ export default function WhyChoose() {
                 return (
                   <m.div
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isBenefitsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={isBenefitsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="flex items-center gap-4 bg-white rounded-2xl p-4 border border-orange-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
                   >
