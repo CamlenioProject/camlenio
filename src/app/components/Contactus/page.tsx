@@ -366,6 +366,7 @@ function ContactUsContent() {
                   <option value={"ecommerce-development"}>
                     E-commerce Development
                   </option>
+                  <option value={"job"}>Job</option>
                   <option value={"others"}>Others</option>
                 </select>
               </div>

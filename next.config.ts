@@ -63,7 +63,7 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googletagmanager.com *.facebook.net *.facebook.com va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.cloudinary.com *.facebook.com blogs.camlenio.com; media-src 'self' *.cloudinary.com; connect-src 'self' *.facebook.com *.google-analytics.com blogs.camlenio.com; font-src 'self' data:;frame-src 'self' https://www.google.com https://maps.google.com https://maps.googleapis.com;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googletagmanager.com *.facebook.net *.facebook.com va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.cloudinary.com *.facebook.com blogs.camlenio.com images.unsplash.com; media-src 'self' *.cloudinary.com; connect-src 'self' *.facebook.com *.google-analytics.com blogs.camlenio.com; font-src 'self' data:;frame-src 'self' https://www.google.com https://maps.google.com https://maps.googleapis.com;",
           },
         ],
       },
