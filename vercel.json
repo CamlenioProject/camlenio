@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    {
-      "source": "/blogs/:path*",
-      "destination": "https://blogs.camlenio.com/:path*",
-      "permanent": true
-    }
-  ]
-}

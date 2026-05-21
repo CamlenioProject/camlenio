@@ -2,49 +2,21 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { GiCheckMark } from "react-icons/gi";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { HeroTextAnimate } from "../HeroTextAnimate";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/Button";
+import { heroData } from "@/config/homepage";
+import { LogoSlider } from "./logoslider";
 
 const Hero = () => {
   const router = useRouter();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(1);
 
-  const cards = useMemo(
-    () => [
-      {
-        id: 1,
-        tag: "Customized",
-        tagColor: "bg-blue-100 text-blue-600",
-        title: "Customized Software Tailored to Your Growth",
-        decs: "We develop software solutions that adapt to your unique business needs. Our customized technology evolves as your business grows.",
-        image: "/Homepage/hero/Customized.webp",
-      },
-      {
-        id: 2,
-        tag: "Fintech",
-        tagColor: "bg-pink-100 text-pink-600",
-        title: "Empowering Businesses with Smart Fintech Solutions",
-        decs: "Fintech blends finance with technology to create smarter, faster, and more secure digital financial Software.",
-        image: "/Homepage/hero/fintech.webp",
-      },
-      {
-        id: 3,
-        tag: "Innovation",
-        tagColor: "bg-orange-100 text-orange-600",
-        title: "Artificial Intelligence Solutions by Camlenio Software",
-        decs: "We harness the power of Artificial Intelligence (AI) to help businesses automate processes, analyze data intelligently.",
-        image: "/Homepage/hero/ai.webp",
-      },
-    ],
-    []
-  );
-
   return (
-    <div className="relative pt-20 md:py-12 overflow-hidden">
-      <div className="flex flex-col md:flex-row">
+    <div className="relative min-h-[82vh] pt-24 pb-8 md:pt-28 md:pb-10 overflow-hidden flex flex-col justify-between">
+      <div className="flex flex-col md:flex-row w-full flex-grow items-center justify-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -52,37 +24,23 @@ const Hero = () => {
           style={{ willChange: "transform" }}
           className="flex flex-col items-center justify-center w-full md:w-[50%]"
         >
-          <div className="max-w-2xl space-y-4 px-4 sm:px-1 md:mt-10">
+          <div className="max-w-2xl space-y-4 px-4 sm:px-1">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
-              Camlenio is a Leading Software
+              {heroData.titlePrefix}
               <br />
-              Development in{" "}
+              {heroData.titleSuffix}{" "}
               <HeroTextAnimate
-                words={[
-                  "Custom Solution",
-                  "Fintech Software",
-                  "Digital Solutions",
-                ]}
+                words={heroData.words}
               />
             </h1>
 
             <ul className="space-y-2 text-gray-700 text-xs md:text-sm font-sans">
-              <li className="flex items-center gap-3">
-                <GiCheckMark className="text-orange-500 flex-shrink-0" />
-                <span>Trusted by clients for innovation, reliability, and timely delivery</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <GiCheckMark className="text-orange-500 flex-shrink-0" />
-                <span>Businesses with latest technologies and smart digital solutions</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <GiCheckMark className="text-orange-500 flex-shrink-0" />
-                <span>From Startup to Enterprise We Develop Software That Grows With You.</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <GiCheckMark className="text-orange-500 flex-shrink-0" />
-                <span>Building secure, scalable, and customizable platforms</span>
-              </li>
+              {heroData.benefits.map((benefit, idx) => (
+                <li key={idx} className="flex items-center gap-3">
+                  <GiCheckMark className="text-orange-500 flex-shrink-0" />
+                  <span>{benefit}</span>
+                </li>
+              ))}
             </ul>
             <Button
               onClick={() => router.push("/contact")}
@@ -99,13 +57,13 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ willChange: "transform" }}
-          className="relative h-[36rem] flex-grow flex flex-col items-center justify-center px-2 py-28 md:py-20 md:rounded-bl-[3rem] md:w-[50%] overflow-hidden"
+          className="relative h-[36rem] w-full md:w-[50%] flex-grow flex flex-col items-center justify-center px-2 py-28 md:py-20 md:rounded-bl-[3rem] overflow-hidden"
         >
           <div
             className="relative flex justify-center items-center w-full h-full [perspective:1200px]"
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            {cards.map((card, index) => {
+            {heroData.cards.map((card, index) => {
               const isHovered = hoveredIndex === index;
               const isAnyHovered = hoveredIndex !== null;
               const relativePos = (index - activeIndex + 3) % 3;
@@ -162,12 +120,12 @@ const Hero = () => {
                   <h3 className="mt-3 font-semibold text-gray-900 text-xs">{card.title}</h3>
                   <p className="mt-3 text-gray-900 text-[11px] text-justify">{card.decs}</p>
                   {card.image && (
-                    <div className="mt-3 w-full h-24 rounded-lg overflow-hidden relative shadow-inner pointer-events-none">
+                    <div className="mt-3 w-full h-24  overflow-hidden relative shadow-inner pointer-events-none">
                       <Image
                         src={card.image}
                         alt={card.tag}
                         fill
-                        className="object-cover"
+                        className="object-cover rounded-lg"
                         sizes="(max-width: 640px) 192px, (max-width: 1024px) 160px, 224px"
                         priority={isCenter || index === 1}
                         style={{
@@ -184,6 +142,9 @@ const Hero = () => {
             })}
           </div>
         </motion.div>
+      </div>
+      <div className="w-full mt-auto relative z-10 py-4">
+        <LogoSlider />
       </div>
     </div>
   );

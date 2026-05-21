@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  allowedDevOrigins: ["http://localhost:3000", "http://[IP_ADDRESS]"],
-  // eslint: {
-  //   ignoreDuringBuilds: true,
-  // },
+  output: 'standalone',
+  allowedDevOrigins: ["http://localhost:3000", "http://192.168.1.3:3000"],
   async redirects() {
     return [
       {
@@ -14,6 +12,7 @@ const nextConfig = {
     ];
   },
   images: {
+    qualities: [75, 85],
     remotePatterns: [
       {
         protocol: "https",
@@ -63,7 +62,7 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googletagmanager.com *.facebook.net *.facebook.com va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.cloudinary.com *.facebook.com blogs.camlenio.com images.unsplash.com; media-src 'self' *.cloudinary.com; connect-src 'self' *.facebook.com *.google-analytics.com blogs.camlenio.com; font-src 'self' data:;frame-src 'self' https://www.google.com https://maps.google.com https://maps.googleapis.com;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.googletagmanager.com *.facebook.net *.facebook.com va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.cloudinary.com *.facebook.com blogs.camlenio.com images.unsplash.com; media-src 'self' *.cloudinary.com; connect-src 'self' cdn.jsdelivr.net *.facebook.com *.google-analytics.com blogs.camlenio.com; font-src 'self' data:;frame-src 'self' https://www.google.com https://maps.google.com https://maps.googleapis.com; worker-src 'self' blob:;",
           },
         ],
       },
@@ -74,4 +73,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

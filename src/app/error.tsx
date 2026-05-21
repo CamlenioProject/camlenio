@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Lottie from "lottie-react";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import ErrorPage from "@/animations/Error.json";
 
 interface ErrorProps {
@@ -17,8 +17,8 @@ export default function Error({ error, reset }: ErrorProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-center">
       <div className="bg-transparent text-white p-4 rounded-full transition z-10 flex items-center justify-center">
-        <Lottie
-          animationData={ErrorPage}
+        <DotLottieReact
+          data={ErrorPage}
           loop
           autoplay
           className="w-1/2 lg:w-1/2 h-1/2 lg:h-1/2"

@@ -39,16 +39,6 @@ const logos: Logo[] = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
 
 export function LogoSlider() {
   // Duplicate logos for seamless infinite scroll
@@ -56,38 +46,35 @@ export function LogoSlider() {
 
   return (
     <LazyMotion features={domMax}>
-      <section className=" overflow-hidden ">
-        <div className="w-full max-w-[85rem] mx-auto px-2">
-          <div className=" rounded-3xl shadow-[0_10px_40px_-10px_rgba(249,115,22,0.1)] py-12 px-4 md:px-12 relative overflow-hidden border border-orange-100">
-            <div className="flex relative overflow-hidden">
-              <m.div
-                className="flex gap-12 md:gap-24 items-center whitespace-nowrap"
-                animate={{
-                  x: ["0%", "-50%"],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  ease: "linear",
-                  duration: 25,
-                }}
-              >
-                {unlimitedLogos.map((logo, index) => (
-                  <div
-                    key={index}
-                    className="relative flex items-center justify-center h-12 md:h-16 w-32 md:w-40 flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
-                  >
-                    <Image
-                      src={logo.src}
-                      alt={logo.alt}
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 768px) 120px, 160px"
-                      priority={logo.src.includes("paysprint-logo")}
-                    />
-                  </div>
-                ))}
-              </m.div>
-            </div>
+      <section className="overflow-hidden py-8">
+        <div className="w-full max-w-full mx-auto">
+          <div className="flex relative overflow-hidden">
+            <m.div
+              className="flex gap-16 md:gap-28 items-center whitespace-nowrap"
+              animate={{
+                x: ["0%", "-50%"],
+              }}
+              transition={{
+                repeat: Infinity,
+                ease: "linear",
+                duration: 30,
+              }}
+            >
+              {unlimitedLogos.map((logo, index) => (
+                <div
+                  key={index}
+                  className="relative flex items-center justify-center h-10 md:h-12 w-28 md:w-36 flex-shrink-0 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                >
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100px, 140px"
+                  />
+                </div>
+              ))}
+            </m.div>
           </div>
         </div>
       </section>

@@ -1,25 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-
-// Dynamically import Lottie to avoid SSR issues
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const AboutAI = () => {
-  const [animationData, setAnimationData] = useState<any>(null);
-
-  useEffect(() => {
-    // Fetch a reliable public Lottie JSON for "AI/Tech"
-    fetch("https://lottie.host/80e9d6d7-8d00-4c3e-9538-4f51e0cc5531/MBS4t2K6nK.json")
-      .then((response) => {
-        if (!response.ok) throw new Error("Network response was not ok");
-        return response.json();
-      })
-      .then((data) => setAnimationData(data))
-      .catch((error) => console.error("Error loading Lottie animation:", error));
-  }, []);
 
   return (
     <section className="py-24 bg-black text-white relative overflow-hidden">
@@ -71,17 +55,12 @@ const AboutAI = () => {
             transition={{ duration: 0.8 }}
             className="w-full max-w-md"
           >
-            {animationData ? (
-              <Lottie
-                animationData={animationData}
-                loop={true}
-                className="w-full h-auto drop-shadow-[0_0_20px_rgba(0,255,255,0.3)]"
-              />
-            ) : (
-              <div className="h-64 flex items-center justify-center border border-white/10 rounded-xl bg-white/5 animate-pulse">
-                <p className="text-xs font-mono text-gray-500">Loading neural matrix...</p>
-              </div>
-            )}
+            <DotLottieReact
+              src="https://lottie.host/80e9d6d7-8d00-4c3e-9538-4f51e0cc5531/MBS4t2K6nK.json"
+              loop
+              autoplay
+              className="w-full h-auto drop-shadow-[0_0_20px_rgba(0,255,255,0.3)]"
+            />
           </motion.div>
         </div>
       </div>

@@ -87,7 +87,7 @@ export default function CrmHero(): React.JSX.Element {
         <div className="-mt-14 md:-mt-20">
           <ContainerScroll titleComponent={null}>
             <Image
-              src="/ServiceDropdown/crmsoftware/camlenio-crm.png"
+              src="https://res.cloudinary.com/dxpbriwey/image/upload/v1775823743/camlenio-crm_vob7ik.webp"
               alt="Camlenio CRM Dashboard"
               width={1600}
               height={900}

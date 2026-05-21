@@ -13,6 +13,8 @@ import {
   validateMessage,
 } from "../../../../lib/validators";
 import CustomCaptcha from "../CustomCaptcha";
+import { Button } from "../ui/Button";
+import { Input } from "../ui/Input";
 
 const FreeDemo = () => {
   const [loading, setLoading] = useState(false);
@@ -105,15 +107,7 @@ const FreeDemo = () => {
 
   return (
     <LazyMotion features={domMax}>
-      <div className="relative py-24 bg-[#080b11] overflow-hidden">
-        {/* Advanced Background Elements - Optimized */}
-        {/* Top Right Glow */}
-        <div className="absolute top-[-10%] right-[-10%] w-[400px] h-[400px] bg-orange-500/10 blur-[80px] rounded-full pointer-events-none transform-gpu" />
-        {/* Bottom Left Glow */}
-        <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-blue-500/10 blur-[80px] rounded-full pointer-events-none transform-gpu" />
-
-        {/* Animated Grid Background - Simplified */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+      <div className="relative py-24 overflow-hidden">
 
         <AnimatePresence>
           {popup && (
@@ -161,22 +155,25 @@ const FreeDemo = () => {
               transition={{ duration: 0.8 }}
             >
 
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6">
-                Every <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Great Discovery</span> Starts With A Single Step.
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4">
+                Every <span className="text-orange-500" style={{
+                  textShadow:
+                    "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
+                }}>Great Discovery</span> Starts With A Single Step.
               </h2>
 
-              <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-10 max-w-lg font-sans">
+              <p className="text-slate-600 text-lg md:text-xl leading-relaxed mb-10 max-w-lg font-sans">
                 Take the decision today that will redefine your business tomorrow. Our expert team is ready to bring your vision to life.
               </p>
 
               <div className="grid grid-cols-2 gap-8">
                 <div>
-                  <h4 className="text-3xl font-bold text-white mb-1">100+</h4>
-                  <p className="text-gray-500 text-sm">Successful Projects</p>
+                  <h4 className="text-3xl font-bold text-slate-900 mb-1">100+</h4>
+                  <p className="text-slate-500 text-sm">Successful Projects</p>
                 </div>
                 <div>
-                  <h4 className="text-3xl font-bold text-white mb-1">24/7</h4>
-                  <p className="text-gray-500 text-sm">Expert Support</p>
+                  <h4 className="text-3xl font-bold text-slate-900 mb-1">24/7</h4>
+                  <p className="text-slate-500 text-sm">Expert Support</p>
                 </div>
               </div>
             </m.div>
@@ -187,71 +184,55 @@ const FreeDemo = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative p-8 md:p-10 rounded-[2.5rem] bg-gray-900/40 backdrop-blur-xl border border-white/5 shadow-xl overflow-hidden group"
+              className="relative p-8 md:p-10 rounded-[2.5rem] bg-white/80  border border-black/5 shadow-sm overflow-hidden group"
             >
               {/* Inner Glow */}
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-orange-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+              <div className="absolute top-0 left-0 w-full h-full" />
 
               <div className="relative z-10">
                 <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">Get a Free Demo</h3>
-                  <p className="text-gray-400 text-sm font-sans">Submit your details and we'll reach out within 24 hours.</p>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Get a Free Demo</h3>
+                  <p className="text-slate-500 text-sm font-sans">Submit your details and we'll reach out within 24 hours.</p>
                 </div>
 
                 <form className="space-y-5" onSubmit={onSubmit}>
                   <div className="grid md:grid-cols-2 gap-5">
-                    <div className="space-y-1.5">
-                      <label htmlFor="home_name" className="text-xs font-bold text-gray-500 uppercase ml-1">Full Name</label>
-                      <input
-                        type="text"
-                        id="home_name"
-                        name="home_name"
-                        placeholder="Your Name"
-                        className={`w-full bg-white/5 border-2 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all duration-300 focus:bg-white/[0.08] ${errors.name ? "border-rose-500/50" : "border-white/5 focus:border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0)] focus:shadow-[0_0_20px_rgba(249,115,22,0.1)]"
-                          }`}
-                      />
-                      {errors.name && <p className="text-rose-500 text-[10px] font-bold mt-1 ml-1">{errors.name}</p>}
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label htmlFor="home_phone" className="text-xs font-bold text-gray-500 uppercase ml-1">Phone Number</label>
-                      <input
-                        type="tel"
-                        id="home_phone"
-                        name="home_phone"
-                        placeholder="+91 xxx..."
-                        className={`w-full bg-white/5 border-2 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all duration-300 focus:bg-white/[0.08] ${errors.phone ? "border-rose-500/50" : "border-white/5 focus:border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0)] focus:shadow-[0_0_20px_rgba(249,115,22,0.1)]"
-                          }`}
-                      />
-                      {errors.phone && <p className="text-rose-500 text-[10px] font-bold mt-1 ml-1">{errors.phone}</p>}
-                    </div>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label htmlFor="home_email" className="text-xs font-bold text-gray-500 uppercase ml-1">Email Address</label>
-                    <input
-                      type="email"
-                      id="home_email"
-                      name="home_email"
-                      placeholder=""
-                      className={`w-full bg-white/5 border-2 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all duration-300 focus:bg-white/[0.08] ${errors.email ? "border-rose-500/50" : "border-white/5 focus:border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0)] focus:shadow-[0_0_20px_rgba(249,115,22,0.1)]"
-                        }`}
+                    <Input
+                      type="text"
+                      id="home_name"
+                      name="home_name"
+                      label="Full Name"
+                      placeholder="Your Name"
+                      error={errors.name}
                     />
-                    {errors.email && <p className="text-rose-500 text-[10px] font-bold mt-1 ml-1">{errors.email}</p>}
+
+                    <Input
+                      type="tel"
+                      id="home_phone"
+                      name="home_phone"
+                      label="Phone Number"
+                      placeholder="+91 xxx..."
+                      error={errors.phone}
+                    />
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label htmlFor="home_message" className="text-xs font-bold text-gray-500 uppercase ml-1">How can we help?</label>
-                    <textarea
-                      id="home_message"
-                      name="home_message"
-                      rows={3}
-                      placeholder="Tell us about your project..."
-                      className={`w-full bg-white/5 border-2 rounded-xl px-4 py-3 text-white placeholder-gray-600 outline-none transition-all duration-300 focus:bg-white/[0.08] resize-none ${errors.message ? "border-rose-500/50" : "border-white/5 focus:border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0)] focus:shadow-[0_0_20px_rgba(249,115,22,0.1)]"
-                        }`}
-                    />
-                    {errors.message && <p className="text-rose-500 text-[10px] font-bold mt-1 ml-1">{errors.message}</p>}
-                  </div>
+                  <Input
+                    type="email"
+                    id="home_email"
+                    name="home_email"
+                    label="Email Address"
+                    placeholder="Your Email Address"
+                    error={errors.email}
+                  />
+
+                  <Input
+                    type="textarea"
+                    id="home_message"
+                    name="home_message"
+                    label="How can we help?"
+                    placeholder="Tell us about your project..."
+                    error={errors.message}
+                  />
 
                   <div className="py-2">
                     <CustomCaptcha
@@ -260,21 +241,18 @@ const FreeDemo = () => {
                     />
                   </div>
 
-                  <button
+                  <Button
                     type="submit"
                     disabled={loading}
-                    className="w-full relative group h-14 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-bold text-white shadow-[0_10px_30px_rgba(249,115,22,0.3)] hover:shadow-[0_15px_40px_rgba(249,115,22,0.4)] transition-all duration-500 overflow-hidden flex items-center justify-center gap-3 disabled:opacity-70"
+                    size="xl"
+                    className="w-full flex items-center justify-center gap-2 bg-orange-600 text-white py-3 rounded-full text-[14px] font-bold shadow-lg shadow-orange-600/20 hover:bg-orange-700 transition-all duration-300 active:scale-95 disabled:opacity-70 group cursor-pointer"
                   >
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                     <span className="relative z-10 flex items-center gap-2">
                       {loading ? "Processing..." : "Secure Your Free Demo"}
                       <FaLongArrowAltRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </span>
-                  </button>
-
-                  <p className="text-center text-[11px] text-gray-500 font-medium">
-                    By submitting, you agree to our <Link href="/privacy-policy" className="text-orange-500/80 hover:underline">Privacy Policy</Link>
-                  </p>
+                  </Button>
                 </form>
               </div>
             </m.div>

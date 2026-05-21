@@ -124,7 +124,11 @@ export default function Footer() {
 
           <div className="border-t border-gray-500 my-6" />
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-base">
+          <div className={`grid grid-cols-2 ${
+            footerData.length + 1 === 5 ? 'md:grid-cols-5' : 
+            footerData.length + 1 === 4 ? 'md:grid-cols-4' : 
+            'md:grid-cols-3'
+          } gap-8 text-base`}>
             <div className="col-span-2 md:col-span-1 w-full  flex  flex-col items-start sm:items-center mb-4">
               <Link href="/" className="flex items-center">
                 <Image

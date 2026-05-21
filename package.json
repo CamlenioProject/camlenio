@@ -1,10 +1,10 @@
 {
-  "name": "camlenio",
+  "name": "camlenio.com",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -65,7 +65,7 @@
     "@types/react-dom": "^19",
     "@types/three": "^0.182.0",
     "autoprefixer": "^10.4.21",
-    "baseline-browser-mapping": "^2.10.8",
+    "baseline-browser-mapping": "^2.10.29",
     "eslint": "^9",
     "eslint-config-next": "15.5.6",
     "postcss": "^8.5.6",

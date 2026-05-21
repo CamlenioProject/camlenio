@@ -35,11 +35,6 @@ const industries = [
 export default function PayoutIndustries() {
   return (
     <section className="py-24 relative overflow-hidden">
-      {/* Dynamic Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-      <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-orange-500 opacity-20 blur-[100px]"></div>
-      <div className="absolute bottom-0 right-0 -z-10 h-[300px] w-[300px] rounded-full bg-blue-500 opacity-10 blur-[120px]"></div>
-
       <div className="container mx-auto px-6 md:px-12 relative z-10">
 
         {/* Glass Overlay Pane */}

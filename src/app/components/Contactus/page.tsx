@@ -22,7 +22,7 @@ function ContactUsContent() {
     name: "",
     email: "",
     phone: "",
-    project: "Web Development",
+    project: "web-development",
     message: "",
     utm_source: searchParams.get("utm_source") || "",
     utm_medium: searchParams.get("utm_medium") || "",
@@ -149,7 +149,7 @@ function ContactUsContent() {
         name: "",
         email: "",
         phone: "",
-        project: "Web Development",
+        project: "web-development",
         message: "",
       }));
       setCaptchaKey(prev => prev + 1);
@@ -162,7 +162,7 @@ function ContactUsContent() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100   py-20 px-8 md:px-16 scroll-smooth">
+    <div className="bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 py-20 px-8 md:px-16 scroll-smooth">
       <AnimatePresence>
         {successPopup && (
           <motion.div
@@ -174,7 +174,7 @@ function ContactUsContent() {
               ease: [0.4, 0, 0.2, 1],
               scale: { duration: 0.3 },
             }}
-            className="fixed top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-50 to-emerald-50/80 backdrop-blur-xl text-gray-900 px-6 py-4 rounded-2xl shadow-2xl shadow-green-200/50 border border-green-200/60 border-t-white/20 border-l-white/20 font-semibold z-[9999] text-sm md:text-base flex items-center gap-3 max-w-[90vw] md:max-w-md"
+            className="fixed top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-50 to-emerald-50/80 backdrop-blur-xl text-gray-900 px-6 py-4 rounded-4xl shadow-sm shadow-green-200/50 border border-green-200/60 border-t-white/20 border-l-white/20 font-semibold z-[9999] text-sm md:text-base flex items-center gap-3 max-w-[90vw] md:max-w-md"
           >
             {/* Animated Checkmark */}
             <motion.div
@@ -247,7 +247,7 @@ function ContactUsContent() {
       </AnimatePresence>
 
       <div className="max-w-7xl mx-auto">
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 bg-transparent border-1 border-gray-300 p-8 rounded-2xl shadow-lg ">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 bg-transparent border-1 border-gray-300 p-8 rounded-2xl shadow-sm ">
           <div className="order-2 md:order-1 relative">
             <form
               onSubmit={(e) => {

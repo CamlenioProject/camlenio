@@ -11,8 +11,6 @@ import { useState, useEffect } from "react";
 // import dynamic from "next/dynamic";
 import { InteractiveHoverButton } from "@/app/components/interactive-hover-button";
 import { FaArrowDownLong } from "react-icons/fa6";
-import BackToTopButton from "@/app/components/BackToTopButton";
-import MetaBalls from "@/app/components/metaBalls";
 import { Button } from "@/app/components/ui/Button";
 
 // const MetaBalls = dynamic(() => import("@/app/components/metaBalls"), {
@@ -50,20 +48,7 @@ export default function HeroSection() {
   return (
     <div className="px-6 md:px-16 bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100  ">
       <div className="relative max-w-7xl pt-14 md:min-h-screen mx-auto flex flex-col-reverse md:flex-row items-center justify-center gap-8">
-        <div className=" hidden md:block absolute top-1/2 left-1/3 min-w-7xl -translate-y-1/2 z-7">
-          <MetaBalls
-            color="#A5C9FF"
-            cursorBallColor="#A5C9FF"
-            cursorBallSize={2}
-            ballCount={15}
-            animationSize={20}
-            enableMouseInteraction={false}
-            enableTransparency={true}
-            hoverSmoothness={0.05}
-            clumpFactor={1}
-            speed={0.3}
-          />
-        </div>
+        
         <div className=" w-full text-center md:text-left relative z-10">
           <h1
             className="text-4xl md:text-3xl lg:text-[3.02rem]  font-bold mb-4 
@@ -129,7 +114,6 @@ export default function HeroSection() {
             Explore More <FaArrowDownLong />
           </Button>
         </div>
-        <BackToTopButton />
       </div>
     </div>
   );

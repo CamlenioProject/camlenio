@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import BackToTopButton from "@/app/components/BackToTopButton";
 import React from "react";
 import {
   motion,
@@ -157,7 +156,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-      <BackToTopButton />
     </>
   );
 }

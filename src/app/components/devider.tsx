@@ -2,7 +2,7 @@
 
 export default function Divider() {
   return (
-    <div className="absolute top-0 right-0 w-full overflow-hidden leading-[0] ">
+    <div className="absolute bottom-0 right-0 w-full overflow-hidden leading-[0]">
       <svg
         className="relative hidden md:block w-[124%] h-[80px]"
         xmlns="http://www.w3.org/2000/svg"

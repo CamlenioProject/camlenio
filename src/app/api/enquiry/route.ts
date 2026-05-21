@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-const Gmail = process.env.Gmail;
+const GMAIL_RECIPIENT = process.env.Gmail;
 
 interface EnquiryBody {
   type: "contact" | "popup" | "chatbot" | "demo" | "tracking";
@@ -18,6 +18,15 @@ interface EnquiryBody {
   utm_content?: string;
   gclid?: string;
 }
+
+// Create transporter OUTSIDE the handler to reuse the connection pool
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+}); 
 
 export async function POST(req: Request) {
   try {
@@ -50,51 +59,78 @@ export async function POST(req: Request) {
       <p><b>GCLID:</b> ${gclid || "N/A"}</p>
     `;
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
     const handleDatabaseSave = async (data: EnquiryBody) => {
       const BACKEND_URL = process.env.BACKEND_URL;
-      const saveResponse = await fetch(
-        `${BACKEND_URL}/api/user/enquiry/add-enquiry`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
+      console.log(BACKEND_URL,"backend url")
+      try {
+        const saveResponse = await fetch(
+          `${BACKEND_URL}/user/enquiry/add-enquiry`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          }
+        );
+
+        const contentType = saveResponse.headers.get("content-type");
+        let saveResult: any = null;
+        let responseText: string = "";
+
+        if (contentType && contentType.includes("application/json")) {
+          saveResult = await saveResponse.json();
+          console.log("Database Save Result:", saveResult);
+        } else {
+          responseText = await saveResponse.text();
+          console.log("Database Save Raw Response:", responseText);
         }
-      );
 
-      if (!saveResponse.ok) {
-        console.log(saveResponse);
+        // If the backend returned an error status OR explicitly returned success: false
+        if (!saveResponse.ok || (saveResult && saveResult.success === false)) {
+          console.error("Database Save Failed:", {
+            status: saveResponse.status,
+            statusText: saveResponse.statusText,
+            result: saveResult,
+            raw: responseText
+          });
+          
+          return NextResponse.json({
+            success: false,
+            message: saveResult?.message || "Email sent, but database save failed.",
+            dbResponse: saveResult,
+            dbStatus: saveResponse.status,
+            dbRaw: responseText.substring(0, 200), // Include first 200 chars of raw response
+            BACKEND_URL: BACKEND_URL,
+          }, { status: saveResponse.status === 200 ? 400 : saveResponse.status });
+        }
+
+        return NextResponse.json({
+          success: true,
+          message: data.type === "tracking" ? "Tracking saved" : "Email sent + Data saved",
+          db: saveResult,
+        });
+      } catch (dbError: any) {
+        console.error("Database connection failed:", dbError);
+        return NextResponse.json({
+          success: false,
+          message: "Email sent, but could not connect to backend server.",
+          error: dbError.message
+        }, { status: 502 });
       }
-
-      const saveResult = await saveResponse.json();
-      return NextResponse.json({
-        success: true,
-        message: data.type === "tracking" ? "Tracking saved" : "Email sent + Data saved",
-        db: saveResult,
-      });
     };
 
-    let mailOptions: Record<string, unknown> = {};
+    let mailOptions: nodemailer.SendMailOptions = {};
 
     switch (type) {
       case "contact":
         mailOptions = {
-          from: `"contact-us Enquiry" <${process.env.SMTP_USER}>`,
-          to: Gmail,
-          subject: "New contact-us Enquiry",
+          from: `"Camlenio Contact" <${process.env.SMTP_USER}>`,
+          to: GMAIL_RECIPIENT,
+          subject: "New Website Enquiry",
           html: `
-            <h2>New contact-us Enquiry</h2>
+            <h2>Contact Us Form Enquiry</h2>
             <p><b>Name:</b> ${name}</p>
             <p><b>Email:</b> ${email}</p>
-            <p><b>phone:</b> ${phone}</p>
+            <p><b>Phone:</b> ${phone}</p>
             <p><b>Project:</b> ${project || "N/A"}</p>
             <p><b>Message:</b> ${message || "N/A"}</p>
             ${trackingDataHtml}
@@ -104,11 +140,11 @@ export async function POST(req: Request) {
 
       case "popup":
         mailOptions = {
-          from: `"Pop-up query" <${process.env.SMTP_USER}>`,
-          to: Gmail,
-          subject: "New Pop-up query",
+          from: `"Camlenio Pop-up" <${process.env.SMTP_USER}>`,
+          to: GMAIL_RECIPIENT,
+          subject: "New Pop-up Enquiry",
           html: `
-            <h2>New Pop-up Chat Enquiry</h2>
+            <h2>Pop-up Form Submission</h2>
             <p><b>Name:</b> ${name}</p>
             <p><b>Email:</b> ${email}</p>
             <p><b>Phone:</b> ${phone}</p>
@@ -120,14 +156,14 @@ export async function POST(req: Request) {
 
       case "chatbot":
         mailOptions = {
-          from: `"ChatBot Enquiry" <${process.env.SMTP_USER}>`,
-          to: Gmail,
-          subject: "New ChatBot Enquiry",
+          from: `"Camlenio ChatBot" <${process.env.SMTP_USER}>`,
+          to: GMAIL_RECIPIENT,
+          subject: "New ChatBot Lead",
           html: `
-            <h2>New Chat Enquiry</h2>
+            <h2>ChatBot Conversation Lead</h2>
             <p><b>Name:</b> ${name}</p>
             <p><b>Email:</b> ${email}</p>
-            <p><b>phone:</b> ${phone}</p>
+            <p><b>Phone:</b> ${phone}</p>
             <p><b>Project:</b> ${project || "N/A"}</p>
             <p><b>Message:</b> ${message || "N/A"}</p>
             ${trackingDataHtml}
@@ -137,14 +173,14 @@ export async function POST(req: Request) {
 
       case "demo":
         mailOptions = {
-          from: `"Demo Enquiry" <${process.env.SMTP_USER}>`,
-          to: Gmail,
-          subject: "New Demo Enquiry",
+          from: `"Camlenio Demo" <${process.env.SMTP_USER}>`,
+          to: GMAIL_RECIPIENT,
+          subject: "Demo Request",
           html: `
-            <h2>New Demo Chat Enquiry</h2>
+            <h2>Software Demo Request</h2>
             <p><b>Name:</b> ${name}</p>
             <p><b>Email:</b> ${email}</p>
-            <p><b>phone:</b> ${phone}</p>
+            <p><b>Phone:</b> ${phone}</p>
             <p><b>Message:</b> ${message || "N/A"}</p>
             ${trackingDataHtml}
           `,
@@ -163,12 +199,16 @@ export async function POST(req: Request) {
 
     await transporter.sendMail(mailOptions);
     return await handleDatabaseSave(body);
-  } catch (error) {
-    console.log(error);
+
+  } catch (error: any) {
+    console.error("API Route Error:", error);
     return NextResponse.json(
-      { success: false, message: "Failed to send email or save data" },
+      { 
+        success: false, 
+        message: "Failed to process request",
+        error: error.message || "Unknown error" 
+      },
       { status: 500 }
     );
   }
 }
-

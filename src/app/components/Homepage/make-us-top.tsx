@@ -8,42 +8,36 @@ const cardsData = [
   {
     icon: "/Homepage/makeustop/settings.svg",
     title: "Web Application development",
-    bgImage: "/Homepage/makeustop/bg/ai-driven.png",
     description:
       "Web Application development Company services for a quick, responsive platform.",
   },
   {
     icon: "/Homepage/makeustop/B2B.svg",
     title: "B2B Software Development",
-    bgImage: "/Homepage/makeustop/bg/b2b.png",
     description:
       "B2B Software Development Company operations for complicated workflows.",
   },
   {
     icon: "/Homepage/makeustop/Reseller.svg",
     title: "API integration services",
-    bgImage: "/Homepage/makeustop/bg/reseller.png",
     description:
       "API integration services for hassle-free system connectivity.",
   },
   {
     icon: "/Homepage/makeustop/Travel.svg",
     title: "Enterprises Software Development",
-    bgImage: "/Homepage/makeustop/bg/travel.png",
     description:
       "Enterprises Software Development for large-scale business solutions.",
   },
   {
     icon: "/Homepage/makeustop/B2C.svg",
     title: "Cloud-based software development",
-    bgImage: "/Homepage/makeustop/bg/b2c.png",
     description:
       "Cloud-based software development for flexibility and scalability.",
   },
   {
     icon: "/Homepage/makeustop/Crm.svg",
     title: "CRM software development",
-    bgImage: "/Homepage/makeustop/bg/ai-driven.png",
     description:
       "CRM software development to increase consumer relationships.",
   },
@@ -53,14 +47,13 @@ interface FeatureCardProps {
   icon: string;
   title: string;
   description: string;
-  bgImage: string;
 }
 
 const MakeUsTop = () => {
   return (
     <LazyMotion features={domMax}>
-      <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 overflow-hidden py-22">
-        <Divider />
+
+      <div className="relative overflow-hidden py-22">
         <div className="max-w-7xl mx-auto text-center px-4">
           {" "}
           <div className="relative inline-block px-4 py-1.5 rounded-full border border-orange-50 bg-orange-100 shadow-sm text-sm font-medium text-orange-600 mb-4">
@@ -90,7 +83,6 @@ const MakeUsTop = () => {
                 icon={card.icon}
                 title={card.title}
                 description={card.description}
-                bgImage={card.bgImage}
               />
             ))}
           </div>
@@ -104,18 +96,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   icon,
   title,
   description,
-  bgImage,
 }) => (
-  <div className="relative border-2 border-orange-200 bg-orange-200/30 shadow-md group rounded-2xl hover:shadow-3xl p-6 flex flex-col text-left overflow-hidden">
-    {/* Subtle background image */}
-    <div className="absolute inset-0 opacity-[0.08]">
-      <Image
-        src={bgImage}
-        alt=""
-        fill
-        className="object-cover mix-blend-multiply"
-      />
-    </div>
+  <div className="relative border-2 border-orange-200 bg-orange-200/30 shadow-sm group rounded-4xl p-6 flex flex-col text-left overflow-hidden">
     <div className="relative z-10 w-20 h-20 group-hover:scale-80 py-4 mb-6 transition-all duration-300">
       <Image
         src={icon}

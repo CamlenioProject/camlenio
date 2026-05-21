@@ -1,78 +1,173 @@
 "use client";
+
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import BackToTopButton from "@/app/components/BackToTopButton";
-import { FaArrowDownLong } from "react-icons/fa6";
 import { Button } from "@/app/components/ui/Button";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
-  const handleScroll = () => {
-    const nextSection = document.getElementById("next-section");
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const router = useRouter();
+
   return (
-    <div className="relative pt-20 overflow-hidden bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100  ">
-      <Image
-        src="/ServiceDropdown/webdevpage/webdevhero.webp"
-        alt="Background"
-        width={500}
-        height={500}
-        className="object-contain w-50 absolute z-0 "
-        priority
-      />
-      <div className=" px-8 md:px-16">
-        <div className="max-w-7xl min-h-[80vh] mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-10 ">
-          <div className="w-full text-center md:text-left z-10">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-left text-gray-900 mb-6 leading-snug md:leading-tight">
-              Frontend Development
-              <br /> Company in India & UK
-            </h1>
-            <p className="hidden md:block text-base sm:text-lg text-center md:text-left text-gray-800 font-normal ">
-              We specialize in building interactive, responsive, and performance-driven frontend solutions.
-              Our expert developers transform designs into seamless digital experiences using the latest technologies.
-            </p>
-            <p className="md:hidden  text-base sm:text-lg text-center md:text-left text-gray-800 ">
-              We specialize in building interactive, responsive, and performance-driven frontend solutions.
-              Our expert developers transform designs into seamless digital experiences using the latest technologies.
-            </p>
-            <Button
-              variant="outline"
-              size="xl"
-              className="mt-8 capitalize border-1 transition duration-500"
+    <div className="relative min-h-screen flex items-center overflow-hidden py-16 lg:py-0">
+      {/* Cinematic Background Decorations */}
+      <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-orange-100/20 rounded-full blur-[160px] -mr-80 -mt-80 opacity-60" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-50/30 rounded-full blur-[140px] -ml-40 -mb-40 opacity-50" />
+
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10 w-full pt-12 md:pt-20 pb-12 md:pb-20">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 md:gap-16 lg:gap-20">
+
+          {/* Text Content Column */}
+          <div className="flex-1 text-center lg:text-left max-w-2xl order-2 lg:order-1">
+            <div className="relative inline-block mb-4 md:mb-6">
+
+              {/* Custom Loopy Hand-Drawn Arrow (Hidden on mobile for clarity) */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="absolute -top-16 md:-top-20 -right-16 md:-right-24 w-24 md:w-32 h-24 md:h-32 hidden lg:block"
+              >
+                <svg viewBox="0 0 100 100" fill="none" className="w-full h-full transform -rotate-12">
+                  <motion.path
+                    d="M 10 60 C 5 45 15 30 30 35 C 45 40 35 65 25 60 C 15 55 35 30 65 45 L 80 55"
+                    stroke="#3b82f6"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                  />
+                  <motion.path
+                    d="M 65 52 L 82 56 L 75 40"
+                    stroke="#3b82f6"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.2, duration: 0.3 }}
+                  />
+                  <motion.circle
+                    cx="82" cy="56" r="4"
+                    fill="#3b82f6"
+                    animate={{ scale: [1, 2, 1], opacity: [0.6, 0, 0.6] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                </svg>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#1A1C20] leading-[1.1] tracking-tight"
+              >
+                Expert Frontend <br />
+                <span className="text-orange-500" style={{
+                  textShadow:
+                    "-1px -1px 0px #da5f00, 2px 2px 0px #fff, 3px 4px 0px #ff582336",
+                }}>Web Development</span> <br />
+                For Stunning Websites
+              </motion.h1>
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-gray-500 text-base sm:text-lg md:text-xl mb-8 md:mb-10 leading-relaxed font-medium max-w-lg mx-auto lg:mx-0 mt-4 md:mt-8"
             >
-              hire frontend developer →
-            </Button>
+              Create user-friendly, fast websites that boost employment and conversion. Transform your vision into high-performing digital reality.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="flex justify-center lg:justify-start"
+            >
+              <Button size="xl" className="w-full sm:w-auto" onClick={() => router.push("/contact")}>
+                Get Started
+              </Button>
+            </motion.div>
           </div>
-          <motion.div
-            initial={{ x: 50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="w-full  max-w-md mx-auto relative z-10"
-          >
-            <Image
-              src="/ServiceDropdown/webdevpage/webdevhero.webp"
-              alt="Hero image"
-              width={500}
-              height={500}
-              className="rounded-xl w-full h-full object-contain"
-              priority
-            />
-          </motion.div>
+
+          {/* Visual Showcase Column */}
+          <div className="flex-1 relative order-1 lg:order-2 flex justify-center lg:justify-end py-6 md:py-12 perspective-[2000px] w-full max-w-[400px] sm:max-w-[500px] lg:max-w-none">
+
+            <div className="absolute inset-0 pointer-events-none overflow-visible">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] aspect-square bg-gradient-radial from-orange-100/30 via-transparent to-transparent blur-[80px] md:blur-[120px] rounded-full -z-10" />
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 50, rotateY: 12, scale: 0.85 }}
+              animate={{ opacity: 1, y: 0, rotateY: 0, scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 45,
+                damping: 18,
+                mass: 1.8,
+                delay: 0.4,
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative w-full aspect-[4/5] flex items-center justify-center max-w-[320px] sm:max-w-[450px] lg:max-w-[500px]"
+            >
+              <motion.div
+                animate={{
+                  y: [0, -10, 0],
+                  rotateZ: [0, 0.4, 0, -0.4, 0]
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                style={{ transformStyle: "preserve-3d" }}
+                className="relative w-full h-full flex items-center justify-center"
+              >
+                <div className="absolute -bottom-6 -right-10 w-[120%] h-1/2 bg-gradient-to-tr from-orange-100/10 via-white/5 to-transparent blur-2xl md:blur-3xl -z-10 rotate-12" />
+
+                <div
+                  className="relative w-full h-full z-20"
+                  style={{
+                    maskImage: 'linear-gradient(to top left, transparent 0%, black 45%)',
+                    WebkitMaskImage: 'linear-gradient(to top left, transparent 0%, black 45%)'
+                  }}
+                >
+                  <Image
+                    src="/ServiceDropdown/webdevpage/frontend-dev-hand1.webp"
+                    alt="Hand holding Phone"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </motion.div>
+
+              {/* Responsive Particles */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  animate={{
+                    y: [0, -60, 0],
+                    opacity: [0.1, 0.4, 0.1]
+                  }}
+                  transition={{
+                    duration: 5 + i,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.8
+                  }}
+                  className={`absolute w-2 h-2 rounded-full blur-[1px] ${i % 2 === 0 ? 'bg-orange-400/30' : 'bg-blue-400/30'}`}
+                  style={{
+                    top: `${20 + i * 15}%`,
+                    left: `${10 + i * 15}%`,
+                    zIndex: 40
+                  }}
+                />
+              ))}
+            </motion.div>
+          </div>
+
         </div>
       </div>
-      <div className="text-center z-10">
-        <Button
-          onClick={handleScroll}
-          variant="outline"
-          size="xl"
-          className="absolute bottom-20 left-1/2 -translate-x-1/2 hidden md:inline-flex items-center gap-2 border-2 rounded-full shadow-xl hover:bg-orange-600 font-bold transition-all duration-300"
-        >
-          Explore More <FaArrowDownLong />
-        </Button>
-      </div>
-      <BackToTopButton />
     </div>
   );
 }

@@ -1,24 +1,15 @@
 "use client";
 
 import { LazyMotion, m, domMax } from "framer-motion";
-import { useEffect, useRef, FC } from "react";
-import { LottieRefCurrentProps } from "lottie-react";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 
-const About: FC = () => {
-  const lottieRef = useRef<LottieRefCurrentProps>(null);
-
+const About = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.3,
   });
 
-  useEffect(() => {
-    if (lottieRef.current) {
-      lottieRef.current.setSpeed(0.2);
-    }
-  }, []);
 
   return (
     <LazyMotion features={domMax}>
@@ -34,7 +25,7 @@ const About: FC = () => {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6"
               >
-                Smart, Secure & Scalable{" "}<br/>
+                Smart, Secure & Scalable{" "}<br />
                 <span
                   className="text-orange-500"
                   style={{

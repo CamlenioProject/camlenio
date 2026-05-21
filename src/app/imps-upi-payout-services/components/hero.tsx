@@ -70,7 +70,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-[90vh] text-slate-900 flex items-center overflow-hidden pt-24 pb-12"
+      className="relative w-full min-h-[90vh] flex items-center overflow-hidden pt-24 pb-12"
     >
       {/* --- Decorative shapes (Background) --- */}
       {/* Large Circle Top Left */}
@@ -92,21 +92,6 @@ export default function Hero() {
 
         {/* --- Left Column: Content --- */}
         <div className="hero-content max-w-xl">
-          {/* <h1 className="text-5xl md:text-6xl font-bold leading-tight text-black mb-6">
-            Trustable Payout <br />
-            <span
-              className="text-orange-500"
-              style={{
-                textShadow:
-                  "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
-              }}
-            >
-              Payroll Services
-            </span>
-          </h1> */}
-
-
-
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-black mb-6">
             Trustworthy Payout <br /> &
             <span
@@ -119,10 +104,6 @@ export default function Hero() {
               {" "} Payroll Services
             </span>
           </h1>
-          {/* Trustable Payout & Payroll Services for Company */}
-          {/* <h2 className="text-lg md:text-xl font-bold text-orange-600 mb-6 tracking-wide">
-            Camlenio is the way of growth
-          </h2> */}
 
           <div className="w-20 h-1 bg-orange-200 mb-8 rounded-full" />
 
@@ -170,12 +151,6 @@ export default function Hero() {
             />
           </div>
 
-          {/* Floating Badge */}
-          {/* <div className="absolute bottom-20 left-10 bg-white/90 backdrop-blur px-6 py-4 border border-cyan-500 shadow-xl z-30">
-            <span className="text-cyan-600 font-bold text-xl tracking-widest uppercase">
-              Payouts
-            </span>
-          </div> */}
         </div>
 
       </div>

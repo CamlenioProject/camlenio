@@ -60,6 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${lufgaFont.className} scrollbar-thin scrollbar-track-sozo-gray/20 scrollbar-thumb-sozo-yellow hover:scrollbar-thumb-sozo-amber`}
     >
       <head>

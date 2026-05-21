@@ -45,10 +45,10 @@ const AboutTheCompany = () => {
           software consulting, digital marketing, mobile app development,
           graphic designing, and a plethora of IT solutions.
         </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {cards.map((card, index) => (
-              <div
-                key={index}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          {cards.map((card, index) => (
+            <div
+              key={index}
                 className="flex flex-col items-center justify-center group bg-transparent border-2 border-gray-200 shadow-md rounded-2xl p-6 text-center hover:shadow-lg transition"
               >
                 <div className="mb-4">

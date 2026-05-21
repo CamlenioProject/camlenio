@@ -1,18 +1,25 @@
 "use client";
-import ContactUs from "@/app/components/Contactus/page";
+import CTA from "../components/cta";
 import Hero from "./components/hero";
 import Migration from "./components/migrations";
 import WebDevExperts from "./components/web_dev_experts";
 import WebDevSolution from "./components/web_dev_solution";
 
-export default function Home() {
+export default function WebDevPage() {
   return (
-    <div className="relative">
+    <main className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100">
       <Hero />
-      <WebDevExperts />
-      <WebDevSolution />
       <Migration />
-      <ContactUs />
-    </div>
+      <WebDevSolution />
+      <WebDevExperts />
+      <CTA
+        title={"Start Your Web Development Journey Today With Us"}
+        highlightedTitle={"Web Development"}
+        subtitle={
+          "Get in touch with our experienced custom web development services team to build web solutions tailored to your business objectives."
+        }
+        buttontext={"Get Started"}
+      />
+    </main>
   );
 }

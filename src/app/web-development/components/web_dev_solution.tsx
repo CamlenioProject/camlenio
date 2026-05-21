@@ -1,244 +1,155 @@
 "use client";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { easeInOut } from "framer-motion";
 
-const slides = [
-  {
-    id: 1,
-    image: "/webdevpage/courselbg3.jpg",
-    heading: "Single Page Applications (SPAs)",
-    text: "Single Page Applications are web-based applications organized in one page. It seeks to enhance the users experience by avoiding the refresh of the pages and the loading of additional content at each interaction point. Dynamic loading, easier navigation, and prompt responses are what people find in using SPAS",
-  },
-  {
-    id: 2,
-    image: "/webdevpage/courselbg3.jpg",
-    heading: "Educational Web Solution",
-    text: "Educational Wab Solutions constitute web-based applications that can assist students, teachers, and college administrative personnel for academic purposes. Some of theso solutions may be in the form of user-generated content such as instructional material, student tests, or even communication resources School-to-home communication and teacher and student collaboration are also facilitated by these tools.",
-  },
-  {
-    id: 3,
-    image: "/webdevpage/courselbg3.jpg",
-    heading: "Customer-Centric Web Applications",
-    text: "A customer-centric web application solution should focus on delivering an intuitive, user-friendly experience that is tailored to the individual needs of each customer. This should enhance an exciting and tailor-made experience meeting the customers' expectations and boost the business bottom line through enhanced brand loyalty.",
-  },
-  {
-    id: 4,
-    image: "/webdevpage/courselbg3.jpg",
-    heading: "Health Care Website Solution",
-    text: "We offer an efficient portal that helps patients register in our database, make schedules, or get access to their medical data. It facilitates easy passage of data between hospital systems by the doctors or any other healthcare practitioner thus lowering cost and boosting quality services rendered to a client.",
-  },
-  {
-    id: 5,
-    image: "/webdevpage/courselbg3.jpg",
-    heading: " E-Commerce Websites",
-    text: "E-commerce website solution refers to a means through which a company can sell its goods and services online. This entails payment management, the creation of a catalog, supply chain management, client accounts, and delivery management. Marketing, analytics, and customer support as well.",
-  },
-  {
-    id: 6,
-    image: "/webdevpage/courselbg3.jpg",
-    heading: "Auction Website Solutions",
-    text: "Buyers and sellers can always find each other via auctio websites Users can search for special goods, compare prices, and ultimately get the best deal on this platform. Along the same n websites also provide safe payment methods. online customer care, and many other valuable attributes to ease the operation",
-  },
-  {
-    id: 7,
-    image: "/webdevpage/courselbg3.jpg",
-    heading: "Travel Web Solutions",
-    text: "Travel Web Solutions lies in the field of developing and producing electronic solutions for travel and hotels. Cur company offers expertise in areas like web designing, web development, and maintaining websites among others, as wel as CMS, reservation platforms, SEO, and Digital Marketing services. We strive to facilitate business success in terms of online marketing by providing the best online presence",
-  },
-  {
-    id: 8,
-    image: "/webdevpage/courselbg3.jpg",
-    heading: "Enterprise Web App Solutions",
-    text: "The enterprise web applications offer highly customized solutions for the streamlining of operations, and securing data while enhancing customer services for the company. These s used by organizations, mobile applications for employees, as well as web portals tailored to individual re",
-  },
-  {
-    id: 9,
-    image: "/webdevpage/courselbg3.jpg",
-    heading: "Real Estate Website Solutions",
-    text: "Businesses can develop a professionally designed, aesthetically pleasing website to exhibit their properties or services through Real Estate Website Solutions. These usually come with unique s, interactive maps, advanced search, and marketing tool kits. They enable a business to reach out to other clients to line through enhanced brand loyalty.",
-  },
-];
+import { motion } from "framer-motion";
+import { FaCheckCircle, FaArrowRight } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import { Button } from "@/app/components/ui/Button";
 
 const WebDevSolution = () => {
-  const [[index, direction], setIndexDirection] = useState([0, 0]);
-
-  const paginate = (newDirection: number) => {
-    setIndexDirection(([prev]) => {
-      const newIndex = (prev + newDirection + slides.length) % slides.length;
-      return [newIndex, newDirection];
-    });
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => paginate(1), 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.8, ease: easeInOut },
-    },
-    exit: (direction: number) => ({
-      x: direction > 0 ? -300 : 300,
-      opacity: 0,
-      transition: { duration: 0.8, ease: easeInOut },
-    }),
-  };
+  const router = useRouter();
 
   return (
-    <div className="bg-gradient-to-r from-indigo-50 via-orange-100 to-indigo-100  ">
-      <div className="min-h-screen px-6 md:px-16 py-20 overflow-hidden ">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-12">
-            <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="md:w-1/2 space-y-3"
-            >
-              <span
-                className=" text-xl md:text-4xl font-bold tracking-wider text-orange-500"
-                style={{ textShadow: "2px 2px 0 #FAF9F6, 4px 4px 0 #FFB266" }}
-              >
-                WEB DEVELOPMENT SOLUTION
-              </span>
-              <h3 className="hidden md:inline-block text-xl md:text-2xl text-gray-800 font-semibold mt-2">
-                Our Iterative Development Methodology for Delivering Excellence
-              </h3>
-            </motion.div>
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="md:w-1/2"
-            >
-              <p className="text-sm md:text-base font-normal text-gray-700 leading-relaxed mb-4">
-                If you are on a search for a quality web application, we have
-                what it takes to meet your requirements. We have a great team of
-                skilled developers building high-performance and reliable web
-                applications aimed at improving user experience.
-              </p>
-            </motion.div>
-          </div>
+    <section className="py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
 
-          <div className="relative w-full h-64 sm:h-80 md:h-[60vh] overflow-hidden rounded-lg hidden md:block">
-            <Image
-              src="/webdevpage/courselbg3.jpg"
-              alt="Image"
-              fill
-              className="object-cover brightness-[.6] z-0"
-            />
-            <AnimatePresence custom={direction}>
+          {/* Left Side: Overlapping Tilted Cards */}
+          <div className="flex-1 relative w-full max-w-xl">
+            <div className="relative aspect-square flex items-center justify-center">
+
+              {/* Card 1: Business Card (Tilted Left) */}
               <motion.div
-                key={slides[index].id}
-                className="absolute top-0 left-0 w-full h-full"
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
+                initial={{ opacity: 0, x: -100, rotate: -20 }}
+                whileInView={{ opacity: 1, x: 0, rotate: -12 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: "circOut" }}
+                className="absolute top-0 left-0 w-[75%] aspect-[0.85/1] bg-white rounded-[2.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)] border border-orange-100 p-8 z-10"
               >
-                <div className="absolute inset-0 flex flex-col justify-center items-center text-center  px-4 z-10">
-                  <motion.h2
-                    key={slides[index].heading}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-2xl sm:text-3xl md:text-7xl font-bold mb-6 max-w-5xl text-orange-500"
-                  >
-                    {slides[index].heading}
-                  </motion.h2>
-
-                  <motion.p
-                    key={slides[index].text}
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-sm sm:text-base md:text-xl max-w-4xl px-2 text-orange-100"
-                  >
-                    {slides[index].text}
-                  </motion.p>
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 bg-orange-100 rounded-2xl flex items-center justify-center shadow-inner">
+                    <div className="w-5 h-5 bg-orange-500 rounded-md animate-pulse" />
+                  </div>
+                  <span className="text-[12px] font-bold text-gray-400 uppercase tracking-[0.2em]">Strategy</span>
+                </div>
+                <div className="space-y-4">
+                  {[
+                    { label: "Market Research", value: "92%" },
+                    { label: "Tech Discovery", value: "88%" },
+                    { label: "Scope Definition", value: "100%" }
+                  ].map((item, i) => (
+                    <div key={i} className="p-4 bg-gray-50/50 rounded-2xl border border-gray-100 flex items-center justify-between group hover:bg-white transition-colors duration-300">
+                      <span className="text-[12px] font-bold text-gray-600">{item.label}</span>
+                      <span className="text-[11px] font-bold text-orange-500">{item.value}</span>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
-            </AnimatePresence>
 
-            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 z-20">
-              <button
-                onClick={() => paginate(-1)}
-                className="invert px-3 py-2 rounded-r transition-all"
-              >
-                <Image
-                  src="/webdevpage/right-arrow.png"
-                  alt="right-arrow"
-                  width={50}
-                  height={24}
-                  className="object-cover rotate-180"
-                />
-              </button>
-            </div>
-            <div className="absolute top-1/2 right-0 transform -translate-y-1/2 z-20">
-              <button
-                onClick={() => paginate(1)}
-                className=" invert px-3 py-2 rounded-l transition-all"
-              >
-                <Image
-                  src="/webdevpage/right-arrow.png"
-                  alt="right-arrow"
-                  width={50}
-                  height={24}
-                  className="object-cover"
-                />
-              </button>
-            </div>
-
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-32 sm:w-48 h-1 bg-white/30 rounded overflow-hidden z-20">
+              {/* Card 2: Readiness Plan (Tilted Right) */}
               <motion.div
-                className="h-full"
-                key={index}
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 3, ease: "linear" }}
-              />
+                initial={{ opacity: 0, x: 100, rotate: 20 }}
+                whileInView={{ opacity: 1, x: 0, rotate: 6 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 1, ease: "circOut" }}
+                className="absolute bottom-0 right-0 w-[80%] aspect-[0.85/1] bg-orange-50 rounded-[3rem] shadow-[0_60px_120px_-30px_rgba(249,115,22,0.15)] border border-orange-200/50 p-10 z-20 backdrop-blur-sm"
+              >
+                <div className="flex items-center justify-between mb-10">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+                      <FaCheckCircle className="text-orange-500 text-xl" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900 leading-none">Custom Plan</h4>
+                      <p className="text-[10px] text-gray-400 mt-2 uppercase font-bold tracking-widest">Camlenio Core</p>
+                    </div>
+                  </div>
+                  <div className="w-10 h-10 rounded-full border border-orange-200 flex items-center justify-center text-orange-400 group-hover:bg-orange-500 group-hover:text-white transition-colors cursor-pointer">
+                    <FaArrowRight className="text-xs" />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  {[
+                    "UI/UX Design",
+                    "Architecture",
+                    "Security",
+                    "Quality QA"
+                  ].map((text, i) => (
+                    <div key={i} className="h-12 bg-white rounded-xl border border-orange-100/50 flex items-center px-4 shadow-sm hover:shadow-md transition-shadow">
+                      <div className={`w-2 h-2 rounded-full ${i % 2 === 0 ? 'bg-green-400' : 'bg-orange-400'} mr-3`} />
+                      <span className="text-[10px] font-bold text-gray-700">{text}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-white p-6 rounded-3xl border border-orange-100 shadow-sm flex items-center justify-between">
+                  <div>
+                    <p className="text-[12px] font-bold text-gray-900 mb-1">Success Score</p>
+                    <div className="text-3xl font-black text-orange-600">98/100</div>
+                  </div>
+                  <div className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center border border-orange-100">
+                    <span className="text-2xl font-black text-orange-600">A+</span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
-          <div className="md:hidden ">
-            <div className="flex gap-4 overflow-x-scroll px-4 snap-x snap-mandatory scroll-smooth hide-scrollbar py-6">
-              {slides.map((slide) => (
-                <motion.div
-                  key={slide.id}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="snap-center shrink-0 w-[85%] bg-transparent rounded-xl shadow-md overflow-hidden relative"
+
+          {/* Right Side: Content */}
+          <div className="flex-1 text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-8 leading-[1.05] tracking-tight">
+                Customized Solutions for <span className="text-orange-500 italic">Business Growth</span>
+              </h2>
+
+              <p className="text-gray-500 text-lg md:text-xl leading-relaxed mb-12 max-w-xl font-medium">
+                Our experts specialize in designing fully custom digital platforms that meet your essential requirements. We cover the entire lifecycle, from UI/UX design and architecture to robust backend development.
+              </p>
+
+              <ul className="space-y-6 mb-14">
+                {[
+                  "Dynamic and data-driven web application development",
+                  "Consistent user experiences across all devices",
+                  "Advanced technologies for top-performing platforms",
+                  "High-quality custom web development solutions"
+                ].map((item, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + index * 0.1 }}
+                    className="flex items-start gap-5 text-gray-800 font-bold group"
+                  >
+                    <div className="mt-1 w-7 h-7 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+                      <FaCheckCircle className="text-sm" />
+                    </div>
+                    <span className="text-base md:text-lg">{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+
+              <div className="flex flex-wrap gap-6">
+                <Button
+                  onClick={() => router.push("/contact")}
+                  size="xl"
+                  className="shadow-2xl shadow-orange-500/20"
                 >
-                  <div className="h-48 relative">
-                    <Image
-                      src={slide.image}
-                      alt={slide.heading}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-4 space-y-2">
-                    <h3 className="text-lg font-semibold text-gray-800">
-                      {slide.heading}
-                    </h3>
-                    <p className="text-sm text-gray-600">{slide.text}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  Free Consultation
+                  <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            </motion.div>
           </div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

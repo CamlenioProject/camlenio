@@ -1,4 +1,4 @@
-import ComingSoon from "./comingsoon/page";
+import ComingSoon from "./coming-soon/page";
 
 export default function NotFound() {
   return <ComingSoon />;

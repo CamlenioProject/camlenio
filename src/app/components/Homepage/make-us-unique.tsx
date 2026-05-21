@@ -50,18 +50,18 @@ export default function MakeUsUnique() {
           The Camlenio is more than just a development vendor. As we are your digital growth partner. If you are seeking a trustworthy mobile app development company that understands technology and business equally, Camlenio is the  perfect choice, as we include:
         </p>
       </div>
-      <div className=" max-w-7xl mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+      <div className=" max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 ">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="bg-orange-100 group rounded-2xl  p-6 flex flex-col items-center text-center hover:shadow-xl transition-colors duration-700 hover:bg-orange-500 "
+            className="bg-orange-100 group border-2 border-orange-200 hover:border-orange-50 rounded-4xl p-6 flex flex-col items-center text-center transition-colors duration-700 hover:bg-orange-500"
           >
             <Image
               src={card.icon}
               alt={card.title}
               width={500}
               height={300}
-              className="w-20 h-20 bg-orange-200  shadow-2xl rounded-full  object-cover transition-transform duration-700 group-hover:rotate-y-360 p-4 "
+              className="w-20 h-20 bg-orange-200 shadow-lg rounded-full  object-cover transition-transform duration-700 group-hover:rotate-y-360 p-4 "
             />
             <h2 className="mt-4 text-xl font-semibold text-gray-900 group-hover:text-gray-50 transition-all duration-500 ">
               {card.title}

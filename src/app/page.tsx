@@ -1,74 +1,41 @@
-"use client";
-import dynamic from "next/dynamic";
 import Hero from "./components/Homepage/hero";
 import SectionWrapper from "./components/SectionWrapper";
-// import FormPopup from "./components/FormPopup";
+// import HomePopup from "./components/Homepage/HomePopup";
 
-const ItSolution = dynamic(() => import("./components/Homepage/Itsolution"));
-const IndustriesSection = dynamic(
-  () => import("./components/Homepage/Industries-section")
-);
+// Sections (Direct imports for above-the-fold or critical content)
+import IndustriesSection from "./components/Homepage/Industries-section";
+import VideoScrollWrapper from "./components/Homepage/VideoScrollWrapper";
+
+// Lazy-loaded sections for below-the-fold performance
+import dynamic from "next/dynamic";
 const DevServices = dynamic(() => import("./components/Homepage/dev-services"));
 const MakeUsTop = dynamic(() => import("./components/Homepage/make-us-top"));
-
-const MakeUsUnique = dynamic(
-  () => import("./components/Homepage/make-us-unique")
-);
-const SolutionsScale = dynamic(
-  () => import("./components/Homepage/solutions-scale")
-);
+const MakeUsUnique = dynamic(() => import("./components/Homepage/make-us-unique"));
+const SolutionsScale = dynamic(() => import("./components/Homepage/solutions-scale"));
 const OurProcess = dynamic(() => import("./components/Homepage/our-process"));
-// const Technologies = dynamic(
-//   () => import("./components/Homepage/technologies")
-// );
-// const Testimonials = dynamic(
-//   () => import("./components/Homepage/testimonials")
-// );
 const FreeDemo = dynamic(() => import("./components/Homepage/free-demo"));
-// const BlogSection = dynamic(() => import("./components/Homepage/blog-section"));
-import { useState, useEffect } from "react";
-import { LogoSlider } from "./components/Homepage/logoslider";
 
-const Home = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  useEffect(() => {
-    const popupShown = sessionStorage.getItem("popupShown");
-    if (popupShown === "true") return;
-
-    const img = new Image();
-    img.src = "/popup.webp";
-
-    const timer = setTimeout(() => {
-      setIsPopupOpen(true);
-      sessionStorage.setItem("popupShown", "true");
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+export default function Home() {
   return (
     <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100">
+      {/* Client-side popup logic extracted to its own component */}
+      {/* <HomePopup /> */}
 
       <Hero />
 
-      <SectionWrapper minHeight="150px">
-        <LogoSlider />
-      </SectionWrapper>
-
-      <SectionWrapper minHeight="600px">
-        <ItSolution />
-      </SectionWrapper>
+      {/* Video Scroll to ItSolution Section */}
+      <VideoScrollWrapper />
 
       <SectionWrapper minHeight="500px">
         <IndustriesSection />
       </SectionWrapper>
 
+      {/* Non-critical sections lazy-loaded */}
       <SectionWrapper minHeight="400px">
         <DevServices />
       </SectionWrapper>
 
-      <SectionWrapper minHeight="400px">
+      <SectionWrapper minHeight="500px">
         <MakeUsTop />
       </SectionWrapper>
 
@@ -83,28 +50,10 @@ const Home = () => {
       <SectionWrapper minHeight="700px">
         <OurProcess />
       </SectionWrapper>
-      {/* 
-      <SectionWrapper minHeight="300px">
-        <Technologies />
-      </SectionWrapper> */}
-
-      {/* <SectionWrapper minHeight="400px">
-        <Testimonials />
-      </SectionWrapper> */}
 
       <SectionWrapper minHeight="300px">
         <FreeDemo />
       </SectionWrapper>
-
-      {/* <SectionWrapper minHeight="500px">
-        <BlogSection />
-      </SectionWrapper> */}
-
-      {/* <FormPopup
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
-      /> */}
     </div>
   );
-};
-export default Home;
+}

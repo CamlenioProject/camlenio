@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef, Suspense } from "react";
 import { createPortal } from "react-dom";
-import { X, MessageCircle, Sparkles, Minus } from "lucide-react";
+import { X, MessageCircle, Sparkles, Minus, Send } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 type FormData = {
@@ -57,6 +57,18 @@ function AnimatedChatBotContent() {
 
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const portalRootRef = useRef<HTMLDivElement | null>(null);
+
+  const [chatMode, setChatMode] = useState(false);
+  const [chatMessages, setChatMessages] = useState<Array<{ id: number; text: string; sender: "user" | "bot" }>>([
+    {
+      id: 1,
+      text: "Hello! I am your Camlenio Assistant. How can I help you today?",
+      sender: "bot",
+    },
+  ]);
+  const [chatInput, setChatInput] = useState("");
+  const [botTyping, setBotTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const el = document.createElement("div");
@@ -203,6 +215,73 @@ function AnimatedChatBotContent() {
       message: "",
     }));
     setErrors({ name: "", email: "", phone: "", message: "" });
+    setChatMode(false);
+  };
+
+  useEffect(() => {
+    if (chatMode) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chatMessages, botTyping, chatMode]);
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!chatInput.trim()) return;
+
+    const userMsg = chatInput.trim();
+    const updatedMessages = [
+      ...chatMessages,
+      { id: Date.now(), text: userMsg, sender: "user" as const },
+    ];
+
+    setChatMessages(updatedMessages);
+    setChatInput("");
+    setBotTyping(true);
+
+    try {
+      const response = await fetch("/api/geminichat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ messages: updatedMessages }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch response");
+      }
+
+      const data = await response.json();
+      setChatMessages((prev) => [
+        ...prev,
+        { id: Date.now() + 1, text: data.reply, sender: "bot" as const },
+      ]);
+    } catch (error) {
+      console.error("Chatbot Error:", error);
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          text: "I apologize, but I am having trouble connecting to my brain right now. Please try again in a moment, or reach out to us at contact@camlenio.com!",
+          sender: "bot" as const,
+        },
+      ]);
+    } finally {
+      setBotTyping(false);
+    }
+  };
+
+  const handleBackToMenu = () => {
+    setChatMode(false);
+    setChatMessages([
+      {
+        id: 1,
+        text: "Hello! I am your Camlenio Assistant. How can I help you today?",
+        sender: "bot",
+      },
+    ]);
+    setChatInput("");
+    setBotTyping(false);
   };
 
   useEffect(() => {
@@ -215,7 +294,7 @@ function AnimatedChatBotContent() {
 
     const timer = setTimeout(() => {
       if (!open) setShowSuggestion(true);
-    }, 60000);
+    }, 20000);
 
     window.addEventListener("keydown", handleEsc);
 
@@ -300,8 +379,8 @@ function AnimatedChatBotContent() {
 "
 
           >
-            {!showForm && !submitted && (
-              <div className="space-y-4">
+            {!showForm && !submitted && !chatMode && (
+              <div className="space-y-3">
                 <div className="text-center mb-3">
                   <p className="text-lg md:text-xl font-semibold text-gray-800">
                     Hi There 👋
@@ -344,6 +423,95 @@ function AnimatedChatBotContent() {
                   </div>
                   Job Opportunities
                 </button>
+
+                <button
+                  onClick={() => setChatMode(true)}
+                  className="
+        w-full flex items-center gap-2 md:gap-3 
+        px-3 py-2 md:px-4 md:py-3
+        rounded-xl 
+        bg-white/70 backdrop-blur-md border border-gray-200 shadow-sm
+        hover:bg-orange-50 transition
+        text-sm md:text-base
+      "
+                >
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-orange-100 flex items-center justify-center text-lg md:text-xl">
+                    💬
+                  </div>
+                  Direct Chat
+                </button>
+              </div>
+            )}
+
+            {chatMode && (
+              <div className="flex flex-col h-[48vh] max-h-[380px]">
+                {/* Back button */}
+                <button
+                  onClick={handleBackToMenu}
+                  className="text-orange-600 text-xs cursor-pointer mb-2 flex items-center gap-1 self-start"
+                >
+                  ← Back to Menu
+                </button>
+
+                {/* Message display area */}
+                <div className="flex-1 overflow-y-auto pr-1 space-y-3 mb-2 scrollbar-thin scrollbar-thumb-orange-200 scrollbar-track-transparent">
+                  {chatMessages.map((msg) => (
+                    <div
+                      key={msg.id}
+                      className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+                    >
+                      <div
+                        className={`max-w-[85%] rounded-2xl px-3 py-2 text-xs md:text-sm shadow-sm ${msg.sender === "user"
+                            ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-tr-none"
+                            : "bg-white/90 text-gray-800 border border-gray-100 rounded-tl-none"
+                          }`}
+                      >
+                        {msg.text}
+                      </div>
+                    </div>
+                  ))}
+                  {botTyping && (
+                    <div className="flex justify-start">
+                      <div className="bg-white/90 border border-gray-100 rounded-2xl rounded-tl-none px-3 py-2 text-xs md:text-sm text-gray-500 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></span>
+                        <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }}></span>
+                        <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></span>
+                      </div>
+                    </div>
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
+
+                {/* Chat input box */}
+                <form onSubmit={handleSendMessage} className="flex gap-2 border-t border-gray-200/40 pt-2 shrink-0">
+                  <input
+                    type="text"
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    placeholder="Type a message..."
+                    className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded-xl text-xs md:text-sm placeholder-gray-400 focus:ring-2 focus:ring-orange-300 outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="p-2 rounded-xl bg-orange-600 hover:bg-orange-700 text-white transition shadow-md active:scale-95 flex items-center justify-center shrink-0 cursor-pointer"
+                  >
+                    <Send className="w-4 h-4" />
+                  </button>
+                </form>
+
+                {/* Direct action links inside chat */}
+                <div className="flex justify-center gap-2 mt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setChatMode(false);
+                      handlePurposeSelect("Direct Chat Inquiry");
+                    }}
+                    className="text-[10px] text-gray-500 hover:text-orange-600 border border-gray-200 rounded-full px-2.5 py-0.5 bg-white/50 hover:bg-orange-50/50 transition cursor-pointer"
+                  >
+                    Leave Contact Info
+                  </button>
+                </div>
               </div>
             )}
 
@@ -496,6 +664,19 @@ function AnimatedChatBotContent() {
             style={{ animationDelay: "0.25s" }}
           >
             💼 Job Opportunities
+          </button>
+
+          <button
+            onClick={() => {
+              setShowSuggestion(false);
+              setOpen(true);
+              setMinimized(false);
+              setChatMode(true);
+            }}
+            className="text-sm font-semibold text-gray-800 bg-white/80 backdrop-blur-xl px-4 py-2 rounded-xl shadow-lg border border-gray-200 animate-suggestBounce animate-suggestFadePulse hover:bg-orange-50 transition"
+            style={{ animationDelay: "0.5s" }}
+          >
+            💬 Direct Chat
           </button>
         </div>
       )}

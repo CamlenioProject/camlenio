@@ -165,7 +165,7 @@ const OurProcess = () => {
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-r from-indigo-100 via-orange-200 to-indigo-100   py-10 px-6 md:px-16 rounded-3xl border-1 border-orange-100 mb-6"
+            className="bg-gradient-to-r from-orange-100 via-orange-50 to-orange-100 py-10 px-6 md:px-16 rounded-3xl border-1 border-orange-100 mb-6"
           >
             <AnimatePresence mode="wait">
               <m.div

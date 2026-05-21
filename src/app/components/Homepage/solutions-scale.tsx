@@ -84,7 +84,7 @@ function Track({
       >
         {doubled.map((card, idx) => (
           <Link key={`${card.id}-${idx}`} href={card.href} className="block">
-            <article className="relative group min-w-[40rem] h-[18rem] md:h-[20rem] rounded-[2rem] overflow-hidden shadow-lg transition-transform duration-500 hover:-translate-y-1 px-6 cursor-pointer">
+            <article className="relative group min-w-[40rem] h-[18rem] md:h-[20rem] rounded-[2rem] overflow-hidden shadow-sm transition-transform duration-500 hover:-translate-y-1 px-6 cursor-pointer">
               <Image
                 src={card.img}
                 alt={card.title}
