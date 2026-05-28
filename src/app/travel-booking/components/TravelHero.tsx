@@ -1,163 +1,147 @@
 "use client";
 
-import { m, LazyMotion, domMax, useScroll, useTransform } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { Code, PlayCircle } from "lucide-react";
 import Image from "next/image";
-import { ArrowRightIcon, MapPinIcon, StarIcon } from "@heroicons/react/24/solid";
-import { useRef } from "react";
-import { Button } from "@/app/components/ui/Button";
+
+const MotionImage = motion(Image);
 
 export default function TravelHero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
-
-  const y1 = useTransform(scrollY, [0, 500], [0, 100]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -100]);
-  const rotate = useTransform(scrollY, [0, 500], [0, 5]);
-
+  const router = useRouter();
   return (
-    <LazyMotion features={domMax}>
-      <section ref={containerRef} className="relative w-full min-h-[95vh] overflow-hidden flex items-center pt-24 pb-12">
+    <header className="relative w-full max-w-[90rem] mx-auto min-h-screen lg:min-h-[90vh] flex items-center pt-32 pb-16 md:pb-24 px-6 md:px-12 lg:px-16 overflow-hidden">
 
-        {/* Background Abstract Tech Pattern */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{ backgroundImage: 'radial-gradient(#F97316 1px, transparent 1px)', backgroundSize: '40px 40px' }}
-        />
+      {/* Hero Blob Background Glow */}
+      <div
+        className="absolute -top-20 -left-20 w-[600px] h-[600px] rounded-full blur-[80px] pointer-events-none -z-10"
+        style={{
+          background: "radial-gradient(circle, rgba(255, 237, 213, 0.8) 0%, rgba(251, 146, 60, 0.1) 70%, transparent 100%)"
+        }}
+    
+    />
 
-        {/* Orange Glow Orbs */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-200/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-100/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3" />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
+        {/* Left column: Text details */}
+        <div className="z-10 text-left">
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+          {/* Subtitle Badge */}
+          <p className="text-orange-600 font-bold uppercase tracking-wider text-xs md:text-sm mb-4">
+            Travel Booking Software Development Company in Jaipur
+          </p>
 
-          {/* Left Content */}
-          <div className="max-w-2xl">
-            <m.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 border border-orange-100 mb-8">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
-                </span>
-                <span className="text-orange-600 font-bold text-xs uppercase tracking-widest">Travel Tech Solutions</span>
-              </div>
+          {/* Fintech Heading Size & Style */}
+          <h1 className="text-4xl md:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            Travel Booking <br />
+            <span className="text-orange-500" style={{
+              textShadow:
+                "-1px -1px 0px #da5f00, 2px 2px 0px #fff, 3px 4px 0px #ff582336",
+            }}>
+              Software Solutions
+            </span>
+          </h1>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[0.95] tracking-tight mb-8">
-                BUILD <br />
-                THE NEXT <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">
-                  BIG JOURNEY
-                </span>
-              </h1>
+          {/* Fintech Paragraph Size & Style */}
+          <p className="text-gray-600 text-sm md:text-base my-6 font-sans text-justify leading-relaxed">
+            Build smart, secure travel booking software with Camlenio. Your trusted partner for Travel Booking Software Development in Jaipur develops customized B2B travel software, mobile apps, and online booking platforms.
+          </p>
 
-              <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-10 font-medium">
-                We develop high-performance booking engines, B2B portals, and diverse travel apps. Empowering agencies with scalable, futuristic technology.
-              </p>
-
-              <div className="flex flex-wrap gap-4">
-                <Button
-                  size="xl"
-                  className="px-8 py-4 h-auto bg-slate-900 text-white hover:bg-orange-500 rounded-full shadow-xl hover:shadow-orange-500/25 gap-3 group transition-all duration-300 border-none"
-                >
-                  Start Your Project
-                  <div className="bg-white/20 p-1.5 rounded-full group-hover:bg-white/30 transition-colors">
-                    <ArrowRightIcon className="w-4 h-4" />
-                  </div>
-                </Button>
-              </div>
-            </m.div>
-
-            {/* Trusted By Strip */}
-            <m.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 1 }}
-              className="mt-16 pt-8 border-t border-slate-200 flex items-center gap-6"
-            >
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Trusted By</span>
-              <div className="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                {/* Simple generic logos or placeholders */}
-                <div className="h-6 w-20 bg-slate-800 rounded opacity-20" />
-                <div className="h-6 w-20 bg-slate-800 rounded opacity-20" />
-                <div className="h-6 w-20 bg-slate-800 rounded opacity-20" />
-              </div>
-            </m.div>
+          {/* Secondary Details Accent Paragraph */}
+          <div className="my-6 border-l-4 border-orange-500 pl-4 font-sans text-left">
+            <h4 className="font-bold text-gray-900 text-base md:text-lg mb-2">
+              Boost Your Travel Business with Advanced Booking Technology
+            </h4>
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+              From travel and flight booking systems to complete B2B Travel Software development Company in India solutions. We deliver modern travel software tailored to agencies, tour operators, and travel startups.
+            </p>
           </div>
 
-          {/* Right Visuals - Dynamic Layered Composition */}
-          <div className="relative h-[600px] w-full hidden lg:block perspective-1000">
-
-            {/* Main Phone Mockup */}
-            <m.div
-              style={{ y: y1, rotate: rotate }}
-              initial={{ opacity: 0, y: 100, rotateY: 30 }}
-              animate={{ opacity: 1, y: 0, rotateY: -10 }}
-              transition={{ duration: 1, type: "spring", stiffness: 50 }}
-              className="absolute top-10 right-10 w-[300px] z-20 hover:z-30 transition-all duration-500"
+          {/* Original Travel Booking Button Style */}
+          <div className="flex flex-wrap gap-4 mt-8">
+            <button
+              onClick={() => router.push('/contact')}
+              className="group inline-flex items-center justify-center cursor-pointer rounded-full px-7 py-3.5 bg-orange-500 text-white text-sm font-bold hover:bg-orange-600 hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_4px_14px_0_rgba(234,88,12,0.39)]"
             >
-              <div className="relative rounded-[2.5rem] overflow-hidden border-8 border-slate-900 shadow-2xl bg-slate-900">
-                <Image
-                  src="/travel/mobile_app.png"
-                  alt="Travel Mobile App"
-                  width={400}
-                  height={800}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            </m.div>
-
-            {/* Floating 'Ticket' Card */}
-            <m.div
-              style={{ y: y2 }}
-              initial={{ opacity: 0, x: 50, scale: 0.8 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="absolute top-1/3 left-0 w-72 bg-white/80 backdrop-blur-xl border border-white/50 p-5 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] z-30"
-            >
-              <div className="flex items-center justify-between mb-4 border-b border-dashed border-gray-300 pb-4">
-                <div className="text-xs font-bold text-slate-400 uppercase">Flight</div>
-                <div className="text-xs font-bold text-green-500 bg-green-50 px-2 py-1 rounded-full">Confirmed</div>
-              </div>
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-2xl font-black text-slate-900">NYC</span>
-                <div className="flex-1 border-t-2 border-dotted border-gray-300 mx-4 relative">
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-1">✈️</div>
-                </div>
-                <span className="text-2xl font-black text-orange-500">LDN</span>
-              </div>
-              <div className="flex justify-between text-xs text-gray-500">
-                <span>JFK Airport</span>
-                <span>Heathrow</span>
-              </div>
-            </m.div>
-
-            {/* Destination Card - Bottom Right */}
-            <m.div
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute bottom-20 right-0 w-60 bg-white p-3 rounded-2xl shadow-xl z-10 rotate-3"
-            >
-              <div className="relative h-32 w-full rounded-xl overflow-hidden mb-3">
-                <Image src="/travel/scenic_bg.png" fill className="object-cover" alt="Destination" />
-                <div className="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold flex items-center gap-1">
-                  <StarIcon className="w-3 h-3 text-yellow-400" /> 4.9
-                </div>
-              </div>
-              <div className="px-1">
-                <h4 className="font-bold text-slate-900">Swiss Alps Trip</h4>
-                <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
-                  <MapPinIcon className="w-3 h-3 text-orange-500" />
-                  <span>Interlaken, Switzerland</span>
-                </div>
-              </div>
-            </m.div>
-
+              Get the Free Consultation Today!
+            </button>
           </div>
-
         </div>
-      </section>
-    </LazyMotion>
+
+        {/* Right column: 4-image grid with stagger animations */}
+        <div className="relative">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-4 pt-12">
+              <MotionImage
+                alt="Modern travel software interface on mobile"
+                className="rounded-3xl shadow-xl w-full h-auto object-cover"
+                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80"
+                width={300}
+                height={400}
+                priority
+                sizes="(max-width: 768px) 50vw, 25vw"
+                quality={75}
+                animate={{ y: [0, -12, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              <MotionImage
+                alt="Developer coding travel API"
+                className="rounded-3xl shadow-xl w-full h-auto object-cover"
+                src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=600&q=80"
+                width={300}
+                height={400}
+                priority
+                sizes="(max-width: 768px) 50vw, 25vw"
+                quality={75}
+                animate={{ y: [0, -12, 0] }}
+                transition={{
+                  duration: 4.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.3,
+                }}
+              />
+            </div>
+            <div className="space-y-4">
+              <MotionImage
+                alt="B2B dashboard preview"
+                className="rounded-3xl shadow-xl w-full h-auto object-cover"
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+                width={300}
+                height={400}
+                sizes="(max-width: 768px) 50vw, 25vw"
+                quality={75}
+                animate={{ y: [0, -12, 0] }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.6,
+                }}
+              />
+              <MotionImage
+                alt="Secure payment integration mockup"
+                className="rounded-3xl shadow-xl w-full h-auto object-cover"
+                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80"
+                width={300}
+                height={400}
+                sizes="(max-width: 768px) 50vw, 25vw"
+                quality={75}
+                animate={{ y: [0, -12, 0] }}
+                transition={{
+                  duration: 5.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.9,
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
   );
 }

@@ -7,6 +7,7 @@ import { m } from "framer-motion";
 import { safeLink } from "../../../../lib/utils";
 import { availablePages } from "@/config/navigation";
 
+
 export const CompanyDropdown = ({ item, baseHref }: { item: any, baseHref: string }) => {
   const standardItems = item.items.filter((i: any) => i.title !== "Blog");
   const blogItem = item.items.find((i: any) => i.title === "Blog");
@@ -15,20 +16,40 @@ export const CompanyDropdown = ({ item, baseHref }: { item: any, baseHref: strin
     <div className="flex w-[75vw] max-w-[950px] bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 backdrop-blur-2xl rounded-b-3xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(249,115,22,0.15),0_0_0_1px_rgba(249,115,22,0.1)] mx-auto border border-orange-100/50">
       <div className="flex-1 p-4 grid grid-cols-2 gap-2 bg-white/40">
         {standardItems.map((sub: any, idx: number) => (
-          <Link
+          <m.div
             key={sub.title}
-            href={sub.href.startsWith("http") ? sub.href : safeLink(sub.href, availablePages)}
-            target={sub.href.startsWith("http") ? "_blank" : undefined}
-            className="inline-flex items-center gap-3 pl-6 rounded-2xl hover:bg-white hover:shadow-lg hover:shadow-orange-100/10 transition-all duration-300 group"
+            custom={idx}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0, y: 15 },
+              visible: (i: number) => ({
+                opacity: 1,
+                y: 0,
+                transition: {
+                  delay: i * 0.05,
+                  duration: 0.65,
+                  ease: [0.16, 1, 0.3, 1]
+                }
+              })
+            }}
+            className="flex"
+            style={{ willChange: "transform, opacity" }}
           >
-            <div className="w-10 h-10 flex-shrink-0 bg-white rounded-xl flex items-center justify-center text-gray-900 shadow-sm ring-1 ring-gray-100 group-hover:scale-110 transition-transform duration-300">
-              {sub.icon && <sub.icon className="w-5 h-5 text-orange-500" />}
-            </div>
-            <div>
-              <div className="text-[14px] font-bold text-gray-900 group-hover:text-orange-600 transition-colors mb-0.5">{sub.title}</div>
-              <div className="text-[12px] text-gray-500 leading-snug">{sub.sub}</div>
-            </div>
-          </Link>
+            <Link
+              href={sub.href.startsWith("http") ? sub.href : safeLink(sub.href, availablePages)}
+              target={sub.href.startsWith("http") ? "_blank" : undefined}
+              className="inline-flex items-center gap-3 pl-6 rounded-2xl hover:bg-white hover:shadow-lg hover:shadow-orange-100/10 transition-all duration-300 group w-full"
+            >
+              <div className="w-10 h-10 flex-shrink-0 bg-white rounded-xl flex items-center justify-center text-gray-900 shadow-sm ring-1 ring-gray-100 group-hover:scale-110 transition-transform duration-300">
+                {sub.icon && <sub.icon className="w-5 h-5 text-orange-500" />}
+              </div>
+              <div>
+                <div className="text-[14px] font-bold text-gray-900 group-hover:text-orange-600 transition-colors mb-0.5">{sub.title}</div>
+                <div className="text-[12px] text-gray-500 leading-snug">{sub.sub}</div>
+              </div>
+            </Link>
+          </m.div>
         ))}
       </div>
 

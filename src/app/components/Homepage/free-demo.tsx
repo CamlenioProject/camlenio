@@ -115,7 +115,7 @@ const FreeDemo = () => {
               initial={{ y: -20, opacity: 0, scale: 0.9 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: -20, opacity: 0, scale: 0.9 }}
-              className={`fixed top-12 left-1/2 -translate-x-1/2 z-[2000] px-6 py-4 rounded-2xl border backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-4 min-w-[320px] ${popup.type === "success"
+              className={`fixed top-12 left-1/2 -translate-x-1/2 z-[2000] px-6 py-4 rounded-2xl border backdrop-blur-2xl shadow-smflex items-center gap-4 min-w-[320px] ${popup.type === "success"
                 ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
                 : "bg-rose-500/10 border-rose-500/20 text-rose-400"
                 }`}

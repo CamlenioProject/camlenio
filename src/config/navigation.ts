@@ -49,6 +49,8 @@ export const availablePages = [
   "/fintech-software-development-company",
   "/hotel-management-software",
   "/android-mobile-app-development",
+  "/enterprise-solutions",
+  "/travel-booking",
   "/iphone-mobile-app-development",
   "/ui-ux-designing",
   "/billing-software",
@@ -85,11 +87,19 @@ export const servicesMenuData = [
   {
     title: "Logo & Graphic Designing",
     image: "/header/logo-graphic-designing.png",
+    href: "/ui-ux-designing",
     items: []
   },
   {
     title: "Digital Marketing",
     image: "/header/fintech-software.jpg",
+    href: "/coming-soon",
+    items: []
+  },
+  {
+    title: "Enterprise Solutions",
+    image: "/header/fintech-software.jpg",
+    href: "/enterprise-solutions",
     items: []
   }
 ];
@@ -158,9 +168,7 @@ export const navItems = [
         title: "Travel & Hospitality",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Travel Booking", href: "/travel-booking", desc: "Global reservation engines", icon: RocketLaunchIcon },
-          { title: "Hotel Management", href: "/hotel-management-software", desc: "Property management systems", icon: BuildingOfficeIcon },
-          { title: "Cab Booking", href: "/coming-soon", desc: "Ride-hailing solutions", icon: TruckIcon }
+          { title: "Travel Booking Software", href: "/travel-booking", desc: "Complete travel, hotel & cab booking systems", icon: RocketLaunchIcon }
         ]
       },
       {

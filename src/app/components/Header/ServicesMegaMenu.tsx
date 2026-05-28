@@ -106,7 +106,10 @@ export const ServicesMegaMenu = ({ baseHref }: { baseHref: string }) => {
               })}
             </div>
           ) : (
-            <div className="flex-1 w-full relative rounded-2xl overflow-hidden group shadow-lg ring-1 ring-black/5 mt-1">
+            <Link 
+              href={activeData?.href || "/coming-soon"}
+              className="flex-1 w-full relative rounded-2xl overflow-hidden group shadow-lg ring-1 ring-black/5 mt-1 block"
+            >
               <Image
                 src={activeData?.image || "/header/hire-developer.jpg"}
                 alt={activeTitle}
@@ -129,7 +132,7 @@ export const ServicesMegaMenu = ({ baseHref }: { baseHref: string }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           )}
         </m.div>
       </div>

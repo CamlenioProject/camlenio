@@ -1,111 +1,154 @@
 "use client";
 
-import { m, LazyMotion, domMax } from "framer-motion";
+import React from "react";
+import { Inbox, Zap, Users, Smartphone, TrendingUp, RefreshCw, MapPin, Calendar, Ticket } from "lucide-react";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
+
+const MotionImage = motion(Image);
 
 export default function TravelShowcase() {
+  const benefits = [
+    {
+      title: "Automated Booking And Reservation Management",
+      icon: Inbox,
+    },
+    {
+      title: "Faster Customer Service And Secure Online",
+      icon: Zap,
+    },
+    {
+      title: "Improved B2B Agent And Supplier Management",
+      icon: Users,
+    },
+    {
+      title: "Mobile Friendly And User Friendly Booking Experience",
+      icon: Smartphone,
+    },
+    {
+      title: "Increased Operational Efficiency And Business Growth",
+      icon: TrendingUp,
+    },
+    {
+      title: "Real-Time Travel Package and Availability Updates",
+      icon: RefreshCw,
+    },
+  ];
+
+  const featuresList = [
+    {
+      title: "Select many location",
+      subtitle: "Choose your favorite location",
+      icon: MapPin,
+      bgClass: "bg-[#7633ff]",
+      isActive: false,
+    },
+    {
+      title: "Schedule your trip",
+      subtitle: "Set the date you want",
+      icon: Calendar,
+      bgClass: "bg-[#f97316]",
+      isActive: true,
+    },
+    {
+      title: "Big discount",
+      subtitle: "Get discount for every services",
+      icon: Ticket,
+      bgClass: "bg-[#d81b60]",
+      isActive: false,
+    },
+  ];
+
   return (
-    <LazyMotion features={domMax}>
-      <section className="py-24 relative overflow-hidden">
+    <section className="py-16 md:py-24 px-6 md:px-12 max-w-7xl mx-auto relative overflow-hidden">
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      {/* Subtle top background blur decoration */}
+      <div className="absolute top-10 right-1/4 w-[400px] h-[400px] bg-orange-200/20 rounded-full blur-3xl pointer-events-none -z-10" />
 
-            {/* Left Content */}
-            <div className="relative z-20">
-              <m.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-[0.9] mb-8">
-                  EXPLORE <br />
-                  THE WORLD
-                </h2>
-                <p className="text-lg text-slate-600 mb-8 max-w-md leading-relaxed">
-                  Discover amazing experiences in the world's most exciting outdoor destinations. Our software powers the journey.
-                </p>
+      {/* 1. About Us - Company Profile Split Row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-28">
+        <div className="text-left">
+          <p className="text-orange-600 font-bold uppercase tracking-wider text-xs md:text-sm mb-4">
+            About Us
+          </p>
 
-                <button className="px-8 py-4 bg-orange-500 text-white font-bold rounded-full hover:bg-orange-600 transition-all shadow-md flex items-center gap-2 group mb-16">
-                  See Solutions
-                  <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+            Travel Booking Software Development Company
+          </h2>
 
-                {/* Stats Row */}
-                <div className="flex items-center gap-8 md:gap-12 border-t border-slate-200 pt-8">
-                  <div>
-                    <div className="text-4xl font-black text-slate-900">68%</div>
-                    <div className="text-xs text-slate-500 font-bold uppercase mt-1">Growth Rate</div>
-                  </div>
-                  <div className="w-px h-10 bg-slate-200" />
-                  <div>
-                    <div className="text-4xl font-black text-slate-900">1.2K+</div>
-                    <div className="text-xs text-slate-500 font-bold uppercase mt-1">Active Users</div>
-                  </div>
-                  <div className="w-px h-10 bg-slate-200" />
-                  <div>
-                    <div className="text-4xl font-black text-slate-900">1.5K+</div>
-                    <div className="text-xs text-slate-500 font-bold uppercase mt-1">Destinations</div>
-                  </div>
-                </div>
-              </m.div>
-            </div>
+          <p className="max-w-md sm:max-w-2xl text-gray-600 text-sm md:text-base my-6 font-sans text-justify leading-relaxed mb-6">
+            As a trustworthy travel software development company in Jaipur, we deliver creative digital solutions for travel businesses. Our user-friendly software and customized management systems help tour companies automate procedures. We focus on delivering secure high-performance systems for travel agencies, tour operators, and B2B travel businesses.
+          </p>
 
-            {/* Right Visuals */}
-            <div className="relative h-[600px] flex items-center justify-center">
-              {/* Orange Curved Line SVG */}
-              <svg className="absolute top-1/2 left-0 w-[120%] -translate-y-1/2 -z-10" viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <m.path
-                  d="M0 150 C 200 150, 400 250, 600 100 S 800 200, 900 150"
-                  stroke="#F97316"
-                  strokeWidth="2"
-                  fill="none"
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  transition={{ duration: 1.5, ease: "easeInOut" }}
-                />
-              </svg>
-
-              {/* Perspective Phones */}
-              <m.div
-                initial={{ opacity: 0, y: 50, rotate: -5 }}
-                whileInView={{ opacity: 1, y: 0, rotate: -5 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="relative z-10 w-[300px] md:w-[350px]"
-              >
-                <Image
-                  src="/travel/mobile_app.png"
-                  alt="Travel Mobile App 1"
-                  width={400}
-                  height={800}
-                  className="w-full h-auto drop-shadow-2xl"
-                />
-              </m.div>
-
-              <m.div
-                initial={{ opacity: 0, y: 100, rotate: 10 }}
-                whileInView={{ opacity: 1, y: 40, rotate: 10 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="absolute bottom-0 right-0 md:right-10 w-[200px] md:w-[250px] z-20"
-              >
-                <Image
-                  src="/travel/mobile_app.png"
-                  alt="Travel Mobile App 2"
-                  width={400}
-                  height={800}
-                  className="w-full h-auto drop-shadow-2xl brightness-90"
-                />
-              </m.div>
-
-            </div>
-
-          </div>
+          <p className="max-w-md sm:max-w-2xl text-gray-500 text-sm md:text-base leading-relaxed mb-8">
+            Our experts developed software solutions that facilitate booking management, payment integrations, itinerary management, and customer communication.
+          </p>
         </div>
-      </section>
-    </LazyMotion>
+
+        <div className="relative group">
+          <div className="absolute -inset-2 bg-gradient-to-r from-orange-400 to-orange-200 rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none" />
+
+          <MotionImage
+            alt="Team working on software development in Jaipur"
+            className="relative rounded-[2.5rem] md:rounded-[3rem] shadow-2xl w-full h-auto object-cover z-10 border border-white/40"
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+            width={800}
+            height={533}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={75}
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          />
+        </div>
+      </div>
+
+      {/* 2. Benefits Header */}
+      <div className="text-center mb-16 relative">
+        <p className="text-orange-600 font-bold uppercase tracking-wider text-xs md:text-sm mb-4">
+          Benefits
+        </p>
+
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
+          Benefits of{" "}
+          <span
+            className="text-orange-500"
+            style={{
+              textShadow:
+                "-1px -1px 0px #da5f00, 2px 2px 0px #fff, 3px 4px 0px #ff582336",
+            }}
+          >
+            Travel Booking Software
+          </span>
+        </h2>
+
+        <p className="max-w-3xl mx-auto text-gray-600 text-sm md:text-base my-6 font-sans leading-relaxed">
+          Using travel booking software, these benefits can easily handle the operations. Here are the benefits of developing travel booking software:
+        </p>
+      </div>
+
+      {/* 3. Benefits Grid with staggered animations */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        {benefits.map((b, idx) => {
+          const IconComponent = b.icon;
+          return (
+            <motion.div
+              key={idx}
+              className="glass-card p-8 md:p-10 rounded-[2rem] text-center hover:shadow-[0_20px_50px_rgba(251,146,60,0.15)] hover:border-orange-300/50 transition-all duration-500 group flex flex-col items-center justify-center border border-white/30 bg-white/70 backdrop-blur-md cursor-pointer"
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500 shrink-0">
+                <IconComponent className="text-orange-600 w-8 h-8 stroke-[2] group-hover:text-white transition-colors duration-500" />
+              </div>
+
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 leading-snug group-hover:text-orange-600 transition-colors duration-500">
+                {b.title}
+              </h3>
+            </motion.div>
+          );
+        })}
+      </div>
+
+    </section>
   );
 }

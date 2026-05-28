@@ -55,31 +55,54 @@ export const MobileDropdown = ({
               {item.isComplex ? (
                 Object.values(item.items).map((col: any) => (
                   <div key={col.title} className="mb-4">
-                    <div className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-2 pl-2 border-l-2 border-orange-200">
-                      {col.title}
-                    </div>
-                    {col.items.map((sub: any) => {
-                      const rawHref = sub.href.startsWith("/")
-                        ? sub.href
-                        : `/${item.href}/${sub.href}`;
-                      const linkHref = safeLink(rawHref, availablePages);
-                      const isUnavailable = linkHref === "/coming-soon";
-                      return (
-                        <Link
-                          key={sub.title}
-                          href={linkHref}
-                          onClick={!isUnavailable ? closeMenu : undefined}
-                          className={clsx(
-                            "block text-[14px] py-1.5 pl-4 transition-colors",
-                            isUnavailable
-                              ? "text-gray-400 opacity-50"
-                              : "text-gray-600 hover:text-black"
-                          )}
-                        >
-                          {sub.title}
-                        </Link>
-                      );
-                    })}
+                    {col.items && col.items.length > 0 ? (
+                      <>
+                        <div className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-2 pl-2 border-l-2 border-orange-200">
+                          {col.title}
+                        </div>
+                        {col.items.map((sub: any) => {
+                          const rawHref = sub.href.startsWith("/")
+                            ? sub.href
+                            : `/${item.href}/${sub.href}`;
+                          const linkHref = safeLink(rawHref, availablePages);
+                          const isUnavailable = linkHref === "/coming-soon";
+                          return (
+                            <Link
+                              key={sub.title}
+                              href={linkHref}
+                              onClick={!isUnavailable ? closeMenu : undefined}
+                              className={clsx(
+                                "block text-[14px] py-1.5 pl-4 transition-colors",
+                                isUnavailable
+                                  ? "text-gray-400 opacity-50"
+                                  : "text-gray-600 hover:text-black"
+                              )}
+                            >
+                              {sub.title}
+                            </Link>
+                          );
+                        })}
+                      </>
+                    ) : (
+                      (() => {
+                        const linkHref = safeLink(col.href || "/coming-soon", availablePages);
+                        const isUnavailable = linkHref === "/coming-soon";
+                        return (
+                          <Link
+                            href={linkHref}
+                            onClick={!isUnavailable ? closeMenu : undefined}
+                            className={clsx(
+                              "block text-xs font-bold uppercase tracking-widest py-1.5 pl-2 border-l-2 transition-all duration-300",
+                              isUnavailable
+                                ? "text-gray-400 border-gray-200 opacity-50 pointer-events-none"
+                                : "text-orange-500 border-orange-200 hover:text-orange-600 active:scale-95"
+                            )}
+                          >
+                            {col.title}
+                          </Link>
+                        );
+                      })()
+                    )}
                   </div>
                 ))
               ) : (

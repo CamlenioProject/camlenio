@@ -1,22 +1,35 @@
+import React from "react";
 import TravelHero from "./components/TravelHero";
-import TravelShowcase from "./components/TravelShowcase";
-import TravelFeatures from "./components/TravelFeatures";
-import TravelReviews from "./components/TravelReviews";
-import TravelCTA from "./components/TravelCTA";
+import dynamic from "next/dynamic";
+import { Metadata } from "next";
 
-export const metadata = {
-  title: "Travel Booking Software Development | Camlenio",
-  description: "Build your travel empire with our custom travel software solutions. Booking engines, agency portals, mobile apps, and more.",
+const TravelShowcase = dynamic(() => import("./components/TravelShowcase"), { ssr: true });
+const TravelFeatures = dynamic(() => import("./components/TravelFeatures"), { ssr: true });
+const CTA = dynamic(() => import("../components/cta"), { ssr: true });
+
+export const metadata: Metadata = {
+  title: "Travel Booking Software Solutions | Camlenio Software",
+  description: "Build smart, secure travel booking software with Camlenio. Customized B2B travel software, mobile apps, and online booking platforms developed to facilitate processes and support business growth in Jaipur.",
+  keywords: [
+    "Travel Booking Software Solutions",
+    "Travel Booking Software Development Company in Jaipur",
+    "B2B Travel Software",
+    "Online Booking Platforms"
+  ]
 };
 
-export default function TravelPage() {
+export default function TravelBookingPage() {
   return (
-    <main className="bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100  ">
+    <main className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 overflow-hidden ">
       <TravelHero />
       <TravelShowcase />
       <TravelFeatures />
-      <TravelCTA />
-      <TravelReviews />
+      <CTA
+        title="Ready to Grow Your Travel Business?"
+        highlightedTitle="Travel Business"
+        subtitle="Partner with Camlenio for professional travel booking solutions tailored to your business goals. If you require a complete B2B Travel portal or a custom application, our expertise is ready to develop the perfect platforms for you."
+        buttontext="Contact Us"
+      />
     </main>
   );
 }

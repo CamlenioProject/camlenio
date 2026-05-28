@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, Suspense } from "react";
 import { createPortal } from "react-dom";
 import { X, MessageCircle, Sparkles, Minus, Send } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
+import { getErrorMessage } from "@/config/chatbotInstruction";
 
 type FormData = {
   name: string;
@@ -262,10 +263,14 @@ function AnimatedChatBotContent() {
         ...prev,
         {
           id: Date.now() + 1,
-          text: "I apologize, but I am having trouble connecting to my brain right now. Please try again in a moment, or reach out to us at contact@camlenio.com!",
+          text: getErrorMessage(userMsg),
           sender: "bot" as const,
         },
       ]);
+      setTimeout(() => {
+        setChatMode(false);
+        handlePurposeSelect("Chatbot Connection Assist");
+      }, 3000);
     } finally {
       setBotTyping(false);
     }
@@ -294,7 +299,7 @@ function AnimatedChatBotContent() {
 
     const timer = setTimeout(() => {
       if (!open) setShowSuggestion(true);
-    }, 20000);
+    }, 10000);
 
     window.addEventListener("keydown", handleEsc);
 
@@ -426,14 +431,7 @@ function AnimatedChatBotContent() {
 
                 <button
                   onClick={() => setChatMode(true)}
-                  className="
-        w-full flex items-center gap-2 md:gap-3 
-        px-3 py-2 md:px-4 md:py-3
-        rounded-xl 
-        bg-white/70 backdrop-blur-md border border-gray-200 shadow-sm
-        hover:bg-orange-50 transition
-        text-sm md:text-base
-      "
+                  className="w-full flex items-center gap-2 md:gap-3 px-3 py-2 md:px-4 md:py-3 rounded-xl bg-white/70 backdrop-blur-md border border-gray-200 shadow-sm hover:bg-orange-50 transition text-sm md:text-base"
                 >
                   <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-orange-100 flex items-center justify-center text-lg md:text-xl">
                     💬
@@ -462,8 +460,8 @@ function AnimatedChatBotContent() {
                     >
                       <div
                         className={`max-w-[85%] rounded-2xl px-3 py-2 text-xs md:text-sm shadow-sm ${msg.sender === "user"
-                            ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-tr-none"
-                            : "bg-white/90 text-gray-800 border border-gray-100 rounded-tl-none"
+                          ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-tr-none"
+                          : "bg-white/90 text-gray-800 border border-gray-100 rounded-tl-none"
                           }`}
                       >
                         {msg.text}
