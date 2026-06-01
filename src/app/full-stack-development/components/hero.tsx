@@ -1,202 +1,181 @@
 "use client";
 
-import Image from "next/image";
 import React from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  MotionValue,
-} from "framer-motion";
-
-const products = [
-  {
-    title: "Moonbeam",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui1.png",
-  },
-  {
-    title: "Cursor",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui2.png",
-  },
-  {
-    title: "Rogue",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui3.png",
-  },
-
-  {
-    title: "Editorially",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui1.png",
-  },
-  {
-    title: "Editrix AI",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui2.png",
-  },
-  {
-    title: "Pixel Perfect",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui3.png",
-  },
-
-  {
-    title: "Algochurn",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui1.png",
-  },
-  {
-    title: "Aceternity UI",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui2.png",
-  },
-  {
-    title: "Tailwind Master Kit",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui3.png",
-  },
-  {
-    title: "SmartBridge",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui1.png",
-  },
-  {
-    title: "Renderwork Studio",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui2.png",
-  },
-
-  {
-    title: "Creme Digital",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui3.png",
-  },
-  {
-    title: "Golden Bells Academy",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui1.png",
-  },
-  {
-    title: "Invoker Labs",
-    link: "#l",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui2.png",
-  },
-  {
-    title: "E Free Invoice",
-    link: "#",
-    thumbnail: "/ServiceDropdown/uiuxdesign/ui3.png",
-  },
-];
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
-  const firstRow = products.slice(0, 5);
-  const secondRow = products.slice(5, 10);
-
-  const ref = React.useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
-
-  const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 1000]),
-    springConfig
-  );
-  const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, -1000]),
-    springConfig
-  );
-  const rotateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
-    springConfig
-  );
-  const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
-    springConfig
-  );
-  const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
-    springConfig
-  );
-  const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-80, 80]),
-    springConfig
-  );
+  const router = useRouter();
 
   return (
-    <>
-      <div
-        ref={ref}
-        className="h-[160vh] xl:[100vh] max-w-7xl mx-auto py-2 relative overflow-hidden antialiased flex flex-col [perspective:500px] [transform-style:preserve-3d]"
-      >
-        <Header />
-        <motion.div style={{ rotateX, rotateZ, translateY, opacity }}>
-          <motion.div className="flex flex-row-reverse space-x-reverse space-x-6 mb-10">
-            {firstRow.map((product) => (
-              <ProductCard
-                key={product.title}
-                product={product}
-                translate={translateX}
-              />
-            ))}
-          </motion.div>
-          <motion.div className="flex flex-row mb-10 aspect-[5/4] space-x-6">
-            {secondRow.map((product) => (
-              <ProductCard
-                key={product.title}
-                product={product}
-                translate={translateXReverse}
-              />
-            ))}
-          </motion.div>
-        </motion.div>
+    <section className="relative min-h-screen flex items-center overflow-hidden py-20 lg:py-0 bg-transparent">
+      {/* Cinematic Background Decorations */}
+      <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-orange-100/20 rounded-full blur-[160px] -mr-80 -mt-80 opacity-60 pointer-events-none -z-10" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-50/30 rounded-full blur-[140px] -ml-40 -mb-40 opacity-50 pointer-events-none -z-10" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full pt-16 md:pt-24 pb-12">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+
+          {/* Text Content Column */}
+          <div className="flex-1 text-center lg:text-left max-w-2xl order-2 lg:order-1">
+            <div className="relative inline-block mb-6">
+
+              {/* Custom Loopy Hand-Drawn Arrow */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="absolute -top-20 -right-24 w-32 h-32 hidden lg:block"
+              >
+                <svg viewBox="0 0 100 100" fill="none" className="w-full h-full transform -rotate-12">
+                  <motion.path
+                    d="M 10 60 C 5 45 15 30 30 35 C 45 40 35 65 25 60 C 15 55 35 30 65 45 L 80 55"
+                    stroke="#f97316"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                  />
+                  <motion.path
+                    d="M 65 52 L 82 56 L 75 40"
+                    stroke="#f97316"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.2, duration: 0.3 }}
+                  />
+                  <motion.circle
+                    cx="82" cy="56" r="4"
+                    fill="#f97316"
+                    animate={{ scale: [1, 2, 1], opacity: [0.6, 0, 0.6] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                </svg>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight mb-6 md:mb-8"
+              >
+                Build
+                Digital Products
+                With <span className="text-orange-500 inline-block mt-1" style={{
+                  textShadow:
+                    "-1px -1px 0px #da5f00, 2px 2px 0px #fff, 3px 4px 0px #ff582336",
+                }}>Full Stack Expertise</span>
+              </motion.h1>
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8 md:mb-10 text-justify"
+            >
+              Camlenio provides Full Stack Development Services, offering end-to-end web and mobile solutions with seamless performance and unique technology.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
+            >
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  const ctaSection = document.getElementById("cta-section");
+                  if (ctaSection) {
+                    ctaSection.scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    router.push("/contact");
+                  }
+                }}
+                className="h-12 px-8 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 border-0"
+              >
+                Get Started
+                <ArrowRight className="w-4 h-4" />
+              </motion.button>
+            </motion.div>
+          </div>
+
+          {/* Visual Showcase Column */}
+          <div className="flex-1 relative order-1 lg:order-2 flex justify-center lg:justify-end py-6 md:py-12 perspective-[2000px] w-full max-w-[400px] sm:max-w-[500px] lg:max-w-none">
+
+            <div className="absolute inset-0 pointer-events-none overflow-visible">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] aspect-square bg-gradient-radial from-orange-100/30 via-transparent to-transparent blur-[80px] md:blur-[120px] rounded-full -z-10" />
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 50, rotateY: 12, scale: 0.85 }}
+              animate={{ opacity: 1, y: 0, rotateY: 0, scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 45,
+                damping: 18,
+                mass: 1.8,
+                delay: 0.4,
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative w-full aspect-[4/3] flex items-center justify-center max-w-[320px] sm:max-w-[450px] lg:max-w-[550px]"
+            >
+              <motion.div
+                animate={{
+                  y: [0, -10, 0],
+                  rotateZ: [0, 0.4, 0, -0.4, 0]
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                style={{ transformStyle: "preserve-3d" }}
+                className="relative w-full h-full flex items-center justify-center"
+              >
+                <div className="absolute -bottom-6 -right-10 w-[120%] h-1/2 bg-gradient-to-tr from-orange-100/10 via-white/5 to-transparent blur-2xl md:blur-3xl -z-10 rotate-12" />
+
+                <div className="relative w-full h-full z-20 rounded-[32px] overflow-hidden shadow-md border border-white/40">
+                  <Image
+                    src="/ServiceDropdown/webdevpage/hero2.webp"
+                    alt="Full Stack Software Development"
+                    fill
+                    className="object-cover"
+                    priority
+                    unoptimized
+                  />
+                </div>
+              </motion.div>
+
+              {/* Dynamic Particles */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  animate={{
+                    y: [0, -60, 0],
+                    opacity: [0.1, 0.4, 0.1]
+                  }}
+                  transition={{
+                    duration: 5 + i,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.8
+                  }}
+                  className={`absolute w-2 h-2 rounded-full blur-[1px] ${i % 2 === 0 ? 'bg-orange-400/30' : 'bg-indigo-400/30'}`}
+                  style={{
+                    top: `${15 + i * 15}%`,
+                    left: `${5 + i * 15}%`,
+                    zIndex: 40
+                  }}
+                />
+              ))}
+            </motion.div>
+          </div>
+
+        </div>
       </div>
-    </>
+    </section>
   );
 }
-
-const Header = () => (
-  <div className="max-w-7xl relative mx-auto py-20 px-4 w-full">
-    <h1 className="text-2xl md:text-[4.5rem] font-black text-gray-900">
-      Simplify Customer Management with Powerful CRM Solutions
-    </h1>
-    <p className="max-w-2xl text-base md:text-xl mt-8 text-gray-800">
-      Transform your business with our comprehensive CRM platform. Streamline
-      sales, automate workflows, and grow your customer relationships
-      effortlessly.
-    </p>
-  </div>
-);
-
-const ProductCard = ({
-  product,
-  translate,
-}: {
-  product: { title: string; link: string; thumbnail: string };
-  translate: MotionValue<number>;
-}) => (
-  <motion.div
-    style={{ x: translate }}
-    whileHover={{ y: -10 }}
-    className="group w-[30rem] h-[15rem]  relative shrink-0 max-w-3xl"
-  >
-    <a href={product.link} className="block group-hover:shadow-2xl">
-      <Image
-        src={product.thumbnail}
-        alt={product.title}
-        fill
-        className="object-contain w-full object-top rounded-3xl"
-        sizes="(max-width: 768px) 100vw, 600px"
-      />
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover:opacity-70 bg-black/40 pointer-events-none rounded-3xl transition-opacity duration-500"></div>
-    </a>
-    <h2 className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 text-white transition-opacity duration-300">
-      {product.title}
-    </h2>
-  </motion.div>
-);

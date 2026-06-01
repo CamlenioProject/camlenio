@@ -3,113 +3,118 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { 
+  Activity, 
+  ShieldCheck, 
+  CircleDollarSign, 
+  Users,
+  ArrowRight
+} from "lucide-react";
 
-const Services = [
-  {
-    icon: "/ServiceDropdown/fullstackdev/Customer-satisfaction.webp",
-    title: "Satisfied Customers with Every Project",
-    content:
-      "As a trusted full-stack development company, we have successfully delivered several full-stack web applications using the latest tools and technologies. Our skilled developers ensure every project aligns perfectly with client requirements and exceeds expectations.",
-  },
+export default function WhyCamlenio() {
+  const reasons = [
+    { title: "Agile Development Process", icon: Activity, color: "bg-blue-50 text-blue-500 border-blue-100/50" },
+    { title: "Scalable and Secure Solutions", icon: ShieldCheck, color: "bg-emerald-50 text-emerald-500 border-emerald-100/50" },
+    { title: "Affordable Offshore Development Model", icon: CircleDollarSign, color: "bg-amber-50 text-amber-500 border-amber-100/50" },
+    { title: "Experienced Full Stack Team", icon: Users, color: "bg-purple-50 text-purple-500 border-purple-100/50" }
+  ];
 
-  {
-    icon: "/ServiceDropdown/fullstackdev/Risk-Free.webp",
-    title: "Risk-Free and Secure Engagement Options",
-    content:
-      "Not sure where to start? We offer risk-free engagement options, including detailed MVPs, to help you evaluate our services before committing. Our expertise ensures measurable business benefits and client satisfaction.",
-  },
-  {
-    icon: "/ServiceDropdown/fullstackdev/Highest-Standard.svg",
-    title: "Highest Standard of Quality Assurance",
-    content:
-      "Our iterative development process ensures the development of highest quality full-stack applications. We promptly address any issues to deliver products that meet your exact requirements. Partner with us for unparalleled quality assurance.",
-  },
-  {
-    icon: "/ServiceDropdown/fullstackdev/Tailored-Solutions.webp",
-    title: "Tailored Solutions for Your Business Needs",
-    content:
-      "We recognize that every business is unique. Our cost-effective, custom enterprise full-stack solutions are designed to meet your specific objectives and give you a competitive edge in the market.  ",
-  },
-  {
-    icon: "/ServiceDropdown/fullstackdev/Affordable.webp",
-    title: "Affordable Web and Mobile Solutions",
-    content:
-      "With extensive experience in full-stack web and mobile app development, we provide affordable, high-quality solutions tailored to your needs. We aim to turn your vision into reality and set your business on the path to success.",
-  },
-  {
-    icon: "/ServiceDropdown/fullstackdev/Technical-Support.webp",
-    title: "24/7 Technical Support and Maintenance",
-    content:
-      "We offer round-the-clock technical support and maintenance to ensure your applications run smoothly and efficiently at all times. Connect with us to experience seamless service and ongoing support.",
-  },
-];
-
-const WhyCamlenio = () => {
   return (
-    <div className="bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100   px-8 py-16">
-      <div className="relative max-w-7xl mx-auto">
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          // viewport={{ once: true }}
-          className="text-left md:text-center mb-10"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Why{" "}
-            <span
-              className="text-orange-500 font-bold"
-              style={{ textShadow: "2px 2px 0 #FAF9F6, 4px 4px 0 #FFB266" }}
-            >
-              Camlenio
-            </span>{" "}
-            Stands Out as a Full-Stack Development Company
-          </h2>
-          <p className="max-w-5xl mx-auto text-gray-600 text-sm md:text-base mb-12 font-sans text-justify">
-            At Camlenio Software Pvt. Ltd. we harness the power of modern
-            technologies—AI, AR/VR, and custom integrations—to deliver dynamic,
-            scalable, and future-ready digital solutions. Security is built into
-            every layer of our architecture, with advanced practices like SSL
-            encryption, firewalls, and role-based access control to keep your
-            systems and users safe.
-          </p>
-        </motion.div>
+    <section 
+      className="relative w-full py-24 bg-transparent overflow-hidden"
+      style={{ transform: "translateZ(0)" }}
+    >
+      {/* Decorative ambient background glows */}
+      <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-gradient-to-tr from-orange-400/5 to-amber-500/5 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-gradient-to-br from-indigo-500/5 to-blue-500/5 rounded-full blur-[140px] pointer-events-none -z-10 animate-pulse" />
 
-        <div className="text-left grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative overflow-visible">
-          {Services.map((service, index) => (
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              whileTap={{ scale: 1.03 }}
-              whileHover={{ scale: 1.02 }}
-              viewport={{ once: true }}
-              key={index}
-              className="relative group overflow-hidden rounded-xl border-2 border-orange-100 p-6 bg-transparent text-gray-900 duration-200 shadow-md hover:shadow-lg "
-            >
-              {/* <div className="absolute inset-0 bg-gradient-to-r from-white to-white transform scale-x-0 group-hover:scale-x-100 origin-left duration-700 ease-in-out z-0" /> */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* ========================================================================= */}
+          {/* --- LEFT COLUMN: WORKSPACE GRAPHIC (col-span-5) --- */}
+          {/* ========================================================================= */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-5 relative w-full flex items-center justify-center"
+          >
+            {/* Visual background aura */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square bg-gradient-radial from-orange-500/[0.03] via-transparent to-transparent blur-2xl pointer-events-none" />
 
-              <div className="relative z-10 duration-700 ease-in-out group-hover:text-black">
-                <div className="flex justify-start mb-4  transition duration-700 ease-in-out">
-                  <Image
-                    src={service.icon}
-                    alt={service.title}
-                    width={80}
-                    height={80}
-                    className="w-18 object-contain"
-                    priority
-                  />
-                </div>
-                <h1 className="text-xl md:text-2xl font-bold mb-2">
-                  {service.title}
-                </h1>
-                <p className="text-base md:text-base">{service.content}</p>
-              </div>
-            </motion.div>
-          ))}
+            <div className="relative w-full aspect-[0.9] sm:aspect-[1.1] lg:aspect-[0.85/1] rounded-[32px] overflow-hidden shadow-[0_20px_50px_-20px_rgba(0,0,0,0.06)] border border-slate-100/40">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 via-transparent to-transparent z-10 pointer-events-none" />
+              
+              <Image
+                src="/ServiceDropdown/fullstackdev/fullstack.webp"
+                alt="Full Stack Workspace Capability"
+                fill
+                className="object-cover transform hover:scale-102 transition-transform duration-700"
+                priority
+                unoptimized
+              />
+            </div>
+          </motion.div>
+
+          {/* ========================================================================= */}
+          {/* --- RIGHT COLUMN: THE MINIMAL CAPABILITY PANEL (col-span-7) --- */}
+          {/* ========================================================================= */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            className="lg:col-span-7 bg-white/80 backdrop-blur-md border border-slate-100/90 rounded-[40px] p-8 md:p-12 shadow-[0_20px_50px_-25px_rgba(249,115,22,0.05)] flex flex-col justify-between"
+            style={{ transform: "translateZ(0)" }}
+          >
+            <div>
+              <h2 className="text-2xl sm:text-[34px] font-black text-gray-900 leading-tight tracking-tight mb-6">
+                Why Choose Us As a <br />
+                <span 
+                  className="text-orange-500 inline-block mt-1" 
+                  style={{
+                    textShadow: "-1px -1px 0px #da5f00, 2px 2px 0px #fff, 3px 4px 0px #ff582336"
+                  }}
+                >
+                  Full Stack Development Company?
+                </span>
+              </h2>
+
+              <p className="text-slate-500 font-semibold text-xs sm:text-sm leading-relaxed mb-8 text-justify">
+                Camlenio stands out as a trustworthy Full Stack Web Development Company India, providing complete End to End Development Services. Our experts merge technical expertise with industry features to provide high-performance applications. Reasons to choose Camlenio:
+              </p>
+            </div>
+
+            {/* Checklist styled as premium horizontal reason bars */}
+            <div className="flex flex-col gap-4">
+              {reasons.map((reason, idx) => {
+                const Icon = reason.icon;
+                return (
+                  <div 
+                    key={idx}
+                    className="group flex items-center gap-4 p-4 bg-slate-50/40 hover:bg-white rounded-2xl border border-slate-100/60 hover:border-slate-200/60 shadow-3xs hover:shadow-2xs transition-all duration-300 cursor-pointer"
+                  >
+                    <div className={`p-2.5 rounded-xl border ${reason.color} flex items-center justify-center shadow-3xs group-hover:scale-105 transition-transform duration-300`}>
+                      <Icon className="w-4.5 h-4.5" />
+                    </div>
+                    
+                    <div className="flex-1 flex items-center justify-between gap-4">
+                      <span className="text-xs sm:text-sm font-black text-slate-700 group-hover:text-slate-900 transition-colors">
+                        {reason.title}
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+          </motion.div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default WhyCamlenio;
+}

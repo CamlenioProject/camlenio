@@ -52,6 +52,10 @@ export const availablePages = [
   "/enterprise-solutions",
   "/travel-booking",
   "/iphone-mobile-app-development",
+  "/hybrid-app-development",
+  "/on-demand-app-development",
+  "/backend-development",
+  // "/full-stack-development",
   "/ui-ux-designing",
   "/billing-software",
   "/testimonials",
@@ -70,8 +74,8 @@ export const servicesMenuData = [
     items: [
       { title: "Android Mobile App Development", href: "/android-mobile-app-development", icon: DevicePhoneMobileIcon },
       { title: "IPhone Mobile App Development", href: "/iphone-mobile-app-development", icon: DevicePhoneMobileIcon },
-      { title: "On-Demand App Development", href: "/coming-soon", icon: TruckIcon },
-      { title: "Hybrid App Development", href: "/coming-soon", icon: CodeBracketIcon },
+      { title: "On-Demand App Development", href: "/on-demand-app-development", icon: TruckIcon },
+      { title: "Hybrid App Development", href: "/hybrid-app-development", icon: CodeBracketIcon },
     ]
   },
   {
@@ -79,9 +83,8 @@ export const servicesMenuData = [
     items: [
       { title: "Web Application Development", href: "/web-development", icon: GlobeAltIcon },
       { title: "Frontend Development", href: "/frontend-development", icon: CodeBracketIcon },
-      { title: "Backend Development", href: "/coming-soon", icon: ServerIcon },
-      { title: "Full-Stack Development", href: "/full-stack-development", icon: CommandLineIcon },
-      { title: "PWA Solutions", href: "/coming-soon", icon: DevicePhoneMobileIcon },
+      { title: "Backend Development", href: "/backend-development", icon: ServerIcon },
+      { title: "Full Stack Development", href: "/full-stack-development", icon: CommandLineIcon },
     ]
   },
   {
@@ -134,7 +137,6 @@ export const navItems = [
         title: "Finance & Banking",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Neo-Banking", href: "/coming-soon", desc: "Next-gen digital banking solutions", icon: CurrencyRupeeIcon },
           { title: "Fintech Softwares", href: "/fintech-software-development-company", desc: "Comprehensive financial tech", icon: CreditCardIcon },
         ]
       },
@@ -143,8 +145,8 @@ export const navItems = [
         color: "bg-orange-100 text-orange-800",
         items: [
           { title: "E-commerce Software", href: "/ecommerce-software-development", desc: "Robust online store platforms", icon: ShoppingBagIcon },
-          { title: "Grocery Software", href: "/grocery-software", desc: "Delivery & management systems", icon: ShoppingBagIcon },
-          { title: "Food Delivery Software", href: "/coming-soon", desc: "Order tracking & logistics", icon: CakeIcon },
+          // { title: "Grocery Software", href: "/grocery-software", desc: "Delivery & management systems", icon: ShoppingBagIcon },
+          // { title: "Food Delivery Software", href: "/coming-soon", desc: "Order tracking & logistics", icon: CakeIcon },
         ]
       },
       {
@@ -159,9 +161,10 @@ export const navItems = [
         title: "Education",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "School Management", href: "/coming-soon", desc: "Streamlined administration", icon: AcademicCapIcon },
-          { title: "Online Education", href: "/coming-soon", desc: "Virtual classrooms & LMS", icon: AcademicCapIcon },
-          { title: "Learning Management", href: "/coming-soon", desc: "Course delivery platforms", icon: AcademicCapIcon }
+          { title: "Education Software", href: "/education-software-development", desc: "Streamlined administration", icon: AcademicCapIcon },
+          // { title: "School Management", href: "/coming-soon", desc: "Streamlined administration", icon: AcademicCapIcon },
+          // { title: "Online Education", href: "/coming-soon", desc: "Virtual classrooms & LMS", icon: AcademicCapIcon },
+          // { title: "Learning Management", href: "/coming-soon", desc: "Course delivery platforms", icon: AcademicCapIcon }
         ]
       },
       {
@@ -190,7 +193,7 @@ export const navItems = [
         title: "Human Resources",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Employee Tracking", href: "/coming-soon", desc: "Monitor workforce efficiency", icon: UserGroupIcon },
+          // { title: "Employee Tracking", href: "/coming-soon", desc: "Monitor workforce efficiency", icon: UserGroupIcon },
           { title: "HRMS Software", href: "/human-resource-management-software-development", desc: "Complete HR management", icon: BriefcaseIcon },
         ]
       },
@@ -229,7 +232,7 @@ export const navItems = [
         color: "bg-orange-100 text-orange-800",
         items: [
           { title: "Customized Software", href: "/custom-software-development-services", desc: "Tailored IT solutions", icon: CommandLineIcon },
-          { title: "Cab Booking", href: "/coming-soon", desc: "Taxi dispatch system", icon: TruckIcon },
+          // { title: "Cab Booking", href: "/coming-soon", desc: "Taxi dispatch system", icon: TruckIcon },
         ]
       },
     ],

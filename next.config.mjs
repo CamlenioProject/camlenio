@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  allowedDevOrigins: ["http://localhost:3000", "http://192.168.1.3:3000"],
+  allowedDevOrigins: ["http://localhost:3000", "http://192.168.1.7:3000"],
   async redirects() {
     return [
       {

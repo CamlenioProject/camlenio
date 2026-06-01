@@ -1,10 +1,10 @@
 import React from "react";
-import { 
-  Smartphone, 
-  Globe, 
-  ShoppingBag, 
-  Palette, 
-  Megaphone 
+import {
+  Smartphone,
+  Globe,
+  ShoppingBag,
+  Palette,
+  Megaphone
 } from "lucide-react";
 
 export const devServicesData = {
@@ -88,7 +88,7 @@ export const itSolutionData = {
     title: "Your trusted",
     titleAccent: "Mobile App Development",
     titleSuffix: "Company in India",
-    description: "The Camlenio is the top leading Mobile App Development Company in India, it delivers high-performance digital solutions for beginners, SMEs and enterprises. Here, Camelino Custom Development Company in India is a trustworthy software development company with several years of experience. As our expert team supports the business with smooth solutions, increases consumer engagement and levels quickly via innovative technology.\n\nAs the global spending on business software crossed the USD 856B in 2024. Also, proving how essential custom digital operations have become for advanced companies. Align with the growing needs by providing secure and focused business software solutions customised to the real-world demands."
+    description: "The Camlenio is the top leading Mobile App Development Company in India, it delivers high-performance digital solutions for beginners, SMEs and enterprises. Here, Camelino Custom Development Company in India is a trustworthy software development company with several years of experience. As our expert team supports the business with smooth solutions, increases consumer engagement and levels quickly via innovative technology. Also, proving how essential custom digital operations have become for advanced companies. Align with the growing needs by providing secure and focused business software solutions customised to the real-world demands."
   },
   stats: [
     { label: "We're epic since", value: 2022, type: "year" },
