@@ -55,8 +55,9 @@ export const availablePages = [
   "/hybrid-app-development",
   "/on-demand-app-development",
   "/backend-development",
-  // "/full-stack-development",
-  "/ui-ux-designing",
+  "/full-stack-development",
+  "/logo-graphic-design",
+  // "/digital-marketing",
   "/billing-software",
   "/testimonials",
   "/blog",
@@ -90,12 +91,13 @@ export const servicesMenuData = [
   {
     title: "Logo & Graphic Designing",
     image: "/header/logo-graphic-designing.png",
-    href: "/ui-ux-designing",
+    href: "/logo-graphic-design",
     items: []
   },
   {
     title: "Digital Marketing",
     image: "/header/fintech-software.jpg",
+    // href: "/digital-marketing",
     href: "/coming-soon",
     items: []
   },

@@ -1,5 +1,6 @@
 import Hero from "./components/hero";
 import FsDevServices from "./components/fsdev-service";
+import CompleteServices from "./components/complete-services";
 import Developers from "./components/developers";
 import WhyCamlenio from "./components/why-camlenio";
 import CTA from "@/app/components/cta";
@@ -14,6 +15,7 @@ export default function FullStackDevelopmentPage() {
     <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 overflow-hidden">
       <Hero />
       <FsDevServices />
+      <CompleteServices />
       <Developers />
       <WhyCamlenio />
       <div id="cta-section">

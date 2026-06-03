@@ -3,10 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { 
-  Activity, 
-  ShieldCheck, 
-  CircleDollarSign, 
+import {
+  Activity,
+  ShieldCheck,
+  CircleDollarSign,
   Users,
   ArrowRight
 } from "lucide-react";
@@ -20,7 +20,7 @@ export default function WhyCamlenio() {
   ];
 
   return (
-    <section 
+    <section
       className="relative w-full py-24 bg-transparent overflow-hidden"
       style={{ transform: "translateZ(0)" }}
     >
@@ -30,7 +30,7 @@ export default function WhyCamlenio() {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* ========================================================================= */}
           {/* --- LEFT COLUMN: WORKSPACE GRAPHIC (col-span-5) --- */}
           {/* ========================================================================= */}
@@ -39,6 +39,7 @@ export default function WhyCamlenio() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{ transform: "translateZ(0)", willChange: "transform" }}
             className="lg:col-span-5 relative w-full flex items-center justify-center"
           >
             {/* Visual background aura */}
@@ -46,14 +47,13 @@ export default function WhyCamlenio() {
 
             <div className="relative w-full aspect-[0.9] sm:aspect-[1.1] lg:aspect-[0.85/1] rounded-[32px] overflow-hidden shadow-[0_20px_50px_-20px_rgba(0,0,0,0.06)] border border-slate-100/40">
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 via-transparent to-transparent z-10 pointer-events-none" />
-              
+
               <Image
                 src="/ServiceDropdown/fullstackdev/fullstack.webp"
                 alt="Full Stack Workspace Capability"
                 fill
                 className="object-cover transform hover:scale-102 transition-transform duration-700"
-                priority
-                unoptimized
+                sizes="(max-width: 1024px) 100vw, 500px"
               />
             </div>
           </motion.div>
@@ -66,14 +66,14 @@ export default function WhyCamlenio() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="lg:col-span-7 bg-white/80 backdrop-blur-md border border-slate-100/90 rounded-[40px] p-8 md:p-12 shadow-[0_20px_50px_-25px_rgba(249,115,22,0.05)] flex flex-col justify-between"
+            className="lg:col-span-7 bg-white/80 backdrop-blur-md border border-slate-100/90 rounded-[32px] p-6 md:p-8 flex flex-col justify-between"
             style={{ transform: "translateZ(0)" }}
           >
             <div>
-              <h2 className="text-2xl sm:text-[34px] font-black text-gray-900 leading-tight tracking-tight mb-6">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
                 Why Choose Us As a <br />
-                <span 
-                  className="text-orange-500 inline-block mt-1" 
+                <span
+                  className="text-orange-500 inline-block mt-1"
                   style={{
                     textShadow: "-1px -1px 0px #da5f00, 2px 2px 0px #fff, 3px 4px 0px #ff582336"
                   }}
@@ -82,24 +82,24 @@ export default function WhyCamlenio() {
                 </span>
               </h2>
 
-              <p className="text-slate-500 font-semibold text-xs sm:text-sm leading-relaxed mb-8 text-justify">
+              <p className="text-sm md:text-base font-sans text-justify mb-5 text-slate-500">
                 Camlenio stands out as a trustworthy Full Stack Web Development Company India, providing complete End to End Development Services. Our experts merge technical expertise with industry features to provide high-performance applications. Reasons to choose Camlenio:
               </p>
             </div>
 
             {/* Checklist styled as premium horizontal reason bars */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2.5">
               {reasons.map((reason, idx) => {
                 const Icon = reason.icon;
                 return (
-                  <div 
+                  <div
                     key={idx}
-                    className="group flex items-center gap-4 p-4 bg-slate-50/40 hover:bg-white rounded-2xl border border-slate-100/60 hover:border-slate-200/60 shadow-3xs hover:shadow-2xs transition-all duration-300 cursor-pointer"
+                    className="group flex items-center gap-3 p-3 bg-slate-50/40 hover:bg-white rounded-xl border border-slate-100/60 hover:border-slate-200/60 shadow-3xs hover:shadow-2xs transition-all duration-300 cursor-pointer"
                   >
-                    <div className={`p-2.5 rounded-xl border ${reason.color} flex items-center justify-center shadow-3xs group-hover:scale-105 transition-transform duration-300`}>
-                      <Icon className="w-4.5 h-4.5" />
+                    <div className={`p-2 rounded-lg border ${reason.color} flex items-center justify-center shadow-3xs group-hover:scale-105 transition-transform duration-300`}>
+                      <Icon className="w-4 h-4" />
                     </div>
-                    
+
                     <div className="flex-1 flex items-center justify-between gap-4">
                       <span className="text-xs sm:text-sm font-black text-slate-700 group-hover:text-slate-900 transition-colors">
                         {reason.title}

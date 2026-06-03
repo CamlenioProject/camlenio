@@ -73,7 +73,7 @@ const ItSolution: FC<{ isAnimated?: boolean }> = ({ isAnimated = false }) => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: true }}
-            className="max-w-5xl mx-auto text-gray-700 text-sm md:text-base mb-12 font-sans text-justify"
+            className="max-w-5xl mx-auto text-gray-700 text-sm md:text-base font-sans text-justify mb-12"
           >
             {itSolutionData.header.description}
           </m.p>

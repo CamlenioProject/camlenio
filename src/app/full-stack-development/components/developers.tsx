@@ -51,13 +51,20 @@ export default function Developers() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
           {/* Left Column (Copy and Title) */}
-          <div className="lg:col-span-5 flex flex-col items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            style={{ transform: "translateZ(0)", willChange: "transform" }}
+            className="lg:col-span-5 flex flex-col items-start"
+          >
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-orange-100/80 rounded-full text-[10px] font-bold text-orange-600 tracking-wide uppercase shadow-3xs mb-6">
               <Sparkles className="w-3.5 h-3.5 text-orange-500" />
               Offshore Talent
             </div>
 
-            <h3 className="text-2xl sm:text-[34px] font-black text-gray-900 leading-tight tracking-tight mb-6">
+            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-6">
               Hire Full Stack Developers <br />
               <span
                 className="text-orange-500 inline-block mt-1"
@@ -69,42 +76,46 @@ export default function Developers() {
               </span>
             </h3>
 
-            <p className="text-slate-500 font-semibold text-xs sm:text-sm leading-relaxed text-justify mb-8 max-w-lg">
+            <p className="text-sm md:text-base font-sans text-justify text-slate-500 mb-8 max-w-lg">
               Are you looking to build smart applications? You can hire Full Stack Developers from Camlenio who are experienced with frameworks. If you need to hire dedicated developers India and work with an Offshore Development Company India, we offer cost-effective and high-quality solutions.
             </p>
 
             <div className="flex items-center gap-2 px-4 py-2 bg-orange-50/50 rounded-2xl border border-orange-100/40 text-[10px] font-extrabold text-orange-600 uppercase tracking-widest">
               <span>Framework Experts Available</span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column (2x2 Skill Bento Grid) */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
-            {skills.map((skill, idx) => {
-              const Icon = skill.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.08 }}
-                  className="group relative bg-white/70 hover:bg-white border border-slate-100 hover:border-orange-100 rounded-3xl p-6 shadow-3xs hover:shadow-2xs transition-all duration-300 flex flex-col justify-between"
-                  style={{ transform: "translateZ(0)" }}
-                >
-                  <div className="flex items-center justify-between mb-5">
-                    <div className={`p-2.5 rounded-xl border ${skill.bg} flex items-center justify-center shadow-3xs group-hover:scale-105 transition-transform duration-300`}>
-                      <Icon className="w-5 h-5 animate-pulse" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            style={{ transform: "translateZ(0)", willChange: "transform" }}
+            className="lg:col-span-7 w-full"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
+              {skills.map((skill, idx) => {
+                const Icon = skill.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="group relative bg-white/70 hover:bg-white border border-slate-100 hover:border-orange-100 rounded-3xl p-6 shadow-3xs hover:shadow-2xs transition-all duration-300 flex flex-col justify-between"
+                  >
+                    <div className="flex items-center justify-between mb-5">
+                      <div className={`p-2.5 rounded-xl border ${skill.bg} flex items-center justify-center shadow-3xs group-hover:scale-105 transition-transform duration-300`}>
+                        <Icon className="w-5 h-5 animate-pulse" />
+                      </div>
+                      <CheckCircle2 className="w-4 h-4 text-orange-400 opacity-20 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <CheckCircle2 className="w-4 h-4 text-orange-400 opacity-20 group-hover:opacity-100 transition-opacity" />
+                    <h4 className="text-xs sm:text-sm font-black text-slate-700 group-hover:text-slate-900 transition-colors leading-snug">
+                      {skill.name}
+                    </h4>
                   </div>
-                  <h4 className="text-xs sm:text-sm font-black text-slate-700 group-hover:text-slate-900 transition-colors leading-snug">
-                    {skill.name}
-                  </h4>
-                </motion.div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          </motion.div>
 
         </div>
 
@@ -117,7 +128,7 @@ export default function Developers() {
               Sector Mastery
             </span>
 
-            <h3 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight mb-4 tracking-tight">
+            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-4 tracking-tight">
               Full Stack Application <span
                 className="text-orange-500 inline-block"
                 style={{
@@ -128,23 +139,25 @@ export default function Developers() {
               </span>
             </h3>
 
-            <p className="text-slate-500 font-semibold text-xs sm:text-sm leading-relaxed max-w-4xl text-justify">
+            <p className="text-sm md:text-base font-sans text-justify text-slate-500 max-w-4xl">
               As an experienced Full Stack Software Development Company offers customized Full Stack Application Development solutions for industries such as healthcare, eCommerce, fintech, and logistics. Our expertise focuses on making Database Driven Application Development platforms that guarantee data security and efficiency. We provide:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            style={{ transform: "translateZ(0)", willChange: "transform" }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
+          >
             {services.map((spec, index) => {
               const IconComp = spec.icon;
               return (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.08 }}
                   className={`group relative ${spec.color} border rounded-[28px] p-6 shadow-3xs hover:shadow-2xs transition-all duration-300 flex flex-col justify-between min-h-[160px]`}
-                  style={{ transform: "translateZ(0)" }}
                 >
                   <div className="flex items-center justify-between mb-6">
                     <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-3xs border border-white/60">
@@ -156,22 +169,23 @@ export default function Developers() {
                   <h4 className="text-xs sm:text-sm font-black text-slate-800 leading-snug">
                     {spec.name}
                   </h4>
-                </motion.div>
+                </div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
 
         {/* ========================================================================= */}
         {/* --- PART 3: ADVANCED TECHNOLOGY (Split Banner Card) --- */}
         {/* ========================================================================= */}
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
+          style={{ transform: "translateZ(0)", willChange: "transform" }}
           className="relative bg-white/70 backdrop-blur-md border border-slate-100 rounded-[32px] shadow-[0_20px_50px_-25px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col md:flex-row items-stretch"
-          style={{ transform: "translateZ(0)" }}
         >
           {/* Left Side: Dynamic API Connector Diagram (35% width) */}
           <div className="w-full md:w-[35%] bg-orange-500/5 border-b md:border-b-0 md:border-r border-slate-100/80 p-8 flex flex-col justify-between relative overflow-hidden select-none">
@@ -220,7 +234,7 @@ export default function Developers() {
               Advanced Technology
             </span>
 
-            <h3 className="text-xl sm:text-2xl font-black text-gray-900 mb-4 tracking-tight leading-tight">
+            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 tracking-tight leading-tight">
               Advanced Technology & <span
                 className="text-orange-500 inline-block"
                 style={{
@@ -231,7 +245,7 @@ export default function Developers() {
               </span>
             </h3>
 
-            <p className="text-slate-500 font-semibold text-xs sm:text-sm leading-relaxed text-justify">
+            <p className="text-sm md:text-base font-sans text-justify text-slate-500">
               Our Full Stack Development Solutions involve seamless API Integration Services that enable ease of communication between systems. We also emphasize intuitive design by expert UI UX Development Services, guaranteeing a user-friendly experience. Our strong focus on creation builds future-rich applications that help business development and digital transformation.
             </p>
           </div>

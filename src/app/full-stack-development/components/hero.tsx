@@ -123,7 +123,7 @@ export default function Hero() {
                 mass: 1.8,
                 delay: 0.4,
               }}
-              style={{ transformStyle: "preserve-3d" }}
+              style={{ transformStyle: "preserve-3d", transform: "translateZ(0)", willChange: "transform" }}
               className="relative w-full aspect-[4/3] flex items-center justify-center max-w-[320px] sm:max-w-[450px] lg:max-w-[550px]"
             >
               <motion.div
@@ -132,7 +132,7 @@ export default function Hero() {
                   rotateZ: [0, 0.4, 0, -0.4, 0]
                 }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                style={{ transformStyle: "preserve-3d" }}
+                style={{ transformStyle: "preserve-3d", transform: "translateZ(0)", willChange: "transform" }}
                 className="relative w-full h-full flex items-center justify-center"
               >
                 <div className="absolute -bottom-6 -right-10 w-[120%] h-1/2 bg-gradient-to-tr from-orange-100/10 via-white/5 to-transparent blur-2xl md:blur-3xl -z-10 rotate-12" />
@@ -144,7 +144,7 @@ export default function Hero() {
                     fill
                     className="object-cover"
                     priority
-                    unoptimized
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 550px"
                   />
                 </div>
               </motion.div>
