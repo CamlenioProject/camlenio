@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
-export default function MLMIntroSection() {
+export default function CRMIntroSection() {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function MLMIntroSection() {
           <div className="relative bg-orange-50 border border-orange-100 rounded-3xl overflow-hidden">
             <div className="h-2 bg-gradient-to-r from-orange-500 via-rose-500 to-orange-500  " />
 
-            <div className="px-14 py-16 text-center">
+            <div className="px-6 py-12 sm:px-14 sm:py-16 text-center">
               {/* heading */}
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -36,7 +38,7 @@ export default function MLMIntroSection() {
                 transition={{ duration: 0.6 }}
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6"
               >
-                MLM Software Development Company{" "}
+                Your Trusted{" "}
                 <span
                   className="text-orange-500"
                   style={{
@@ -44,7 +46,7 @@ export default function MLMIntroSection() {
                       "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
                   }}
                 >
-                  in Jaipur
+                  CRM Software Development Partner
                 </span>
               </motion.h2>
 
@@ -57,26 +59,21 @@ export default function MLMIntroSection() {
                 className="max-w-5xl mx-auto text-gray-600 text-sm md:text-base mb-12 font-sans text-justify space-y-4"
               >
                 <p>
-                  In today&apos;s competitive direct selling industry, reliable,
-                  feature-rich MLM software is essential for managing
-                  distributors, commissions, referrals, and business growth.{" "}
-                  <span className="font-semibold text-gray-900">Camlenio</span>{" "}
-                  is a top software development company in India offering
-                  creative solutions tailored for beginners, enterprises, and
-                  growing network marketing companies.
+                  We specialize in delivering an advanced Customer Relationship Management (CRM) platform that helps businesses streamline solutions, improve customer engagement, and increase sales. As a top CRM software development company in Jaipur, we understand the growth of your business. If you are a beginner or an enterprise, our solutions are designed to streamline workflows, automate processes, and provide actionable insights.
                 </p>
                 <p>
-                  As an experienced MLM software development company in Jaipur, we offer complete direct selling software development services designed to automate operations and improve efficiency. If you require a binary MLM software, Matrix MLM software, generation MLM software, or unilevel MLM software. Our experienced developers create a secure and scalable system according to your business model.
+                  At the reliable custom CRM software company in India, we develop solutions that align perfectly with your industry requirements
                 </p>
               </motion.div>
 
               {/* feature pills */}
               <div className="flex flex-wrap justify-center gap-3 mb-12">
                 {[
-                  "Binary MLM Software",
-                  "Matrix MLM Software",
-                  "Generation MLM Software",
-                  "Unilevel MLM Software",
+                  "Lead Management",
+                  "Sales Automation",
+                  "Centralized Database",
+                  "Real-Time Analytics",
+                  "Integration Support",
                 ].map((item, i) => (
                   <span
                     key={item}
@@ -97,32 +94,32 @@ export default function MLMIntroSection() {
 
               {/* CTAs */}
               <div className="flex justify-center gap-4">
-                <a
-                  href="/contact"
-                  className="relative overflow-hidden px-8 py-4 rounded-full text-[14px] font-semibold text-white bg-orange-500 transition-all duration-300"
+                <button
+                  onClick={() => router.push("/contact")}
+                  className="relative overflow-hidden px-8 py-4 rounded-full text-[14px] font-semibold text-white bg-orange-500 transition-all duration-300 hover:bg-orange-600"
                 >
-                  Get Started Free
-                </a>
+                  Get A Free Quote
+                </button>
               </div>
 
               {/* stats */}
               <div className="mt-10 pt-10 border-t border-gray-200">
-                <div className="grid grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
                   {[
-                    { v: "500+", l: "Clients" },
-                    { v: "99.9%", l: "Uptime" },
-                    { v: "10M+", l: "Transactions" },
-                    { v: "24/7", l: "Support" },
+                    { v: "32%+", l: "Sales Conversion" },
+                    { v: "99.9%", l: "System Uptime" },
+                    { v: "100%", l: "Data Security" },
+                    { v: "24/7", l: "Support & Maintenance" },
                   ].map((s, i) => (
                     <div
                       key={s.l}
                       className={`transition-all duration-500 ${isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-3"
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-3"
                         }`}
                       style={{ transitionDelay: `${i * 100 + 600}ms` }}
                     >
-                      <div className="text-sm md:text-2xl font-bold bg-gradient-to-r from-orange-500 to-rose-400 bg-clip-text text-transparent">
+                      <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-orange-500 to-rose-400 bg-clip-text text-transparent">
                         {s.v}
                       </div>
                       <div className="text-[13px] text-gray-600 mt-1">

@@ -1,4 +1,8 @@
 import Hero from "./components/hero";
+import BrandTransformation from "./components/brand-transformation";
+import GrowthPartner from "./components/growth-partner";
+import ServicesSection from "./components/services";
+import BenefitsSection from "./components/benefits";
 import CTA from "@/app/components/cta";
 
 export const metadata = {
@@ -11,7 +15,10 @@ export default function DigitalMarketingPage() {
   return (
     <div className="relative bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 overflow-hidden">
       <Hero />
-      
+      <BrandTransformation />
+      <GrowthPartner />
+      <ServicesSection />
+      <BenefitsSection />
       <div id="cta-section">
         <CTA
           title="Your Partner for Digital Success"

@@ -5,15 +5,11 @@ import { LazyMotion, domMax, m, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import {
   FaShoppingCart,
-  FaTshirt,
-  FaLightbulb,
-  FaPalette,
-  FaCogs,
-  FaPlug,
-  FaCode,
-  FaSyncAlt,
   FaMobileAlt,
-  FaUserTie,
+  FaCode,
+  FaChartBar,
+  FaUtensils,
+  FaWallet,
 } from "react-icons/fa";
 import Link from "next/link";
 
@@ -28,72 +24,44 @@ interface Feature {
 const features: Feature[] = [
   {
     id: 1,
-    title: "B2B & B2C Marketplace Development",
-    icon: <FaShoppingCart />,
-    desc: "Build robust multi-vendor marketplaces with advanced dashboards, pricing models, workflows, and seamless UX.",
+    title: "Custom E commerce Website Development",
+    icon: <FaCode />,
+    desc: "Tailor-made e-commerce websites built around your specific business logic, offering premium UI/UX, seamless checkout, and high conversion rates.",
     img: "/ServiceDropdown/ecommercedevelopment/first1.png",
   },
   {
     id: 2,
-    title: "Niche & Fashion Ecommerce Software",
-    icon: <FaTshirt />,
-    desc: "Branded ecommerce platforms with AI search, personalization, and premium UI/UX.",
+    title: "Multi-vendor Marketplace Development",
+    icon: <FaShoppingCart />,
+    desc: "Build robust multi-vendor marketplaces like Amazon or Etsy, featuring advanced vendor portals, commission management, split payments, and unified checkout.",
     img: "/ServiceDropdown/ecommercedevelopment/second2.png",
   },
   {
     id: 3,
-    title: "Ecommerce Consulting & Strategy",
-    icon: <FaLightbulb />,
-    desc: "Data-driven consulting to improve UX, conversions, and long-term growth.",
+    title: "Mobile App Development for Android & iOS",
+    icon: <FaMobileAlt />,
+    desc: "High-performance native or cross-platform mobile shopping apps for Android & iOS, ensuring a mobile-first, seamless shopping experience on the go.",
     img: "/ServiceDropdown/ecommercedevelopment/third3.png",
   },
   {
     id: 4,
-    title: "Ecommerce Website & Web App Design",
-    icon: <FaPalette />,
-    desc: "Conversion-optimized ecommerce interfaces that elevate brand presence.",
+    title: "Admin Dashboard & Analytics Panel",
+    icon: <FaChartBar />,
+    desc: "Comprehensive admin control panel to easily manage products, orders, inventory, customers, and view real-time sales reports and deep business insights.",
     img: "/ServiceDropdown/ecommercedevelopment/fourth4.png",
   },
   {
     id: 5,
-    title: "Custom Ecommerce Software Solutions",
-    icon: <FaCogs />,
-    desc: "Tailor-made ecommerce systems built around your business logic.",
+    title: "Food Delivery Software Development",
+    icon: <FaUtensils />,
+    desc: "Customized food delivery platforms featuring real-time GPS tracking, vendor/restaurant panels, dispatcher dashboards, and integrated messaging/payments.",
     img: "/ServiceDropdown/ecommercedevelopment/fifth5.png",
   },
   {
     id: 6,
-    title: "Ecommerce System Implementation",
-    icon: <FaPlug />,
-    desc: "Integration with payment gateways, CRM, POS, inventory, analytics, and more.",
-    img: "/ServiceDropdown/ecommercedevelopment/sixth6.png",
-  },
-  {
-    id: 7,
-    title: "Frontend & Backend Ecommerce Development",
-    icon: <FaCode />,
-    desc: "Pixel-perfect frontend with secure, scalable backend architecture.",
-    img: "/ServiceDropdown/ecommercedevelopment/sixth6.png",
-  },
-  {
-    id: 8,
-    title: "Maintenance & Migration Services",
-    icon: <FaSyncAlt />,
-    desc: "Migrate, optimize, and future-proof your ecommerce platform.",
-    img: "/ServiceDropdown/ecommercedevelopment/sixth6.png",
-  },
-  {
-    id: 9,
-    title: "Ecommerce Mobile App Development",
-    icon: <FaMobileAlt />,
-    desc: "High-performance mobile shopping apps with secure checkout.",
-    img: "/ServiceDropdown/ecommercedevelopment/sixth6.png",
-  },
-  {
-    id: 10,
-    title: "Hire Dedicated Ecommerce Developers",
-    icon: <FaUserTie />,
-    desc: "Scale faster with dedicated ecommerce experts in your team.",
+    title: "Payment & Wallet Integration",
+    icon: <FaWallet />,
+    desc: "Integrate secure payment gateways (Razorpay, Stripe, PayPal, UPI) and custom digital wallets to ensure frictionless, fast, and secure checkout processes.",
     img: "/ServiceDropdown/ecommercedevelopment/sixth6.png",
   },
 ];
@@ -123,11 +91,11 @@ export default function EcommerceServices() {
               }}
             >
               {" "}
-              Ecommerce{" "}
+              Reliable Service{" "}
             </span>{" "}
-            Development Services{" "}
+            That Helps You {" "}
           </h2>{" "}
-          <p className="max-w-3xl mx-auto text-gray-700 text-sm md:text-base font-sans">
+          <p className="max-w-3xl mx-auto text-gray-700 text-sm md:text-base">
             {" "}
             We provide end-to-end ecommerce software services tailored to your
             unique business goals:{" "}

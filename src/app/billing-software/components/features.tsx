@@ -64,7 +64,7 @@ export function Features() {
               business finances
             </span>
           </h2>
-          <p className="max-w-5xl mx-auto text-gray-600 text-sm md:text-base mb-12 font-sans text-center">
+          <p className="max-w-5xl mx-auto text-gray-600 text-sm md:text-base mb-12 text-center">
             Everything you need to invoice, track, and grow.
           </p>
         </div>

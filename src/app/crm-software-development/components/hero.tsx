@@ -5,10 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContainerScroll } from "../../components/container-scroll-animation";
 import BackgroundRipple from "@/app/components/ui/BackgroundRipple";
-import { BarChart3, Users } from "lucide-react";
+import { BarChart3, Router, Users } from "lucide-react";
 import { Button } from "@/app/components/ui/Button";
+import { useRouter } from "next/navigation";
 
 export default function CrmHero(): React.JSX.Element {
+  const router = useRouter();
   return (
     <section className="relative w-full overflow-hidden">
       {/* BACKGROUND */}
@@ -59,27 +61,23 @@ export default function CrmHero(): React.JSX.Element {
                   "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
               }}
             >
-              CRM Software <br />
+              Custom CRM Software <br />
             </span>
-            Development Company
+            Development Company in Jaipur
           </h1>
 
-          <p className="mx-auto max-w-3xl text-sm md:text-base text-gray-600">
-            As a leading CRM software development company, we specialize in
-            building custom CRM software solutions that streamline operations,
-            improve customer engagement, and increase sales performance.
+          <p className="mx-auto max-w-4xl text-sm md:text-base text-gray-600">
+            Build smarter relationships and boost your growth with Camlenio, as a trusted CRM Software Development Company in Jaipur. We develop performance-based CRM systems tailored to your business requirements. Our software helps companies automate sales operations, manage leads and improve consumer engagement.
           </p>
 
           <div className="flex justify-center pt-1">
-            <Link href="/contact">
-              <Button
-                type="button"
-                size="xl"
-                className="text-sm" // preserving original text size preference if important, or remove to use default
-              >
-                Get Started
-              </Button>
-            </Link>
+            <Button
+              size="xl"
+              onClick={() => router.push(`/contact`)}
+              className="w-full sm:w-auto"
+            >
+              Get Started
+            </Button>
           </div>
         </div>
 

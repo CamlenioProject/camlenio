@@ -31,56 +31,45 @@ const MLMPlansFeatures = () => {
   const features = [
     {
       icon: <Shield className="w-6 h-6" />,
-      title: "Secure & Scalable Architecture",
+      title: "Fully Customizable MLM Software Solutions",
       description:
-        "Built with advanced security standards and scalable infrastructure.",
+        "We build completely customizable MLM platforms tailored to your specific business model, compensation plan, and growth requirements.",
       gradient: "from-blue-500 to-cyan-500",
     },
     {
       icon: <BarChart3 className="w-6 h-6" />,
-      title: "Real-Time Reports & Analytics",
+      title: "Secure and Scalable Cloud-Based Architecture",
       description:
-        "Live dashboards for income, growth, performance, and payouts.",
+        "Our MLM software is built on a secure, cloud-based infrastructure that scales seamlessly as your network grows.",
       gradient: "from-purple-500 to-pink-500",
     },
     {
       icon: <Calculator className="w-6 h-6" />,
-      title: "Automated Commission Calculation",
+      title: "Automated Commission and Payout Management",
       description:
-        "Accurate and instant commission calculation based on plan logic.",
+        "Automatically calculate commissions and process payouts based on your compensation plan logic — error-free and on time.",
       gradient: "from-orange-500 to-red-500",
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Distributor Management",
+      title: "Multi-Level Referral Tracking System",
       description:
-        "Manage users, genealogy trees, ranks, and downlines effortlessly.",
+        "Track referrals across multiple levels in real-time with a powerful genealogy tree and distributor management system.",
       gradient: "from-green-500 to-emerald-500",
     },
     {
-      icon: <Wallet className="w-6 h-6" />,
-      title: "E-Wallet & Payout Management",
-      description: "Multiple wallet support with automated payout processing.",
+      icon: <Globe className="w-6 h-6" />,
+      title: "SEO Friendly and Secure MLM Websites",
+      description:
+        "We develop fast, SEO-optimized, and secure MLM websites that help your business rank online and attract new distributors.",
       gradient: "from-yellow-500 to-orange-500",
     },
     {
       icon: <Smartphone className="w-6 h-6" />,
-      title: "Mobile-Friendly Interface",
-      description: "Fully responsive design for web and mobile devices.",
-      gradient: "from-indigo-500 to-blue-500",
-    },
-    {
-      icon: <Globe className="w-6 h-6" />,
-      title: "Multi-Currency & Multi-Language Support",
-      description: "Ideal for global MLM businesses.",
-      gradient: "from-teal-500 to-cyan-500",
-    },
-    {
-      icon: <MdPayment className="w-6 h-6" />,
-      title: "Easy API & Payment Integration",
+      title: "Mobile Friendly and Responsive Design",
       description:
-        "Integrate payment gateways, KYC, SMS, email, and third-party APIs.",
-      gradient: "from-teal-500 to-cyan-500",
+        "All our MLM platforms are fully responsive and mobile-friendly, ensuring a smooth experience across all devices.",
+      gradient: "from-indigo-500 to-blue-500",
     },
   ];
 
@@ -163,8 +152,8 @@ const MLMPlansFeatures = () => {
                 <div className="flex items-center gap-3">
                   <CheckCircle2
                     className={`w-5 h-5 transition-colors duration-300 ${hoveredPlan === index
-                        ? "text-orange-600"
-                        : "text-orange-500"
+                      ? "text-orange-600"
+                      : "text-orange-500"
                       }`}
                   />
                   <span className="text-sm sm:text-base font-semibold text-gray-800">
@@ -190,7 +179,7 @@ const MLMPlansFeatures = () => {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
           >
-            Key Features of Our{" "}
+            Camlenio MLM Software{" "}
             <span
               className="text-orange-500"
               style={{
@@ -198,7 +187,7 @@ const MLMPlansFeatures = () => {
                   "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
               }}
             >
-              MLM Software
+              Solutions Benefits
             </span>
           </motion.h2>
 
@@ -209,8 +198,7 @@ const MLMPlansFeatures = () => {
             viewport={{ once: true }}
             className="max-w-5xl mx-auto text-gray-700 text-sm md:text-base mb-12 font-sans text-center"
           >
-            Powerful features designed to streamline your MLM business
-            operations
+            We develop reliable multi-level marketing software solutions that benefit your business. Here are the benefits of software
           </motion.p>
         </div>
 
@@ -232,7 +220,7 @@ const MLMPlansFeatures = () => {
                   transition: { duration: 0.4, ease: "easeOut" },
                 },
               }}
-              className="bg-orange-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md p-6 sm:p-6 transition-all duration-300 group"
+              className="bg-orange-50 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md p-6 sm:p-6 transition-all duration-300 group"
             >
               <div className="flex items-start gap-4">
                 {/* ICON */}

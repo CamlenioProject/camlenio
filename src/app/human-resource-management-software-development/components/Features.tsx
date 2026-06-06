@@ -6,44 +6,34 @@ import { gsap } from "gsap";
 
 const services = [
   {
-    title: "Employee Self-Service Portal",
+    title: "Streamlined HR Operations",
     description:
-      "Our HR Management Software includes a user-friendly Employee Self-Service (ESS) portal that empowers employees to manage their own HR-related tasks. Employees can easily view and update personal details, check attendance, access important HR documents anytime, anywhere.",
+      "Our HRMS software can handle your daily HR tasks, payroll, leave acceptance, employee attendance, records, and more.",
   },
   {
-    title: "Role-Based Access Control",
+    title: "Correct Payroll Process",
     description:
-      "The system provides advanced role-based access control to ensure data security and confidentiality. Access rights are assigned based on user roles such as Admin, HR Manager, Team Lead, and Employee.",
+      "We develop HR software with payroll smart features that minimise calculator errors and save time.",
   },
   {
-    title: "Real-Time HR Reports & Analytics",
+    title: "Enhance Employee Management",
     description:
-      "Gain valuable insights with real-time HR reports and analytics. The system offers comprehensive dashboards and customizable reports for attendance, payroll, employee performance, attrition, and compliance.",
+      "Our employee management software helps your business organise your workforce efficiently with data.",
   },
   {
-    title: "Automated Workflows & Approvals",
+    title: "Better Workforce Productivity",
     description:
-      "Our software automates HR workflows such as leave requests, attendance corrections, reimbursements, onboarding, and exit processes. Approval hierarchies can be customized according to company structure, ensuring faster decision-making, reduced paperwork, and elimination of manual errors.",
+      "The software can easily track the workers' performance and productivity on a single dashboard.",
   },
   {
-    title: "Multi-Branch & Multi-Location Support",
+    title: "Improve Data Security",
     description:
-      "Designed for growing organizations, the system supports multiple branches and locations from a single centralized platform. HR teams can manage employees across different offices, regions, or cities while maintaining branch-specific policies, shifts, holidays, and reporting structures.",
+      "Our custom HRMS software development guarantees secure employee data storage and access control.",
   },
   {
-    title: "Secure Document Management",
+    title: "Attendance Tracking & Leave Approvals",
     description:
-      "The HR Management Software includes a secure document management system to store and manage employee documents such as offer letters, ID proofs, contracts, appraisals, and policy documents.",
-  },
-  {
-    title: "Cloud-Based & On-Premise Deployment",
-    description:
-      "Camlenio Software offers flexible deployment options to suit your business needs. Choose a cloud-based solution for easy access, scalability, and minimal infrastructure, or an on-premise deployment for enhanced control and compliance.",
-  },
-  {
-    title: "Integration with Biometric & Payroll Systems",
-    description:
-      "Our HR software seamlessly integrates with biometric devices for accurate attendance tracking and links directly with payroll systems. This ensures error-free salary calculations based on real attendance data, overtime, and leave policies, reducing manual effort and payroll discrepancies.",
+      "It integrated attendance management software and leave management systems to streamline workforce tracking.",
   },
 ];
 
@@ -92,6 +82,7 @@ export default function HRMSFeatures() {
             className="text-center mb-14"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">
+              Benefits of Hiring an{" "}
               <span
                 className="text-orange-500"
                 style={{
@@ -99,9 +90,9 @@ export default function HRMSFeatures() {
                     "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
                 }}
               >
-                Key Features{" "}
+                HRMS Software{" "}
               </span>
-              of Our HRMS
+              Development Company
             </h2>
           </m.div>
 

@@ -38,8 +38,8 @@ import {
 
 export const availablePages = [
   "/frontend-development",
-  "/web-development",
-  "/custom-software-development-services",
+  "/custom-software-development",
+  // "/custom-software-development-services",
   "/crm-software-development",
   "/ecommerce-software-development",
   // "/grocery-software",
@@ -57,8 +57,9 @@ export const availablePages = [
   "/backend-development",
   "/full-stack-development",
   "/logo-graphic-design",
-  // "/digital-marketing",
+  "/digital-marketing",
   "/billing-software",
+  "/healthcare-software-development",
   "/testimonials",
   "/blog",
   "/about",
@@ -82,7 +83,7 @@ export const servicesMenuData = [
   {
     title: "Custom Web Development",
     items: [
-      { title: "Web Application Development", href: "/web-development", icon: GlobeAltIcon },
+      { title: "Custom Software Development", href: "/custom-software-development", icon: GlobeAltIcon },
       { title: "Frontend Development", href: "/frontend-development", icon: CodeBracketIcon },
       { title: "Backend Development", href: "/backend-development", icon: ServerIcon },
       { title: "Full Stack Development", href: "/full-stack-development", icon: CommandLineIcon },
@@ -97,8 +98,7 @@ export const servicesMenuData = [
   {
     title: "Digital Marketing",
     image: "/header/fintech-software.jpg",
-    // href: "/digital-marketing",
-    href: "/coming-soon",
+    href: "/digital-marketing",
     items: []
   },
   {
@@ -155,7 +155,7 @@ export const navItems = [
         title: "Healthcare",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Healthcare Software", href: "/coming-soon", desc: "Patient management systems", icon: UserGroupIcon },
+          { title: "Healthcare Software", href: "/healthcare-software-development", desc: "Patient management systems", icon: UserGroupIcon },
           { title: "ART Banking Software", href: "/coming-soon", desc: "Specialized fertility tools", icon: UserGroupIcon }
         ]
       },
@@ -229,14 +229,14 @@ export const navItems = [
           { title: "Restaurant Management", href: "/coming-soon", desc: "POS & kitchen mgmt", icon: ShoppingBagIcon },
         ]
       },
-      {
-        title: "Software & Transport",
-        color: "bg-orange-100 text-orange-800",
-        items: [
-          { title: "Customized Software", href: "/custom-software-development-services", desc: "Tailored IT solutions", icon: CommandLineIcon },
-          // { title: "Cab Booking", href: "/coming-soon", desc: "Taxi dispatch system", icon: TruckIcon },
-        ]
-      },
+      // {
+      //   title: "Software & Transport",
+      //   color: "bg-orange-100 text-orange-800",
+      //   items: [
+      //     { title: "Customized Software", href: "/custom-software-development-services", desc: "Tailored IT solutions", icon: CommandLineIcon },
+      //     { title: "Cab Booking", href: "/coming-soon", desc: "Taxi dispatch system", icon: TruckIcon },
+      //   ]
+      // },
     ],
   },
 

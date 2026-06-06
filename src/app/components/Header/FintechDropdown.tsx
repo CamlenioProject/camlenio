@@ -1,12 +1,10 @@
 "use client";
 
-import React from "react";
 import { IndustryGroup } from "./IndustryGroup";
 
 export const FintechDropdown = ({ item, baseHref }: { item: any; baseHref: string }) => {
-  const row1 = [item.items[0], item.items[1], item.items[3]];
-  const row2 = [item.items[2], item.items[4], item.items[5]];
-
+  const row1 = [item.items[0], item.items[1], item.items[3]].filter(Boolean);
+  const row2 = [item.items[2], item.items[4], item.items[5]].filter(Boolean);
   return (
     <div className="flex w-[95vw] max-w-[1240px] bg-orange-50/95 backdrop-blur-2xl rounded-b-3xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(249,115,22,0.15),0_0_0_1px_rgba(249,115,22,0.1)] p-8 mx-auto border border-orange-100/50 ring-1 ring-orange-100/50">
       <div className="flex flex-col gap-8 w-full">

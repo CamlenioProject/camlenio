@@ -7,8 +7,11 @@ import { motion } from "framer-motion";
 import { cn } from "../../../../lib/utils";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@/app/components/ui/Button";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
+  const router = useRouter();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const taglineRef = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -266,19 +269,17 @@ export default function Hero() {
             ref={subtitleRef}
             className="max-w-[50rem] mx-auto text-gray-600 text-sm md:text-base mb-12 font-medium font-sans text-center"
           >
-            Camlenio Software Pvt. Ltd. is a leading ecommerce software
-            development company that helps businesses build powerful,
-            feature-rich, and fully customized ecommerce solutions. With our
-            expertise, your business can grow, scale, and accelerate faster in
-            today’s competitive digital marketplace.
+            Transform your business with secure, high-performing e commerce platforms. Camlenio provides e commerce software development services in Jaipur, offering customised solutions to maximise conversions and streamline operations.
           </p>
 
           <div ref={buttonsRef} className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact">
-              <button className="bg-orange-500 hover:bg-orange-600 text-white  px-8 py-3.5 rounded-xl font-semibold flex items-center gap-2 transition-all duration-300 hover:scale-[1.03]">
-                Get Started <ArrowRight size={18} />
-              </button>
-            </Link>
+            <Button
+              size="xl"
+              onClick={() => router.push("/contact")}
+              className="w-full sm:w-auto"
+            >
+              Get Started <ArrowRight size={18} />
+            </Button>
           </div>
         </div>
       </section>

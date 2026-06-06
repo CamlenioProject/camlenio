@@ -7,6 +7,7 @@ import FAQSection from "./components/faq-section";
 import Features from "./components/Features";
 import Process from "./components/process";
 import IndustriesWeServe from "./components/IndustriesWeServe";
+import WhyTrustUs from "./components/why-trust-us";
 import CTA from "@/app/components/cta";
 
 export default function HrmsSoftware() {
@@ -18,12 +19,13 @@ export default function HrmsSoftware() {
       <Features />
       <Process />
       <IndustriesWeServe />
+      <WhyTrustUs />
       <FAQSection />
       <CTA
         title={"Transform Your HR Operations Today"}
         highlightedTitle={"Transform"}
         subtitle={
-          "Looking to automate and optimize your HR processes?.Contact Camlenio Software Pvt. Ltd. for a free HRMS consultation and demo."
+          "Looking for a professional HR Software development company Jaipur businesses recommend? Camlenio offers a powerful and customized HRMS software solution designed to simplify employee management and payroll processes. Contact us today!"
         }
         buttontext={"Book A Free Demo"}
       />

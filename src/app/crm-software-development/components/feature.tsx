@@ -6,33 +6,33 @@ import { useState, useEffect } from "react";
 
 const content = [
   {
-    title: "Custom CRM Software Development",
+    title: " Custom CRM Development",
     description:
-      "Fully customized CRM platforms designed to manage leads, customers, sales pipelines, and support processes.",
+      "We offer customized CRM software developed according to your business processes and goals.",
     imageSrc: "/ServiceDropdown/crmsoftware/crm-setup.webp",
   },
   {
-    title: "Cloud-Based CRM Development",
+    title: "Sales CRM Software Development",
     description:
-      "Secure, high-performance CRM solutions hosted on cloud infrastructure for easy access and scalability.",
+      "This platform automates sales funnels, lead tracking, follow-ups, and customer interactions with our advanced CRM systems.",
     imageSrc: "/ServiceDropdown/crmsoftware/sales-automation.webp",
   },
   {
-    title: "Web & Mobile CRM Application Development",
+    title: "SaaS CRM Software Development",
     description:
-      "Responsive web CRM and mobile CRM apps for sales teams, managers, and customer support teams.",
+      "We develop scalable SaaS based CRM platforms with subscription management and cloud hosting features.",
     imageSrc: "/ServiceDropdown/crmsoftware/data-analytics.webp",
   },
   {
-    title: "Sales & Marketing Automation CRM",
+    title: "Lead Management Software Development",
     description:
-      "Automate lead tracking, follow-ups, campaigns, and customer journeys using intelligent CRM workflows.",
+      "This platform manages, tracks, and converts leads with intelligent lead automation tools.",
     imageSrc: "/ServiceDropdown/crmsoftware/third-party-integrations.webp",
   },
   {
-    title: "CRM Integration Services",
+    title: "Industry Specific CRM Solutions",
     description:
-      "Integrate your CRM with payment gateways, ERP systems, accounting tools, email platforms, and third-party APIs.",
+      "Integrate your CRM with payment gateways, ERP systems, accounting tools, email platforms, and third-party APIsWe provide real estate CRM Software Development, healthcare CRM software development, and customized solutions for m multiple industries.",
     imageSrc: "/ServiceDropdown/crmsoftware/crm-integration.webp",
   },
   {
@@ -42,9 +42,9 @@ const content = [
     imageSrc: "/ServiceDropdown/crmsoftware/crm-upgrade-services.webp",
   },
   {
-    title: "CRM Support & Maintenance",
+    title: "CRM Mobile App Development",
     description:
-      "Ongoing CRM optimization, performance monitoring, and feature enhancements.",
+      "You can access your CRM platform anytime with high-performance mobile applications for Android and iOS.",
     imageSrc: "/ServiceDropdown/crmsoftware/crm-support .webp",
   },
 ];
@@ -74,7 +74,7 @@ function MobileContentCarousel() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
         </div>
-        
+
         <div className="p-6">
           <h3 className="text-xl font-bold text-gray-900 mb-3">
             {content[currentIndex].title}
@@ -82,23 +82,22 @@ function MobileContentCarousel() {
           <p className="text-gray-600 text-sm leading-relaxed">
             {content[currentIndex].description}
           </p>
-          
+
           <div className="flex items-center justify-between mt-6">
             <div className="flex space-x-2">
               {content.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex 
-                      ? 'bg-orange-500 w-6' 
-                      : 'bg-gray-300'
-                  }`}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
+                    ? 'bg-orange-500 w-6'
+                    : 'bg-gray-300'
+                    }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>
-            
+
             <div className="flex space-x-3">
               <button
                 onClick={prevSlide}
@@ -133,10 +132,10 @@ export default function Features() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
@@ -152,7 +151,7 @@ export default function Features() {
           viewport={{ once: true, margin: "-50px" }}
           className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-2"
         >
-          Our CRM Software{" "}
+          Our  {" "}
           <span
             className="text-orange-500 inline-block"
             style={{
@@ -160,8 +159,9 @@ export default function Features() {
                 "-0.5px -0.5px 0px #da5f00, 2px 2px 0px #fff, 3px 4px 0px #ff582336",
             }}
           >
-            Development Services
+            Reliable Services
           </span>
+          That Help You
         </motion.h2>
 
         {/* Description */}
@@ -172,8 +172,7 @@ export default function Features() {
           viewport={{ once: true, margin: "-50px" }}
           className="max-w-4xl mx-auto text-gray-600 text-sm sm:text-base md:text-lg mb-8 sm:mb-10 md:mb-12 font-sans text-center px-4 sm:px-6"
         >
-          We offer comprehensive CRM software development services that cover
-          the entire lifecycle from planning to deployment and support.
+          We offer end-to-end custom CRM software Development services tailored for different industries:
         </motion.p>
       </div>
 
@@ -183,10 +182,10 @@ export default function Features() {
         <div className="hidden md:block">
           <StickyScrollGSAP content={content} />
         </div>
-        
+
         {/* Mobile - Fallback Carousel */}
         <MobileContentCarousel />
-        
+
         {/* Alternative Mobile Layout: Grid View */}
         <div className="md:hidden px-4 mt-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -1,51 +1,39 @@
 "use client";
 
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { LazyMotion, domMax, m } from "framer-motion";
+import { motion } from "framer-motion";
+import { Users, ShoppingBag, LifeBuoy, DollarSign, Headphones, Shield } from "lucide-react";
 
-interface Service {
+interface TrustItem {
   title: string;
   desc: string;
-  image: string;
+  icon: React.ReactNode;
 }
 
-const services: Service[] = [
+const trustItems: TrustItem[] = [
   {
-    title: "Fully Customized Ecommerce Solutions",
-    desc: "We don’t believe in one-size-fits-all platforms. Camlenio builds ecommerce software tailored to your business model, industry needs, and growth goals ensuring maximum flexibility and long-term scalability.",
-    image:
-      "https://res.cloudinary.com/dxpbriwey/image/upload/v1762154846/shoper-i9CxbB1HlfM-unsplash_un4ol8.jpg",
+    title: "Experienced Development Team",
+    desc: "Our highly qualified software developers possess extensive experience building high-performance e-commerce platforms using modern architectures.",
+    icon: <Users className="w-6 h-6 text-orange-500" />,
   },
   {
-    title: "Secure, Scalable & High-Performance Architecture",
-    desc: "Our ecommerce systems are engineered with secure coding practices and scalable architecture to deliver fast performance, high uptime, and seamless handling of growing traffic and transactions.",
-    image:
-      "https://res.cloudinary.com/dxpbriwey/image/upload/v1762155322/18872_pitilt.jpg",
+    title: "Industry-Specific Solutions",
+    desc: "Recognized as the best Grocery Delivery App Development Company in Jaipur, we deliver tailored solutions optimized for local and global market requirements.",
+    icon: <ShoppingBag className="w-6 h-6 text-orange-500" />,
   },
   {
-    title: "End-to-End Development & Support",
-    desc: "From planning and design to development, deployment, and ongoing maintenance, Camlenio provides complete ecommerce development support so you can focus on sales while we manage the technology.",
-    image:
-      "https://res.cloudinary.com/dxpbriwey/image/upload/v1762154990/piggybank-LYLDANKDE8g-unsplash_swzqys.jpg",
+    title: "End-to-End Project Support",
+    desc: "From blueprint planning, user-experience design, development to deployment, security audits, and scale management, we stand with you at every step.",
+    icon: <LifeBuoy className="w-6 h-6 text-orange-500" />,
   },
   {
-    title: "Advanced Features That Drive Sales",
-    desc: "We integrate AI-based recommendations, smart inventory management, optimized checkout flows, and marketing automation to enhance user experience and significantly boost conversions.",
-    image:
-      "https://res.cloudinary.com/dxpbriwey/image/upload/v1762155532/375642_khx0i5.jpg",
+    title: "Affordable & Transparent Pricing",
+    desc: "No hidden costs, no surprise fees. We offer transparent and cost-effective development plans tailored to startups and enterprise models.",
+    icon: <DollarSign className="w-6 h-6 text-orange-500" />,
   },
   {
-    title: "Seamless Integrations & Future-Ready Tech",
-    desc: "Our ecommerce platforms integrate smoothly with payment gateways, shipping partners, CRM systems, ERP tools, and third-party APIs keeping your business future-ready and easy to scale.",
-    image:
-      "https://res.cloudinary.com/dxpbriwey/image/upload/v1762155459/5493790_eex9kr.jpg",
-  },
-  {
-    title: "Trusted Technology Partner for Growth",
-    desc: "Camlenio is more than a development company. we act as your long-term technology partner with reliable support, transparent communication, and continuous upgrades to help your ecommerce business grow with confidence.",
-    image:
-      "https://res.cloudinary.com/dxpbriwey/image/upload/v1762155224/babak-eshaghian-pwcLYVaQ-Zc-unsplash_jwffrs.jpg",
+    title: "Dedicated Customer Support",
+    desc: "Get constant help, maintenance updates, and operational support from our dedicated technical team whenever you need it.",
+    icon: <Headphones className="w-6 h-6 text-orange-500" />,
   },
 ];
 
@@ -53,91 +41,94 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.1,
     },
   },
 };
 
 export default function WhyChoose() {
   return (
-    <LazyMotion features={domMax}>
-      <section className="relative py-20 lg:py-28 px-4 sm:px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <m.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center max-w-4xl mx-auto mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
-              Why Choose Camlenio for{" "}
-              <span
-                className="text-orange-500"
-                style={{
-                  textShadow:
-                    "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
-                }}
-              >
-                Ecommerce Software?
-              </span>{" "}
-            </h2>
-          </m.div>
+    <section className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-transparent">
+      {/* Decorative gradient blur blobs */}
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-orange-100/50 rounded-full blur-3xl opacity-60 pointer-events-none" />
 
-          {/* Grid */}
-          <m.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          >
-            {services.map((service) => (
-              <m.article
-                key={service.title}
-                variants={{
-                  hidden: { opacity: 0, y: 32, scale: 0.95 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    transition: {
-                      type: "spring",
-                      stiffness: 90,
-                      damping: 18,
-                    },
-                  },
-                }}
-                whileHover={{ y: -3 }}
-                className="group relative rounded-3xl bg-gray-50 border border-orange-200/60 shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden"
-              >
-                {/* Image */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-103"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+      <div className="max-w-7xl mx-auto text-center relative z-10">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mx-auto mb-16 space-y-4"
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+            Why E-Commerce Businesses{" "}
+            <span
+              className="text-orange-500"
+              style={{
+                textShadow:
+                  "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
+              }}
+            >
+              Trust Us?
+            </span>
+          </h2>
+          <p className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed text-center">
+            Camlenio stands out as the provider of the best e-commerce development software and services in Jaipur. Our methodology prioritizes custom tailoring, continuous creation, and long-term infrastructure scalability.
+          </p>
+        </motion.div>
+
+        {/* Cards Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto justify-center"
+        >
+          {trustItems.map((item, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -5, scale: 1.01 }}
+              className="p-8 rounded-[2rem] bg-white/70 backdrop-blur-md border border-orange-100/50 shadow-lg shadow-orange-200/5 hover:bg-white/90 transition-all duration-300 flex flex-col text-left justify-between"
+            >
+              <div>
+                <div className="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-6 shrink-0">
+                  {item.icon}
                 </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
+                <p className="text-sm text-slate-655 leading-relaxed text-justify">
+                  {item.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
 
-                {/* Content */}
-                <div className="p-6 sm:p-7">
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
-                    {service.title}
-                  </h3>
+        {/* Conclusion / Banner Block */}
+        {/* <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-4xl mx-auto mt-16 p-6 sm:p-8 rounded-[2rem] bg-slate-900 border border-slate-800 text-white relative overflow-hidden shadow-2xl text-left"
+        >
+          <div className="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 blur-[80px] rounded-full pointer-events-none" />
 
-                  <p className="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed font- font-sans text-justify">
-                    {service.desc}
-                  </p>
-                </div>
-              </m.article>
-            ))}
-          </m.div>
-        </div>
-      </section>
-    </LazyMotion>
+          <div className="flex flex-col sm:flex-row items-center gap-6 relative z-10">
+            <div className="w-12 h-12 bg-orange-500/20 rounded-2xl flex items-center justify-center text-orange-400 shrink-0">
+              <Shield className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="text-sm sm:text-base md:text-lg font-sans font-medium text-slate-200 leading-relaxed">
+                We understand local market dynamics and deliver cutting-edge software solutions that support businesses to scale rapidly and thrive in competitive digital environments.
+              </p>
+            </div>
+          </div>
+        </motion.div> */}
+
+      </div>
+    </section>
   );
 }

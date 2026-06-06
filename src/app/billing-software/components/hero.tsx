@@ -1,143 +1,210 @@
+"use client";
+
 import React, { useEffect, useRef } from "react";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, ShieldCheck, CheckCircle2, TrendingUp, HelpCircle } from "lucide-react";
+import Link from "next/link";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRouter } from "next/navigation";
 import { Button } from "@/app/components/ui/Button";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const Hero = () => {
-  const leftContentRef = useRef(null);
-  const imageContainerRef = useRef(null);
+export default function Hero() {
+  const router = useRouter();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const mockupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!sectionRef.current) return;
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        leftContentRef.current,
-        {
-          x: -50,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: leftContentRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-          },
-        }
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      // Fade-in text content
+      tl.fromTo(
+        ".hero-fade",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.15, duration: 1.1 }
       );
 
-      gsap.fromTo(
-        imageContainerRef.current,
-        {
-          x: 50,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: imageContainerRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-          },
-        }
+      // Float mockup elements
+      tl.fromTo(
+        ".mockup-main",
+        { opacity: 0, scale: 0.9, y: 40 },
+        { opacity: 1, scale: 1, y: 0, duration: 1.3 },
+        "-=0.9"
       );
-    });
+
+      tl.fromTo(
+        ".mockup-float",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.2, duration: 1 },
+        "-=0.6"
+      );
+
+      // Gentle floating animation for elements
+      gsap.to(".float-slow", {
+        y: "random(-10, 10)",
+        x: "random(-5, 5)",
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.3,
+      });
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-r from-gray-100 via-orange-100 to-gray-100  ">
-      <div className="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between min-h-screen max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-20 md:py-22 lg:py-28">
-        <div
-          ref={leftContentRef}
-          className="flex-1 max-w-2xl text-center lg:text-left lg:mb-0 mt-8 lg:mt-0"
-        >
-          <h1 className="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl md:text-5xl lg:text-6xl  text-gray-900 mb-4">
-            Smart Billing{" "}
-            <span
-              className="block text-orange-500"
-              style={{
+    <section
+      ref={sectionRef}
+      className="relative min-h-[90vh] sm:min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-r from-gray-100 via-orange-100/40 to-gray-100 flex items-center"
+    >
+      {/* Background radial glow */}
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-orange-200/20 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-10 w-[300px] h-[300px] bg-orange-100/40 rounded-full blur-[100px] pointer-events-none -z-10" />
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+          {/* LEFT CONTENT: Heading, description & CTAs */}
+          <div ref={textRef} className="lg:col-span-6 space-y-6 text-left">
+
+            {/* Heading */}
+            <h1 className="hero-fade text-4xl sm:text-5xl md:text-6xl font-bold text-[#1A1C20] leading-[1.1] tracking-tight">
+              Your Trusted <br />
+              <span className="text-orange-500" style={{
                 textShadow:
-                  "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
-              }}
-            >
-              Made Effortless
-            </span>
-          </h1>
-          <p className="max-w-5xl mx-auto text-gray-600 text-sm md:text-base mb-12 font-sans text-justify">
-            Simplify your invoicing, track payments in real-time, and manage
-            clients all from one intuitive billing platform.
-          </p>
+                  "-1px -1px 0px #da5f00, 2px 2px 0px #fff, 3px 4px 0px #ff582336",
+              }}>
+                Billing Software
+              </span> <br />
+              Development in Jaipur
+            </h1>
 
-          <div className="flex xs:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-            <Button
-              size="xl"
-              className="min-w-[140px] text-sm xs:text-base border-none"
-            >
-              Get Started <ArrowRight className="ml-2 h-4 w-4 xs:h-5 xs:w-5" />
-            </Button>
-            <Button
-              size="xl"
-              variant="outline"
-              className="min-w-[140px] text-sm xs:text-base bg-white/80 hover:bg-white text-gray-900 hover:text-gray-900 border-gray-200"
-            >
-              Learn More <ArrowRight className="ml-2 h-4 w-4 xs:h-5 xs:w-5" />
-            </Button>
-          </div>
-        </div>
+            {/* Subtext */}
+            <p className="hero-fade text-sm sm:text-base text-gray-660 leading-relaxed text-justify max-w-xl">
+              Are you looking for a billing system to manage your business bills? Camlenio is a trusted billing software development company in Jaipur that develops secure billing solutions for all sizes of businesses. We create customized software from GST invoicing to stock management that streamlines operations and boosts business productivity.
+            </p>
 
-        <div
-          ref={imageContainerRef}
-          className="flex-1 flex items-center justify-center w-full max-w-2xl relative"
-        >
-          <div className="relative w-full max-w-[160px] h-[220px] sm:max-w-[220px] sm:h-[300px] md:max-w-[240px] md:h-[330px] lg:max-w-[300px] lg:h-[400px] xl:max-w-[410px] xl:h-[550px] 2xl:max-w-[450px] 2xl:h-[600px] mx-auto">
-            <div className="overflow-hidden rounded-full w-full h-full">
-              <Image
-                src="/ServiceDropdown/fintechsoftware/line33.png"
-                alt="Decorative circular SVG background"
-                width={800}
-                height={800}
-                className="w-full h-full object-cover"
-                priority
-              />
+            {/* Buttons */}
+            <div className="hero-fade flex flex-wrap gap-4 pt-2">
+              <Button onClick={() => router.push("/contact")} size="xl" className="w-full sm:w-auto">
+                <span>Get Started</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
             </div>
           </div>
 
-          <div className="absolute -top-4 md:-top-10 -left-0 md:-left-20 overflow-visible">
-            <div className="relative w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72 2xl:w-80 2xl:h-80">
-              <Image
-                src="/ServiceDropdown/fintechsoftware/start1.svg"
-                alt="Man holding laptop illustration"
-                fill
-                className="object-contain"
-                priority
-                sizes="(max-width: 480px) 128px, (max-width: 640px) 160px, (max-width: 768px) 192px, (max-width: 1024px) 224px, (max-width: 1280px) 256px, 288px"
-              />
+          {/* RIGHT CONTENT: High fidelity Mockup Section */}
+          <div ref={mockupRef} className="lg:col-span-6 relative flex items-center justify-center h-[500px] md:h-[600px]">
+            <div className="relative w-full max-w-[420px] h-full flex items-center justify-center">
+
+              {/* Background glowing circle */}
+              <div className="absolute w-72 h-72 bg-gradient-to-tr from-orange-400/20 to-orange-500/10 rounded-full blur-2xl" />
+
+              {/* 1. Main iPhone Frame mockup */}
+              <div className="mockup-main relative w-[260px] h-[520px] sm:w-[280px] sm:h-[560px] rounded-[48px] border-[10px] border-slate-900 bg-white shadow-2xl overflow-hidden flex flex-col justify-between p-4 z-10">
+                {/* Dynamic Island */}
+                <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-28 h-6 bg-slate-900 rounded-full flex items-center justify-center z-30">
+                  <div className="w-3.5 h-3.5 bg-slate-850 rounded-full ml-auto mr-1.5" />
+                </div>
+
+                {/* iPhone screen Header */}
+                <div className="pt-6 pb-2 border-b border-gray-100 flex items-center justify-between">
+                  <div className="text-[11px] font-bold text-gray-400">Total Revenue</div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-orange-500" />
+                </div>
+
+                {/* iPhone Balance tracker */}
+                <div className="py-2 text-left">
+                  <div className="text-3xl font-black text-slate-900">₹8,49,250</div>
+                  <div className="text-[10px] text-green-500 font-bold flex items-center gap-1 mt-1">
+                    <span>↑ +18.4% this month</span>
+                  </div>
+                </div>
+
+                {/* Graphic chart mockup */}
+                <div className="flex-1 my-4 flex items-end gap-1.5 justify-between bg-orange-50/30 p-2 rounded-2xl border border-orange-100/35 h-32">
+                  <div className="w-3 bg-orange-300 rounded-t-sm h-[30%]" />
+                  <div className="w-3 bg-orange-400 rounded-t-sm h-[55%]" />
+                  <div className="w-3 bg-orange-500 rounded-t-sm h-[45%]" />
+                  <div className="w-3 bg-red-400 rounded-t-sm h-[75%]" />
+                  <div className="w-3 bg-orange-600 rounded-t-sm h-[60%]" />
+                  <div className="w-3 bg-orange-500 rounded-t-sm h-[90%]" />
+                </div>
+
+                {/* Recent invoices tracker list */}
+                <div className="space-y-2 text-left mb-2">
+                  <div className="text-[10px] font-bold text-gray-400">Recent Transactions</div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded-xl">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-lg bg-orange-100 text-orange-500 flex items-center justify-center font-bold text-xs">R</div>
+                      <div>
+                        <div className="text-[10px] font-bold text-slate-800 leading-none">Retail Order</div>
+                        <span className="text-[8px] text-gray-400">2 mins ago</span>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold text-green-500">+ ₹1,420</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded-xl">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-lg bg-orange-100 text-orange-500 flex items-center justify-center font-bold text-xs">P</div>
+                      <div>
+                        <div className="text-[10px] font-bold text-slate-800 leading-none">Pharmacy Drug</div>
+                        <span className="text-[8px] text-gray-400">10 mins ago</span>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold text-green-500">+ ₹620</span>
+                  </div>
+                </div>
+
+                {/* Home Indicator */}
+                <div className="w-24 h-1 bg-slate-900 rounded-full mx-auto mt-1" />
+              </div>
+
+              {/* 2. Floating dynamic credit cards */}
+              <div className="mockup-float float-slow absolute bottom-24 -left-12 w-[180px] h-[115px] bg-gradient-to-tr from-orange-500 via-red-500 to-orange-600 rounded-2xl shadow-2xl p-4 text-white z-20 flex flex-col justify-between text-left rotate-[-8deg] border border-orange-400/30">
+                <div className="flex justify-between items-start">
+                  <div className="text-[10px] tracking-widest opacity-80 uppercase">Camlenio Pay</div>
+                  <div className="w-6 h-4 bg-white/20 rounded-md flex items-center justify-center text-[8px] font-bold">Visa</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-xs font-bold tracking-widest">**** **** **** 8421</div>
+                  <div className="flex justify-between items-end">
+                    <div>
+                      <div className="text-[6px] uppercase tracking-wide opacity-60">Card Holder</div>
+                      <div className="text-[8px] font-bold">JAIPUR RETAILS</div>
+                    </div>
+                    <div className="text-[8px] font-bold opacity-80">12/29</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. Floating 100% Safe pill badge */}
+              <div className="mockup-float float-slow absolute top-16 -left-16 px-4 py-2 bg-white rounded-2xl shadow-xl flex items-center gap-2.5 border border-orange-50/50 z-20">
+                <div className="w-7 h-7 rounded-xl bg-green-500/10 text-green-500 flex items-center justify-center">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <div className="text-left leading-none">
+                  <div className="text-[11px] font-bold text-slate-900">100% Safe</div>
+                  <span className="text-[8px] text-gray-400">GST Audited</span>
+                </div>
+              </div>
+
+              {/* 4. Floating 100k customers card badge */}
+              <div className="mockup-float float-slow absolute top-28 -right-16 p-4 bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl shadow-2xl text-left border border-slate-700/50 z-20 w-32">
+                <div className="text-2xl font-black text-orange-500 leading-none">100k+</div>
+                <div className="text-[10px] text-white font-bold mt-1 leading-tight">Total Invoices Generated</div>
+                <div className="text-[8px] text-gray-400 mt-0.5">Reliable & Secure</div>
+              </div>
+
             </div>
           </div>
+
         </div>
       </div>
-
-      <div className="absolute bottom-10 left-5 w-20 h-20 opacity-10 sm:opacity-20 sm:left-10 sm:bottom-20">
-        <div className="w-full h-full bg-orange-500 rounded-full"></div>
-      </div>
-      <div className="absolute top-20 right-5 w-16 h-16 opacity-10 sm:opacity-20 sm:right-10 sm:top-32">
-        <div className="w-full h-full bg-blue-500 rounded-full"></div>
-      </div>
-    </div>
+    </section>
   );
-};
-
-export default Hero;
+}

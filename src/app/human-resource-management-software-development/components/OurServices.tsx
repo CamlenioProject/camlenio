@@ -22,59 +22,59 @@ interface HRMSServiceItem {
 const hrmsServices: HRMSServiceItem[] = [
   {
     id: 1,
-    title: "Employee Information Management",
+    title: "Custom HRMS",
     description:
-      "Centralized employee database with secure access to personal details, job roles, documents, and employment history.",
+      "Tailor-made HRMS platforms built to match your unique business processes, workflows, and organisational structure.",
     icon: Users,
   },
   {
     id: 2,
-    title: "Attendance & Leave Management",
+    title: "HR Payroll Software",
     description:
-      "Automated attendance tracking, shift scheduling, leave requests, approvals, and real-time balance reporting.",
-    icon: CalendarCheck,
-  },
-  {
-    id: 3,
-    title: "Payroll Management System",
-    description:
-      "Accurate payroll processing including salary calculations, deductions, bonuses, tax handling, and statutory compliance.",
+      "Automated payroll processing with accurate salary calculations, deductions, bonuses, tax compliance, and payslip generation.",
     icon: Wallet,
   },
   {
-    id: 4,
-    title: "Recruitment & Onboarding Software",
+    id: 3,
+    title: "Attendance Management", 
     description:
-      "Manage job postings, candidate pipelines, interviews, hiring decisions, and seamless onboarding workflows.",
-    icon: UserPlus,
+      "Real-time attendance tracking integrated with biometric devices, shift scheduling, and automated reporting.",
+    icon: CalendarCheck,
+  },
+  {
+    id: 4,
+    title: "Leave Management System",
+    description:
+      "Streamlined leave requests, multi-level approvals, leave balance tracking, and policy-based leave management.",
+    icon: CalendarCheck,
   },
   {
     id: 5,
-    title: "Performance Management System",
+    title: "HR Helpdesk Software",
     description:
-      "Define goals, track KPIs, conduct performance reviews, appraisals, and monitor employee growth effectively.",
-    icon: Target,
+      "A dedicated HR helpdesk to resolve employee queries, grievances, and requests efficiently through ticketing systems.",
+    icon: Smartphone,
   },
   {
     id: 6,
-    title: "Training & Skill Management",
+    title: "Recruitment and Onboarding Modules",
     description:
-      "Track employee training programs, certifications, learning records, and skill development initiatives.",
-    icon: GraduationCap,
+      "End-to-end recruitment pipeline management with seamless onboarding workflows for new hires.",
+    icon: UserPlus,
   },
   {
     id: 7,
-    title: "Compliance & Policy Management",
+    title: "HRMS Cloud-Based Platforms",
     description:
-      "Ensure statutory compliance, internal policies, audit readiness, and secure documentation management.",
+      "Secure, scalable, and accessible cloud-based HRMS platforms designed for modern remote and hybrid workforces.",
     icon: ShieldCheck,
   },
   {
     id: 8,
-    title: "HRMS Web & Mobile App Development",
+    title: "Performance Management Solutions",
     description:
-      "Access HR operations anytime with responsive web and mobile HRMS applications built for modern teams.",
-    icon: Smartphone,
+      "Define KPIs, conduct performance reviews, track appraisals, and monitor employee growth in one unified system.",
+    icon: Target,
   },
 ];
 
@@ -113,9 +113,7 @@ export default function Services() {
               </h2>
 
               <p className="mt-4 text-gray-600 text-sm md:text-base font-sans text-justify">
-                We deliver end-to-end HR management software solutions tailored
-                to your business needs—helping you automate HR operations,
-                improve workforce productivity, and ensure compliance.
+                We offer a reliable service that meets your essential business requirements. Our services include:
               </p>
             </m.div>
 

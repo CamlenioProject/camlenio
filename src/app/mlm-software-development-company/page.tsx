@@ -16,10 +16,10 @@ const MlmSoftware = () => {
       <MLMWhyChooseProcess />
       <MLMFaqSection />
       <CTA
-        title={"Ready to Launch Your MLM Business?"}
-        highlightedTitle={"MLM Business"}
+        title={"Get Started with Camlenio Today"}
+        highlightedTitle={"Camlenio"}
         subtitle={
-          "Partner with Camlenio Software Pvt. Ltd. to build a secure, scalable, and high-performing MLM software solution that drives long-term success."
+          "Get in touch with the trusted MLM software development company in Jaipur, and get powerful and secure MLM software solutions tailored for your business success."
         }
         buttontext={"Book A Free Demo"}
       />

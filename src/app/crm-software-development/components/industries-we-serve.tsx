@@ -202,7 +202,7 @@ export default function IndustriesWeServe() {
               viewport={{ once: true }}
               className="lg:col-span-1"
             >
-              <div className="sticky top-24 bg-orange-100/40 rounded-2xl shadow-md p-6 md:p-8 border border-orange-100">
+              <div className="sticky top-24 bg-orange-100/40 rounded-4xl shadow-sm p-6 md:p-8 border border-orange-100">
                 <div className="space-y-8">
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -292,12 +292,12 @@ export default function IndustriesWeServe() {
                   >
                     <div
                       className={`
-                    relative h-full bg-orange/50 rounded-2xl p-6
+                    relative h-full bg-orange/50 rounded-4xl p-6
                     border-2 ${activeIndustry === industry.id
                           ? "border-orange-200/50"
                           : "border-orange-100"
                         }
-                    shadow-lg hover:shadow-2xl
+                    shadow-sm hover:shadow-md
                     transition-all duration-500
                     hover:-translate-y-1 cursor-pointer
                     overflow-hidden

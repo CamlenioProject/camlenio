@@ -1,9 +1,9 @@
 "use client";
 import CTA from "../components/cta";
-import Hero from "./components/hero";
-import Migration from "./components/migrations";
-import WebDevExperts from "./components/web_dev_experts";
-import WebDevSolution from "./components/web_dev_solution";
+import Hero from "../custom-software-development/components/hero";
+import Migration from "../custom-software-development/components/migrations";
+import WebDevExperts from "../custom-software-development/components/web_dev_experts";
+import WebDevSolution from "../custom-software-development/components/web_dev_solution";
 
 export default function WebDevPage() {
   return (

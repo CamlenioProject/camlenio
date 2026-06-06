@@ -32,12 +32,12 @@ const fade = {
 
 export default function MLMWhyChooseProcess() {
   const whyChooseItems = [
-    { icon: Award, text: "Experienced MLM Software Developers" },
-    { icon: CheckCircle, text: "100% Custom-Built Solutions" },
-    { icon: DollarSign, text: "Transparent Pricing" },
-    { icon: Zap, text: "Fast Deployment" },
-    { icon: Headphones, text: "Dedicated Support & Maintenance" },
-    { icon: TrendingUp, text: "Scalable for Future Growth" },
+    { icon: Award, text: "Matrix MLM Software", desc: "Our custom matrix MLM software was developed for a stable network structure and simplified user management." },
+    { icon: CheckCircle, text: "Binary MLM Software Development", desc: "Our advanced binary MLM software with automated commission calculations, genealogy tracking, and payout management." },
+    { icon: DollarSign, text: "Unilevel MLM Software", desc: "The flexible unilevel MLM software solutions with customizable plans and commission structures." },
+    { icon: Zap, text: "eCommerce MLM Software", desc: "It integrated ecommerce MLM software with product management, order tracking, and distributor management." },
+    { icon: Headphones, text: "MLM Mobile App Development", desc: "Feature-rich MLM mobile app development for Android and iOS platforms with real-time business tracking." },
+    { icon: TrendingUp, text: "Referral & Affiliate Systems", desc: "The smart referral marketing software and affiliate management software for business growth and lead generation." },
   ];
 
   const industries = [
@@ -98,7 +98,7 @@ export default function MLMWhyChooseProcess() {
     <section className="">
       <div className="max-w-7xl mx-auto px-6 py-20 space-y-16">
         {/* WHY CHOOSE */}
-        <div className="text-center max-w-3xl mx-auto">
+        {/* <div className="text-center max-w-3xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -106,7 +106,7 @@ export default function MLMWhyChooseProcess() {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6"
           >
-            Why Choose Camlenio for MLM{" "}
+            Camlenio Comprehensive{" "}
             <span
               className="text-orange-500"
               style={{
@@ -114,13 +114,13 @@ export default function MLMWhyChooseProcess() {
                   "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
               }}
             >
-              Software Development
+              Services Included
             </span>
           </motion.h2>
 
           <p className="max-w-5xl mx-auto text-gray-600 text-sm md:text-base mb-12 font-sans text-center">
-            We don&apos;t just build software — we build MLM business
-            ecosystems.
+            Our expertise develops reliable platforms that meet specific business
+            goals. Here are our reliable services:
           </p>
         </div>
 
@@ -167,7 +167,6 @@ export default function MLMWhyChooseProcess() {
           transition-all duration-300
         "
               >
-                {/* Icon */}
                 <div
                   className="
             w-12 h-12 shrink-0
@@ -182,18 +181,21 @@ export default function MLMWhyChooseProcess() {
                   <Icon className="w-5 h-5" />
                 </div>
 
-                {/* Text */}
-                <p className="text-sm sm:text-base font-semibold text-gray-800 leading-snug">
-                  {item.text}
-                </p>
+                <div>
+                  <p className="text-sm sm:text-base font-semibold text-gray-800 leading-snug">
+                    {item.text}
+                  </p>
+                  <p className="mt-1 text-xs sm:text-sm text-gray-600 leading-relaxed font-sans">
+                    {item.desc}
+                  </p>
+                </div>
               </motion.div>
             );
           })}
-        </motion.div>
+        </motion.div> */}
 
         {/* INDUSTRIES */}
-        <div className="space-y-6">
-          {/* Header */}
+        {/* <div className="space-y-6">
           <div className="text-center max-w-2xl mx-auto">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -219,7 +221,6 @@ export default function MLMWhyChooseProcess() {
             </p>
           </div>
 
-          {/* Grid */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -251,15 +252,12 @@ export default function MLMWhyChooseProcess() {
                   whileHover={{ y: -4 }}
                   className="group relative bg-orange-50 border border-gray-100 rounded-2xl p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all duration-300"
                 >
-                  {/* subtle hover glow */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-100 to-orange-200 opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
 
-                  {/* icon */}
                   <div className="relative z-10 w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-600 transition-transform duration-300 group-hover:scale-110">
                     <Icon className="w-5 h-5" />
                   </div>
 
-                  {/* label */}
                   <p className="relative z-10 mt-3 text-sm font-semibold text-gray-800">
                     {item.name}
                   </p>
@@ -267,7 +265,7 @@ export default function MLMWhyChooseProcess() {
               );
             })}
           </motion.div>
-        </div>
+        </div> */}
 
         {/* MLM DEVELOPMENT PROCESS – NEW DESIGN */}
         <section className="py-10 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -483,19 +481,54 @@ export default function MLMWhyChooseProcess() {
           </div>
         </section>
 
-        {/* CTA */}
-        {/* <motion.div
-          variants={fade}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <button className="px-10 py-4 rounded-full bg-orange-500 text-white text-sm md:text-base font-medium hover:bg-orange-600 transition">
-            Start Your MLM Journey Today
-          </button>
-        </motion.div> */}
+        {/* WHY CAMLENIO STANDS OUT */}
+        <div className="relative bg-orange-50 border border-orange-100 rounded-3xl overflow-hidden px-8 py-12 text-center">
+          <div className="h-1.5 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-400 absolute top-0 left-0 right-0 rounded-t-3xl" />
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
+          >
+            Why Does{" "}
+            <span
+              className="text-orange-500"
+              style={{
+                textShadow:
+                  "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
+              }}
+            >
+              Camlenio Stand Out?
+            </span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="max-w-3xl mx-auto text-gray-600 text-sm md:text-base font-sans leading-relaxed mb-4"
+          >
+            Camlenio stands out as a reliable MLM software company in India
+            because of our experienced developers, creative approach, and
+            commitment to quality. Our developers create scalable MLM software
+            solutions tailored to your business requirements. We deliver a
+            secure, user experience, and long-term business growth.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="max-w-3xl mx-auto text-gray-600 text-sm md:text-base font-sans leading-relaxed"
+          >
+            With years of experience in custom MLM software development, we help
+            businesses automate solutions, improve distributor engagement, and
+            manage complex commission structures. Our expertise, combined with
+            our nationwide services capability, makes us the preferred
+            technology partner for MLM businesses.
+          </motion.p>
+        </div>
       </div>
     </section>
   );

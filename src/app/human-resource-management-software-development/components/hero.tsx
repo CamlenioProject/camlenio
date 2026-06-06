@@ -34,9 +34,8 @@ const Hero = () => {
                   transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
                 },
               }}
-              className="text-3xl sm:text-4xl lg:text-5xl  font-bold text-gray-900 mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl  font-bold text-gray-900 mb-4"
             >
-              Human Resource Management{" "}
               <span
                 className="text-orange-500"
                 style={{
@@ -44,8 +43,9 @@ const Hero = () => {
                     "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
                 }}
               >
-                Software Development
+                HRMS Software{" "}
               </span>
+              Development Company
             </m.h1>
 
             <m.p
@@ -59,8 +59,7 @@ const Hero = () => {
               }}
               className="max-w-5xl mx-auto text-gray-800 text-sm md:text-base  font-sans text-justify"
             >
-              Camlenio develops smart HR Management Software to automate hiring,
-              payroll, and performance.
+              Are you looking for smart HRM software that streamlines your HR operations? Leading an HRMS software Development Company in Jaipur offers advanced solutions to automate payroll and manage workforce efficiently with our advanced HRMS solutions. If you are a beginner or an enterprise, Camlenio offers scalable, customized systems tailored to your business needs.
             </m.p>
 
             <m.div
@@ -85,28 +84,54 @@ const Hero = () => {
             </m.div>
           </div>
 
-          {/* Right Image: Optimized sizes & Priority */}
+          {/* Right Image: Optimized floating hero image */}
           <m.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="relative flex-1 flex items-center justify-center w-full max-w-lg lg:max-w-none"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="relative flex-1 flex items-center justify-center w-full mt-10 lg:mt-0 perspective-[2000px]"
           >
-            <div className="relative w-64 h-64 sm:w-96 sm:h-96 lg:w-[480px] lg:h-[480px] will-change-transform">
-              {/* <div className="absolute inset-0 bg-orange-400/20 rounded-full blur-2xl" /> */}
+            <m.div
+              initial={{ opacity: 0, y: 40, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ type: "spring", stiffness: 50, damping: 18, mass: 1.6, delay: 0.3 }}
+              style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+              className="relative w-full aspect-[4/3] max-w-[320px] sm:max-w-[440px] lg:max-w-[540px]"
+            >
+              <m.div
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+                className="relative w-full h-full"
+              >
+                {/* Bottom shadow glow */}
+                <div className="absolute -bottom-6 -right-8 w-[110%] h-1/2 bg-gradient-to-tr from-orange-200/20 via-white/5 to-transparent blur-2xl -z-10 rotate-12" />
 
-              <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] lg:rounded-t-[200px] lg:rounded-bl-[200px] border-2 border-orange-500/10 shadow-xl">
-                <Image
-                  src="/ServiceDropdown/hrmssoftware/hrms-right-hero.jpg"
-                  alt="HRMS Dashboard"
-                  fill
-                  className="object-cover"
-                  priority
-                  quality={80}
-                  sizes="(max-width: 768px) 256px, (max-width: 1280px) 480px, 600px"
+                {/* Image container */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl border border-orange-100/60">
+                  <Image
+                    src="/ServiceDropdown/hrmssoftware/hrms-right-hero.jpg"
+                    alt="HRMS Software Dashboard"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                    quality={85}
+                    sizes="(max-width: 640px) 320px, (max-width: 1024px) 440px, 540px"
+                  />
+                  {/* Subtle inner overlay for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </m.div>
+
+              {/* Floating particles */}
+              {[...Array(5)].map((_, i) => (
+                <m.div
+                  key={i}
+                  animate={{ y: [0, -50, 0], opacity: [0.1, 0.35, 0.1] }}
+                  transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.7 }}
+                  className={`absolute w-2 h-2 rounded-full blur-[1px] ${i % 2 === 0 ? "bg-orange-400/40" : "bg-orange-300/30"}`}
+                  style={{ top: `${10 + i * 16}%`, left: `${5 + i * 16}%`, zIndex: 40 }}
                 />
-              </div>
-            </div>
+              ))}
+            </m.div>
           </m.div>
         </m.div>
       </section>

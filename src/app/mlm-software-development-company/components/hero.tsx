@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { Button } from "@/app/components/ui/Button";
 
 export default function HeroSection() {
+  const router = useRouter();
   return (
     <section className="relative overflow-hidden py-20 lg:py-20">
       <div className="relative mx-auto max-w-7xl px-6 flex items-center">
@@ -16,23 +18,21 @@ export default function HeroSection() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="relative"
           >
-            {/* soft background accent */}
-            <div className="absolute -top-16 -left-16 h-48 w-48 rounded-full bg-orange-200 opacity-30 blur-3xl" />
-
-            {/* badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-orange-200/50 px-4 py-1 text-xs font-medium text-orange-600 mb-5">
-              <span className="h-2 w-2 rounded-full bg-orange-500" />
-              Trusted MLM Software Partner
-            </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-              MLM Software Development Company
+              Scalable & Secure{" "}<br />
+              <span
+                className="text-orange-500"
+                style={{
+                  textShadow:
+                    "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
+                }}
+              >
+                MLM Software {" "}
+              </span>
             </h1>
-
-            <p className="mt-4 text-gray-600 text-base md:text-lg max-w-xl">
-              A trusted MLM software development company delivering secure,
-              scalable, and high-performance solutions for direct selling
-              businesses.
+            <p className="mt-4 text-gray-600 text-base md:text-lg max-w-xl text-justify">
+              Camlenio is a reliable  MLM Software Development Company in Jaipur delivering smart and customizable solutions for modern direct selling businesses. We build an advanced MLM software with automation, real-time analytics, secure payment integration, and mobile-friendly features to help your network marketing business grow faster.
             </p>
 
             {/* feature fillers */}
@@ -43,21 +43,22 @@ export default function HeroSection() {
               </div>
               <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-700">
                 <span className="h-2 w-2 rounded-full bg-orange-500" />
-                Scalable Systems
+                Real-Time Analytics
               </div>
               <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-700">
                 <span className="h-2 w-2 rounded-full bg-orange-500" />
-                24×7 Support
+                Mobile Friendly
               </div>
             </div>
 
             <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-xl bg-orange-500 px-8 py-4 text-sm font-medium text-white transition hover:bg-orange-600"
+              <Button
+                size="xl"
+                className="w-full sm:w-auto"
+                onClick={() => router.push('/contact')}
               >
                 Get Started
-              </Link>
+              </Button>
             </div>
           </motion.div>
 

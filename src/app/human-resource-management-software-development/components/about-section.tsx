@@ -25,7 +25,7 @@ const About = () => {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6"
               >
-                Smart, Secure & Scalable{" "}<br />
+                Empower Your HR Operations with{" "}
                 <span
                   className="text-orange-500"
                   style={{
@@ -33,7 +33,7 @@ const About = () => {
                       "-1px -1px 0px #da5f00, 3px 3px 0px #fff, 4px 6px 0px #ff582336",
                   }}
                 >
-                  HRMS Solutions
+                  Intelligent Automation
                 </span>
               </m.h2>
 
@@ -42,24 +42,28 @@ const About = () => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="max-w-xl text-gray-600 text-sm md:text-base font-sans leading-relaxed text-left"
+                className="max-w-xl text-gray-600 text-sm md:text-base font-sans leading-relaxed text-justify"
               >
-                At{" "}
-                <span className="font-medium text-gray-800">
-                  Camlenio Software Pvt. Ltd.
-                </span>
-                , we offer Human Resource Management Software (HRMS) Development
-                services that help businesses automate HR processes, improve
-                workforce productivity, and ensure compliance.
+                In the current competitive business environment, companies need
+                a smart and automated HR system to manage employees efficiently.{" "}
+                <span className="font-medium text-gray-800">Camlenio</span> is a
+                reliable HR software development company Jaipur that several
+                businesses                                      ble HR solutions. We specialize in
+                developing advanced HRMS software tailored to your business
+                operations and workforce requirements.
                 <br />
                 <br />
-                Our custom HRMS solutions manage everything from employee
-                onboarding to payroll, attendance, and performance — all from a
-                single, centralized platform.
+                As an experienced HRMS Software Development Company, we create
+                user-friendly and feature-rich systems that simplify payroll
+                processing, employee attendance monitoring, employee data
+                management, and leave tracking. Whether you are running a
+                business or a startup, our customized HR solutions help decrease
+                manual work and improve operational efficiency.
                 <br />
                 <br />
-                Whether you’re a startup, SME, or enterprise, we build HR
-                software that grows with your organization.
+                Our HRMS Software Company in India focuses on delivering secure,
+                cloud-based, and scalable applications that develop HR software
+                best suited for your modern organisations.
               </m.p>
             </div>
 
