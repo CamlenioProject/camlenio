@@ -29,6 +29,11 @@ const nextConfig = {
         hostname: "blogs.camlenio.com",
         pathname: "/wp-content/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "/**",
+      },
     ],
   },
   async headers() {
@@ -62,7 +67,7 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.googletagmanager.com *.facebook.net *.facebook.com va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.cloudinary.com *.facebook.com blogs.camlenio.com images.unsplash.com; media-src 'self' *.cloudinary.com; connect-src 'self' cdn.jsdelivr.net *.facebook.com *.google-analytics.com blogs.camlenio.com; font-src 'self' data:;frame-src 'self' https://www.google.com https://maps.google.com https://maps.googleapis.com; worker-src 'self' blob:;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.googletagmanager.com *.facebook.net *.facebook.com va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.cloudinary.com *.facebook.com blogs.camlenio.com images.unsplash.com lh3.googleusercontent.com; media-src 'self' *.cloudinary.com; connect-src 'self' cdn.jsdelivr.net *.facebook.com *.google-analytics.com blogs.camlenio.com; font-src 'self' data:;frame-src 'self' https://www.google.com https://maps.google.com https://maps.googleapis.com; worker-src 'self' blob:;",
           },
         ],
       },

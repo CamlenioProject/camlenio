@@ -48,6 +48,9 @@ export const availablePages = [
   "/human-resource-management-software-development",
   "/fintech-software-development-company",
   "/hotel-management-software",
+  "/restaurant-management-software",
+  "/reseller-software-development",
+  "/aeps-software-development",
   "/android-mobile-app-development",
   "/enterprise-solutions",
   "/travel-booking",
@@ -60,6 +63,8 @@ export const availablePages = [
   "/digital-marketing",
   "/billing-software",
   "/healthcare-software-development",
+  "/art-bank-software-development",
+  "/education-software-development",
   "/testimonials",
   "/blog",
   "/about",
@@ -156,7 +161,7 @@ export const navItems = [
         color: "bg-orange-100 text-orange-800",
         items: [
           { title: "Healthcare Software", href: "/healthcare-software-development", desc: "Patient management systems", icon: UserGroupIcon },
-          { title: "ART Banking Software", href: "/coming-soon", desc: "Specialized fertility tools", icon: UserGroupIcon }
+          { title: "ART Banking Software", href: "/art-bank-software-development", desc: "Specialized fertility tools", icon: UserGroupIcon }
         ]
       },
       {
@@ -204,7 +209,7 @@ export const navItems = [
         color: "bg-orange-100 text-orange-800",
         items: [
           { title: "Billing Software", href: "/billing-software", desc: "Invoicing & accounts", icon: CreditCardIcon },
-          { title: "Reseller Software", href: "/coming-soon", desc: "Manage reseller networks", icon: UserGroupIcon },
+          { title: "Reseller Software", href: "/reseller-software-development", desc: "Manage reseller networks", icon: UserGroupIcon },
         ]
       },
       {
@@ -215,18 +220,18 @@ export const navItems = [
           { title: "MLM Software", href: "/mlm-software-development-company", desc: "Multi-level marketing", icon: ChartBarIcon },
         ]
       },
-      {
-        title: "Operations & Inventory",
-        color: "bg-orange-100 text-orange-800",
-        items: [
-          { title: "Inventory Management", href: "/coming-soon", desc: "Stock tracking systems", icon: BriefcaseIcon },
-        ]
-      },
+      // {
+      //   title: "Operations & Inventory",
+      //   color: "bg-orange-100 text-orange-800",
+      //   items: [
+      //     { title: "Inventory Management", href: "/coming-soon", desc: "Stock tracking systems", icon: BriefcaseIcon },
+      //   ]
+      // },
       {
         title: "Hospitality & Food",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Restaurant Management", href: "/coming-soon", desc: "POS & kitchen mgmt", icon: ShoppingBagIcon },
+          { title: "Restaurant Management", href: "/restaurant-management-software", desc: "POS & kitchen mgmt", icon: ShoppingBagIcon },
         ]
       },
       // {
@@ -250,7 +255,7 @@ export const navItems = [
         title: "Banking Services",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Aadhaar Enabled Payment System (AEPS)", href: "/coming-soon", desc: "High secure payments", icon: FingerPrintIcon },
+          { title: "Aadhaar Enabled Payment System (AEPS)", href: "/aeps-software-development", desc: "High secure payments", icon: FingerPrintIcon },
           { title: "M-ATM/POS", href: "/coming-soon", desc: "Mobile ATM & POS Access", icon: DevicePhoneMobileIcon },
         ]
       },

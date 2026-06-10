@@ -1,11 +1,21 @@
 "use client";
 
-import { LazyMotion, domMax } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
-export const MotionLayout = ({ children }: { children: React.ReactNode }) => {
+interface MotionLayoutProps {
+  children: React.ReactNode;
+}
+
+export function MotionLayout({ children }: MotionLayoutProps) {
   return (
-    <LazyMotion features={domMax}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       {children}
-    </LazyMotion>
+    </motion.div>
   );
-};
+}

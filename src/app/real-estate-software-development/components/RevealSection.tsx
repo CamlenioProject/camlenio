@@ -1,21 +1,27 @@
 "use client";
 
-import { m, useInView } from "framer-motion";
-import { useRef } from "react";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
-export const RevealSection = ({ children, className }: any) => {
+interface RevealSectionProps {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}
+
+export function RevealSection({ children, className, delay = 0 }: RevealSectionProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
     <div ref={ref} className={className}>
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="h-full"
+        transition={{ duration: 0.6, ease: "easeOut", delay }}
       >
         {children}
-      </m.div>
+      </motion.div>
     </div>
   );
-};
+}
