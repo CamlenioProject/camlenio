@@ -71,6 +71,9 @@ export const availablePages = [
   "/careers",
   "/contact",
   "/imps-upi-payout-services",
+  "/bbps-software-development",
+  "/pan-card-software-development",
+  "/mobile-recharge-software-development",
   "/press-events",
   "/coming-soon",
 ];
@@ -277,15 +280,15 @@ export const navItems = [
         title: "Utility Services",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Bharat Bill Payment System (BBPS)", href: "/coming-soon", desc: "Bill payment system", icon: BuildingOfficeIcon },
-          { title: "Pancard (UTI/NSDL)", href: "/coming-soon", desc: "Pan card services", icon: InformationCircleIcon },
+          { title: "Bharat Bill Payment System (BBPS)", href: "/bbps-software-development", desc: "Bill payment system", icon: BuildingOfficeIcon },
+          { title: "Pancard (UTI/NSDL)", href: "/pan-card-software-development", desc: "Pan card services", icon: InformationCircleIcon },
         ]
       },
       {
         title: "Recharge Solutions",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Mobile Recharge", href: "/coming-soon", desc: "Mobile & DTH", icon: BoltIcon },
+          { title: "Mobile Recharge", href: "/mobile-recharge-software-development", desc: "Mobile & DTH", icon: BoltIcon },
         ]
       },
       {
