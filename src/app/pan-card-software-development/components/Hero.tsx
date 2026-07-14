@@ -104,7 +104,7 @@ export default function Hero() {
               </motion.svg>
             </span>{" "}
             <br />
-            Company in Jaipur
+            Company
           </motion.h1>
 
           <motion.p
@@ -136,39 +136,6 @@ export default function Hero() {
         {/* Right Column (Mockup Card + Floating Badges) */}
         <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end mt-12 lg:mt-0">
 
-          {/* Floating Badge 1: Top Left */}
-          <FloatingBadge className="-top-6 -left-6 md:-left-12" delay={0.4} yOffset={-12}>
-            <div className="p-2 rounded-lg bg-orange-50 text-orange-500">
-              <FileCheck className="w-5 h-5" />
-            </div>
-            <div className="text-left">
-              <p className="text-xs font-bold text-gray-800">PAN Verification</p>
-              <span className="text-[10px] text-gray-500">NSDL & UTI Support</span>
-            </div>
-          </FloatingBadge>
-
-          {/* Floating Badge 2: Middle Right */}
-          <FloatingBadge className="top-1/3 -right-6 md:-right-10" delay={0.6} yOffset={-15}>
-            <div className="p-2 rounded-lg bg-orange-50 text-orange-500">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div className="text-left">
-              <p className="text-xs font-bold text-gray-800">Secure API</p>
-              <span className="text-[10px] text-gray-500">Encrypted Transactions</span>
-            </div>
-          </FloatingBadge>
-
-          {/* Floating Badge 3: Bottom Left */}
-          <FloatingBadge className="-bottom-6 left-6 md:-left-4" delay={0.8} yOffset={-10}>
-            <div className="p-2 rounded-lg bg-orange-50 text-orange-500">
-              <Zap className="w-5 h-5" />
-            </div>
-            <div className="text-left">
-              <p className="text-xs font-bold text-gray-800">Real-time Tracking</p>
-              <span className="text-[10px] text-gray-500">Instant Status Updates</span>
-            </div>
-          </FloatingBadge>
-
           {/* Main Visual Container */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -176,11 +143,9 @@ export default function Hero() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full max-w-[420px] aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-orange-500/10 shadow-[0_20px_50px_rgba(249,115,22,0.08)] bg-white/50 p-2 group cursor-pointer"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-orange-500/10 to-transparent scale-115 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-10 rounded-[2.5rem]" />
-
             <div className="relative w-full h-full rounded-[2.2rem] overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&auto=format&fit=crop"
+                src="/assets/pan-card/pan-hero.webp"
                 alt="PAN Card Software Development Company"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"

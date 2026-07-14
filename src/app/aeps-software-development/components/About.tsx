@@ -21,9 +21,6 @@ export default function About() {
           {/* Left Column: Content Copy */}
           <div className="lg:col-span-7 space-y-8 text-left">
             <div className="space-y-4">
-              <span className="text-xs sm:text-sm font-bold tracking-wider text-orange-500 uppercase font-sans">
-                Next-Gen Fintech Enablement
-              </span>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -98,36 +95,12 @@ export default function About() {
               }}
             >
               <Image
-                src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1000&auto=format&fit=crop"
+                src="/assets/AEPS/AEPS-img1.webp"
                 alt="Aadhaar Enabled Payment System Workspace"
                 fill
                 className="object-cover grayscale-[0.15] group-hover:grayscale-[0.02] group-hover:scale-105 transition-all duration-700"
                 sizes="(max-width: 1024px) 100vw, 400px"
               />
-              {/* Soft orange hue layer */}
-              <div className="absolute inset-0 bg-orange-500/5 group-hover:bg-orange-500/0 transition-colors duration-500 pointer-events-none" />
-
-              {/* Biometric Scanning Line overlay */}
-              <motion.div
-                animate={{ y: ["0%", "100%", "0%"] }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent shadow-[0_0_15px_#f97316] z-20 pointer-events-none"
-              />
-
-              {/* Glowing Fingerprint Scan overlay on hover */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
-                <motion.div
-                  animate={{ scale: [1, 1.12, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="p-5 rounded-full bg-orange-500 text-white shadow-[0_0_25px_#f97316] border border-orange-400"
-                >
-                  <Fingerprint className="w-12 h-12" />
-                </motion.div>
-              </div>
 
               {/* Overlay Label inside card */}
               <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md border border-orange-500/10 rounded-2xl p-4 z-20 flex items-center gap-3">

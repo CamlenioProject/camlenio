@@ -100,9 +100,6 @@ export default function Services() {
                     {service.desc}
                   </p>
                 </div>
-
-                {/* Bottom colored bar element */}
-                <div className="w-full h-1 bg-gradient-to-r from-orange-500 to-amber-400 rounded-full mt-6 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
               </motion.div>
             );
           })}

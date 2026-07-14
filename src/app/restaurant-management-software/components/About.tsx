@@ -28,8 +28,7 @@ export default function About() {
                 }}
               >
                 Development Company
-              </span>{" "}
-              in Jaipur
+              </span>
             </motion.h2>
 
             <motion.div
@@ -66,13 +65,13 @@ export default function About() {
               className="rounded-3xl overflow-hidden shadow-md aspect-[4/3] border-[6px] border-white/80 relative"
             >
               <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuilBSYJvq_xMQuaP_ynvor4p5iie8yjFtLwQlXxNdQ0zxZcZedZctK-sN7KEbDnUm2CaHyciPS3pwoptb6evn_ENyW5ChHjVf5U8dZvK8sYsY-RJvyYc26NFOEWMGAuv8IStvbynZavXXc0Ovy9LeTNfGWPx__cQaSw_5LUA_HwEkLapBqbEhFmQbtTT_8F4asgBODhdMlUDJaeB6As2bc1MI1Tl7CGGKhW4OB1CrvDZEftT8nDm-5-R7eVVaPl_3yoNT2VxtOWwE"
+                src="/assets/Restaurant/restaurant-img1.webp"
                 alt="Jaipur Office Presence"
                 fill
                 className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
                 sizes="(max-width: 1024px) 100vw, 400px"
               />
-              <div className="absolute inset-0 bg-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              {/* <div className="absolute inset-0 bg-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" /> */}
             </motion.div>
           </div>
 

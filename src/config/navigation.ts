@@ -1,7 +1,4 @@
 import {
-  XMarkIcon,
-  ChevronDownIcon,
-  ArrowUpIcon,
   CommandLineIcon,
   DevicePhoneMobileIcon,
   PaintBrushIcon,
@@ -74,6 +71,8 @@ export const availablePages = [
   "/bbps-software-development",
   "/pan-card-software-development",
   "/mobile-recharge-software-development",
+  "/credit-card-bill-payment-solutions",
+  "/offline-services",
   "/press-events",
   "/coming-soon",
 ];
@@ -203,7 +202,6 @@ export const navItems = [
         title: "Human Resources",
         color: "bg-orange-100 text-orange-800",
         items: [
-          // { title: "Employee Tracking", href: "/coming-soon", desc: "Monitor workforce efficiency", icon: UserGroupIcon },
           { title: "HRMS Software", href: "/human-resource-management-software-development", desc: "Complete HR management", icon: BriefcaseIcon },
         ]
       },
@@ -259,21 +257,20 @@ export const navItems = [
         color: "bg-orange-100 text-orange-800",
         items: [
           { title: "Aadhaar Enabled Payment System (AEPS)", href: "/aeps-software-development", desc: "High secure payments", icon: FingerPrintIcon },
-          { title: "M-ATM/POS", href: "/coming-soon", desc: "Mobile ATM & POS Access", icon: DevicePhoneMobileIcon },
         ]
       },
-      {
-        title: "Money Transfer",
-        color: "bg-orange-100 text-orange-800",
-        items: [
-          { title: "Payout (IMPS/UPI)", href: "/imps-upi-payout-services", desc: "Seamless UPI payments", icon: QrCodeIcon },
-        ]
-      },
+      // {
+      //   title: "Money Transfer",
+      //   color: "bg-orange-100 text-orange-800",
+      //   items: [
+      //     { title: "Payout (IMPS/UPI)", href: "/imps-upi-payout-services", desc: "Seamless UPI payments", icon: QrCodeIcon },
+      //   ]
+      // },
       {
         title: "Payment Systems",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Credit Card Bill Payment", href: "/coming-soon", desc: "Easy bill settlements", icon: CreditCardIcon },
+          { title: "Credit Card Bill Payment", href: "/credit-card-bill-payment-solutions", desc: "Easy bill settlements", icon: CreditCardIcon },
         ]
       },
       {
@@ -295,7 +292,7 @@ export const navItems = [
         title: "Offline Services",
         color: "bg-orange-100 text-orange-800",
         items: [
-          { title: "Offline Services", href: "/coming-soon", desc: "Offline transactions", icon: SignalIcon },
+          { title: "Offline Services", href: "/offline-services", desc: "Offline transactions", icon: SignalIcon },
         ]
       },
     ],

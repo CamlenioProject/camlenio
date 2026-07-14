@@ -59,14 +59,6 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center text-left">
         {/* Left Column (Headline & CTAs) */}
         <div className="lg:col-span-7 flex flex-col items-start space-y-6">
-          <motion.span
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-50 text-orange-600 text-xs font-bold border border-orange-500/15 shadow-sm mb-2"
-          >
-            <Sparkles className="w-4 h-4 text-orange-500 animate-spin-slow" />
-            ADVANCED FINTECH SOLUTIONS
-          </motion.span>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -136,39 +128,6 @@ export default function Hero() {
         {/* Right Column (Mockup Card + Floating Badges) */}
         <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end mt-12 lg:mt-0">
 
-          {/* Floating Badge 1: Top Left */}
-          <FloatingBadge className="-top-6 -left-6 md:-left-12" delay={0.4} yOffset={-12}>
-            <div className="p-2 rounded-lg bg-orange-50 text-orange-500">
-              <Fingerprint className="w-5 h-5" />
-            </div>
-            <div className="text-left">
-              <p className="text-xs font-bold text-gray-800">Biometric Verification</p>
-              <span className="text-[10px] text-gray-500">Aadhaar Based Login</span>
-            </div>
-          </FloatingBadge>
-
-          {/* Floating Badge 2: Middle Right */}
-          <FloatingBadge className="top-1/3 -right-6 md:-right-10" delay={0.6} yOffset={-15}>
-            <div className="p-2 rounded-lg bg-orange-50 text-orange-500">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div className="text-left">
-              <p className="text-xs font-bold text-gray-800">Fintech Security</p>
-              <span className="text-[10px] text-gray-500">NPCI Compliance</span>
-            </div>
-          </FloatingBadge>
-
-          {/* Floating Badge 3: Bottom Left */}
-          <FloatingBadge className="-bottom-6 left-6 md:-left-4" delay={0.8} yOffset={-10}>
-            <div className="p-2 rounded-lg bg-orange-50 text-orange-500">
-              <CreditCard className="w-5 h-5" />
-            </div>
-            <div className="text-left">
-              <p className="text-xs font-bold text-gray-800">Micro-ATM Software</p>
-              <span className="text-[10px] text-gray-500">Real-time Payout Sync</span>
-            </div>
-          </FloatingBadge>
-
           {/* Main Visual Container */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -176,18 +135,16 @@ export default function Hero() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full max-w-[420px] aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-orange-500/10 shadow-[0_20px_50px_rgba(249,115,22,0.08)] bg-white/50 p-2 group cursor-pointer"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-orange-500/10 to-transparent scale-115 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-10 rounded-[2.5rem]" />
 
             <div className="relative w-full h-full rounded-[2.2rem] overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1000&auto=format&fit=crop"
+                src="/assets/AEPS/aeps-hero.webp"
                 alt="Aadhaar Enabled Payment System Office Workspace"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 420px"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-orange-500/5 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
         </div>

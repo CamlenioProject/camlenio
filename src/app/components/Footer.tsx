@@ -14,40 +14,40 @@ const footerData = [
   {
     title: "Mobile App Development",
     links: [
-      "Android App Development",
-      "iOS App Development",
-      "Hybrid App Development",
-      "Flutter App Development",
+      { name: "Android App Development", href: "/android-mobile-app-development" },
+      { name: "iOS App Development", href: "/iphone-mobile-app-development" },
+      { name: "Hybrid App Development", href: "/hybrid-app-development" },
+      { name: "On-Demand App Development", href: "/on-demand-app-development" },
     ],
   },
   {
     title: "Industries",
     links: [
-      "Healthcare",
-      "Real Estate",
-      "Travel and Tourism",
-      "Food Delivery",
-      "Ecommerce",
+      { name: "Healthcare", href: "/healthcare-software-development" },
+      { name: "Real Estate", href: "/real-estate-software-development" },
+      { name: "Travel and Tourism", href: "/travel-booking" },
+      // { name: "Food Delivery", href: "/coming-soon" },
+      { name: "Ecommerce", href: "/ecommerce-software-development" },
     ],
   },
   {
     title: "Expertise",
     links: [
-      "PHP Web Development",
-      "Asp.Net Development",
-      "Python Web Development",
-      "ReactJS Development",
-      "NodeJS Development",
+      { name: "Custom Web Development", href: "/custom-software-development" },
+      { name: "ReactJS Development", href: "/frontend-development" },
+      { name: "NodeJS Development", href: "/backend-development" },
+      { name: "Full Stack Development", href: "/full-stack-development" },
     ],
   },
   {
     title: "Fintech Software",
     links: [
-      "API Panel",
-      "B2C Software",
-      "B2B Fintech Software",
-      "Reseller Fintech Software",
-      "Custom Finance Software",
+      // { name: "API Panel", href: "/coming-soon" },
+      { name: "AEPS", href: "/aeps-software-development" },
+      { name: "BBPS", href: "/bbps-software-development" },
+      { name: "B2B Fintech Software", href: "/fintech-software-development-company" },
+      { name: "Reseller Fintech Software", href: "/reseller-software-development" },
+      { name: "Custom Finance Software", href: "/fintech-software-development-company" },
     ],
   },
 ];
@@ -124,11 +124,10 @@ export default function Footer() {
 
           <div className="border-t border-gray-500 my-6" />
 
-          <div className={`grid grid-cols-2 ${
-            footerData.length + 1 === 5 ? 'md:grid-cols-5' : 
-            footerData.length + 1 === 4 ? 'md:grid-cols-4' : 
-            'md:grid-cols-3'
-          } gap-8 text-base`}>
+          <div className={`grid grid-cols-2 ${footerData.length + 1 === 5 ? 'md:grid-cols-5' :
+            footerData.length + 1 === 4 ? 'md:grid-cols-4' :
+              'md:grid-cols-3'
+            } gap-8 text-base`}>
             <div className="col-span-2 md:col-span-1 w-full  flex  flex-col items-start sm:items-center mb-4">
               <Link href="/" className="flex items-center">
                 <Image
@@ -179,10 +178,10 @@ export default function Footer() {
                   {section.links.map((link, j) => (
                     <li key={j} className="relative text-xs md:text-sm">
                       <Link
-                        href="#"
+                        href={link.href}
                         className="hover:text-orange-500 transition-all  hover:translate-x-2 duration-500"
                       >
-                        {link}
+                        {link.name}
                       </Link>
                     </li>
                   ))}
@@ -210,18 +209,6 @@ export default function Footer() {
               >
                 Terms of Use
               </Link>
-              <Link
-                className="hover:text-orange-500 transition-color duration-500"
-                href="/Cookie-policy"
-              >
-                Cookie policy
-              </Link>{" "}
-              {/* <Link
-              className="hover:text-orange-500 transition-color duration-500"
-              href="#"
-            >
-              Cookie Settings
-            </Link> */}
               <CookieSettings />
             </div>
           </div>
