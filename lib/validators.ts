@@ -18,31 +18,29 @@ export const validateEmail = (value: string): string | null => {
   return null;
 };
 
-// PHONE (E.164 international)
+// PHONE
 export const validatePhone = (value: string): string | null => {
-  const digits = value.replace(/\D/g, "");
-
-  // Length check
-  if (digits.length < 7 || digits.length > 14) {
-    return "Enter a valid phone number.";
+  const trimmed = (value || "").trim();
+  if (!trimmed) {
+    return "Enter a valid 10-digit phone number.";
   }
 
-  // Reject same digits (e.g., 11111)
-  if (/^(\d)\1+$/.test(digits)) {
-    return "Invalid phone number.";
+  let digits = trimmed.replace(/\D/g, "");
+
+  if (digits.length === 12 && digits.startsWith("91")) {
+    digits = digits.slice(2);
   }
 
-  // Reject strict ascending or descending numbers
-  const ascending = "0123456789012345";
-  const descending = "9876543210987654";
-
-  if (ascending.includes(digits) || descending.includes(digits)) {
-    return "Invalid phone number.";
+  if (digits.length < 10) {
+    return "Phone number must be 10 digits.";
   }
 
-  // Reject any digit repeated 4+ times in a row
-  if (/(\d)\1{3,}/.test(digits)) {
-    return "Invalid phone number.";
+  if (digits.length > 10) {
+    return "Phone number cannot exceed 10 digits.";
+  }
+
+  if (!/^[6-9]\d{9}$/.test(digits)) {
+    return "Enter a valid 10-digit phone number.";
   }
 
   return null;

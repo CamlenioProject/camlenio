@@ -7,7 +7,7 @@ const MLMServices = () => {
     <section className="w-full">
       <div className="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8 py-10">
         <Image
-          src="/ServiceDropdown/mlmsoftware/mlm-second.png"
+          src="/ServiceDropdown/mlmsoftware/mlm-second.webp"
           alt="Most Trusted MLM Software Development Company"
           width={2000}
           height={3000}

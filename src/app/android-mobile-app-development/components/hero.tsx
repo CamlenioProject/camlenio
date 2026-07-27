@@ -176,7 +176,7 @@ export default function Hero() {
               className="relative w-full h-full"
             >
               <Image
-                src="/mobappdev/mobile-app-development.png"
+                src="/mobappdev/mobile-app-development.webp"
                 alt="Central App Mockup"
                 fill
                 priority

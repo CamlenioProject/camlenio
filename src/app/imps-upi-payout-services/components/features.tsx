@@ -31,112 +31,112 @@ const features = [
     title: "Unified Status Tracking",
     description: "Track the fund status hassle-free across Webhooks, APIs, and the dashboard with complete visibility.",
     icon: Activity,
-    image: "/fintech/status_tracking.png"
+    image: "/fintech/status_tracking.webp"
   },
   {
     id: 2,
     title: "Developer REST APIs",
     description: "Get started rapidly with our developer-friendly REST APIs for instant transfers and real-time tracking.",
     icon: Code,
-    image: "/fintech/api_developer.png"
+    image: "/fintech/api_developer.webp"
   },
   {
     id: 3,
     title: "Bulk File Upload",
     description: "Process thousands of transactions instantly with zero integration by simply uploading a payout file.",
     icon: UploadCloud,
-    image: "/fintech/bulk_upload.png"
+    image: "/fintech/bulk_upload.webp"
   },
   {
     id: 4,
     title: "No Beneficiary Delays",
     description: "Send payments immediately without waiting for beneficiary addition or cooling periods.",
     icon: Zap,
-    image: "/fintech/instant_transfer.png"
+    image: "/fintech/instant_transfer.webp"
   },
   {
     id: 5,
     title: "Real-Time Webhooks",
     description: "Our infrastructure guarantees funds reach beneficiaries immediately, 24/7/365.",
     icon: Radio,
-    image: "/fintech/api_developer.png"
+    image: "/fintech/api_developer.webp"
   },
   {
     id: 6,
     title: "Live Payment Status",
     description: "Receive 24/7 transaction updates via secure webhooks without manual tracking.",
     icon: CheckCircle,
-    image: "/fintech/status_tracking.png"
+    image: "/fintech/status_tracking.webp"
   },
   {
     id: 7,
     title: "Smart Search",
     description: "Find any transaction in seconds using Request ID, UTR, or account number.",
     icon: Search,
-    image: "/fintech/status_tracking.png"
+    image: "/fintech/status_tracking.webp"
   },
   {
     id: 8,
     title: "Access Control",
     description: "Secure solutions with detailed role-based access control for your entire team.",
     icon: ShieldCheck,
-    image: "/fintech/team_access.png"
+    image: "/fintech/team_access.webp"
   },
   {
     id: 9,
     title: "Multiple Logins",
     description: "Manage team access efficiently with ability to create/reset user logins anytime.",
     icon: Users,
-    image: "/fintech/team_access.png"
+    image: "/fintech/team_access.webp"
   },
   {
     id: 10,
     title: "Approval Workflows",
     description: "Define single or multi-level approval flows with maker-checker security protocols.",
     icon: GitPullRequest,
-    image: "/fintech/team_access.png"
+    image: "/fintech/team_access.webp"
   },
   {
     id: 11,
     title: "Secure Dashboard",
     description: "Enterprise-grade security with IP whitelisting, 2FA, and encrypted transaction passwords.",
     icon: Lock,
-    image: "/fintech/security_shield.png"
+    image: "/fintech/security_shield.webp"
   },
   {
     id: 12,
     title: "API Security",
     description: "HTTPS-only mode, signed requests, and server IP whitelisting for bulletproof integrations.",
     icon: Server,
-    image: "/fintech/security_shield.png"
+    image: "/fintech/security_shield.webp"
   },
   {
     id: 13,
     title: "Duplicate Prevention",
     description: "Intelligent validation prevents accidental double payments and financial loss.",
     icon: FileWarning,
-    image: "/fintech/security_shield.png"
+    image: "/fintech/security_shield.webp"
   },
   {
     id: 14,
     title: "Fraud Detection",
     description: "Automatically blocks funds to suspect/blacklisted accounts with real-time screening.",
     icon: ShieldAlert,
-    image: "/fintech/security_shield.png"
+    image: "/fintech/security_shield.webp"
   },
   {
     id: 15,
     title: "Rich Reporting",
     description: "Download comprehensive daily/monthly statements and reconciliation reports.",
     icon: FileText,
-    image: "/fintech/bulk_upload.png"
+    image: "/fintech/bulk_upload.webp"
   },
   {
     id: 16,
     title: "Smart Alerts",
     description: "Real-time notifications for low balance, failures, and system thresholds.",
     icon: Bell,
-    image: "/fintech/instant_transfer.png"
+    image: "/fintech/instant_transfer.webp"
   },
 ];
 

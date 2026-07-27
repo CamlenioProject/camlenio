@@ -9,7 +9,7 @@ const Hero = () => {
     <div className="relative pt-18 pb-1 bg-gradient-to-r from-gray-100 via-orange-100 to-gray-start ">
       <div className="relative">
         <Image
-          src="/CompanyDropdown/about/about-bg.jpg"
+          src="/CompanyDropdown/about/about-bg.webp"
           alt="About Us"
           width={1900}
           height={900}

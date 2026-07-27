@@ -136,7 +136,7 @@ const About = () => {
               className="absolute top-14 -right-10 w-[160px] h-[180px] rounded-[3rem] border border-gray-100 overflow-hidden shadow-md"
             >
               <Image
-                src="/ServiceDropdown/fintechsoftware/about-smal.jpg"
+                src="/ServiceDropdown/fintechsoftware/about-small.jpg"
                 alt="Fintech Software Developers India"
                 width={300}
                 height={300}

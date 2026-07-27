@@ -57,7 +57,7 @@ export const CompanyDropdown = ({ item, baseHref }: { item: any, baseHref: strin
         <div className="w-[300px] relative p-6 flex flex-col justify-between overflow-hidden group/blog">
           <div className="absolute inset-0">
             <img
-              src="/CompanyDropdown/blog/camlenio_blog_bg.png"
+              src="/CompanyDropdown/blog/camlenio_blog_bg.webp"
               alt="Blog Background"
               className="w-full h-full object-cover opacity-100 group-hover/blog:scale-110 transition-transform duration-700"
             />

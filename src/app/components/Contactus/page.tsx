@@ -103,6 +103,28 @@ function ContactUsContent() {
   ) => {
     const { name, value } = e.target;
 
+    if (name === "phone") {
+      const cleaned = value.replace(/\D/g, "").slice(0, 10);
+      setFormData((prev: any) => ({ ...prev, phone: cleaned }));
+
+      if (cleaned.length === 10 || cleaned.length === 0) {
+        const err = validatePhone(cleaned);
+        setErrors((prev) => {
+          const updated = { ...prev };
+          if (err) updated.phone = err;
+          else delete updated.phone;
+          return updated;
+        });
+      } else {
+        setErrors((prev) => {
+          const updated = { ...prev };
+          delete updated.phone;
+          return updated;
+        });
+      }
+      return;
+    }
+
     setFormData({ ...formData, [name]: value });
 
     if (errors[name]) {
@@ -331,6 +353,9 @@ function ContactUsContent() {
                       const err = validatePhone(formData.phone);
                       if (err) setErrors((prev) => ({ ...prev, phone: err }));
                     }}
+                    maxLength={10}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     placeholder="Phone Number"
                     className={`w-full pl-12 sm:pl-16 pr-3 py-3 border text-gray-600 border-gray-300 rounded-2xl focus:ring-2 focus:ring-orange-200 focus:outline-none placeholder:text-gray-600 placeholder:text-sm sm:placeholder:text-base ${errors.phone ? "border-red-500" : ""
                       }`}

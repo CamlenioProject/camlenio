@@ -445,16 +445,29 @@ const FormPopupContent: React.FC<FormPopupProps> = ({ isOpen, onClose }) => {
                                 ))}
                               </select>
                               <input
-                                type="text"
+                                type="tel"
                                 id="phone"
                                 name="phone"
                                 value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                onChange={(e) => {
+                                  const cleaned = e.target.value.replace(/\D/g, "").slice(0, 10);
+                                  setPhoneNumber(cleaned);
+                                  if (cleaned.length === 10 || cleaned.length === 0) {
+                                    const full = `${countryCode}${cleaned}`;
+                                    const err = validatePhone(full);
+                                    setPhoneError(err);
+                                  } else {
+                                    setPhoneError(null);
+                                  }
+                                }}
                                 onBlur={() => {
                                   const full = `${countryCode}${phoneNumber}`;
                                   const err = validatePhone(full);
                                   setPhoneError(err);
                                 }}
+                                maxLength={10}
+                                inputMode="numeric"
+                                pattern="[0-9]*"
                                 className="mt-1 block w-full px-3 py-1 text-[.7rem] bg-white border placeholder-opacity-40 border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                                 placeholder="Phone Number"
                               />

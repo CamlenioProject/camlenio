@@ -12,7 +12,7 @@ const services = [
     category: "Development",
     readTime: "Core Service",
     description: "We build tailored Android solutions from scratch, ensuring they align perfectly with your unique business goals and user requirements.",
-    image: "/mobappdev/android_dev.png",
+    image: "/mobappdev/android_dev.webp",
     longDesc: "Our custom Android development service is designed to bring your unique vision to life. We handle everything from initial concept and architecture to development, testing, and deployment. By using native Kotlin/Java or cross-platform technologies, we ensure your app performs flawlessly on the diverse Android ecosystem."
   },
   {
@@ -20,7 +20,7 @@ const services = [
     category: "Enterprise",
     readTime: "Scalable",
     description: "Secure and scalable systems for large operations.",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
     longDesc: "We engineer robust enterprise-grade Android applications capable of handling massive user loads and complex workflows. Our solutions prioritize security, scalability, and seamless integration with your existing ERP, CRM, and cloud infrastructure."
   },
   {
@@ -28,7 +28,7 @@ const services = [
     category: "Design",
     readTime: "Creative",
     description: "Intuitive interfaces focused on user engagement.",
-    image: "/mobappdev/ui_ux.png",
+    image: "/mobappdev/ui_ux.webp",
     longDesc: "User experience is at the heart of our design process. We create visually stunning and highly intuitive interfaces that ensure high user retention. Our design team follows Material Design guidelines while infusing your brand identity into every pixel."
   },
   {
@@ -36,7 +36,7 @@ const services = [
     category: "Integration",
     readTime: "Seamless",
     description: "Connecting apps with existing backends & cloud.",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
     longDesc: "Extend your app's functionality with our seamless integration services. Whether it's payment gateways, social media logins, geolocation services, or connecting to legacy backend systems, we ensure smooth and secure data exchange."
   },
   {
@@ -44,7 +44,7 @@ const services = [
     category: "Quality",
     readTime: "Bug-free",
     description: "Rigorous testing for high-performance apps.",
-    image: "/mobappdev/testing.png",
+    image: "/mobappdev/testing.webp",
     longDesc: "Delivering a crash-free experience is our priority. Our QA team performs rigorous automated and manual testing across a wide range of devices and Android versions to identify and fix bugs, ensure performance optimization, and guarantee security compliance."
   },
   {
@@ -52,7 +52,7 @@ const services = [
     category: "Launch",
     readTime: "Support",
     description: "Complete management of the launch process.",
-    image: "/mobappdev/ui_ux.png",
+    image: "/mobappdev/ui_ux.webp",
     longDesc: "Launching is just the beginning. We handle the entire Play Store submission process, including listing optimization, compliance checks, and managing release tracks. We also provide post-launch support to ensure your app stays compatible with new OS updates."
   },
   {
@@ -60,7 +60,7 @@ const services = [
     category: "Support",
     readTime: "Ongoing",
     description: "Continuous updates and performance monitoring.",
-    image: "/mobappdev/android_dev.png",
+    image: "/mobappdev/android_dev.webp",
     longDesc: "We provide ongoing maintenance plans to keep your application running smoothly. From security patches and performance tuning to feature enhancements and OS version updates, we ensure your app remains competitive and efficient."
   },
 ];
@@ -71,7 +71,7 @@ const industries = [
     category: "Finance",
     readTime: "Secure",
     description: "Secure payment and transaction apps.",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
     longDesc: "We build high-security fintech applications that power seamless transactions, digital wallets, and banking operations. Compliant with financial regulations, our apps ensure data integrity and user trust."
   },
   {
@@ -79,7 +79,7 @@ const industries = [
     category: "Retail",
     readTime: "Growth",
     description: "Shopping, inventory & order management.",
-    image: "/mobappdev/ui_ux.png",
+    image: "/mobappdev/ui_ux.webp",
     longDesc: "Transform your retail business with feature-rich e-commerce apps. We integrate smart search, secure checkouts, and real-time inventory management to deliver a superior shopping experience."
   },
   {
@@ -87,7 +87,7 @@ const industries = [
     category: "Health",
     readTime: "Care",
     description: "Appointment booking & patient management.",
-    image: "/mobappdev/testing.png",
+    image: "/mobappdev/testing.webp",
     longDesc: "Empowering healthcare providers with telemedicine, appointment scheduling, and patient record management apps. We prioritize HIPAA compliance and intuitive interfaces for patients and doctors alike."
   },
   {
@@ -95,7 +95,7 @@ const industries = [
     category: "Property",
     readTime: "Listings",
     description: "Property listing and management solutions.",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
     longDesc: " streamlining property buying, selling, and renting. Our real estate apps feature virtual tours, geolocation maps, and direct agent communication tools."
   },
   {
@@ -103,7 +103,7 @@ const industries = [
     category: "Logistics",
     readTime: "Track",
     description: "Tracking and service-based applications.",
-    image: "/mobappdev/android_dev.png",
+    image: "/mobappdev/android_dev.webp",
     longDesc: "Optimize your supply chain with real-time tracking and fleet management apps. We create on-demand delivery solutions that connect customers with drivers instantly."
   },
   {
@@ -111,7 +111,7 @@ const industries = [
     category: "Corporate",
     readTime: "Efficient",
     description: "Workforce and data management apps.",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
     longDesc: "Boost organizational productivity with custom enterprise mobility solutions. From field force management to internal communication hubs, we digitize your core workflows."
   },
 ];

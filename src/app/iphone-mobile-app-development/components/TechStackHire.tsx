@@ -15,7 +15,7 @@ const technologies = [
     description: "Native iOS development for maximum performance and seamless Apple ecosystem integration.",
     icon: Code2,
     color: "from-purple-900/90 to-indigo-900/90",
-    image: "/mobappdev/android_dev.png",
+    image: "/mobappdev/android_dev.webp",
   },
   {
     name: "UIKit & Xcode",
@@ -23,7 +23,7 @@ const technologies = [
     description: "Industry-standard tools for building robust, pixel-perfect iOS interfaces.",
     icon: Smartphone,
     color: "from-green-900/90 to-emerald-900/90",
-    image: "/mobappdev/ui_ux.png",
+    image: "/mobappdev/ui_ux.webp",
   },
   {
     name: "RESTful & GraphQL APIs",
@@ -31,7 +31,7 @@ const technologies = [
     description: "Seamless integration with third-party services, backends, and cloud platforms.",
     icon: Server,
     color: "from-blue-900/90 to-cyan-900/90",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
   },
   {
     name: "Firebase & AWS",
@@ -39,7 +39,7 @@ const technologies = [
     description: "Scalable serverless backends with real-time databases and cloud functions.",
     icon: Cloud,
     color: "from-orange-900/90 to-red-900/90",
-    image: "/mobappdev/testing.png",
+    image: "/mobappdev/testing.webp",
   },
   {
     name: "Core Data & CloudKit",
@@ -47,7 +47,7 @@ const technologies = [
     description: "Apple-native local and cloud data persistence with encryption.",
     icon: Database,
     color: "from-pink-900/90 to-rose-900/90",
-    image: "/mobappdev/android_dev.png",
+    image: "/mobappdev/android_dev.webp",
   },
 ];
 

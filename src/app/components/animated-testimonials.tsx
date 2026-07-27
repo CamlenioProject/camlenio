@@ -19,7 +19,7 @@ const testimonials: Testimonial[] = [
     name: "Neelpe Team",
     designation: "Neelpe",
     src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
-    logoSrc: "/Homepage/testimonials/neelpe.png",
+    logoSrc: "/Homepage/testimonials/neelpe.webp",
   },
   {
     quote:
@@ -35,7 +35,7 @@ const testimonials: Testimonial[] = [
     name: "AKMS Team",
     designation: "AKMS Insurance Surveyors & Loss Assessors",
     src: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2000&auto=format&fit=crop",
-    logoSrc: "/Homepage/testimonials/akms.png",
+    logoSrc: "/Homepage/testimonials/akms.webp",
   },
 ];
 

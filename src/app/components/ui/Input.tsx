@@ -27,7 +27,7 @@ const Input = React.forwardRef<HTMLInputElement & HTMLTextAreaElement, InputProp
           {isTextArea ? (
             <textarea
               className={cn(
-                "flex w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 transition-all duration-200 outline-none placeholder:text-slate-300 min-h-[100px] resize-none",
+                "flex w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 transition-colors duration-200 outline-none placeholder:text-slate-300 min-h-[100px] resize-none",
                 "focus:border-[#0066FF]/50 focus:ring-4 focus:ring-[#0066FF]/5",
                 "hover:border-slate-300",
                 (Icon || leftElement) && "pl-11",
@@ -42,7 +42,7 @@ const Input = React.forwardRef<HTMLInputElement & HTMLTextAreaElement, InputProp
             <input
               type={type}
               className={cn(
-                "flex w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 transition-all duration-200 outline-none placeholder:text-slate-300 h-11",
+                "flex w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 transition-colors duration-200 outline-none placeholder:text-slate-300 h-11",
                 "focus:border-[#0066FF]/50 focus:ring-4 focus:ring-[#0066FF]/5",
                 "hover:border-slate-300",
                 (Icon || leftElement) && "pl-11",

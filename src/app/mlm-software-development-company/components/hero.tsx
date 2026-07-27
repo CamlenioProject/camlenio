@@ -72,7 +72,7 @@ export default function HeroSection() {
               className="relative"
             >
               <Image
-                src="/ServiceDropdown/mlmsoftware/mlm-hero-1.png"
+                src="/ServiceDropdown/mlmsoftware/mlm-hero-1.webp"
                 alt="MLM Software Development Illustration"
                 width={360}
                 height={520}

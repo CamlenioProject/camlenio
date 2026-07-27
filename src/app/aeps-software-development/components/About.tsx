@@ -95,7 +95,7 @@ export default function About() {
               }}
             >
               <Image
-                src="/assets/AEPS/AEPS-img1.webp"
+                src="/assets/AEPS/aeps-img1.webp"
                 alt="Aadhaar Enabled Payment System Workspace"
                 fill
                 className="object-cover grayscale-[0.15] group-hover:grayscale-[0.02] group-hover:scale-105 transition-all duration-700"

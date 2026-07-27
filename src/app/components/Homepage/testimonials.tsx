@@ -12,7 +12,7 @@ const testimonials = [
     text: "EskyDecode recognizes the importance of developing IT solutions for our clients. We assess our clients regularly to ensure we consistently provide the best value available. By doing so, we established ourselves as the global choice of the world.",
     highlight: "Looking for Digital Solution?",
     client: "Neelpe",
-    companyLogo: "/Homepage/testimonials/neelpe.png",
+    companyLogo: "/Homepage/testimonials/neelpe.webp",
     review:
       "Partnering with Camlenio Software has been a great experience for us at Neelpe.The team’s professionalism, timely support, and innovative approach have truly helped us scale our services and build more trust with our customers.",
     stars: 5,
@@ -34,7 +34,7 @@ const testimonials = [
     text: "Working with EskyDecode was seamless. Their dedication and expertise made our project successful beyond expectations.",
     highlight: "Your success is our mission!",
     client: "AKMS Insurance Surveyors & Loss Assessors",
-    companyLogo: "/Homepage/testimonials/akms.png",
+    companyLogo: "/Homepage/testimonials/akms.webp",
     review:
       " They provided us with a reliable and efficient platform to manage claim services and streamline our operations. Their professional approach, timely delivery, and constant support have added great value to our business.",
     stars: 5,

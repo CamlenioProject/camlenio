@@ -112,7 +112,7 @@ export default function Hero() {
                   {/* Balance / Analytics Metrics */}
                   <div className="w-full bg-white p-3.5 rounded-2xl border border-slate-100 shadow-[0_4px_15px_-3px_rgba(0,0,0,0.02)]">
                     <span className="text-[8px] font-extrabold text-slate-400 uppercase tracking-wider block mb-0.5">Development Saved</span>
-                    <span className="text-xl font-black text-slate-900">$1,876,580</span>
+                    <span className="text-xl font-black text-slate-900">₹1,876,580</span>
 
                     {/* Performance Progress */}
                     <div className="w-full h-1.5 bg-slate-100 rounded-full mt-3 overflow-hidden">

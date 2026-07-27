@@ -81,8 +81,8 @@ export const servicesMenuData = [
   {
     title: "App Development",
     items: [
-      { title: "Android Mobile App Development", href: "/android-mobile-app-development", icon: DevicePhoneMobileIcon },
-      { title: "IPhone Mobile App Development", href: "/iphone-mobile-app-development", icon: DevicePhoneMobileIcon },
+      { title: "Android App Development", href: "/android-mobile-app-development", icon: DevicePhoneMobileIcon },
+      { title: "IOS App Development", href: "/iphone-mobile-app-development", icon: DevicePhoneMobileIcon },
       { title: "On-Demand App Development", href: "/on-demand-app-development", icon: TruckIcon },
       { title: "Hybrid App Development", href: "/hybrid-app-development", icon: CodeBracketIcon },
     ]
@@ -98,7 +98,7 @@ export const servicesMenuData = [
   },
   {
     title: "Logo & Graphic Designing",
-    image: "/header/logo-graphic-designing.png",
+    image: "/header/logo-graphic-designing.webp",
     href: "/logo-graphic-design",
     items: []
   },
@@ -199,13 +199,6 @@ export const navItems = [
     isComplex: true,
     items: [
       {
-        title: "Human Resources",
-        color: "bg-orange-100 text-orange-800",
-        items: [
-          { title: "HRMS Software", href: "/human-resource-management-software-development", desc: "Complete HR management", icon: BriefcaseIcon },
-        ]
-      },
-      {
         title: "Finance & Commerce",
         color: "bg-orange-100 text-orange-800",
         items: [
@@ -219,6 +212,13 @@ export const navItems = [
         items: [
           { title: "CRM Software", href: "/crm-software-development", desc: "Customer relationship tools", icon: UserGroupIcon },
           { title: "MLM Software", href: "/mlm-software-development-company", desc: "Multi-level marketing", icon: ChartBarIcon },
+        ]
+      },
+      {
+        title: "Human Resources",
+        color: "bg-orange-100 text-orange-800",
+        items: [
+          { title: "HRMS Software", href: "/human-resource-management-software-development", desc: "Complete HR management", icon: BriefcaseIcon },
         ]
       },
       // {

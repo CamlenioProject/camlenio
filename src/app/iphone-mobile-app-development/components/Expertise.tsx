@@ -10,7 +10,7 @@ const services = [
     category: "Development",
     readTime: "Core Service",
     description: "We build tailored iPhone solutions from scratch, ensuring they align perfectly with your unique business goals and user requirements.",
-    image: "/mobappdev/android_dev.png",
+    image: "/mobappdev/android_dev.webp",
     longDesc: "Our custom iPhone development service brings your vision to life using the latest iOS technologies. We handle everything from initial concept and architecture to development, rigorous testing, and App Store deployment."
   },
   {
@@ -18,7 +18,7 @@ const services = [
     category: "Enterprise",
     readTime: "Scalable",
     description: "Secure and scalable iOS systems for large operations.",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
     longDesc: "We engineer robust enterprise-grade iOS applications capable of handling massive user loads and complex workflows."
   },
   {
@@ -26,7 +26,7 @@ const services = [
     category: "Design",
     readTime: "Creative",
     description: "Intuitive interfaces following Apple's Human Interface Guidelines.",
-    image: "/mobappdev/ui_ux.png",
+    image: "/mobappdev/ui_ux.webp",
     longDesc: "User experience is at the heart of our design process. We create visually stunning and highly intuitive interfaces."
   },
   {
@@ -34,7 +34,7 @@ const services = [
     category: "Integration",
     readTime: "Seamless",
     description: "Connecting apps with existing backends & cloud services.",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
     longDesc: "Extend your iPhone app's functionality with our seamless integration services."
   },
   {
@@ -42,7 +42,7 @@ const services = [
     category: "Quality",
     readTime: "Bug-free",
     description: "Rigorous testing for high-performance iOS apps.",
-    image: "/mobappdev/testing.png",
+    image: "/mobappdev/testing.webp",
     longDesc: "Delivering a crash-free experience is our priority. Our QA team performs rigorous automated and manual testing."
   },
   {
@@ -50,7 +50,7 @@ const services = [
     category: "Launch",
     readTime: "Support",
     description: "Complete management of the App Store launch process.",
-    image: "/mobappdev/ui_ux.png",
+    image: "/mobappdev/ui_ux.webp",
     longDesc: "We handle the entire App Store submission process, including ASO and compliance checks."
   },
   {
@@ -58,7 +58,7 @@ const services = [
     category: "Support",
     readTime: "Ongoing",
     description: "Continuous updates and performance monitoring.",
-    image: "/mobappdev/android_dev.png",
+    image: "/mobappdev/android_dev.webp",
     longDesc: "We provide ongoing maintenance plans to keep your iPhone application running smoothly."
   },
 ];
@@ -69,7 +69,7 @@ const industries = [
     category: "Finance",
     readTime: "Secure",
     description: "Secure payment and transaction apps for iOS.",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
     longDesc: "We build high-security fintech applications that power seamless transactions on iPhone."
   },
   {
@@ -77,7 +77,7 @@ const industries = [
     category: "Retail",
     readTime: "Growth",
     description: "Shopping, inventory & order management on iOS.",
-    image: "/mobappdev/ui_ux.png",
+    image: "/mobappdev/ui_ux.webp",
     longDesc: "Transform your retail business with feature-rich e-commerce apps optimized for iPhone."
   },
   {
@@ -85,7 +85,7 @@ const industries = [
     category: "Health",
     readTime: "Care",
     description: "Appointment booking & patient management apps.",
-    image: "/mobappdev/testing.png",
+    image: "/mobappdev/testing.webp",
     longDesc: "Empowering healthcare providers with telemedicine and health tracking apps."
   },
   {
@@ -93,7 +93,7 @@ const industries = [
     category: "Property",
     readTime: "Listings",
     description: "Property listing and management solutions.",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
     longDesc: "Streamlining property buying, selling, and renting with iOS apps."
   },
   {
@@ -101,7 +101,7 @@ const industries = [
     category: "Logistics",
     readTime: "Track",
     description: "Tracking and service-based applications for iOS.",
-    image: "/mobappdev/android_dev.png",
+    image: "/mobappdev/android_dev.webp",
     longDesc: "Optimize your supply chain with real-time tracking and fleet management apps."
   },
   {
@@ -109,7 +109,7 @@ const industries = [
     category: "Education",
     readTime: "Learn",
     description: "Interactive learning and e-learning platforms.",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
     longDesc: "Build engaging educational platforms with interactive content for iOS devices."
   },
 ];

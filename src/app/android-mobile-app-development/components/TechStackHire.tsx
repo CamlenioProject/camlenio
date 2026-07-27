@@ -15,7 +15,7 @@ const technologies = [
     description: "Native development for maximum performance and device control.",
     icon: Code2,
     color: "from-purple-900/90 to-indigo-900/90",
-    image: "/mobappdev/android_dev.png",
+    image: "/mobappdev/android_dev.webp",
   },
   {
     name: "Android Jetpack",
@@ -23,7 +23,7 @@ const technologies = [
     description: "Modern components for robust, backward-compatible architectures.",
     icon: Smartphone,
     color: "from-green-900/90 to-emerald-900/90",
-    image: "/mobappdev/ui_ux.png",
+    image: "/mobappdev/ui_ux.webp",
   },
   {
     name: "RESTful APIs",
@@ -31,7 +31,7 @@ const technologies = [
     description: "Seamless integration with third-party services and data sources.",
     icon: Server,
     color: "from-blue-900/90 to-cyan-900/90",
-    image: "/mobappdev/enterprise.png",
+    image: "/mobappdev/enterprise.webp",
   },
   {
     name: "Cloud Solutions",
@@ -39,7 +39,7 @@ const technologies = [
     description: "Scalable serverless backends using Firebase and AWS.",
     icon: Cloud,
     color: "from-orange-900/90 to-red-900/90",
-    image: "/mobappdev/testing.png",
+    image: "/mobappdev/testing.webp",
   },
   {
     name: "Secure DBs",
@@ -47,7 +47,7 @@ const technologies = [
     description: "Encrypted local and cloud database management.",
     icon: Database,
     color: "from-pink-900/90 to-rose-900/90",
-    image: "/mobappdev/android_dev.png",
+    image: "/mobappdev/android_dev.webp",
   },
 ];
 

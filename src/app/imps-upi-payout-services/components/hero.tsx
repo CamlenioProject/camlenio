@@ -143,7 +143,7 @@ export default function Hero() {
 
           <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
             <Image
-              src="/fintech/payout_hero_rupee.png"
+              src="/fintech/payout_hero_rupee.webp"
               alt="Fintech Professional Dashboard with Rupee symbols"
               fill
               className="object-cover"

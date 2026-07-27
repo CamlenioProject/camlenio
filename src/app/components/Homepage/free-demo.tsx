@@ -184,10 +184,10 @@ const FreeDemo = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative p-8 md:p-10 rounded-[2.5rem] bg-white/80  border border-black/5 shadow-sm overflow-hidden group"
+              className="relative p-8 md:p-10 rounded-[2.5rem] bg-white/80 border border-black/5 shadow-sm overflow-hidden"
             >
               {/* Inner Glow */}
-              <div className="absolute top-0 left-0 w-full h-full" />
+              <div className="absolute top-0 left-0 w-full h-full pointer-events-none" />
 
               <div className="relative z-10">
                 <div className="mb-8">
@@ -211,7 +211,14 @@ const FreeDemo = () => {
                       id="home_phone"
                       name="home_phone"
                       label="Phone Number"
-                      placeholder="+91 xxx..."
+                      placeholder="10-digit phone number"
+                      maxLength={10}
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      onInput={(e: React.FormEvent<HTMLInputElement>) => {
+                        const target = e.currentTarget;
+                        target.value = target.value.replace(/\D/g, "").slice(0, 10);
+                      }}
                       error={errors.phone}
                     />
                   </div>

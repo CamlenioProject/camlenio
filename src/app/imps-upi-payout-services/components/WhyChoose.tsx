@@ -74,7 +74,7 @@ export default function WhyChoose() {
               className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-orange-500/10 border border-white/50"
             >
               <Image
-                src="/fintech/trust_visual.png"
+                src="/fintech/trust_visual.webp"
                 alt="Secure Trust Shield 3D Illustration"
                 fill
                 className="object-cover bg-white"
