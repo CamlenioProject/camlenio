@@ -18,9 +18,9 @@ const Hero = () => {
     <div className="relative min-h-[82vh] pt-24 pb-8 md:pt-28 md:pb-10 overflow-hidden flex flex-col justify-between">
       <div className="flex flex-col md:flex-row w-full flex-grow items-center justify-center">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 1, x: 0 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           style={{ willChange: "transform" }}
           className="flex flex-col items-center justify-center w-full md:w-[50%]"
         >
@@ -53,9 +53,9 @@ const Hero = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 1, x: 0 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.5 }}
           style={{ willChange: "transform" }}
           className="relative h-[36rem] w-full md:w-[50%] flex-grow flex flex-col items-center justify-center px-2 py-28 md:py-20 md:rounded-bl-[3rem] overflow-hidden"
         >
@@ -97,7 +97,7 @@ const Hero = () => {
                   key={card.id}
                   onHoverStart={() => setHoveredIndex(index)}
                   onTap={() => setHoveredIndex(index)}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: isCenter ? 1 : 0.6 }}
                   animate={{
                     ...(isAnyHovered ? hoveredStyles : initialStyles),
                     opacity: isAnyHovered ? (isHovered ? 1 : 0.3) : (isCenter ? 1 : 0.6),

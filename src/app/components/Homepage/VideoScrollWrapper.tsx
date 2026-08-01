@@ -28,24 +28,34 @@ const VideoScrollWrapper = () => {
     const boxes = itSolutionEl.querySelectorAll("[data-anim]");
 
     // 1. Initial State
-    gsap.set(videoWrapperEl, {
-      width: "50%",
-      height: "auto",
-      aspectRatio: "16/9",
-      left: "50%",
-      top: "50%",
-      xPercent: -50,
-      yPercent: -50,
-      borderRadius: "2rem",
-      opacity: 0,
-      scale: 0.8,
-      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4)",
-      force3D: true,
-      willChange: "transform, width, height"
-    });
+    const isMobileDevice = typeof window !== "undefined" && !window.matchMedia("(min-width: 769px)").matches;
 
-    gsap.set(itSolutionEl, { opacity: 0 });
-    gsap.set(boxes, { y: 30, opacity: 0 });
+    if (isMobileDevice) {
+      setIsHandoffComplete(true);
+      gsap.set(videoWrapperEl, { display: "none", opacity: 0 });
+      gsap.set(itSolutionEl, { opacity: 1 });
+      gsap.set(boxes, { opacity: 1, y: 0 });
+    } else {
+      gsap.set(videoWrapperEl, {
+        display: "block",
+        width: "50%",
+        height: "auto",
+        aspectRatio: "16/9",
+        left: "50%",
+        top: "50%",
+        xPercent: -50,
+        yPercent: -50,
+        borderRadius: "2rem",
+        opacity: 0,
+        scale: 0.8,
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4)",
+        force3D: true,
+        willChange: "transform, width, height"
+      });
+
+      gsap.set(itSolutionEl, { opacity: 0 });
+      gsap.set(boxes, { y: 30, opacity: 0 });
+    }
 
     // 2. Auto-Sliding Marquee (Independent of scroll)
     gsap.to(bgTextEl, {
@@ -65,6 +75,7 @@ const VideoScrollWrapper = () => {
 
       if (!isDesktop) {
         setIsHandoffComplete(true);
+        gsap.set(videoWrapperEl, { display: "none", opacity: 0 });
         gsap.set(itSolutionEl, { opacity: 1 });
         gsap.set(boxes, { opacity: 1, y: 0 });
         return;
@@ -133,13 +144,14 @@ const VideoScrollWrapper = () => {
         }, 1.8);
     });
 
-    // Ensure layout is stable before refreshing
-    const timer = setTimeout(() => {
+    // Ensure layout is stable immediately and after frame render
+    ScrollTrigger.refresh();
+    const rafId = requestAnimationFrame(() => {
       ScrollTrigger.refresh();
-    }, 500);
+    });
 
     return () => {
-      clearTimeout(timer);
+      cancelAnimationFrame(rafId);
       mm.revert();
     };
   }, { scope: containerRef });
@@ -154,7 +166,7 @@ const VideoScrollWrapper = () => {
       `}</style>
 
       {/* Auto-Sliding Marquee Layer - Desktop Only */}
-      <div className="fixed inset-0 hidden md:flex items-center pointer-events-none z-10 select-none overflow-hidden">
+      <div className="absolute inset-0 hidden md:flex items-center pointer-events-none z-10 select-none overflow-hidden">
         <div
           ref={bgTextRef}
           className="flex whitespace-nowrap opacity-20"
@@ -166,22 +178,25 @@ const VideoScrollWrapper = () => {
       </div>
 
       {/* The Floating/Fixed Cinematic Video Wrapper (No Border) */}
-      <div
-        ref={videoWrapperRef}
-        className={clsx(
-          "absolute z-50 pointer-events-none overflow-hidden shadow-2xl",
-          isHandoffComplete ? "opacity-0 invisible" : "opacity-100 visible"
-        )}
-      >
-        <video
-          src={itSolutionData.videoUrl}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        />
-      </div>
+      {!isHandoffComplete && (
+        <div
+          ref={videoWrapperRef}
+          className={clsx(
+            "absolute z-50 pointer-events-none overflow-hidden shadow-2xl",
+            isHandoffComplete ? "opacity-0 invisible" : "opacity-100 visible"
+          )}
+        >
+          <video
+            src={itSolutionData.videoUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
 
       {/* The Grid Target Container */}
       <div

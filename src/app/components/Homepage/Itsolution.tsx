@@ -35,7 +35,7 @@ const ItSolution: FC<{ isAnimated?: boolean }> = ({ isAnimated = false }) => {
   // const [isVideoPopupOpen, setIsVideoPopupOpen] = useState(false);
 
   // Intersection observer for triggering counters
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
 
   const handleMouseEnter = () => {
     if (dotLottieRef.current) {
@@ -49,10 +49,8 @@ const ItSolution: FC<{ isAnimated?: boolean }> = ({ isAnimated = false }) => {
       <div ref={ref} className="relative scroll-mt-10 py-10">
         <div className="max-w-7xl mx-auto px-8 md:px-16 text-left md:text-center">
           <m.h2
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            initial={{ y: 0, opacity: 1 }}
+            animate={{ y: 0, opacity: 1 }}
             className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
           >
             {itSolutionData.header.title}{" "}
@@ -69,10 +67,8 @@ const ItSolution: FC<{ isAnimated?: boolean }> = ({ isAnimated = false }) => {
           </m.h2>
 
           <m.p
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            viewport={{ once: true }}
+            initial={{ y: 0, opacity: 1 }}
+            animate={{ y: 0, opacity: 1 }}
             className="max-w-5xl mx-auto text-gray-700 text-sm md:text-base font-sans text-justify mb-12"
           >
             {itSolutionData.header.description}
@@ -95,14 +91,14 @@ const ItSolution: FC<{ isAnimated?: boolean }> = ({ isAnimated = false }) => {
               data-video-target
               className="h-60 bg-gray-200 relative rounded-4xl shadow-sm overflow-hidden md:col-span-2 lg:col-span-2"
             >
-              {!isAnimated && inView && (
+              {!isAnimated && (
                 <video
                   src={itSolutionData.videoUrl}
                   autoPlay
                   loop
                   muted
                   playsInline
-                  preload="none"
+                  preload="metadata"
                   className="w-full h-full object-cover rounded-4xl shadow-sm absolute inset-0 pointer-events-none"
                 >
                   <track kind="captions" src="/captions/hero-video.vtt" srcLang="en" label="English" default />

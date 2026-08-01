@@ -93,90 +93,17 @@ export default function HeaderNew() {
         )}>
           <div className="w-full px-6 md:px-12 flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 relative z-50 group">
+            <Link href="/" className="flex items-center gap-2 relative z-50">
               <Image
-                src="/logo-icon.png"
+                src="/logo.png"
                 alt="Camlenio"
-                width={40}
-                height={40}
-                className="w-10 h-auto transition-transform duration-500 group-hover:rotate-12"
+                width={150}
+                height={150}
+                className="w-28 sm:w-36 h-auto"
                 style={{ height: "auto" }}
                 unoptimized
                 priority
               />
-              <span className={clsx("flex items-center text-2xl font-bold tracking-tight transition-colors duration-300", isTop ? "text-gray-900" : "text-black")}>
-                {"Camlenio".split("").map((char, index) => {
-                  let animateProps: any = {};
-                  switch (index) {
-                    case 0: // C
-                      animateProps = {
-                        initial: { y: -5, opacity: 0, rotateX: -15, rotateY: -10 },
-                        animate: { y: 0, opacity: 1, rotateX: 0, rotateY: 0 },
-                        transition: { duration: 0.8, ease: "easeInOut" }
-                      };
-                      break;
-                    case 1: // a
-                      animateProps = {
-                        initial: { y: 50, opacity: 0, rotateX: -90, transformOrigin: "bottom center" },
-                        animate: { y: 0, opacity: 1, rotateX: 0 },
-                        transition: { duration: 1, ease: "easeOut" }
-                      };
-                      break;
-                    case 2: // m
-                      animateProps = {
-                        initial: { x: 0 },
-                        animate: { x: [0, 20, 0] }, 
-                        transition: { duration: 1.2, ease: "easeOut", times: [0, 0.6, 1] }
-                      };
-                      break;
-                    case 3: // l
-                      animateProps = {
-                        initial: { opacity: 0, scale: 0.9 },
-                        animate: { opacity: 1, scale: 1 },
-                        transition: { duration: 0.5, delay: 0.2 }
-                      };
-                      break;
-                    case 4: // e
-                      animateProps = {
-                        initial: { y: -30, opacity: 0 },
-                        animate: { y: 0, opacity: 1 },
-                        transition: { type: "spring", bounce: 0.6, duration: 0.8 }
-                      };
-                      break;
-                    case 5: // n
-                      animateProps = {
-                        initial: { scale: 0, opacity: 0 },
-                        animate: { scale: 1, opacity: 1 },
-                        transition: { type: "spring", stiffness: 200 }
-                      };
-                      break;
-                    case 6: // i
-                      animateProps = {
-                        animate: { rotateX: [0, 360], scale: [1, 1.2, 1] },
-                        transition: { duration: 1.5, repeat: Infinity, repeatType: "reverse", repeatDelay: 5, ease: "easeInOut" }
-                      };
-                      break;
-                    case 7: // o
-                      animateProps = {
-                        animate: { rotateY: [0, -15, 0] },
-                        transition: { duration: 3, repeat: Infinity, repeatType: "reverse", repeatDelay: 8, ease: "easeInOut" }
-                      };
-                      break;
-                    default:
-                      break;
-                  }
-
-                  return (
-                    <m.span
-                      key={index}
-                      className="inline-block origin-center"
-                      {...animateProps}
-                    >
-                      {char}
-                    </m.span>
-                  );
-                })}
-              </span>
             </Link>
 
             {/* Desktop Nav */}
