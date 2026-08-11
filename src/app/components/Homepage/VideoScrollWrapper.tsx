@@ -1,10 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { itSolutionData } from "@/config/homepage";
-import clsx from "clsx";
 import ItSolution from "./Itsolution";
 
 const VideoScrollWrapper = () => {
@@ -12,7 +11,6 @@ const VideoScrollWrapper = () => {
   const videoWrapperRef = useRef<HTMLDivElement>(null);
   const itSolutionRef = useRef<HTMLDivElement>(null);
   const bgTextRef = useRef<HTMLDivElement>(null);
-  const [isHandoffComplete, setIsHandoffComplete] = useState(false);
 
   useGSAP(() => {
     const itSolutionEl = itSolutionRef.current;
@@ -27,131 +25,148 @@ const VideoScrollWrapper = () => {
 
     const boxes = itSolutionEl.querySelectorAll("[data-anim]");
 
-    // 1. Initial State
-    const isMobileDevice = typeof window !== "undefined" && !window.matchMedia("(min-width: 769px)").matches;
-
-    if (isMobileDevice) {
-      setIsHandoffComplete(true);
-      gsap.set(videoWrapperEl, { display: "none", opacity: 0 });
-      gsap.set(itSolutionEl, { opacity: 1 });
-      gsap.set(boxes, { opacity: 1, y: 0 });
-    } else {
-      gsap.set(videoWrapperEl, {
-        display: "block",
-        width: "50%",
-        height: "auto",
-        aspectRatio: "16/9",
-        left: "50%",
-        top: "50%",
-        xPercent: -50,
-        yPercent: -50,
-        borderRadius: "2rem",
-        opacity: 0,
-        scale: 0.8,
-        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4)",
-        force3D: true,
-        willChange: "transform, width, height"
-      });
-
-      gsap.set(itSolutionEl, { opacity: 0 });
-      gsap.set(boxes, { y: 30, opacity: 0 });
-    }
-
-    // 2. Auto-Sliding Marquee (Independent of scroll)
-    gsap.to(bgTextEl, {
-      xPercent: -50,
-      duration: 30,
-      repeat: -1,
-      ease: "none"
-    });
-
     let mm = gsap.matchMedia();
 
-    mm.add({
-      isDesktop: "(min-width: 769px)",
-      isMobile: "(max-width: 768px)"
-    }, (context) => {
-      const { isDesktop } = context.conditions as { isDesktop: boolean };
+    mm.add(
+      {
+        isDesktop: "(min-width: 769px)",
+        isMobile: "(max-width: 768px)",
+      },
+      (context) => {
+        const { isDesktop } = context.conditions as { isDesktop: boolean };
 
-      if (!isDesktop) {
-        setIsHandoffComplete(true);
-        gsap.set(videoWrapperEl, { display: "none", opacity: 0 });
-        gsap.set(itSolutionEl, { opacity: 1 });
-        gsap.set(boxes, { opacity: 1, y: 0 });
-        return;
-      }
-
-      // Desktop-only Entrance - Fade in card
-      gsap.to(videoWrapperEl, {
-        opacity: 1,
-        scrollTrigger: {
-          trigger: containerEl,
-          start: "top 90%",
-          end: "top 40%",
-          scrub: true
+        if (!isDesktop) {
+          gsap.set(videoWrapperEl, { display: "none", opacity: 0 });
+          gsap.set(itSolutionEl, { opacity: 1 });
+          gsap.set(boxes, { opacity: 1, y: 0 });
+          return;
         }
-      });
 
-      // Desktop-only Main Cinematic Sequence
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerEl,
-          start: "top top",
-          end: "+=250%",
-          pin: true,
-          scrub: 1.5,
-          invalidateOnRefresh: true,
-          onRefresh: () => tl.invalidate(),
-        },
-        onUpdate: function () {
-          const progress = this.progress();
-          setIsHandoffComplete(progress > 0.99);
-        }
-      });
+        // Helper to compute target card coordinates relative to pinned container
+        const getTargetCoords = () => {
+          const targetRect = target.getBoundingClientRect();
+          const containerRect = containerEl.getBoundingClientRect();
+          return {
+            width: targetRect.width,
+            height: targetRect.height,
+            left: targetRect.left - containerRect.left + targetRect.width / 2,
+            top: targetRect.top - containerRect.top + targetRect.height / 2,
+          };
+        };
 
-      // Stage 1: Floating
-      tl.to(videoWrapperEl, {
-        scale: 1,
-        duration: 0.5
-      }, 0);
+        const getStartCoords = () => {
+          const t = getTargetCoords();
+          const targetRatio = t.width > 0 && t.height > 0 ? t.width / t.height : 16 / 9;
+          const startWidth = Math.min(window.innerWidth * 0.65, 840);
+          const startHeight = startWidth / targetRatio;
+          return {
+            width: startWidth,
+            height: startHeight,
+            left: containerEl.clientWidth / 2,
+            top: containerEl.clientHeight / 2,
+          };
+        };
 
-      // Stage 2: Precision Handoff to Grid
-      tl.to(videoWrapperEl, {
-        width: () => target.offsetWidth,
-        height: () => target.offsetHeight,
-        aspectRatio: "auto",
-        left: () => target.getBoundingClientRect().left - containerEl.getBoundingClientRect().left + target.offsetWidth * 0.5,
-        top: () => target.getBoundingClientRect().top - containerEl.getBoundingClientRect().top + target.offsetHeight * 0.5,
-        x: 0,
-        y: 0,
-        xPercent: -50,
-        yPercent: -50,
-        borderRadius: "2rem",
-        boxShadow: "0 0px 0px rgba(0,0,0,0)",
-        ease: "power2.inOut",
-        duration: 1.5
-      } as any, 0.5);
+        // 1. Initial Desktop Floating Video State (Hero/Cinematic size in center)
+        gsap.set(videoWrapperEl, {
+          display: "block",
+          width: () => getStartCoords().width,
+          height: () => getStartCoords().height,
+          left: "50%",
+          top: "50%",
+          xPercent: -50,
+          yPercent: -50,
+          borderRadius: "2.5rem",
+          opacity: 0,
+          scale: 1,
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.35)",
+          force3D: true,
+          willChange: "transform, width, height, left, top",
+        });
 
-      // Stage 3: Reveal Content & Hide Marquee
-      tl.to(bgTextEl, { opacity: 0, duration: 0.5 }, 1.0);
-      tl.to(itSolutionEl, { opacity: 1, duration: 0.5 }, 1.5)
-        .to(boxes, {
-          y: 0,
+        gsap.set(itSolutionEl, { opacity: 0 });
+        gsap.set(boxes, { y: 30, opacity: 0 });
+
+        // 2. Auto-Sliding Marquee (Independent of scroll)
+        gsap.to(bgTextEl, {
+          xPercent: -50,
+          duration: 30,
+          repeat: -1,
+          ease: "none",
+        });
+
+        // Desktop Entrance - Fade in floating card as user approaches section
+        gsap.to(videoWrapperEl, {
           opacity: 1,
-          stagger: 0.05,
-          ease: "power2.out",
-          duration: 0.6
-        }, 1.8);
-    });
+          scrollTrigger: {
+            trigger: containerEl,
+            start: "top 90%",
+            end: "top 40%",
+            scrub: true,
+          },
+        });
 
-    // Ensure layout is stable immediately and after frame render
+        // 3. Main Cinematic Pinning & Morph Sequence
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerEl,
+            start: "top top",
+            end: "+=180%",
+            pin: true,
+            scrub: 1.2,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // Morph video card to exact size & position of the grid slot smoothly
+        tl.fromTo(
+          videoWrapperEl,
+          {
+            width: () => getStartCoords().width,
+            height: () => getStartCoords().height,
+            left: () => getStartCoords().left,
+            top: () => getStartCoords().top,
+            xPercent: -50,
+            yPercent: -50,
+          },
+          {
+            width: () => getTargetCoords().width,
+            height: () => getTargetCoords().height,
+            left: () => getTargetCoords().left,
+            top: () => getTargetCoords().top,
+            xPercent: -50,
+            yPercent: -50,
+            borderRadius: "2rem",
+            boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+            ease: "power2.inOut",
+            duration: 1,
+          },
+          0
+        );
+
+        // Fade out marquee, fade & reveal grid content
+        tl.to(bgTextEl, { opacity: 0, duration: 0.4 }, 0.4);
+        tl.to(itSolutionEl, { opacity: 1, duration: 0.5 }, 0.8).to(
+          boxes,
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.05,
+            ease: "power2.out",
+            duration: 0.5,
+          },
+          1.0
+        );
+      }
+    );
+
     ScrollTrigger.refresh();
-    const rafId = requestAnimationFrame(() => {
+    const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-    });
+    }, 300);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      clearTimeout(timer);
       mm.revert();
     };
   }, { scope: containerRef });
@@ -162,51 +177,46 @@ const VideoScrollWrapper = () => {
       className="relative w-full min-h-fit md:min-h-screen bg-gradient-to-r from-gray-50 via-orange-100 to-gray-100 overflow-x-hidden"
     >
       <style jsx>{`
-        div::-webkit-scrollbar { display: none; }
+        div::-webkit-scrollbar {
+          display: none;
+        }
       `}</style>
 
       {/* Auto-Sliding Marquee Layer - Desktop Only */}
       <div className="absolute inset-0 hidden md:flex items-center pointer-events-none z-10 select-none overflow-hidden">
-        <div
-          ref={bgTextRef}
-          className="flex whitespace-nowrap opacity-20"
-        >
+        <div ref={bgTextRef} className="flex whitespace-nowrap opacity-20">
           <span className="text-[15vw] font-black text-gray-500/20 uppercase tracking-tighter px-10">
             DIGITAL SOLUTIONS • CAMLENIO • INNOVATION • STRATEGY • TECHNOLOGY •
           </span>
         </div>
       </div>
 
-      {/* The Floating/Fixed Cinematic Video Wrapper (No Border) */}
-      {!isHandoffComplete && (
-        <div
-          ref={videoWrapperRef}
-          className={clsx(
-            "absolute z-50 pointer-events-none overflow-hidden shadow-2xl",
-            isHandoffComplete ? "opacity-0 invisible" : "opacity-100 visible"
-          )}
-        >
-          <video
-            src={itSolutionData.videoUrl}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
+      {/* Floating Cinematic Video Wrapper (Always mounted in DOM) */}
+      <div
+        ref={videoWrapperRef}
+        className="absolute z-30 pointer-events-none overflow-hidden shadow-2xl"
+      >
+        <video
+          src={itSolutionData.videoUrl}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="none"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
       {/* The Grid Target Container */}
       <div
         ref={itSolutionRef}
         className="relative w-full min-h-fit md:min-h-screen flex items-center justify-center py-10 md:py-20 z-20"
       >
-        <ItSolution isAnimated={!isHandoffComplete} />
+        <ItSolution />
       </div>
     </div>
   );
 };
 
 export default VideoScrollWrapper;
+

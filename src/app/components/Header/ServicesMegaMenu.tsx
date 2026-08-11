@@ -60,9 +60,9 @@ export const ServicesMegaMenu = ({ baseHref }: { baseHref: string }) => {
             <div className="mb-6 p-6 rounded-2xl bg-orange-50/50 border border-orange-200/60 flex items-center justify-between relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/50 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
               <div className="relative z-10">
-                <h4 className="text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
+                <p className="text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
                   {activeTitle}
-                </h4>
+                </p>
                 <p className="text-xs text-gray-500 font-medium mt-1">Explore our professional solutions</p>
               </div>
               <div className="relative z-10 opacity-15 rotate-12 -mr-6 -my-4 pointer-events-none">
@@ -122,7 +122,7 @@ export const ServicesMegaMenu = ({ baseHref }: { baseHref: string }) => {
                     <span className="w-8 h-[2px] bg-orange-500 inline-block" />
                     <p className="text-orange-400 font-bold text-xs tracking-widest uppercase">Featured Category</p>
                   </div>
-                  <h3 className="text-white font-bold text-3xl leading-none mb-3 drop-shadow-sm">{activeTitle}</h3>
+                  <p className="text-white font-bold text-3xl leading-none mb-3 drop-shadow-sm">{activeTitle}</p>
                   <p className="text-gray-300 text-sm max-w-md line-clamp-2 leading-relaxed opacity-90">
                     Discover our specialized {activeTitle.toLowerCase()} solutions designed to elevate your business with cutting-edge technology and design.
                   </p>

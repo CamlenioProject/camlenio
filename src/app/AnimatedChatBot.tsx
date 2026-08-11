@@ -367,12 +367,14 @@ function AnimatedChatBotContent() {
               <button
                 className="p-2 rounded-xl hover:bg-gray-200 transition"
                 onClick={() => setMinimized(true)}
+                aria-label="Minimize chatbot"
               >
                 <Minus className="w-4 h-4 text-gray-600" />
               </button>
               <button
                 className="p-2 rounded-xl hover:bg-gray-200 transition cursor-pointer"
                 onClick={() => setOpen(false)}
+                aria-label="Close chatbot"
               >
                 <X className="w-4 h-4 text-gray-600" />
               </button>
@@ -492,6 +494,7 @@ function AnimatedChatBotContent() {
                   <button
                     type="submit"
                     className="p-2 rounded-xl bg-orange-600 hover:bg-orange-700 text-white transition shadow-md active:scale-95 flex items-center justify-center shrink-0 cursor-pointer"
+                    aria-label="Send message"
                   >
                     <Send className="w-4 h-4" />
                   </button>
@@ -639,6 +642,7 @@ function AnimatedChatBotContent() {
           <button
             onClick={() => setShowSuggestion(false)}
             className="w-7 h-7 flex items-center justify-center bg-white/80 backdrop-blur-xl border border-gray-200 shadow-md rounded-full text-gray-600 hover:bg-gray-100 active:scale-90 transition cursor-pointer"
+            aria-label="Close suggestion box"
           >
             ✕
           </button>
@@ -693,6 +697,7 @@ function AnimatedChatBotContent() {
       hover:scale-110 active:scale-95
       transition-all duration-300 z-[10000]
     "
+          aria-label="Open chatbot"
         >
           <div className="relative w-7 h-7">
             <MessageCircle className="w-7 h-7 absolute opacity-100 scale-100" />

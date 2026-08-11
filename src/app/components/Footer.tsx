@@ -171,9 +171,9 @@ export default function Footer() {
             </div>
             {footerData.map((section, i) => (
               <div key={i}>
-                <h4 className="text-base md:text-lg font-semibold mb-3 ">
+                <p className="text-base md:text-lg font-semibold mb-3">
                   {section.title}
-                </h4>
+                </p>
                 <ul className="space-y-1 ">
                   {section.links.map((link, j) => (
                     <li key={j} className="relative text-xs md:text-sm">
@@ -193,7 +193,7 @@ export default function Footer() {
 
           <div className="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-gray-300 ">
             <div>
-              <h3>Copyright © 2022-26 All Right Reserved</h3>
+              <p>Copyright © 2022-26 All Right Reserved</p>
             </div>
 
             <div className="flex space-x-2 md:mt-0">
@@ -213,11 +213,11 @@ export default function Footer() {
             </div>
           </div>
           <div className="relative overflow-hidden">
-            <h1
+            <div
               className="flex items-end justify-center text-[5rem] md:text-[8rem] lg:text-[10rem] xl:text-[14rem] font-bold  select-none pointer-events-none tracking-wider bg-gradient-to-b from-gray-100/90 via-gray-800 to-transparent bg-clip-text text-transparent -mb-40"
             >
               Camlenio
-            </h1>
+            </div>
           </div>
         </div>
       </div >

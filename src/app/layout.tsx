@@ -67,13 +67,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://connect.facebook.net" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+      </head>
 
+      <body className="overflow-x-clip">
         {/* Google Analytics (GA4) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-SSQZK50PKC"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="ga4" strategy="afterInteractive">
+        <Script id="ga4" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){window.dataLayer.push(arguments);}
@@ -99,12 +101,10 @@ export default function RootLayout({
             fbq('track', 'PageView');
           `}
         </Script>
-      </head>
 
-      <body className="overflow-x-clip">
         <UTMTracker />
         <Header />
-        <main>
+        <main id="main-content" role="main">
           <LenisWrapper>{children}</LenisWrapper>
           <Analytics />
         </main>

@@ -32,6 +32,7 @@ import {
   QrCodeIcon,
   SignalIcon
 } from "@heroicons/react/24/outline";
+import { BanknoteIcon } from "lucide-react";
 
 export const availablePages = [
   "/frontend-development",
@@ -39,7 +40,7 @@ export const availablePages = [
   // "/custom-software-development-services",
   "/crm-software-development",
   "/ecommerce-software-development",
-  // "/grocery-software",
+  "/upi-cash-point",
   "/real-estate-software-development",
   "/mlm-software-development-company",
   "/human-resource-management-software-development",
@@ -259,13 +260,13 @@ export const navItems = [
           { title: "Aadhaar Enabled Payment System (AEPS)", href: "/aeps-software-development", desc: "High secure payments", icon: FingerPrintIcon },
         ]
       },
-      // {
-      //   title: "Money Transfer",
-      //   color: "bg-orange-100 text-orange-800",
-      //   items: [
-      //     { title: "Payout (IMPS/UPI)", href: "/imps-upi-payout-services", desc: "Seamless UPI payments", icon: QrCodeIcon },
-      //   ]
-      // },
+      {
+        title: "UPI Cash Point",
+        color: "bg-orange-100 text-orange-800",
+        items: [
+          { title: "UPI Cash Point", href: "/upi-cash-point", desc: "UPI Cash Point Software", icon: BanknoteIcon },
+        ]
+      },
       {
         title: "Payment Systems",
         color: "bg-orange-100 text-orange-800",

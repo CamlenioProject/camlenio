@@ -60,7 +60,7 @@ const MakeUsTop = () => {
             <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
             Camlenio Software Development Company
           </div>
-          <h5 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             <span
               className="text-orange-500"
               style={{
@@ -71,7 +71,7 @@ const MakeUsTop = () => {
               Comprehensive
             </span>{" "}
             Software Development Services
-          </h5>
+          </h2>
           <p className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans">
             As an IT software company in Jaipur, a business-specific software development method guarantees that each operation aligns with your goals while helping the scalable software operations for future growth. We provide several types of services to meet the various business needs:
 

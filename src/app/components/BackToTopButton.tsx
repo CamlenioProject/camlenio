@@ -29,6 +29,7 @@ export default function BackToTopButton() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
           transition={{ duration: 0.3 }}
+          aria-label="Scroll to top"
         >
           <ArrowUp className="w-5 h-5" />
         </motion.button>

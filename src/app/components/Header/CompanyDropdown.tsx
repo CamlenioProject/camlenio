@@ -71,7 +71,7 @@ export const CompanyDropdown = ({ item, baseHref }: { item: any, baseHref: strin
             <span className="inline-block px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-bold tracking-wider uppercase mb-3 backdrop-blur-sm">
               Blogs
             </span>
-            <h3 className="text-xl font-bold text-white mb-2 leading-tight">Camlenio Insights</h3>
+            <p className="text-xl font-bold text-white mb-2 leading-tight">Camlenio Insights</p>
             <p className="text-orange-50 text-[13px] leading-relaxed mb-4">
               Stay ahead of the curve with our latest articles on technology, design, and innovation.
             </p>

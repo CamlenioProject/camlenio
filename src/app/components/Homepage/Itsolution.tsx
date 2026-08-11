@@ -91,24 +91,17 @@ const ItSolution: FC<{ isAnimated?: boolean }> = ({ isAnimated = false }) => {
               data-video-target
               className="h-60 bg-gray-200 relative rounded-4xl shadow-sm overflow-hidden md:col-span-2 lg:col-span-2"
             >
-              {!isAnimated && (
-                <video
-                  src={itSolutionData.videoUrl}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-full object-cover rounded-4xl shadow-sm absolute inset-0 pointer-events-none"
-                >
-                  <track kind="captions" src="/captions/hero-video.vtt" srcLang="en" label="English" default />
-                </video>
-              )}
-              {/* Clickable overlay to open video popup */}
-              {/* <div
-                className="absolute inset-0 cursor-pointer hover:bg-white/10 transition-colors z-10"
-                onClick={() => setIsVideoPopupOpen(true)}
-              /> */}
+              <video
+                src={itSolutionData.videoUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover rounded-4xl shadow-sm absolute inset-0 pointer-events-none"
+              >
+                <track kind="captions" src="/captions/hero-video.vtt" srcLang="en" label="English" default />
+              </video>
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
             </div>
 

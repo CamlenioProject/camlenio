@@ -14,7 +14,7 @@ const IndustriesSection = () => {
             <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
             {industriesSectionData.header.badge}
           </div>
-          <m.h3
+          <m.h2
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -33,7 +33,7 @@ const IndustriesSection = () => {
               {industriesSectionData.header.titleAccent}{" "}
             </span>
             {industriesSectionData.header.titleSuffix}
-          </m.h3>
+          </m.h2>
 
           <m.p
             initial={{ y: 30, opacity: 0 }}

@@ -141,7 +141,7 @@ export const heroData = {
     {
       id: 1,
       tag: "Customized",
-      tagColor: "bg-blue-100 text-blue-600",
+      tagColor: "bg-blue-100 text-blue-800",
       title: "Customized Software Tailored to Your Growth",
       decs: "We develop software solutions that adapt to your unique business needs. Our customized technology evolves as your business grows.",
       image: "/Homepage/hero/Customized.webp",
@@ -149,7 +149,7 @@ export const heroData = {
     // {
     //   id: 2,
     //   tag: "Fintech",
-    //   tagColor: "bg-pink-100 text-pink-600",
+    //   tagColor: "bg-pink-100 text-pink-800",
     //   title: "Empowering Businesses with Smart Fintech Solutions",
     //   decs: "Fintech blends finance with technology to create smarter, faster, and more secure digital financial Software.",
     //   image: "/Homepage/hero/fintech.webp",
@@ -157,7 +157,7 @@ export const heroData = {
     {
       id: 2,
       tag: "Vendor Payment",
-      tagColor: "bg-pink-100 text-pink-600",
+      tagColor: "bg-pink-100 text-pink-800",
       title: "Smarter Vendor Payments for Better Business Operations",
       decs: "Smart vendor payment solutions enable secure, fast, automated transactions for businesses, suppliers, and financial operations.",
       image: "/Homepage/hero/fintech.webp",
@@ -165,7 +165,7 @@ export const heroData = {
     {
       id: 3,
       tag: "Innovation",
-      tagColor: "bg-orange-100 text-orange-600",
+      tagColor: "bg-orange-100 text-orange-800",
       title: "Artificial Intelligence Solutions by Camlenio Software",
       decs: "We harness the power of Artificial Intelligence (AI) to help businesses automate processes, analyze data intelligently.",
       image: "/Homepage/hero/ai.webp",

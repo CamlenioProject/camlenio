@@ -135,15 +135,15 @@ export default function HeaderNew() {
             <div className="flex items-center gap-4">
               <Link
                 href="/contact"
-                className="hidden lg:flex items-center gap-2 bg-orange-600 text-white px-8 py-3 rounded-full text-[14px] font-bold shadow-lg shadow-orange-600/20 hover:bg-orange-700 transition-all duration-300 active:scale-95"
+                className="hidden lg:flex items-center gap-2 bg-orange-600 text-white px-8 py-3 rounded-full text-[14px] font-bold shadow-sm hover:bg-orange-800 transition-all duration-300 active:scale-95"
               >
                 <PhoneIcon className="w-4 h-4" />
                 <span>Get in Touch</span>
               </Link>
 
               {/* Hamburger */}
-              <label className="hamburger lg:hidden p-2 text-black relative z-[1002]">
-                <input type="checkbox" checked={mobileMenuOpen} onChange={() => setMobileMenuOpen(!mobileMenuOpen)} />
+              <label className="hamburger lg:hidden p-2 text-black relative z-[1002]" aria-label="Toggle navigation menu">
+                <input type="checkbox" aria-label="Toggle navigation menu" checked={mobileMenuOpen} onChange={() => setMobileMenuOpen(!mobileMenuOpen)} />
                 <svg viewBox="0 0 32 32" className="h-8 w-8">
                   <path className="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22" />
                   <path className="line" d="M7 16 27 16" />

@@ -102,7 +102,7 @@ const OurProcess = () => {
             <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
             Custom Software Development
           </span>
-          <h4 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             A Structured Approach to Building {""}
             <span
               className="text-orange-500"
@@ -113,7 +113,7 @@ const OurProcess = () => {
             >
               Smarter Software
             </span>
-          </h4>
+          </h2>
 
           <p className="max-w-5xl mx-auto flex-wrap text-gray-600 text-sm text-justify break-words sm:text-base mb-12 font-sans ">
             We follow a structured and methodical approach to software

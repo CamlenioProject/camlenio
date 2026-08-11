@@ -33,7 +33,8 @@ export default function MakeUsUnique() {
           <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
           Solutions That Scale
         </span>
-        <h4 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
+
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
           Why Choose {" "}
           <span
             className="text-orange-500"
@@ -45,7 +46,9 @@ export default function MakeUsUnique() {
             {" "}
             Camlenio?
           </span>
-        </h4>
+
+        </h2>
+
         <p className="max-w-5xl mx-auto flex-wrap text-gray-50 text-sm text-justify break-words sm:text-base mb-12 font-sans">
           The Camlenio is more than just a development vendor. As we are your digital growth partner. If you are seeking a trustworthy mobile app development company that understands technology and business equally, Camlenio is the  perfect choice, as we include:
         </p>

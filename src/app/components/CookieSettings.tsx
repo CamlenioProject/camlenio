@@ -75,6 +75,7 @@ export default function CookieSettings() {
               <button
                 onClick={() => setOpen(false)}
                 className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors duration-300"
+                aria-label="Close cookie preferences modal"
               >
                 <X className="w-5 h-5" />
               </button>

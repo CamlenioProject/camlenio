@@ -22,7 +22,7 @@ const DevServices = () => {
               <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
               {devServicesData.header.badge}
             </span>
-            <h4 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-50 mb-4">
               {devServicesData.header.title} {" "}
               <span
                 className="text-orange-500"
@@ -33,7 +33,7 @@ const DevServices = () => {
               >
                 {devServicesData.header.titleAccent}
               </span>
-            </h4>
+            </h2>
             <p className="max-w-5xl mx-auto text-gray-50 text-sm md:text-base mb-12 font-sans text-justify">
               {devServicesData.header.description}
             </p>

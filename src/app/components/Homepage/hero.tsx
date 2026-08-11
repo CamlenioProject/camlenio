@@ -117,7 +117,7 @@ const Hero = () => {
                   >
                     {card.tag}
                   </motion.span>
-                  <h3 className="mt-3 font-semibold text-gray-900 text-xs">{card.title}</h3>
+                  <p className="mt-3 font-semibold text-gray-900 text-xs">{card.title}</p>
                   <p className="mt-3 text-gray-900 text-[11px] text-justify">{card.decs}</p>
                   {card.image && (
                     <div className="mt-3 w-full h-24  overflow-hidden relative shadow-inner pointer-events-none">

@@ -59,7 +59,7 @@ export default function Testimonials() {
             <span className="absolute w-7 h-[6px] rounded-full bg-orange-500 right-[-1.2rem] top-1/2 -translate-y-1/2"></span>
             What Clients says
           </span>
-          <h4 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Testimonials That{" "}
             <span
               className="text-orange-500"
@@ -70,7 +70,7 @@ export default function Testimonials() {
             >
               Inspire Us
             </span>
-          </h4>
+          </h2>
          
           <div className="relative max-w-5xl mx-auto overflow-hidden grid md:grid-cols-2 rounded-4xl border-2 border-orange-500 mt-4">
             <div className="p-8 flex flex-col justify-center ">
@@ -134,6 +134,7 @@ export default function Testimonials() {
                   )
                 }
                 className="absolute left-2 top-[48%] -translate-y-1/2 bg-white text-orange-500 p-2 w-10 rounded-full shadow-md"
+                aria-label="Previous testimonial"
               >
                 ❮
               </button>
@@ -142,6 +143,7 @@ export default function Testimonials() {
                   setIndex((prev) => (prev + 1) % testimonials.length)
                 }
                 className="absolute right-2 top-[48%] -translate-y-1/2 bg-white text-orange-500 p-2 w-10 rounded-full shadow-md"
+                aria-label="Next testimonial"
               >
                 ❯
               </button>
@@ -154,6 +156,7 @@ export default function Testimonials() {
                 onClick={() => setIndex(i)}
                 className={`w-3 h-3 rounded-full ${i === index ? "bg-orange-500" : "bg-gray-300"
                   }`}
+                aria-label={`Go to slide ${i + 1}`}
               ></button>
             ))}
           </div>
