@@ -30,7 +30,7 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center text-left">
         {/* Left Column (Headline & CTAs) */}
-        <div className="lg:col-span-7 flex flex-col items-start space-y-6">
+        <div className="lg:col-span-6 flex flex-col items-start space-y-6">
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -96,12 +96,12 @@ export default function Hero() {
         </div>
 
         {/* Right Column (Mockup Card + Visual Container) */}
-        <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end mt-12 lg:mt-0">
+        <div className="lg:col-span-6 relative w-full flex justify-center lg:justify-end mt-12 lg:mt-0">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-[420px] aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-orange-500/10 shadow-[0_20px_50px_rgba(249,115,22,0.08)] bg-white/50 p-2 group cursor-pointer"
+            className="relative w-full max-w-[480px] aspect-square rounded-[2.5rem] overflow-hidden border border-orange-500/10 shadow-[0_20px_50px_rgba(249,115,22,0.08)] bg-white/50 p-2 group cursor-pointer"
           >
             <div className="relative w-full h-full rounded-[2.2rem] overflow-hidden">
               <Image
@@ -109,7 +109,7 @@ export default function Hero() {
                 alt="UPI Cash Point Platform & Cash Withdrawal Software"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 420px"
+                sizes="(max-width: 1024px) 100vw, 480px"
                 priority
               />
               <div className="absolute inset-0 bg-orange-500/5 group-hover:bg-orange-500/0 transition-colors duration-500 pointer-events-none" />

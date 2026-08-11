@@ -25,7 +25,7 @@ export default function WhyChoose() {
                 transition={{ duration: 0.6 }}
                 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 leading-tight tracking-tight font-sans"
               >
-                Why Choose Camlenio as Your{" "}
+                Why We Stand Out As{` `}
                 <span
                   className="text-orange-500 relative inline-block"
                   style={{
